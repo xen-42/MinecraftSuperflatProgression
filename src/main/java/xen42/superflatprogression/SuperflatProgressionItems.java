@@ -13,10 +13,25 @@ import net.minecraft.util.Identifier;
 
 public class SuperflatProgressionItems {
     public static final Item ESSENCE = register("essence", Item::new, new Item.Settings());
+    public static final Item PARCHMENT = register("parchment", Item::new, new Item.Settings());
+	public static final Item ENRICHED_BONEMEAL = register("enriched_bonemeal", Item::new, new Item.Settings());
+
+    public static final Item SCROLL_RAIN = register("scroll_rain", Item::new, new Item.Settings());
+    public static final Item SCROLL_THUNDER = register("scroll_thunder", Item::new, new Item.Settings());
+    public static final Item SCROLL_TRADE = register("scroll_trade", Item::new, new Item.Settings());
+
 
     public static void initialize() {
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register((itemGroup) -> {
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register((itemGroup) -> {
             itemGroup.add(ESSENCE);
+            itemGroup.add(PARCHMENT);
+        });
+
+		ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register((itemGroup) -> {
+            itemGroup.add(ENRICHED_BONEMEAL);
+            itemGroup.add(SCROLL_RAIN);
+            itemGroup.add(SCROLL_THUNDER);
+            itemGroup.add(SCROLL_TRADE);
         });
     }
 

@@ -1,0 +1,165 @@
+package xen42.superflatprogression;
+
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.function.Consumer;
+
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
+import net.minecraft.block.Blocks;
+import net.minecraft.data.server.recipe.CookingRecipeJsonBuilder;
+import net.minecraft.data.server.recipe.CraftingRecipeJsonBuilder;
+import net.minecraft.data.server.recipe.RecipeJsonBuilder;
+import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
+import net.minecraft.data.server.recipe.ShapelessRecipeJsonBuilder;
+import net.minecraft.data.server.recipe.SingleItemRecipeJsonBuilder;
+import net.minecraft.data.server.recipe.RecipeJsonProvider;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemConvertible;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.recipe.AbstractCookingRecipe;
+import net.minecraft.recipe.BlastingRecipe;
+import net.minecraft.recipe.CookingRecipeSerializer;
+import net.minecraft.recipe.Ingredient;
+import net.minecraft.recipe.RecipeSerializer;
+import net.minecraft.recipe.SmeltingRecipe;
+import net.minecraft.recipe.book.RecipeCategory;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.RegistryEntryLookup;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.registry.RegistryWrapper.WrapperLookup;
+import net.minecraft.registry.tag.ItemTags;
+import net.minecraft.util.Identifier;
+
+public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
+    private final CompletableFuture<RegistryWrapper.WrapperLookup> registryLookupFuture;
+    
+    public SuperflatProgressionRecipeGenerator(FabricDataOutput generator, CompletableFuture<WrapperLookup> registriesFuture) {
+        super(generator);
+        registryLookupFuture = registriesFuture;
+    }
+
+    @Override
+    public String getName() {
+        return "SuperflatProgressionRecipeGenerator";
+    }
+
+    @Override
+    public Identifier getRecipeIdentifier(Identifier identifier) {
+        return Identifier.of(SuperflatProgression.MOD_ID, identifier.getPath());
+    }
+
+    public static Identifier getItemId(ItemConvertible item) {
+		return Identifier.of(SuperflatProgression.MOD_ID, Registries.ITEM.getId(item.asItem()).getPath());
+	}
+    
+    public static void offerTo(CraftingRecipeJsonBuilder builder, Consumer<RecipeJsonProvider> exporter) {
+        builder.offerTo(exporter, getItemId(builder.getOutputItem()));
+    }
+
+    public static void offerTo(CraftingRecipeJsonBuilder builder, Consumer<RecipeJsonProvider> exporter, String recipePath) {
+        Identifier identifier = Identifier.of(SuperflatProgression.MOD_ID, recipePath);
+        builder.offerTo(exporter, identifier);
+    }
+
+    @Override
+    public void generate(Consumer<RecipeJsonProvider> exporter) {
+        getRecipeGenerator(registryLookupFuture.join(), exporter).generate();
+    }
+
+    protected RecipeGenerator getRecipeGenerator(WrapperLookup registryLookup, Consumer<RecipeJsonProvider> exporter) {
+        return new RecipeGenerator(registryLookup, exporter) {
+            public void offerSmelting(List<ItemConvertible> inputs, RecipeCategory category, ItemConvertible output, float experience, int cookingTime, String group) {
+                this.fixedOfferMultipleOptions(RecipeSerializer.SMELTING, inputs, category, output, experience, cookingTime, group, "_from_smelting");
+            }
+
+            @SuppressWarnings("unused")
+            public void offerBlasting(List<ItemConvertible> inputs, RecipeCategory category, ItemConvertible output, float experience, int cookingTime, String group) {
+                this.fixedOfferMultipleOptions(RecipeSerializer.BLASTING, inputs, category, output, experience, cookingTime, group, "_from_blasting");
+            }
+
+            @Override
+            public void offerStonecuttingRecipe(RecipeCategory category, ItemConvertible output, ItemConvertible input, int count) {
+                offerTo(SingleItemRecipeJsonBuilder.createStonecutting(Ingredient.ofItems(input), category, output, count)
+                        .criterion(hasItem(input), conditionsFromItem(input))
+                        , exporter, convertBetween(output, input) + "_stonecutting");
+            }
+            
+            public final <T extends AbstractCookingRecipe> void fixedOfferMultipleOptions(
+            		RecipeSerializer<T> serializer,
+                    List<ItemConvertible> inputs,
+                    RecipeCategory category,
+                    ItemConvertible output,
+                    float experience,
+                    int cookingTime,
+                    String group,
+                    String suffix
+                ) {
+                    for (ItemConvertible itemConvertible : inputs) {
+                        offerTo(CookingRecipeJsonBuilder.create(Ingredient.ofItems(itemConvertible), category, output, experience, cookingTime, serializer)
+                            .group(group)
+                            .criterion(hasItem(itemConvertible), conditionsFromItem(itemConvertible))
+                            , exporter, getItemPath(output) + suffix + "_" + getItemPath(itemConvertible));
+                    }
+            }
+            
+            @Override
+            public void generate() {
+                offerTo(createShaped(RecipeCategory.MISC, SuperflatProgressionItems.PARCHMENT)
+                        .pattern("XXX")
+                        .input('X', Items.LEATHER)
+                        // Advancement that gives the recipe
+                        .criterion(hasItem(Items.LEATHER), conditionsFromItem(Items.LEATHER))
+                        , exporter);
+                
+                offerTo(createShapeless(RecipeCategory.MISC, SuperflatProgressionItems.ENRICHED_BONEMEAL, 1)
+                        .input(Items.BONE_MEAL) 
+                        .input(SuperflatProgressionItems.ESSENCE) 
+                        .criterion(hasItem(SuperflatProgressionItems.ESSENCE), conditionsFromItem(SuperflatProgressionItems.ESSENCE))
+                        , exporter);
+            }
+        };
+    }
+    
+    public abstract class RecipeGenerator {
+        protected final WrapperLookup registryLookup;
+        protected final Consumer<RecipeJsonProvider> exporter;
+
+        public RecipeGenerator(WrapperLookup registryLookup, Consumer<RecipeJsonProvider> exporter) {
+            this.registryLookup = registryLookup;
+            this.exporter = exporter;
+        }
+
+        public ShapedRecipeJsonBuilder createShaped(RecipeCategory category, ItemConvertible output) {
+            return ShapedRecipeJsonBuilder.create(category, output);
+        }
+
+        public ShapedRecipeJsonBuilder createShaped(RecipeCategory category, ItemConvertible output, int count) {
+            return ShapedRecipeJsonBuilder.create(category, output, count);
+        }
+
+        public ShapelessRecipeJsonBuilder createShapeless(RecipeCategory category, ItemStack output) {
+            return ShapelessRecipeJsonBuilder.create(category, output.getItem(), output.getCount());
+        }
+
+        public ShapelessRecipeJsonBuilder createShapeless(RecipeCategory category, ItemConvertible output) {
+            return ShapelessRecipeJsonBuilder.create(category, output);
+        }
+
+        public ShapelessRecipeJsonBuilder createShapeless(RecipeCategory category, ItemConvertible output, int count) {
+            return ShapelessRecipeJsonBuilder.create(category, output, count);
+        }
+
+    	public void offerStonecuttingRecipe(RecipeCategory category, ItemConvertible output, ItemConvertible input) {
+    		this.offerStonecuttingRecipe(category, output, input, 1);
+    	}
+
+    	public abstract void offerStonecuttingRecipe(RecipeCategory category, ItemConvertible output, ItemConvertible input, int count);
+
+        public abstract void generate();
+    }
+}
+

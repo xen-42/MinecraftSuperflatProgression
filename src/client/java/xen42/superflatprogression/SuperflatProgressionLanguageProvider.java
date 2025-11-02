@@ -1,0 +1,160 @@
+package xen42.superflatprogression;
+
+import java.util.concurrent.CompletableFuture;
+
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
+import net.minecraft.block.Block;
+import net.minecraft.fluid.Fluid;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.registry.RegistryWrapper.WrapperLookup;
+import net.minecraft.registry.tag.StructureTags;
+import net.minecraft.registry.tag.TagKey;
+import net.minecraft.util.Identifier;
+import net.minecraft.village.VillagerProfession;
+import net.minecraft.world.GameRules;
+import net.minecraft.world.gen.structure.Structure;
+
+public abstract class SuperflatProgressionLanguageProvider extends FabricLanguageProvider {
+	protected final CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture;
+	
+    public SuperflatProgressionLanguageProvider(FabricDataOutput output, String languageCode, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
+    	super(output, languageCode);
+    	this.registriesFuture = registryLookup;
+    }
+
+	public void generateTranslations(TranslationBuilder translationBuilder) {
+		generate(registriesFuture.join(), new ModTranslationBuilder(translationBuilder));
+	}
+	
+	public String processValue(String value) {
+		return value;
+	}
+
+	public abstract void generate(RegistryWrapper.WrapperLookup registryLookup, ModTranslationBuilder translationBuilder);
+	
+	public class ModTranslationBuilder implements TranslationBuilder {
+		private final TranslationBuilder original;
+		
+		public ModTranslationBuilder(TranslationBuilder original) {
+			this.original = original;
+		}
+		
+		@Override
+		public void add(String key, String value) {
+			original.add(key, processValue(value));
+		}
+		
+		public void add(TagKey<?> key, String value) {
+			StringBuilder stringBuilder = new StringBuilder();
+			stringBuilder.append("tag.");
+
+			Identifier registryIdentifier = key.registry().getValue();
+			Identifier tagIdentifier = key.id();
+
+			if (!registryIdentifier.getNamespace().equals(Identifier.DEFAULT_NAMESPACE)) {
+				stringBuilder.append(registryIdentifier.getNamespace())
+						.append(".");
+			}
+
+			stringBuilder.append(registryIdentifier.getPath().replace("/", "."))
+					.append(".")
+					.append(tagIdentifier.getNamespace())
+					.append(".")
+					.append(tagIdentifier.getPath().replace("/", ".").replace(":", "."));
+
+			add(stringBuilder.toString(), value);
+		}
+		
+		public void addTags(String value, TagKey<?>... keys) {
+			for (TagKey<?> key : keys) {
+				add(key, value);
+			}
+		}
+		
+		public void add(GameRules.Key<?> key, String value) {
+			add(key.getTranslationKey(), value);
+		}
+		
+		public void add(GameRules.Key<?> key, String title, String description) {
+			add(key.getTranslationKey(), title);
+			add(key.getTranslationKey() + ".description", description);
+		}
+
+		@SuppressWarnings("deprecation")
+		public void add(Fluid fluid, String value) {
+			RegistryKey<Fluid> key = fluid.getRegistryEntry().registryKey();
+			add("block." + key.getValue().getNamespace() + "." + key.getValue().getPath(), value);
+		}
+
+		public void addVillagerProfession(RegistryKey<VillagerProfession> key, String value) {
+			add("entity.minecraft.villager." + key.getValue().getPath(), value);
+		}
+
+		public void addFilledMap(TagKey<Structure> structure, String value) {
+			add("filled_map." + structure.id().getNamespace() + "." + structure.id().getPath(), value);
+		}
+	}
+	
+	public static class English extends SuperflatProgressionLanguageProvider {
+
+		public English(FabricDataOutput output, String languageCode, CompletableFuture<WrapperLookup> registryLookup) {
+			super(output, languageCode, registryLookup);
+		}
+
+		public English(FabricDataOutput output, CompletableFuture<WrapperLookup> registryLookup) {
+			this(output, "en_us", registryLookup);
+		}
+
+		@Override
+		public void generate(WrapperLookup registryLookup, ModTranslationBuilder translationBuilder) {
+			translationBuilder.add(SuperflatProgressionItems.ESSENCE, "Essence");
+			translationBuilder.add(SuperflatProgressionItems.ENRICHED_BONEMEAL, "Enriched Bonemeal");
+			translationBuilder.add(SuperflatProgressionItems.PARCHMENT, "Parchment");
+			translationBuilder.add(SuperflatProgressionItems.SCROLL_RAIN, "Rain Scroll");
+			translationBuilder.add(SuperflatProgressionItems.SCROLL_THUNDER, "Thunder Scroll");
+			translationBuilder.add(SuperflatProgressionItems.SCROLL_TRADE, "Trade Scroll");
+        }
+	}
+	
+	public static class EnglishUpsideDown extends English {
+		private static final String NORMAL_CHARS = " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_,;.?!/\\'\"";
+		private static final String UPSIDE_DOWN_CHARS = " ɐqɔpǝɟᵷɥᴉɾʞꞁɯuodbɹsʇnʌʍxʎzⱯᗺƆᗡƎℲ⅁HIՐꞰꞀWNOԀὉᴚS⟘∩ΛMXʎZ0⥝ᘔƐ߈ϛ9ㄥ86‾'⸵˙¿¡\\/,„";
+
+		public EnglishUpsideDown(FabricDataOutput output, CompletableFuture<WrapperLookup> registryLookup) {
+			super(output, "en_ud", registryLookup);
+		}
+
+		@Override
+		public String processValue(String value) {
+			return toUpsideDown(value);
+		}
+
+		private static String toUpsideDown(String name) {
+			StringBuilder builder = new StringBuilder();
+
+			for (int i = name.length() - 1; i >= 0; i--) {
+				if (i > 2 && name.substring(i - 3, i + 1).equals("%1$s")) {
+					builder.append(name, i - 3, i + 1);
+					i -= 4;
+					continue;
+				}
+
+				if (i < 0)
+					continue;
+
+				char normalChar = name.charAt(i);
+				int normalIndex = NORMAL_CHARS.indexOf(normalChar);
+				if (normalIndex < 0) {
+					builder.append(normalChar);
+				} else {
+					char upsideDown = UPSIDE_DOWN_CHARS.charAt(normalIndex);
+					builder.append(upsideDown);
+				}
+			}
+
+			return builder.toString();
+		}
+	}
+}
