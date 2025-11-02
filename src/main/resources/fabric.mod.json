@@ -20,9 +20,6 @@
 		],
 		"client": [
 			"xen42.superflatprogression.SuperflatProgressionClient"
-		],
-		"fabric-datagen": [
-			"xen42.superflatprogression.SuperflatProgressionDataGenerator"
 		]
 	},
 	"mixins": [
