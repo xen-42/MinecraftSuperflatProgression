@@ -46,6 +46,7 @@ public class SuperflatProgressionModelGenerator extends FabricModelProvider {
         itemModelGenerator.register(SuperflatProgressionItems.PARCHMENT, Models.GENERATED);
         itemModelGenerator.register(SuperflatProgressionItems.SCROLL_RAIN, Models.GENERATED);
         itemModelGenerator.register(SuperflatProgressionItems.SCROLL_THUNDER, Models.GENERATED);
+        itemModelGenerator.register(SuperflatProgressionItems.SCROLL_CLEAR_WEATHER, Models.GENERATED);
         itemModelGenerator.register(SuperflatProgressionItems.SCROLL_TRADE, Models.GENERATED);
     }
 

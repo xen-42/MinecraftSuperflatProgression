@@ -112,6 +112,7 @@ public abstract class SuperflatProgressionLanguageProvider extends FabricLanguag
 			translationBuilder.add(SuperflatProgressionItems.ESSENCE, "Essence");
 			translationBuilder.add(SuperflatProgressionItems.ENRICHED_BONEMEAL, "Enriched Bonemeal");
 			translationBuilder.add(SuperflatProgressionItems.PARCHMENT, "Parchment");
+			translationBuilder.add(SuperflatProgressionItems.SCROLL_CLEAR_WEATHER, "Clear Weather Scroll");
 			translationBuilder.add(SuperflatProgressionItems.SCROLL_RAIN, "Rain Scroll");
 			translationBuilder.add(SuperflatProgressionItems.SCROLL_THUNDER, "Thunder Scroll");
 			translationBuilder.add(SuperflatProgressionItems.SCROLL_TRADE, "Trade Scroll");

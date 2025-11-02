@@ -9,16 +9,50 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.Rarity;
+import xen42.superflatprogression.items.ScrollItem;
 
 public class SuperflatProgressionItems {
     public static final Item ESSENCE = register("essence", Item::new, new Item.Settings());
     public static final Item PARCHMENT = register("parchment", Item::new, new Item.Settings());
 	public static final Item ENRICHED_BONEMEAL = register("enriched_bonemeal", Item::new, new Item.Settings());
 
-    public static final Item SCROLL_RAIN = register("scroll_rain", Item::new, new Item.Settings());
-    public static final Item SCROLL_THUNDER = register("scroll_thunder", Item::new, new Item.Settings());
-    public static final Item SCROLL_TRADE = register("scroll_trade", Item::new, new Item.Settings());
+    public static final Item SCROLL_RAIN = register("scroll_rain", (settings) ->
+		new ScrollItem(settings, (ServerPlayerEntity user) -> {
+			var world = (ServerWorld)(user.getWorld());
+			var duration = ServerWorld.RAIN_WEATHER_DURATION_PROVIDER.get(world.getRandom());
+			world.setWeather(0, duration, true, false);
+		})
+	, new Item.Settings().maxCount(1).rarity(Rarity.UNCOMMON));
+
+    public static final Item SCROLL_THUNDER = register("scroll_thunder", (settings) ->
+		new ScrollItem(settings, (ServerPlayerEntity user) -> {
+			var world = (ServerWorld)(user.getWorld());
+			var duration = ServerWorld.THUNDER_WEATHER_DURATION_PROVIDER.get(world.getRandom());
+			world.setWeather(0, duration, true, true);
+		})
+	, new Item.Settings().maxCount(1).rarity(Rarity.UNCOMMON));
+
+	public static final Item SCROLL_CLEAR_WEATHER = register("scroll_clear_weather", (settings) ->
+		new ScrollItem(settings, (ServerPlayerEntity user) -> {
+			var world = (ServerWorld)(user.getWorld());
+			var duration = ServerWorld.CLEAR_WEATHER_DURATION_PROVIDER.get(world.getRandom());
+			world.setWeather(duration, 0, false, false);
+		})
+	, new Item.Settings().maxCount(1).rarity(Rarity.UNCOMMON));
+
+    public static final Item SCROLL_TRADE = register("scroll_trade", (settings) ->
+		new ScrollItem(settings, (ServerPlayerEntity user) -> {
+			// Try to spawn 10 times
+			var i = 0;
+			while (!WanderingTraderHelper.trySpawn(user) && i < 10) {
+				i++;
+			}
+		})
+	, new Item.Settings().maxCount(1).rarity(Rarity.UNCOMMON));
 
 
     public static void initialize() {
@@ -31,6 +65,7 @@ public class SuperflatProgressionItems {
             itemGroup.add(ENRICHED_BONEMEAL);
             itemGroup.add(SCROLL_RAIN);
             itemGroup.add(SCROLL_THUNDER);
+            itemGroup.add(SCROLL_CLEAR_WEATHER);
             itemGroup.add(SCROLL_TRADE);
         });
     }
