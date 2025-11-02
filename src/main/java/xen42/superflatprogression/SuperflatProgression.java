@@ -20,5 +20,7 @@ public class SuperflatProgression implements ModInitializer {
 		// Proceed with mild caution.
 
 		LOGGER.info("Hello Fabric world!");
+
+		SuperflatProgressionItems.initialize();
 	}
 }
