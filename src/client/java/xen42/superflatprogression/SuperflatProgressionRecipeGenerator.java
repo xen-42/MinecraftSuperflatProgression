@@ -120,6 +120,12 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
                         .input(SuperflatProgressionItems.ESSENCE) 
                         .criterion(hasItem(SuperflatProgressionItems.ESSENCE), conditionsFromItem(SuperflatProgressionItems.ESSENCE))
                         , exporter);
+                
+                offerTo(createShapeless(RecipeCategory.BUILDING_BLOCKS, Blocks.SOUL_SOIL, 1)
+                        .input(Blocks.MUD) 
+                        .input(SuperflatProgressionItems.ESSENCE) 
+                        .criterion(hasItem(SuperflatProgressionItems.ESSENCE), conditionsFromItem(SuperflatProgressionItems.ESSENCE))
+                        , exporter);
             }
         };
     }
