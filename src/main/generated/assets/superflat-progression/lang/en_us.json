@@ -1,6 +1,7 @@
 {
   "block.superflat-progression.charcoal_block": "Block of Charcoal",
   "block.superflat-progression.magic_torch": "Magic Torch",
+  "effect.superflat-progression.magic_torch_effect": "Magic Torch",
   "item.superflat-progression.enriched_bonemeal": "Enriched Bone Meal",
   "item.superflat-progression.essence": "Essence",
   "item.superflat-progression.fire_starter": "Fire Starter",

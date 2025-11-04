@@ -3,6 +3,7 @@ package xen42.superflatprogression;
 import java.util.function.Function;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
+import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -15,6 +16,7 @@ import net.minecraft.block.enums.Instrument;
 import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -40,14 +42,14 @@ public class SuperflatProgressionBlocks {
 
 	public static final Block MAGIC_TORCH = register(
 		"magic_torch",
-		(settings) -> new MagicTorchBlock(settings, ParticleTypes.FLAME),
+		(settings) -> new MagicTorchBlock(settings, SuperflatProgression.MAGIC_TORCH_PARTICLE),
 		AbstractBlock.Settings.create().noCollision().breakInstantly().luminance(state -> 14).sounds(BlockSoundGroup.WOOD).pistonBehavior(PistonBehavior.DESTROY),
 		false
 	);
 
 	public static final Block WALL_MAGIC_TORCH = register(
 		"wall_magic_torch",
-		(settings) -> new WallMagicTorchBlock(settings, ParticleTypes.FLAME),
+		(settings) -> new WallMagicTorchBlock(settings, SuperflatProgression.MAGIC_TORCH_PARTICLE),
 		AbstractBlock.Settings.create().noCollision().breakInstantly().luminance(state -> 14).sounds(BlockSoundGroup.WOOD).dropsLike(MAGIC_TORCH).pistonBehavior(PistonBehavior.DESTROY),
 		false
 	);
@@ -57,6 +59,8 @@ public class SuperflatProgressionBlocks {
 		FabricBlockEntityTypeBuilder.create(MagicTorchBlockEntity::new, 
 			new Block[] { MAGIC_TORCH, WALL_MAGIC_TORCH }).build()
 	);
+
+	public static final DefaultParticleType MAGIC_TORCH_PARTICLE = FabricParticleTypes.simple();
 
 	private static Block register(String name, Function<AbstractBlock.Settings, Block> blockFactory, AbstractBlock.Settings settings, boolean shouldRegisterItem) {
 		// Create a registry key for the block

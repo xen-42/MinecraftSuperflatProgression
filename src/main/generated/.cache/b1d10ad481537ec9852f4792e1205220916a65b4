@@ -1,8 +1,8 @@
-// 1.20.1	2025-11-04T01:20:03.7874931	Superflat Progression/SuperflatProgressionModelGenerator
+// 1.20.1	2025-11-04T02:25:00.8765137	Superflat Progression/SuperflatProgressionModelGenerator
 09e20c0ae554548a8e4a4d574de9d901477dfca8 assets\superflat-progression\blockstates\magic_torch.json
 88bd501c4e08ed0d73820654049e128f7b410f4d assets\superflat-progression\models\item\essence.json
-106dcc97af7ebea639c4d5991cf8f51d5af057b3 assets\superflat-progression\models\item\charcoal_block.json
 c845bfb6616fce5fa93feac7a6377555030b6371 assets\superflat-progression\models\item\scroll_clear_weather.json
+106dcc97af7ebea639c4d5991cf8f51d5af057b3 assets\superflat-progression\models\item\charcoal_block.json
 2e745182c4586628bccfd1d17f6e8056b6150559 assets\superflat-progression\models\item\scroll_rain.json
 0fd74bcf4c261f66f8ce8bf0b58a69db89332071 assets\superflat-progression\models\item\scroll_thunder.json
 1d4a1d95b0472527019e0f012998bb9d1d429d04 assets\superflat-progression\models\item\scroll_trade.json

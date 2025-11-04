@@ -14,6 +14,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
 import xen42.superflatprogression.SuperflatProgressionBlocks;
+import xen42.superflatprogression.SuperflatProgressionStatusEffects;
 
 public class MagicTorchBlockEntity extends BlockEntity {
 
@@ -24,7 +25,7 @@ public class MagicTorchBlockEntity extends BlockEntity {
 
     public static void tick(World world, BlockPos pos, BlockState state, MagicTorchBlockEntity blockEntity) {
 		if (world.getTime() % 80L == 0L) {
-			applyPlayerEffects(world, pos, StatusEffects.INVISIBILITY);
+			applyPlayerEffects(world, pos, SuperflatProgressionStatusEffects.LOOTING_EFFECT.value());
 		}
 	}
 
@@ -34,7 +35,7 @@ public class MagicTorchBlockEntity extends BlockEntity {
 			List<PlayerEntity> list = world.getNonSpectatingEntities(PlayerEntity.class, box);
 
 			for (PlayerEntity playerEntity : list) {
-				playerEntity.addStatusEffect(new StatusEffectInstance(primaryEffect, 200, 1, true, true));
+				playerEntity.addStatusEffect(new StatusEffectInstance(primaryEffect, 200, 0, true, true));
 			}
 		}
 	}
