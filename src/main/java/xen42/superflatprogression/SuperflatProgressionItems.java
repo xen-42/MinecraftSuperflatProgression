@@ -10,6 +10,7 @@ import net.minecraft.item.BoneMealItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.item.Items;
+import net.minecraft.item.VerticallyAttachableBlockItem;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
@@ -18,6 +19,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
+import net.minecraft.util.math.Direction;
 import xen42.superflatprogression.items.EnrichedBoneMealItem;
 import xen42.superflatprogression.items.FireStarterItem;
 import xen42.superflatprogression.items.ScrollItem;
@@ -27,6 +29,8 @@ public class SuperflatProgressionItems {
     public static final Item PARCHMENT = register("parchment", Item::new, new Item.Settings());
 	public static final Item ENRICHED_BONEMEAL = register("enriched_bonemeal", EnrichedBoneMealItem::new, new Item.Settings());
 	public static final Item FIRE_STARTER = register("fire_starter", FireStarterItem::new, new Item.Settings());
+	public static final Item MAGIC_TORCH = register("magic_torch", (settings) -> new VerticallyAttachableBlockItem(SuperflatProgressionBlocks.MAGIC_TORCH,
+		SuperflatProgressionBlocks.WALL_MAGIC_TORCH, settings, Direction.DOWN), new Item.Settings());
 
     public static final Item SCROLL_RAIN = register("scroll_rain", (settings) ->
 		new ScrollItem(settings, (ServerPlayerEntity user) -> {
@@ -80,6 +84,10 @@ public class SuperflatProgressionItems {
 
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register((itemGroup) -> {
             itemGroup.add(SuperflatProgressionBlocks.CHARCOAL_BLOCK.asItem());
+		});
+
+		ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register((itemGroup) -> {
+            itemGroup.add(MAGIC_TORCH);
 		});
 
 		FuelRegistry.INSTANCE.add(SuperflatProgressionBlocks.CHARCOAL_BLOCK, 16000);

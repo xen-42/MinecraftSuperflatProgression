@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:leather"
+    },
+    {
+      "item": "superflat-progression:parchment"
+    },
+    {
+      "item": "superflat-progression:parchment"
+    },
+    {
+      "item": "superflat-progression:parchment"
+    }
+  ],
+  "result": {
+    "item": "minecraft:book"
+  }
+}

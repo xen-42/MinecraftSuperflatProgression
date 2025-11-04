@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "superflat-progression:block/wall_magic_torch"
+    },
+    "facing=north": {
+      "model": "superflat-progression:block/wall_magic_torch",
+      "y": 270
+    },
+    "facing=south": {
+      "model": "superflat-progression:block/wall_magic_torch",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "superflat-progression:block/wall_magic_torch",
+      "y": 180
+    }
+  }
+}

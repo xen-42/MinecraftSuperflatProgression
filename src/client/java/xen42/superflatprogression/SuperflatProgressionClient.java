@@ -1,10 +1,13 @@
 package xen42.superflatprogression;
 
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.minecraft.client.render.RenderLayer;
 
 public class SuperflatProgressionClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
-		// This entrypoint is suitable for setting up client-specific logic, such as rendering.
+		BlockRenderLayerMap.INSTANCE.putBlock(SuperflatProgressionBlocks.MAGIC_TORCH, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SuperflatProgressionBlocks.WALL_MAGIC_TORCH, RenderLayer.getCutout());
 	}
 }

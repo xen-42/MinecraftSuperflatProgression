@@ -4,6 +4,7 @@ import java.util.concurrent.CompletableFuture;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
+import net.minecraft.block.BeaconBlock;
 import net.minecraft.block.Block;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.registry.RegistryKey;
@@ -119,6 +120,7 @@ public abstract class SuperflatProgressionLanguageProvider extends FabricLanguag
 			translationBuilder.add(SuperflatProgressionItems.SCROLL_TRADE, "Trade Scroll");
 
 			translationBuilder.add(SuperflatProgressionBlocks.CHARCOAL_BLOCK, "Block of Charcoal");
+			translationBuilder.add(SuperflatProgressionItems.MAGIC_TORCH, "Magic Torch");
         }
 	}
 	

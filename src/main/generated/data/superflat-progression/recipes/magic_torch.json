@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "X": {
+      "item": "superflat-progression:essence"
+    },
+    "Y": {
+      "tag": "minecraft:coals"
+    },
+    "Z": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "X",
+    "Y",
+    "Z"
+  ],
+  "result": {
+    "item": "superflat-progression:magic_torch"
+  },
+  "show_notification": true
+}
