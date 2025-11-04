@@ -110,7 +110,7 @@ public abstract class SuperflatProgressionLanguageProvider extends FabricLanguag
 		@Override
 		public void generate(WrapperLookup registryLookup, ModTranslationBuilder translationBuilder) {
 			translationBuilder.add(SuperflatProgressionItems.ESSENCE, "Essence");
-			translationBuilder.add(SuperflatProgressionItems.ENRICHED_BONEMEAL, "Enriched Bonemeal");
+			translationBuilder.add(SuperflatProgressionItems.ENRICHED_BONEMEAL, "Enriched Bone Meal");
 			translationBuilder.add(SuperflatProgressionItems.PARCHMENT, "Parchment");
 			translationBuilder.add(SuperflatProgressionItems.SCROLL_CLEAR_WEATHER, "Clear Weather Scroll");
 			translationBuilder.add(SuperflatProgressionItems.SCROLL_RAIN, "Rain Scroll");
