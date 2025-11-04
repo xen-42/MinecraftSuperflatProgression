@@ -3,6 +3,7 @@ package xen42.superflatprogression;
 import java.util.function.Function;
 
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.minecraft.item.BoneMealItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.registry.Registries;
@@ -13,12 +14,13 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
+import xen42.superflatprogression.items.EnrichedBoneMealItem;
 import xen42.superflatprogression.items.ScrollItem;
 
 public class SuperflatProgressionItems {
     public static final Item ESSENCE = register("essence", Item::new, new Item.Settings());
     public static final Item PARCHMENT = register("parchment", Item::new, new Item.Settings());
-	public static final Item ENRICHED_BONEMEAL = register("enriched_bonemeal", Item::new, new Item.Settings());
+	public static final Item ENRICHED_BONEMEAL = register("enriched_bonemeal", EnrichedBoneMealItem::new, new Item.Settings());
 
     public static final Item SCROLL_RAIN = register("scroll_rain", (settings) ->
 		new ScrollItem(settings, (ServerPlayerEntity user) -> {
