@@ -42,6 +42,7 @@ public class SuperflatProgressionModelGenerator extends FabricModelProvider {
     @Override
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
         itemModelGenerator.register(SuperflatProgressionItems.ENRICHED_BONEMEAL, Models.GENERATED);
+        itemModelGenerator.register(SuperflatProgressionItems.FIRE_STARTER, Models.GENERATED);
         itemModelGenerator.register(SuperflatProgressionItems.ESSENCE, Models.GENERATED);
         itemModelGenerator.register(SuperflatProgressionItems.PARCHMENT, Models.GENERATED);
         itemModelGenerator.register(SuperflatProgressionItems.SCROLL_RAIN, Models.GENERATED);

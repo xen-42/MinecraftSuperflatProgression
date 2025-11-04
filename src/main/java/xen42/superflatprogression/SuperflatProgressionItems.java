@@ -17,12 +17,14 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 import xen42.superflatprogression.items.EnrichedBoneMealItem;
+import xen42.superflatprogression.items.FireStarterItem;
 import xen42.superflatprogression.items.ScrollItem;
 
 public class SuperflatProgressionItems {
     public static final Item ESSENCE = register("essence", Item::new, new Item.Settings());
     public static final Item PARCHMENT = register("parchment", Item::new, new Item.Settings());
 	public static final Item ENRICHED_BONEMEAL = register("enriched_bonemeal", EnrichedBoneMealItem::new, new Item.Settings());
+	public static final Item FIRE_STARTER = register("fire_starter", FireStarterItem::new, new Item.Settings());
 
     public static final Item SCROLL_RAIN = register("scroll_rain", (settings) ->
 		new ScrollItem(settings, (ServerPlayerEntity user) -> {
@@ -67,6 +69,7 @@ public class SuperflatProgressionItems {
 
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register((itemGroup) -> {
             itemGroup.add(ENRICHED_BONEMEAL);
+            itemGroup.add(FIRE_STARTER);
             itemGroup.add(SCROLL_RAIN);
             itemGroup.add(SCROLL_THUNDER);
             itemGroup.add(SCROLL_CLEAR_WEATHER);
