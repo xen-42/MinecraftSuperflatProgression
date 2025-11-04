@@ -3,9 +3,11 @@ package xen42.superflatprogression;
 import java.util.function.Function;
 
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.minecraft.block.Blocks;
 import net.minecraft.item.BoneMealItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroups;
+import net.minecraft.item.Items;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
@@ -61,7 +63,7 @@ public class SuperflatProgressionItems {
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register((itemGroup) -> {
             itemGroup.add(ESSENCE);
             itemGroup.add(PARCHMENT);
-        });
+        }); 
 
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register((itemGroup) -> {
             itemGroup.add(ENRICHED_BONEMEAL);
