@@ -109,10 +109,20 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
             @Override
             public void generate() {
                 offerTo(createShaped(RecipeCategory.MISC, SuperflatProgressionItems.PARCHMENT)
-                        .pattern("XXX")
+                        .pattern("XX")
                         .input('X', Items.LEATHER)
                         // Advancement that gives the recipe
                         .criterion(hasItem(Items.LEATHER), conditionsFromItem(Items.LEATHER))
+                        , exporter);
+                
+                offerTo(createShapeless(RecipeCategory.MISC, Items.BOOK)
+                        .input(Items.LEATHER) 
+                        .input(SuperflatProgressionItems.PARCHMENT) 
+                        .input(SuperflatProgressionItems.PARCHMENT) 
+                        .input(SuperflatProgressionItems.PARCHMENT) 
+                        // Advancement that gives the recipe
+                        .criterion(hasItem(Items.LEATHER), conditionsFromItem(Items.LEATHER))
+                        .criterion(hasItem(SuperflatProgressionItems.PARCHMENT), conditionsFromItem(SuperflatProgressionItems.PARCHMENT))
                         , exporter);
 
                 offerTo(createShaped(RecipeCategory.MISC, SuperflatProgressionBlocks.CHARCOAL_BLOCK)
@@ -132,8 +142,6 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
                 
                 offerTo(createShapeless(RecipeCategory.MISC, SuperflatProgressionItems.ENRICHED_BONEMEAL, 1)
                         .input(Items.BONE_MEAL) 
-                        .input(Items.BONE_MEAL) 
-                        .input(SuperflatProgressionItems.ESSENCE) 
                         .input(SuperflatProgressionItems.ESSENCE) 
                         .criterion(hasItem(SuperflatProgressionItems.ESSENCE), conditionsFromItem(SuperflatProgressionItems.ESSENCE))
                         , exporter);
