@@ -2,6 +2,7 @@ package xen42.superflatprogression;
 
 import java.util.function.Function;
 
+import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -9,6 +10,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.MapColor;
 import net.minecraft.block.TorchBlock;
 import net.minecraft.block.WallTorchBlock;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.block.enums.Instrument;
 import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.item.BlockItem;
@@ -20,6 +22,9 @@ import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
+import xen42.superflatprogression.blocks.MagicTorchBlock;
+import xen42.superflatprogression.blocks.MagicTorchBlockEntity;
+import xen42.superflatprogression.blocks.WallMagicTorchBlock;
 
 public class SuperflatProgressionBlocks {
     public static void initialize() { 
@@ -35,16 +40,22 @@ public class SuperflatProgressionBlocks {
 
 	public static final Block MAGIC_TORCH = register(
 		"magic_torch",
-		(settings) -> new TorchBlock(settings, ParticleTypes.FLAME),
+		(settings) -> new MagicTorchBlock(settings, ParticleTypes.FLAME),
 		AbstractBlock.Settings.create().noCollision().breakInstantly().luminance(state -> 14).sounds(BlockSoundGroup.WOOD).pistonBehavior(PistonBehavior.DESTROY),
 		false
 	);
 
 	public static final Block WALL_MAGIC_TORCH = register(
 		"wall_magic_torch",
-		(settings) -> new WallTorchBlock(settings, ParticleTypes.FLAME),
+		(settings) -> new WallMagicTorchBlock(settings, ParticleTypes.FLAME),
 		AbstractBlock.Settings.create().noCollision().breakInstantly().luminance(state -> 14).sounds(BlockSoundGroup.WOOD).dropsLike(MAGIC_TORCH).pistonBehavior(PistonBehavior.DESTROY),
 		false
+	);
+
+	public static final BlockEntityType<MagicTorchBlockEntity> MAGIC_TORCH_ENTITY = registerBlockEntityType(
+		"magic_torch_entity",
+		FabricBlockEntityTypeBuilder.create(MagicTorchBlockEntity::new, 
+			new Block[] { MAGIC_TORCH, WALL_MAGIC_TORCH }).build()
 	);
 
 	private static Block register(String name, Function<AbstractBlock.Settings, Block> blockFactory, AbstractBlock.Settings settings, boolean shouldRegisterItem) {
@@ -73,5 +84,9 @@ public class SuperflatProgressionBlocks {
 
 	private static RegistryKey<Item> keyOfItem(String name) {
 		return RegistryKey.of(RegistryKeys.ITEM, Identifier.of(SuperflatProgression.MOD_ID, name));
+	}
+
+	public static <T extends BlockEntityType<?>> T registerBlockEntityType(String path, T blockEntityType) {
+		return Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(SuperflatProgression.MOD_ID, path), blockEntityType);
 	}
 }

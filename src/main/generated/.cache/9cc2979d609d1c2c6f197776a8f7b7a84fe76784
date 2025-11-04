@@ -1,11 +1,11 @@
-// 1.20.1	2025-11-04T00:39:35.359	Superflat Progression/SuperflatProgressionRecipeGenerator
+// 1.20.1	2025-11-04T01:07:12.8217054	Superflat Progression/SuperflatProgressionRecipeGenerator
 e8c58438eb072f8e39dfb18bc7652d5e95205636 data\superflat-progression\recipes\enriched_bonemeal.json
 1c79fc88edca9e2857f7b4316d5a5252d2478cd2 data\superflat-progression\recipes\magic_torch.json
 5f9ae55b207b2e57bcf2126bfd3cca6012faac97 data\superflat-progression\recipes\book.json
 1fa56300cd316ebe18a69d6486a488f658d55de0 data\superflat-progression\advancements\recipes\misc\charcoal_block.json
 93c0390ea3b6b5a686e45f20903481d5e54337ff data\superflat-progression\advancements\recipes\building_blocks\soul_soil.json
-35b7013c8c21e3ae6aa86701f09ffb4372402f71 data\superflat-progression\advancements\recipes\misc\enriched_bonemeal.json
 453319e074be6e19649a901944019142686bef92 data\superflat-progression\advancements\recipes\misc\fire_starter.json
+35b7013c8c21e3ae6aa86701f09ffb4372402f71 data\superflat-progression\advancements\recipes\misc\enriched_bonemeal.json
 fea1c3868168cca22570afb21897396ca9e869c2 data\superflat-progression\recipes\charcoal_block.json
 29af37fc57f0d452b7a32a047bb31ece4b1eba5e data\superflat-progression\recipes\soul_soil.json
 41ca23d2949a38826898cc85dc8994b143545fd7 data\superflat-progression\advancements\recipes\misc\book.json
