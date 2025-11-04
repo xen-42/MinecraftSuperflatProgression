@@ -42,5 +42,6 @@ public class SuperflatProgression implements ModInitializer {
 		SuperflatProgressionStatusEffects.initialize();
 		SuperflatProgressionItems.initialize();
 		SuperflatProgressionBlocks.initialize();
+		SuperflatProgressionPotions.initialize();
 	}
 }
