@@ -123,7 +123,7 @@ public abstract class SuperflatProgressionLanguageProvider extends FabricLanguag
 			translationBuilder.add(SuperflatProgressionItems.MAGIC_TORCH, "Magic Torch");
 			translationBuilder.add(SuperflatProgressionBlocks.MAGIC_LANTERN, "Magic Lantern");
 
-			translationBuilder.add(SuperflatProgressionStatusEffects.LOOTING_EFFECT.value(), "Magic Torch");
+			translationBuilder.add(SuperflatProgressionStatusEffects.MAGIC_TORCH_EFFECT.value(), "Magical Favour");
         }
 	}
 	

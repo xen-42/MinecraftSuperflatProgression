@@ -12,10 +12,10 @@ public class SuperflatProgressionStatusEffects {
     private static RegistryEntry<StatusEffect> registerStatusEffect(String id, StatusEffect statusEffect) {
 		return Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of(SuperflatProgression.MOD_ID, id), statusEffect);
 	}
-	public static RegistryEntry<StatusEffect> LOOTING_EFFECT;
+	public static RegistryEntry<StatusEffect> MAGIC_TORCH_EFFECT;
     
     public static void initialize() {
-		LOOTING_EFFECT = registerStatusEffect("magic_torch_effect",
+		MAGIC_TORCH_EFFECT = registerStatusEffect("magic_torch_effect",
 			(new SuperflatProgressionStatusEffects.CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 8388736)));
     }
 

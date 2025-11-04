@@ -24,7 +24,7 @@ public class MagicTorchBlockEntity extends BlockEntity {
 
     public static void tick(World world, BlockPos pos, BlockState state, MagicTorchBlockEntity blockEntity) {
 		if (world.getTime() % 80L == 0L) {
-			applyPlayerEffects(world, pos, SuperflatProgressionStatusEffects.LOOTING_EFFECT.value());
+			applyPlayerEffects(world, pos, SuperflatProgressionStatusEffects.MAGIC_TORCH_EFFECT.value());
 		}
 	}
 
