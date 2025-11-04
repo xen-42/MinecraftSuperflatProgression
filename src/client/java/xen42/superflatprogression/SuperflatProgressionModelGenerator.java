@@ -24,7 +24,6 @@ import net.minecraft.data.client.VariantsBlockStateSupplier;
 import net.minecraft.data.client.Model;
 import net.minecraft.data.client.ModelIds;
 import net.minecraft.item.Item;
-import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.Identifier;
 
@@ -36,7 +35,7 @@ public class SuperflatProgressionModelGenerator extends FabricModelProvider {
 
     @Override
     public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
-
+        blockStateModelGenerator.registerSimpleCubeAll(SuperflatProgressionBlocks.CHARCOAL_BLOCK);
     }
 
     @Override

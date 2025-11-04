@@ -3,7 +3,9 @@ package xen42.superflatprogression;
 import java.util.function.Function;
 
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.FireBlock;
 import net.minecraft.item.BoneMealItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroups;
@@ -75,6 +77,13 @@ public class SuperflatProgressionItems {
             itemGroup.add(SCROLL_CLEAR_WEATHER);
             itemGroup.add(SCROLL_TRADE);
         });
+
+		ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register((itemGroup) -> {
+            itemGroup.add(SuperflatProgressionBlocks.CHARCOAL_BLOCK.asItem());
+		});
+
+		FuelRegistry.INSTANCE.add(SuperflatProgressionBlocks.CHARCOAL_BLOCK, 16000);
+
     }
 
 	public static Item register(String name, Function<Item.Settings, Item> itemFactory, Item.Settings settings) {

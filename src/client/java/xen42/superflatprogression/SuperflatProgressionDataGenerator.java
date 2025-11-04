@@ -10,6 +10,7 @@ public class SuperflatProgressionDataGenerator implements DataGeneratorEntrypoin
 		pack.addProvider(SuperflatProgressionRecipeGenerator::new);
 		pack.addProvider(SuperflatProgressionModelGenerator::new);
 		pack.addProvider(SuperflatProgressionLanguageProvider.English::new);
-
+		SuperflatProgressionBlockTagGenerator blockTagProvider = pack.addProvider(SuperflatProgressionBlockTagGenerator::new);
+		pack.addProvider((output, registries) -> new SuperflatProgressionItemTagGenerator(output, registries, blockTagProvider));
 	}
 }

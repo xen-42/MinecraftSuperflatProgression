@@ -117,6 +117,8 @@ public abstract class SuperflatProgressionLanguageProvider extends FabricLanguag
 			translationBuilder.add(SuperflatProgressionItems.SCROLL_RAIN, "Rain Scroll");
 			translationBuilder.add(SuperflatProgressionItems.SCROLL_THUNDER, "Thunder Scroll");
 			translationBuilder.add(SuperflatProgressionItems.SCROLL_TRADE, "Trade Scroll");
+
+			translationBuilder.add(SuperflatProgressionBlocks.CHARCOAL_BLOCK, "Block of Charcoal");
         }
 	}
 	

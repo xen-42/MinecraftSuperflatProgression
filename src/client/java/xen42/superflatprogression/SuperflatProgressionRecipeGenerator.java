@@ -114,9 +114,26 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
                         // Advancement that gives the recipe
                         .criterion(hasItem(Items.LEATHER), conditionsFromItem(Items.LEATHER))
                         , exporter);
+
+                offerTo(createShaped(RecipeCategory.MISC, SuperflatProgressionBlocks.CHARCOAL_BLOCK)
+                        .pattern("XXX")
+                        .pattern("XXX")
+                        .pattern("XXX")
+                        .input('X', Items.CHARCOAL)
+                        // Advancement that gives the recipe
+                        .criterion(hasItem(Items.CHARCOAL), conditionsFromItem(Items.CHARCOAL))
+                        , exporter);
+                
+                offerTo(createShapeless(RecipeCategory.MISC, Items.CHARCOAL, 9)
+                        .input(SuperflatProgressionBlocks.CHARCOAL_BLOCK) 
+                        // Advancement that gives the recipe
+                        .criterion(hasItem(Items.CHARCOAL), conditionsFromItem(Items.CHARCOAL))
+                        , exporter);
                 
                 offerTo(createShapeless(RecipeCategory.MISC, SuperflatProgressionItems.ENRICHED_BONEMEAL, 1)
                         .input(Items.BONE_MEAL) 
+                        .input(Items.BONE_MEAL) 
+                        .input(SuperflatProgressionItems.ESSENCE) 
                         .input(SuperflatProgressionItems.ESSENCE) 
                         .criterion(hasItem(SuperflatProgressionItems.ESSENCE), conditionsFromItem(SuperflatProgressionItems.ESSENCE))
                         , exporter);
