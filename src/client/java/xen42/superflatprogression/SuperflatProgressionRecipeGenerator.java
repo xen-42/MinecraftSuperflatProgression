@@ -170,6 +170,17 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
                         // Advancement that gives the recipe
                         .criterion(hasItem(SuperflatProgressionItems.ESSENCE), conditionsFromItem(SuperflatProgressionItems.ESSENCE))
                         , exporter);
+
+                offerTo(createShaped(RecipeCategory.MISC, SuperflatProgressionBlocks.MAGIC_LANTERN)
+                        .pattern("XXX")
+                        .pattern("XYX")
+                        .pattern("XXX")
+                        .input('X', Items.IRON_NUGGET)
+                        .input('Y', SuperflatProgressionItems.MAGIC_TORCH)
+                        // Advancement that gives the recipe
+                        .criterion(hasItem(SuperflatProgressionItems.MAGIC_TORCH), conditionsFromItem(SuperflatProgressionItems.MAGIC_TORCH))
+                        .criterion(hasItem(Items.IRON_NUGGET), conditionsFromItem(Items.IRON_NUGGET))
+                        , exporter);
             }
         };
     }

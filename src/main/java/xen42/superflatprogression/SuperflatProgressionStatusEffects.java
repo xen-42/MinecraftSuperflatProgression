@@ -16,7 +16,7 @@ public class SuperflatProgressionStatusEffects {
     
     public static void initialize() {
 		LOOTING_EFFECT = registerStatusEffect("magic_torch_effect",
-			(new SuperflatProgressionStatusEffects.CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 10187841)));
+			(new SuperflatProgressionStatusEffects.CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 8388736)));
     }
 
     public static class CustomStatusEffect extends StatusEffect {

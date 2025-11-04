@@ -37,6 +37,7 @@ public class SuperflatProgressionModelGenerator extends FabricModelProvider {
     public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
         blockStateModelGenerator.registerSimpleCubeAll(SuperflatProgressionBlocks.CHARCOAL_BLOCK);
 		blockStateModelGenerator.registerTorch(SuperflatProgressionBlocks.MAGIC_TORCH, SuperflatProgressionBlocks.WALL_MAGIC_TORCH);
+		blockStateModelGenerator.registerLantern(SuperflatProgressionBlocks.MAGIC_LANTERN);
     }
 
     @Override

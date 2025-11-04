@@ -10,6 +10,7 @@ public class SuperflatProgressionClient implements ClientModInitializer {
 	public void onInitializeClient() {
 		BlockRenderLayerMap.INSTANCE.putBlock(SuperflatProgressionBlocks.MAGIC_TORCH, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SuperflatProgressionBlocks.WALL_MAGIC_TORCH, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SuperflatProgressionBlocks.MAGIC_LANTERN, RenderLayer.getCutout());
 
 		ParticleFactoryRegistry.getInstance().register(SuperflatProgression.MAGIC_TORCH_PARTICLE, SuperflatProgressionParticleFactory::new);
 	}

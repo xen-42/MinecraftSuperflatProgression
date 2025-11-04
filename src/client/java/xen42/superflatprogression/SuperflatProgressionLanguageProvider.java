@@ -121,6 +121,7 @@ public abstract class SuperflatProgressionLanguageProvider extends FabricLanguag
 
 			translationBuilder.add(SuperflatProgressionBlocks.CHARCOAL_BLOCK, "Block of Charcoal");
 			translationBuilder.add(SuperflatProgressionItems.MAGIC_TORCH, "Magic Torch");
+			translationBuilder.add(SuperflatProgressionBlocks.MAGIC_LANTERN, "Magic Lantern");
 
 			translationBuilder.add(SuperflatProgressionStatusEffects.LOOTING_EFFECT.value(), "Magic Torch");
         }

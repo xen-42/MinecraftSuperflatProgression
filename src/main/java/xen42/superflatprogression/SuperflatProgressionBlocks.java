@@ -8,6 +8,7 @@ import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.LanternBlock;
 import net.minecraft.block.MapColor;
 import net.minecraft.block.TorchBlock;
 import net.minecraft.block.WallTorchBlock;
@@ -16,6 +17,7 @@ import net.minecraft.block.enums.Instrument;
 import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.Items;
 import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.Registries;
@@ -43,21 +45,29 @@ public class SuperflatProgressionBlocks {
 	public static final Block MAGIC_TORCH = register(
 		"magic_torch",
 		(settings) -> new MagicTorchBlock(settings, SuperflatProgression.MAGIC_TORCH_PARTICLE),
-		AbstractBlock.Settings.create().noCollision().breakInstantly().luminance(state -> 14).sounds(BlockSoundGroup.WOOD).pistonBehavior(PistonBehavior.DESTROY),
+		AbstractBlock.Settings.create().noCollision().breakInstantly().luminance(state -> 10).sounds(BlockSoundGroup.WOOD).pistonBehavior(PistonBehavior.DESTROY),
 		false
 	);
 
 	public static final Block WALL_MAGIC_TORCH = register(
 		"wall_magic_torch",
 		(settings) -> new WallMagicTorchBlock(settings, SuperflatProgression.MAGIC_TORCH_PARTICLE),
-		AbstractBlock.Settings.create().noCollision().breakInstantly().luminance(state -> 14).sounds(BlockSoundGroup.WOOD).dropsLike(MAGIC_TORCH).pistonBehavior(PistonBehavior.DESTROY),
+		AbstractBlock.Settings.create().noCollision().breakInstantly().luminance(state -> 10).sounds(BlockSoundGroup.WOOD).dropsLike(MAGIC_TORCH).pistonBehavior(PistonBehavior.DESTROY),
 		false
+	);
+
+	public static final Block MAGIC_LANTERN = register(
+		"magic_lantern", 
+		(settings) -> new LanternBlock(settings), 
+		AbstractBlock.Settings.create().mapColor(MapColor.IRON_GRAY).solid().requiresTool().strength(3.5F).sounds(BlockSoundGroup.LANTERN)
+				.luminance(state -> 10).nonOpaque().pistonBehavior(PistonBehavior.DESTROY),
+		true
 	);
 
 	public static final BlockEntityType<MagicTorchBlockEntity> MAGIC_TORCH_ENTITY = registerBlockEntityType(
 		"magic_torch_entity",
 		FabricBlockEntityTypeBuilder.create(MagicTorchBlockEntity::new, 
-			new Block[] { MAGIC_TORCH, WALL_MAGIC_TORCH }).build()
+			new Block[] { MAGIC_TORCH, WALL_MAGIC_TORCH, MAGIC_LANTERN }).build()
 	);
 
 	public static final DefaultParticleType MAGIC_TORCH_PARTICLE = FabricParticleTypes.simple();

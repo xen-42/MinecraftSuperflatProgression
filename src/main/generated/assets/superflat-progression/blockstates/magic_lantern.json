@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "hanging=false": {
+      "model": "superflat-progression:block/magic_lantern"
+    },
+    "hanging=true": {
+      "model": "superflat-progression:block/magic_lantern_hanging"
+    }
+  }
+}
