@@ -4,6 +4,7 @@ import org.jetbrains.annotations.Nullable;
 
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.BlockWithEntity;
 import net.minecraft.block.Blocks;
@@ -24,47 +25,24 @@ import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 import xen42.superflatprogression.SuperflatProgressionBlocks;
 
-public class MagicTorchBlock extends BlockWithEntity {
-	protected static final VoxelShape BOUNDING_SHAPE = Block.createCuboidShape(6.0, 0.0, 6.0, 10.0, 10.0, 10.0);
-	protected final ParticleEffect particle;
+public class MagicTorchBlock extends TorchBlock implements BlockEntityProvider {
 
-	public MagicTorchBlock(AbstractBlock.Settings settings, ParticleEffect particle) {
-		super(settings);
-		this.particle = particle;
+    public MagicTorchBlock(Settings settings, ParticleEffect particle) {
+		super(settings, particle);
 	}
 
 	@Override
-	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-		return BOUNDING_SHAPE;
-	}
-
-	@Override
-	public BlockState getStateForNeighborUpdate(
-		BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos
-	) {
-		return direction == Direction.DOWN && !this.canPlaceAt(state, world, pos)
-			? Blocks.AIR.getDefaultState()
-			: super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
-	}
-
-	@Override
-	public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
-		return sideCoversSmallSquare(world, pos.down(), Direction.UP);
-	}
-
-	@Override
-	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
-		double d = pos.getX() + 0.5;
-		double e = pos.getY() + 0.7;
-		double f = pos.getZ() + 0.5;
-		world.addParticle(ParticleTypes.SMOKE, d, e, f, 0.0, 0.0, 0.0);
-		world.addParticle(this.particle, d, e, f, 0.0, 0.0, 0.0);
-	}
-
-    @Override
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
         return new MagicTorchBlockEntity(pos, state);
     }
+
+	@SuppressWarnings("unchecked")
+	@Nullable
+	protected static <E extends BlockEntity, A extends BlockEntity> BlockEntityTicker<A> checkType(
+		BlockEntityType<A> givenType, BlockEntityType<E> expectedType, BlockEntityTicker<? super E> ticker
+	) {
+		return expectedType == givenType ? (@Nullable BlockEntityTicker<A>)ticker : null;
+	}
 
     @Nullable
 	@Override

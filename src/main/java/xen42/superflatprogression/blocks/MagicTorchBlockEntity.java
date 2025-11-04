@@ -30,13 +30,11 @@ public class MagicTorchBlockEntity extends BlockEntity {
 
     private static void applyPlayerEffects(World world, BlockPos pos, @Nullable StatusEffect primaryEffect) {
 		if (!world.isClient && primaryEffect != null) {
-			double d = 1 * 10 + 10;
-			int j = (9 + 1 * 2) * 20;
-			Box box = new Box(pos).expand(d).stretch(0.0, world.getHeight(), 0.0);
+			Box box = new Box(pos).expand(12);
 			List<PlayerEntity> list = world.getNonSpectatingEntities(PlayerEntity.class, box);
 
 			for (PlayerEntity playerEntity : list) {
-				playerEntity.addStatusEffect(new StatusEffectInstance(primaryEffect, j, 1, true, true));
+				playerEntity.addStatusEffect(new StatusEffectInstance(primaryEffect, 200, 1, true, true));
 			}
 		}
 	}
