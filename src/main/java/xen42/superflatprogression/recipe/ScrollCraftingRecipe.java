@@ -19,6 +19,7 @@ import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 import xen42.superflatprogression.SuperflatProgression;
 import xen42.superflatprogression.SuperflatProgressionItems;
+import xen42.superflatprogression.screen.ScrollCraftingScreenHandler;
 
 public class ScrollCraftingRecipe implements Recipe<ScrollCraftingRecipeInput> {
 	final Identifier id;
@@ -88,9 +89,9 @@ public class ScrollCraftingRecipe implements Recipe<ScrollCraftingRecipeInput> {
 	}
 
 	public boolean matches(ScrollCraftingRecipeInput input, World world) {
-		return input.getStackInSlot(0).isOf(SuperflatProgressionItems.PARCHMENT) &&
-			input.getStackInSlot(1).isOf(SuperflatProgressionItems.ESSENCE) &&
-			this.input.test(input.getStackInSlot(2));
+		return input.getStackInSlot(ScrollCraftingScreenHandler.PARCHMENT_SLOT).isOf(SuperflatProgressionItems.PARCHMENT) &&
+			input.getStackInSlot(ScrollCraftingScreenHandler.ESSENCE_SLOT).isOf(SuperflatProgressionItems.ESSENCE) &&
+			this.input.test(input.getStackInSlot(ScrollCraftingScreenHandler.INPUT_SLOT));
 	}
 
 	public ItemStack craft(ScrollCraftingRecipeInput input, DynamicRegistryManager registryManager) {

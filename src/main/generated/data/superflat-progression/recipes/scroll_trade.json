@@ -1,5 +1,5 @@
 {
-  "type": "superflat-progression:scroll_crafter",
+  "type": "superflat-progression:scroll_crafting",
   "cost": 4,
   "input": {
     "item": {

@@ -9,6 +9,7 @@ import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
+import net.minecraft.recipe.book.RecipeBookCategory;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
@@ -38,16 +39,16 @@ public class SuperflatProgression implements ModInitializer {
 		return particle;
 	}
 
-	public static final RegistryKey<RecipeType<?>> SCROLL_CRAFTING_RECIPE_TYPE_KEY = RegistryKey.of(RegistryKeys.RECIPE_TYPE, Identifier.of(MOD_ID, "scroll_crafter"));
-	public static final RecipeType<ScrollCraftingRecipe> SCROLL_CRAFTING_RECIPE_TYPE = Registry.register(Registries.RECIPE_TYPE, Identifier.of(MOD_ID, "scroll_crafter"), new RecipeType<ScrollCraftingRecipe>() {
+	public static final RegistryKey<RecipeType<?>> SCROLL_CRAFTING_RECIPE_TYPE_KEY = RegistryKey.of(RegistryKeys.RECIPE_TYPE, Identifier.of(MOD_ID, "scroll_crafting"));
+	public static final RecipeType<ScrollCraftingRecipe> SCROLL_CRAFTING_RECIPE_TYPE = Registry.register(Registries.RECIPE_TYPE, Identifier.of(MOD_ID, "scroll_crafting"), new RecipeType<ScrollCraftingRecipe>() {
 		public String toString() {
-			return "scroll_crafter";
+			return "scroll_crafting";
 		}
 	});
-	public static final RecipeSerializer<ScrollCraftingRecipe> SCROLL_CRAFTING_RECIPE_SERIALIZER = Registry.register(Registries.RECIPE_SERIALIZER, Identifier.of(MOD_ID, "scroll_crafter"), new ScrollCraftingRecipe.Serializer());
+	public static final RecipeSerializer<ScrollCraftingRecipe> SCROLL_CRAFTING_RECIPE_SERIALIZER = Registry.register(Registries.RECIPE_SERIALIZER, Identifier.of(MOD_ID, "scroll_crafting"), new ScrollCraftingRecipe.Serializer());
 	public static final ScreenHandlerType<ScrollCraftingScreenHandler> SCROLL_CRAFTING_SCREEN_HANDLER = Registry.register(
 		Registries.SCREEN_HANDLER,
-		Identifier.of(MOD_ID, "scroll_crafter"),
+		Identifier.of(MOD_ID, "scroll_crafting"),
 		new ScreenHandlerType<ScrollCraftingScreenHandler>(ScrollCraftingScreenHandler::new, null));
 
 	@Override
