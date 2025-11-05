@@ -177,14 +177,29 @@ public class ScrollCraftingScreenHandler extends AbstractRecipeScreenHandler<Scr
 
                 slotAtIndex.onQuickTransfer(itemStackAtIndex, itemStack);
             } else if (slot >= INVENTORY_SLOTS_START && slot < HOTBAR_SLOTS_END) {
-                if (!this.insertItem(itemStackAtIndex, INPUT_SLOT, INPUT_SLOT, false)) {
-                    if (slot < HOTBAR_SLOTS_START) {
-                        if (!this.insertItem(itemStackAtIndex, HOTBAR_SLOTS_START, HOTBAR_SLOTS_END, false)) {
-                            return ItemStack.EMPTY;
-                        }
-                    } else if (!this.insertItem(itemStackAtIndex, INVENTORY_SLOTS_START, HOTBAR_SLOTS_START, false)) {
+                if (itemStackAtIndex.isOf(SuperflatProgressionItems.ESSENCE)) {
+                    if (!this.insertItem(itemStackAtIndex, ESSENCE_SLOT, ESSENCE_SLOT + 1, false)) {
                         return ItemStack.EMPTY;
                     }
+                }
+                else if (itemStackAtIndex.isOf(SuperflatProgressionItems.PARCHMENT)) {
+                    if (!this.insertItem(itemStackAtIndex, PARCHMENT_SLOT, PARCHMENT_SLOT + 1, false)) {
+                        return ItemStack.EMPTY;
+                    }
+                }
+                else 
+                {
+                    if (!this.insertItem(itemStackAtIndex, INPUT_SLOT, INPUT_SLOT + 1, false)) {
+                        return ItemStack.EMPTY;
+                    }
+                }
+
+                if (slot < HOTBAR_SLOTS_START) {
+                    if (!this.insertItem(itemStackAtIndex, HOTBAR_SLOTS_START, HOTBAR_SLOTS_END, false)) {
+                        return ItemStack.EMPTY;
+                    }
+                } else if (!this.insertItem(itemStackAtIndex, INVENTORY_SLOTS_START, HOTBAR_SLOTS_START, false)) {
+                    return ItemStack.EMPTY;
                 }
             } else if (!this.insertItem(itemStackAtIndex, INVENTORY_SLOTS_START, HOTBAR_SLOTS_END, false)) {
                 return ItemStack.EMPTY;
@@ -447,25 +462,12 @@ public class ScrollCraftingScreenHandler extends AbstractRecipeScreenHandler<Scr
                     player.addExperienceLevels(-getOutputXPCost());
                 }
                 world.playSound((Entity)null, pos, SoundEvents.BLOCK_ENCHANTMENT_TABLE_USE, SoundCategory.BLOCKS, 1.0F, world.random.nextFloat() * 0.1F + 0.9F);
+                world.playSound((Entity)null, pos, SoundEvents.ITEM_BOOK_PAGE_TURN, SoundCategory.BLOCKS, 1.0F, world.random.nextFloat() * 0.1F + 0.9F);
             });
 
-            for (int z = 0; z < 3; z++) {
-                ItemStack itemStack = this.input.getStack(z);
-                ItemStack defaultStack = defaultedList.get(z);
-                if (!itemStack.isEmpty()) {
+            for (int z = 1; z <= 3; z++) {
+                if(!this.input.getStack(z).isEmpty()) {
                     this.input.removeStack(z, 1);
-                    itemStack = this.input.getStack(z);
-                }
-
-                if (!defaultStack.isEmpty()) {
-                    if (itemStack.isEmpty()) {
-                        this.input.setStack(z, defaultStack);
-                    } else if (ItemStack.areItemsEqual(itemStack, defaultStack)) {
-                        defaultStack.increment(itemStack.getCount());
-                        this.input.setStack(z, defaultStack);
-                    } else if (!this.player.getInventory().insertStack(defaultStack)) {
-                        this.player.dropItem(defaultStack, false);
-                    }
                 }
             }
         }
