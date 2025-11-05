@@ -17,7 +17,9 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.util.Identifier;
+import xen42.superflatprogression.recipe.GrinderRecipe;
 import xen42.superflatprogression.recipe.ScrollCraftingRecipe;
+import xen42.superflatprogression.screen.GrinderScreenHandler;
 import xen42.superflatprogression.screen.ScrollCraftingScreenHandler;
 
 import org.slf4j.Logger;
@@ -50,6 +52,19 @@ public class SuperflatProgression implements ModInitializer {
 		Registries.SCREEN_HANDLER,
 		Identifier.of(MOD_ID, "scroll_crafting"),
 		new ScreenHandlerType<ScrollCraftingScreenHandler>(ScrollCraftingScreenHandler::new, null));
+
+	public static final RegistryKey<RecipeType<?>> GRINDER_RECIPE_TYPE_KEY = RegistryKey.of(RegistryKeys.RECIPE_TYPE, Identifier.of(MOD_ID, "grinder"));
+	public static final RecipeType<GrinderRecipe> GRINDER_RECIPE_TYPE = Registry.register(Registries.RECIPE_TYPE, Identifier.of(MOD_ID, "grinder"), new RecipeType<GrinderRecipe>() {
+		public String toString() {
+			return "grinder";
+		}
+	});
+	public static final RecipeSerializer<GrinderRecipe> GRINDER_RECIPE_SERIALIZER = Registry.register(Registries.RECIPE_SERIALIZER, Identifier.of(MOD_ID, "grinder"), new GrinderRecipe.Serializer());
+	public static final ScreenHandlerType<GrinderScreenHandler> GRINDER_SCREEN_HANDLER = Registry.register(
+		Registries.SCREEN_HANDLER,
+		Identifier.of(MOD_ID, "grinder"),
+		new ScreenHandlerType<GrinderScreenHandler>(GrinderScreenHandler::new, null));
+
 
 	@Override
 	public void onInitialize() {

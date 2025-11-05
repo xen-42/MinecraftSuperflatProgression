@@ -90,6 +90,7 @@ public class SuperflatProgressionItems {
             itemGroup.add(MAGIC_TORCH);
             itemGroup.add(SuperflatProgressionBlocks.MAGIC_LANTERN);
             itemGroup.add(SuperflatProgressionBlocks.SCROLL_CRAFTING);
+            itemGroup.add(SuperflatProgressionBlocks.GRINDER);
 		});
 
 		FuelRegistry.INSTANCE.add(SuperflatProgressionBlocks.CHARCOAL_BLOCK, 16000);

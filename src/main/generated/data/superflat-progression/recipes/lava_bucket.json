@@ -1,0 +1,14 @@
+{
+  "type": "superflat-progression:scroll_crafting",
+  "input": {
+    "item": {
+      "item": "minecraft:magma_block"
+    }
+  },
+  "result": {
+    "item": "minecraft:lava_bucket"
+  },
+  "secondaryResult": {
+    "item": "minecraft:quartz"
+  }
+}

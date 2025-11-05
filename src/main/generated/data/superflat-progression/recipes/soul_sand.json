@@ -1,0 +1,14 @@
+{
+  "type": "superflat-progression:scroll_crafting",
+  "input": {
+    "item": {
+      "item": "minecraft:soul_soil"
+    }
+  },
+  "result": {
+    "item": "minecraft:soul_sand"
+  },
+  "secondaryResult": {
+    "item": "superflat-progression:essence"
+  }
+}

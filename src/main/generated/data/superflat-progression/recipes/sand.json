@@ -1,0 +1,14 @@
+{
+  "type": "superflat-progression:scroll_crafting",
+  "input": {
+    "item": {
+      "item": "minecraft:gravel"
+    }
+  },
+  "result": {
+    "item": "minecraft:sand"
+  },
+  "secondaryResult": {
+    "item": "minecraft:flint"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "superflat-progression:block/grinder" },
+    "facing=south": { "model": "superflat-progression:block/grinder", "y": 180 },
+    "facing=west":  { "model": "superflat-progression:block/grinder", "y": 270 },
+    "facing=east":  { "model": "superflat-progression:block/grinder", "y": 90 }
+  }
+}
