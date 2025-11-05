@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "X": {
+      "tag": "superflat-progression:parchments"
+    },
+    "Y": {
+      "tag": "minecraft:wooden_slabs"
+    },
+    "Z": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "pattern": [
+    "X",
+    "Y",
+    "Z"
+  ],
+  "result": {
+    "item": "superflat-progression:scroll_crafting"
+  },
+  "show_notification": true
+}

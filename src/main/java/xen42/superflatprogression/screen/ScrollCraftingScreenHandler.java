@@ -34,6 +34,7 @@ import net.minecraft.world.World;
 import xen42.superflatprogression.SuperflatProgression;
 import xen42.superflatprogression.SuperflatProgressionBlocks;
 import xen42.superflatprogression.SuperflatProgressionItems;
+import xen42.superflatprogression.SuperflatProgressionTags;
 import xen42.superflatprogression.recipe.ScrollCraftingRecipe;
 import xen42.superflatprogression.recipe.ScrollCraftingRecipeInput;
 
@@ -92,7 +93,7 @@ public class ScrollCraftingScreenHandler extends AbstractRecipeScreenHandler<Scr
 
         _outputSlot = this.addSlot(new OutputSlot(this, this.player, this.inventory, this.resultInventory, 0, 132, 29));
         
-        _parchmentSlot = this.addSlot(new ItemSpecificSlot(this, this.inventory, PARCHMENT_SLOT, Ingredient.ofItems(SuperflatProgressionItems.PARCHMENT), 37-15, 32-15));
+        _parchmentSlot = this.addSlot(new ItemSpecificSlot(this, this.inventory, PARCHMENT_SLOT, Ingredient.fromTag(SuperflatProgressionTags.ItemTags.PARCHMENTS), 37-15, 32-15));
         _essenceSlot = this.addSlot(new ItemSpecificSlot(this, this.inventory, ESSENCE_SLOT, Ingredient.ofItems(SuperflatProgressionItems.ESSENCE), 37-15, 55-15));
         _inputSlot = this.addSlot(new CustomSlot(this, this.inventory, INPUT_SLOT, 86-15, 44-15));
         
@@ -182,7 +183,7 @@ public class ScrollCraftingScreenHandler extends AbstractRecipeScreenHandler<Scr
                         return ItemStack.EMPTY;
                     }
                 }
-                else if (itemStackAtIndex.isOf(SuperflatProgressionItems.PARCHMENT)) {
+                else if (itemStackAtIndex.isIn(SuperflatProgressionTags.ItemTags.PARCHMENTS)) {
                     if (!this.insertItem(itemStackAtIndex, PARCHMENT_SLOT, PARCHMENT_SLOT + 1, false)) {
                         return ItemStack.EMPTY;
                     }

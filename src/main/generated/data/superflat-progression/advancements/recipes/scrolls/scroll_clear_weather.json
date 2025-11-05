@@ -17,9 +17,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "superflat-progression:parchment"
-            ]
+            "tag": "superflat-progression:parchments"
           }
         ]
       },

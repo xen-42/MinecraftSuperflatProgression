@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "superflat-progression:block/scroll_crafting" },
+    "facing=south": { "model": "superflat-progression:block/scroll_crafting", "y": 180 },
+    "facing=west":  { "model": "superflat-progression:block/scroll_crafting", "y": 270 },
+    "facing=east":  { "model": "superflat-progression:block/scroll_crafting", "y": 90 }
+  }
+}

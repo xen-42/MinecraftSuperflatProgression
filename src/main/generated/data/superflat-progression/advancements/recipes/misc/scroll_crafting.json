@@ -1,25 +1,21 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_bell": {
+    "has_oak_planks": {
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:bell"
-            ]
+            "tag": "minecraft:planks"
           }
         ]
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "has_essence": {
+    "has_oak_slab": {
       "conditions": {
         "items": [
           {
-            "items": [
-              "superflat-progression:essence"
-            ]
+            "tag": "minecraft:wooden_slabs"
           }
         ]
       },
@@ -37,22 +33,22 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "superflat-progression:scroll_trade"
+        "recipe": "superflat-progression:scroll_crafting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_the_recipe",
-      "has_essence",
       "has_parchment",
-      "has_bell"
+      "has_oak_slab",
+      "has_oak_planks",
+      "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "superflat-progression:scroll_trade"
+      "superflat-progression:scroll_crafting"
     ]
   },
   "sends_telemetry_event": false
