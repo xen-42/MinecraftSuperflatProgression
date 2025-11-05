@@ -1,0 +1,12 @@
+{
+  "type": "superflat-progression:scroll_crafter",
+  "cost": 2,
+  "input": {
+    "item": {
+      "item": "minecraft:bucket"
+    }
+  },
+  "result": {
+    "item": "superflat-progression:scroll_rain"
+  }
+}

@@ -77,10 +77,10 @@ public class ScrollCraftingRecipeInput implements RecipeInputInventory {
 		if (o == this) {
 			return true;
 		} else {
-			return !(o instanceof ScrollCraftingRecipeInput effigyAltarRecipeInput)
+			return !(o instanceof ScrollCraftingRecipeInput scollCraftingRecipeInput)
 				? false
-				: this.stackCount == effigyAltarRecipeInput.stackCount
-					&& stacksEqual(this.stacks, effigyAltarRecipeInput.stacks);
+				: this.stackCount == scollCraftingRecipeInput.stackCount
+					&& stacksEqual(this.stacks, scollCraftingRecipeInput.stacks);
 		}
 	}
 

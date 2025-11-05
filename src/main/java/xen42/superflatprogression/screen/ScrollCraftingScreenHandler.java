@@ -15,6 +15,7 @@ import net.minecraft.inventory.RecipeInputInventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeMatcher;
 import net.minecraft.recipe.RecipeUnlocker;
@@ -39,15 +40,13 @@ import xen42.superflatprogression.recipe.ScrollCraftingRecipeInput;
 public class ScrollCraftingScreenHandler extends AbstractRecipeScreenHandler<ScrollCraftingRecipeInput> {
 
     public static final int OUTPUT_SLOT = 0;
-    public static final int INPUT_SLOTS_START = 1;
-    public static final int INPUT_SLOTS_END = 7;
-    public static final int BRIMSTONE_SLOT = 8;
-    public static final int MAX_WIDTH_AND_HEIGHT = 3;
-    public static final int MAX_WIDTH_END = 1;
-    public static final int INVENTORY_SLOTS_START = 9;
-    public static final int INVENTORY_SLOTS_END = 35;
-    public static final int HOTBAR_SLOTS_START = 36;
-    public static final int HOTBAR_SLOTS_END = 45;
+    public static final int PARCHMENT_SLOT = 1;
+    public static final int ESSENCE_SLOT = 2;
+    public static final int INPUT_SLOT = 3;
+    public static final int INVENTORY_SLOTS_START = 4;
+    public static final int INVENTORY_SLOTS_END = 30;
+    public static final int HOTBAR_SLOTS_START = 31;
+    public static final int HOTBAR_SLOTS_END = 40;
 
     public final RecipeInputInventory inventory;
     private final CraftingResultInventory resultInventory;
@@ -67,25 +66,15 @@ public class ScrollCraftingScreenHandler extends AbstractRecipeScreenHandler<Scr
     public boolean hasOutput() {
         return _outputSlot.hasStack();
     }
-    
-    public int getXPCost(ServerWorld serverWorld, List<ItemStack> input) {
-        ScrollCraftingRecipeInput recipeInput = ScrollCraftingRecipeInput.create(this, input);
-        Optional<ScrollCraftingRecipe> optional = serverWorld.getRecipeManager().getFirstMatch(SuperflatProgression.SCROLL_CRAFTING_RECIPE_TYPE, recipeInput, serverWorld);
-        if (optional.isPresent()) {
-            ScrollCraftingRecipe altarRecipe = optional.get();
-            return altarRecipe.getCostOrDefault();
-        }
-        return 0;
-    }
 
     public int getOutputXPCost() {
         return levelCost.get();
     }
 
-    @SuppressWarnings("unused")
-    private Slot[] _slots;
     private Slot _outputSlot;
-    private Slot _brimstoneSlot;
+    private Slot _inputSlot;
+    private Slot _parchmentSlot;
+    private Slot _essenceSlot;
     
     private boolean filling;
 
@@ -95,26 +84,18 @@ public class ScrollCraftingScreenHandler extends AbstractRecipeScreenHandler<Scr
 
     public ScrollCraftingScreenHandler(int syncId, PlayerInventory playerInventory, ScreenHandlerContext context) {
         super(SuperflatProgression.SCROLL_CRAFTING_SCREEN_HANDLER, syncId);
-        this.inventory = new ScrollCraftingSimpleInventory(this, BRIMSTONE_SLOT);
-        this.resultInventory = new EffigyCraftingResultInventory(this);
+        this.inventory = new ScrollCraftingSimpleInventory(this, 4);
+        this.resultInventory = new ScrollCraftingResultInventory(this);
         this.addProperty(this.levelCost);
         this.context = context;
         this.player = playerInventory.player;
 
-        _outputSlot = this.addSlot(new OutputSlot(this, this.player, this.inventory, this.resultInventory, 0, 132, 29 - 8));
+        _outputSlot = this.addSlot(new OutputSlot(this, this.player, this.inventory, this.resultInventory, 0, 132, 29));
         
-        _slots = new Slot[] {
-            this.addSlot(new CustomSlot(this, this.inventory, 0, 22, 17)),
-            this.addSlot(new CustomSlot(this, this.inventory, 1, 40, 17)),
-            this.addSlot(new CustomSlot(this, this.inventory, 2, 58, 17)),
-            this.addSlot(new CustomSlot(this, this.inventory, 3, 22, 35)),
-            this.addSlot(new CustomSlot(this, this.inventory, 4, 40, 35)),
-            this.addSlot(new CustomSlot(this, this.inventory, 5, 58, 35)),
-            this.addSlot(new CustomSlot(this, this.inventory, 6, 40, 53))
-        };
+        _parchmentSlot = this.addSlot(new ItemSpecificSlot(this, this.inventory, PARCHMENT_SLOT, Ingredient.ofItems(SuperflatProgressionItems.PARCHMENT), 37-15, 32-15));
+        _essenceSlot = this.addSlot(new ItemSpecificSlot(this, this.inventory, ESSENCE_SLOT, Ingredient.ofItems(SuperflatProgressionItems.ESSENCE), 37-15, 55-15));
+        _inputSlot = this.addSlot(new CustomSlot(this, this.inventory, INPUT_SLOT, 86-15, 44-15));
         
-        _brimstoneSlot = this.addSlot(new BrimstoneSlot(this, this.inventory, 7, 89, 53 - 8));
-
         this.addPlayerSlots(playerInventory, 8, 84);
     }
     
@@ -137,10 +118,6 @@ public class ScrollCraftingScreenHandler extends AbstractRecipeScreenHandler<Scr
         this.addPlayerHotbarSlots(playerInventory, left, top + 58);
     }
     
-    public static boolean isBrimstone(ItemStack stack) {
-        return stack.isOf(SuperflatProgressionItems.ESSENCE);
-    }
-    
     public static boolean isAir(ItemStack stack) {
         return stack.isOf(Items.AIR);
     }
@@ -154,18 +131,16 @@ public class ScrollCraftingScreenHandler extends AbstractRecipeScreenHandler<Scr
         ItemStack resultStack = ItemStack.EMPTY;
         int cost = 0;
         
-        if (isBrimstone(_brimstoneSlot.getStack())) {
-            Optional<ScrollCraftingRecipe> optional = world.getServer().getRecipeManager().getFirstMatch(SuperflatProgression.SCROLL_CRAFTING_RECIPE_TYPE, recipeInput, world);
-            if (optional.isPresent()) {
-                ScrollCraftingRecipe altarRecipe = optional.get();
-                boolean shouldCraftRecipe = resultInventory.shouldCraftRecipe(world, serverPlayerEntity, altarRecipe);
-                if (shouldCraftRecipe) {
-                    ItemStack craftedStack = altarRecipe.craft(recipeInput, world.getRegistryManager());
-                    boolean isItemEnabled = craftedStack.isItemEnabled(world.getEnabledFeatures());
-                    if (isItemEnabled) {
-                        resultStack = craftedStack;
-                        cost = altarRecipe.getCostOrDefault();
-                    }
+        Optional<ScrollCraftingRecipe> optional = world.getServer().getRecipeManager().getFirstMatch(SuperflatProgression.SCROLL_CRAFTING_RECIPE_TYPE, recipeInput, world);
+        if (optional.isPresent()) {
+            ScrollCraftingRecipe scrollRecipe = optional.get();
+            boolean shouldCraftRecipe = resultInventory.shouldCraftRecipe(world, serverPlayerEntity, scrollRecipe);
+            if (shouldCraftRecipe) {
+                ItemStack craftedStack = scrollRecipe.craft(recipeInput, world.getRegistryManager());
+                boolean isItemEnabled = craftedStack.isItemEnabled(world.getEnabledFeatures());
+                if (isItemEnabled) {
+                    resultStack = craftedStack;
+                    cost = scrollRecipe.cost;
                 }
             }
         }
@@ -202,7 +177,7 @@ public class ScrollCraftingScreenHandler extends AbstractRecipeScreenHandler<Scr
 
                 slotAtIndex.onQuickTransfer(itemStackAtIndex, itemStack);
             } else if (slot >= INVENTORY_SLOTS_START && slot < HOTBAR_SLOTS_END) {
-                if (!this.insertItem(itemStackAtIndex, INPUT_SLOTS_START, INVENTORY_SLOTS_START, false)) {
+                if (!this.insertItem(itemStackAtIndex, INPUT_SLOT, INPUT_SLOT, false)) {
                     if (slot < HOTBAR_SLOTS_START) {
                         if (!this.insertItem(itemStackAtIndex, HOTBAR_SLOTS_START, HOTBAR_SLOTS_END, false)) {
                             return ItemStack.EMPTY;
@@ -269,16 +244,12 @@ public class ScrollCraftingScreenHandler extends AbstractRecipeScreenHandler<Scr
         updateResult(world, recipe);
     }
 
-    public Slot getBrimstoneSlot() {
-        return this._brimstoneSlot;
-    }
-
     public Slot getOutputSlot() {
         return this._outputSlot;
     }
 
     public List<Slot> getInputSlots() {
-        return this.slots.subList(INPUT_SLOTS_START, BRIMSTONE_SLOT);
+        return this.slots.subList(PARCHMENT_SLOT, INPUT_SLOT);
     }
 
     public PlayerEntity getPlayer() {
@@ -292,17 +263,17 @@ public class ScrollCraftingScreenHandler extends AbstractRecipeScreenHandler<Scr
 
     @Override
     public int getCraftingWidth() {
-        return MAX_WIDTH_AND_HEIGHT;
+        return 3;
     }
 
     @Override
     public int getCraftingHeight() {
-        return MAX_WIDTH_AND_HEIGHT;
+        return 1;
     }
 
     @Override
     public int getCraftingSlotCount() {
-        return BRIMSTONE_SLOT;
+        return INPUT_SLOT;
     }
 
     @Override
@@ -331,12 +302,12 @@ public class ScrollCraftingScreenHandler extends AbstractRecipeScreenHandler<Scr
 
         @Override
         public int getWidth() {
-            return MAX_WIDTH_AND_HEIGHT;
+            return 3;
         }
 
         @Override
         public int getHeight() {
-            return MAX_WIDTH_AND_HEIGHT;
+            return 1;
         }
 
 		@Override
@@ -345,9 +316,9 @@ public class ScrollCraftingScreenHandler extends AbstractRecipeScreenHandler<Scr
 		}
     }
 
-    private class EffigyCraftingResultInventory extends CraftingResultInventory {
+    private class ScrollCraftingResultInventory extends CraftingResultInventory {
         private ScreenHandler _screen;
-        EffigyCraftingResultInventory(ScrollCraftingScreenHandler screen) {
+        ScrollCraftingResultInventory(ScrollCraftingScreenHandler screen) {
             super();
             _screen = screen;
         }
@@ -373,18 +344,21 @@ public class ScrollCraftingScreenHandler extends AbstractRecipeScreenHandler<Scr
 
         @Override
         public boolean canInsert(ItemStack stack) {
-            return !isBrimstone(stack);
+            return true;
         }
     }
 
-    private class BrimstoneSlot extends CustomSlot {
-        public BrimstoneSlot(ScrollCraftingScreenHandler altar, Inventory inventory, int index, int x, int y) {
+    private class ItemSpecificSlot extends CustomSlot {
+        private Ingredient _ingredient;
+
+        public ItemSpecificSlot(ScrollCraftingScreenHandler altar, Inventory inventory, int index, Ingredient ingredient, int x, int y) {
             super(altar, inventory, index, x, y);
+            _ingredient = ingredient;
         }
 
         @Override
         public boolean canInsert(ItemStack stack) {
-            return isAir(stack) || isBrimstone(stack);
+            return isAir(stack) || _ingredient.test(stack);
         }
     }
 
@@ -475,25 +449,22 @@ public class ScrollCraftingScreenHandler extends AbstractRecipeScreenHandler<Scr
                 world.playSound((Entity)null, pos, SoundEvents.BLOCK_ENCHANTMENT_TABLE_USE, SoundCategory.BLOCKS, 1.0F, world.random.nextFloat() * 0.1F + 0.9F);
             });
 
-            for (int y = 0; y < MAX_WIDTH_AND_HEIGHT; y++) {
-                for (int x = 0; x < (y == MAX_WIDTH_AND_HEIGHT - 1 ? MAX_WIDTH_AND_HEIGHT - MAX_WIDTH_END : MAX_WIDTH_AND_HEIGHT); x++) {
-                    int z = x + y * MAX_WIDTH_AND_HEIGHT;
-                    ItemStack itemStack = this.input.getStack(z);
-                    ItemStack defaultStack = defaultedList.get(z);
-                    if (!itemStack.isEmpty()) {
-                        this.input.removeStack(z, 1);
-                        itemStack = this.input.getStack(z);
-                    }
+            for (int z = 0; z < 3; z++) {
+                ItemStack itemStack = this.input.getStack(z);
+                ItemStack defaultStack = defaultedList.get(z);
+                if (!itemStack.isEmpty()) {
+                    this.input.removeStack(z, 1);
+                    itemStack = this.input.getStack(z);
+                }
 
-                    if (!defaultStack.isEmpty()) {
-                        if (itemStack.isEmpty()) {
-                            this.input.setStack(z, defaultStack);
-                        } else if (ItemStack.areItemsEqual(itemStack, defaultStack)) {
-                            defaultStack.increment(itemStack.getCount());
-                            this.input.setStack(z, defaultStack);
-                        } else if (!this.player.getInventory().insertStack(defaultStack)) {
-                            this.player.dropItem(defaultStack, false);
-                        }
+                if (!defaultStack.isEmpty()) {
+                    if (itemStack.isEmpty()) {
+                        this.input.setStack(z, defaultStack);
+                    } else if (ItemStack.areItemsEqual(itemStack, defaultStack)) {
+                        defaultStack.increment(itemStack.getCount());
+                        this.input.setStack(z, defaultStack);
+                    } else if (!this.player.getInventory().insertStack(defaultStack)) {
+                        this.player.dropItem(defaultStack, false);
                     }
                 }
             }

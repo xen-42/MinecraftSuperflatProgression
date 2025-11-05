@@ -1,0 +1,12 @@
+{
+  "type": "superflat-progression:scroll_crafter",
+  "cost": 4,
+  "input": {
+    "item": {
+      "item": "minecraft:lightning_rod"
+    }
+  },
+  "result": {
+    "item": "superflat-progression:scroll_thunder"
+  }
+}

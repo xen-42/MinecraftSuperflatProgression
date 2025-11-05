@@ -1,0 +1,61 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_bell": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:bell"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_essence": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "superflat-progression:essence"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_parchment": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "superflat-progression:parchment"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "superflat-progression:scroll_trade"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_essence",
+      "has_parchment",
+      "has_bell"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "superflat-progression:scroll_trade"
+    ]
+  },
+  "sends_telemetry_event": false
+}

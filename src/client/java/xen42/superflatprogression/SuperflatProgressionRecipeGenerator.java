@@ -183,22 +183,17 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
                         .criterion(hasItem(Items.IRON_NUGGET), conditionsFromItem(Items.IRON_NUGGET))
                         , exporter);
 
-                createScroll(SuperflatProgressionItems.SCROLL_RAIN)
-                        .pattern("ebe",
-                                 "ggg",
-                                  "g")
-                        .input('b', PeacefulModTags.ItemTags.GUANO)
-                        .input('e', Items.EMERALD)
-                        .input('g', Items.IRON_INGOT)
-                        // Advancement that gives the recipe
-                        .criterion(hasItem(SuperflatProgressionItems.ESSENCE), conditionsFromItem(SuperflatProgressionItems.ESSENCE))
-                        .criterion(hasItem(Items.EMERALD), conditionsFromItem(Items.EMERALD))
-                        .criterion(hasItem(Items.IRON_INGOT), conditionsFromItem(Items.IRON_INGOT))
-                        .offerTo(exporter);
+                createScroll(SuperflatProgressionItems.SCROLL_RAIN, Items.BUCKET, 2).offerTo(exporter);
+                createScroll(SuperflatProgressionItems.SCROLL_THUNDER, Items.LIGHTNING_ROD, 4).offerTo(exporter);
+                createScroll(SuperflatProgressionItems.SCROLL_CLEAR_WEATHER, Items.SUNFLOWER, 2).offerTo(exporter);
+                createScroll(SuperflatProgressionItems.SCROLL_TRADE, Items.BELL, 4).offerTo(exporter);
             }
 
-            public ScrollCraftingRecipeJsonBuilder createScroll(ItemConvertible output) {
-                return ScrollCraftingRecipeJsonBuilder.create(registryLookup.getWrapperOrThrow(RegistryKeys.ITEM), output);
+            public ScrollCraftingRecipeJsonBuilder createScroll(ItemConvertible output, Item input, int cost) {
+                return new ScrollCraftingRecipeJsonBuilder(registryLookup.getWrapperOrThrow(RegistryKeys.ITEM), output, Ingredient.ofItems(input), cost)
+                    .criterion(hasItem(SuperflatProgressionItems.ESSENCE), conditionsFromItem(SuperflatProgressionItems.ESSENCE))
+                    .criterion(hasItem(SuperflatProgressionItems.PARCHMENT), conditionsFromItem(SuperflatProgressionItems.PARCHMENT))
+                    .criterion(hasItem(input), conditionsFromItem(input));
             }
         };
     }

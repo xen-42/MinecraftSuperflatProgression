@@ -1,0 +1,12 @@
+{
+  "type": "superflat-progression:scroll_crafter",
+  "cost": 2,
+  "input": {
+    "item": {
+      "item": "minecraft:sunflower"
+    }
+  },
+  "result": {
+    "item": "superflat-progression:scroll_clear_weather"
+  }
+}
