@@ -33,6 +33,7 @@ import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.RegistryWrapper.WrapperLookup;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.util.Identifier;
+import xen42.superflatprogression.recipe.ScrollCraftingRecipeJsonBuilder;
 
 public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
     private final CompletableFuture<RegistryWrapper.WrapperLookup> registryLookupFuture;
@@ -181,6 +182,23 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
                         .criterion(hasItem(SuperflatProgressionItems.MAGIC_TORCH), conditionsFromItem(SuperflatProgressionItems.MAGIC_TORCH))
                         .criterion(hasItem(Items.IRON_NUGGET), conditionsFromItem(Items.IRON_NUGGET))
                         , exporter);
+
+                createScroll(SuperflatProgressionItems.SCROLL_RAIN)
+                        .pattern("ebe",
+                                 "ggg",
+                                  "g")
+                        .input('b', PeacefulModTags.ItemTags.GUANO)
+                        .input('e', Items.EMERALD)
+                        .input('g', Items.IRON_INGOT)
+                        // Advancement that gives the recipe
+                        .criterion(hasItem(SuperflatProgressionItems.ESSENCE), conditionsFromItem(SuperflatProgressionItems.ESSENCE))
+                        .criterion(hasItem(Items.EMERALD), conditionsFromItem(Items.EMERALD))
+                        .criterion(hasItem(Items.IRON_INGOT), conditionsFromItem(Items.IRON_INGOT))
+                        .offerTo(exporter);
+            }
+
+            public ScrollCraftingRecipeJsonBuilder createScroll(ItemConvertible output) {
+                return ScrollCraftingRecipeJsonBuilder.create(registryLookup.getWrapperOrThrow(RegistryKeys.ITEM), output);
             }
         };
     }

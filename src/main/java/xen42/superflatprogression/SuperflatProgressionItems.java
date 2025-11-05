@@ -89,6 +89,7 @@ public class SuperflatProgressionItems {
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register((itemGroup) -> {
             itemGroup.add(MAGIC_TORCH);
             itemGroup.add(SuperflatProgressionBlocks.MAGIC_LANTERN);
+            itemGroup.add(SuperflatProgressionBlocks.SCROLL_CRAFTING);
 		});
 
 		FuelRegistry.INSTANCE.add(SuperflatProgressionBlocks.CHARCOAL_BLOCK, 16000);

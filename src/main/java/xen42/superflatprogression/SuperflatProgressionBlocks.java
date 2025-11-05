@@ -28,6 +28,7 @@ import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import xen42.superflatprogression.blocks.MagicTorchBlock;
 import xen42.superflatprogression.blocks.MagicTorchBlockEntity;
+import xen42.superflatprogression.blocks.ScrollCraftingBlock;
 import xen42.superflatprogression.blocks.WallMagicTorchBlock;
 
 public class SuperflatProgressionBlocks {
@@ -71,6 +72,9 @@ public class SuperflatProgressionBlocks {
 	);
 
 	public static final DefaultParticleType MAGIC_TORCH_PARTICLE = FabricParticleTypes.simple();
+
+	public static final ScrollCraftingBlock SCROLL_CRAFTING = (ScrollCraftingBlock)register(
+		"scroll_crafter", ScrollCraftingBlock::new, AbstractBlock.Settings.copy(Blocks.STONE).nonOpaque(), true);
 
 	private static Block register(String name, Function<AbstractBlock.Settings, Block> blockFactory, AbstractBlock.Settings settings, boolean shouldRegisterItem) {
 		// Create a registry key for the block

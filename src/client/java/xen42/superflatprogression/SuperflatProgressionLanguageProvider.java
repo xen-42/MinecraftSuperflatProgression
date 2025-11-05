@@ -122,6 +122,7 @@ public abstract class SuperflatProgressionLanguageProvider extends FabricLanguag
 			translationBuilder.add(SuperflatProgressionBlocks.CHARCOAL_BLOCK, "Block of Charcoal");
 			translationBuilder.add(SuperflatProgressionItems.MAGIC_TORCH, "Magic Torch");
 			translationBuilder.add(SuperflatProgressionBlocks.MAGIC_LANTERN, "Magic Lantern");
+			translationBuilder.add(SuperflatProgressionBlocks.SCROLL_CRAFTING, "Scriptorium");
 
 			translationBuilder.add(SuperflatProgressionStatusEffects.MAGIC_TORCH_EFFECT.value(), "Magical Favour");
 			translationBuilder.add("item.minecraft.potion.effect.magic_torch", "Potion of Magical Favour");

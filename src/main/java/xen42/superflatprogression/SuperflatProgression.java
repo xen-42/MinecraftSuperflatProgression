@@ -7,10 +7,17 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.particle.DefaultParticleType;
+import net.minecraft.recipe.RecipeSerializer;
+import net.minecraft.recipe.RecipeType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.util.Identifier;
+import xen42.superflatprogression.recipe.ScrollCraftingRecipe;
+import xen42.superflatprogression.screen.ScrollCraftingScreenHandler;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,6 +37,18 @@ public class SuperflatProgression implements ModInitializer {
 		Registry.register(Registries.PARTICLE_TYPE, Identifier.of(MOD_ID, name), particle);
 		return particle;
 	}
+
+	public static final RegistryKey<RecipeType<?>> SCROLL_CRAFTING_RECIPE_TYPE_KEY = RegistryKey.of(RegistryKeys.RECIPE_TYPE, Identifier.of(MOD_ID, "scroll_crafter"));
+	public static final RecipeType<ScrollCraftingRecipe> SCROLL_CRAFTING_RECIPE_TYPE = Registry.register(Registries.RECIPE_TYPE, Identifier.of(MOD_ID, "scroll_crafter"), new RecipeType<ScrollCraftingRecipe>() {
+		public String toString() {
+			return "scroll_crafter";
+		}
+	});
+	public static final RecipeSerializer<ScrollCraftingRecipe> SCROLL_CRAFTING_RECIPE_SERIALIZER = Registry.register(Registries.RECIPE_SERIALIZER, Identifier.of(MOD_ID, "scroll_crafter"), new ScrollCraftingRecipe.Serializer());
+	public static final ScreenHandlerType<ScrollCraftingScreenHandler> SCROLL_CRAFTING_SCREEN_HANDLER = Registry.register(
+		Registries.SCREEN_HANDLER,
+		Identifier.of(MOD_ID, "scroll_crafter"),
+		new ScreenHandlerType<ScrollCraftingScreenHandler>(ScrollCraftingScreenHandler::new, null));
 
 	@Override
 	public void onInitialize() {
