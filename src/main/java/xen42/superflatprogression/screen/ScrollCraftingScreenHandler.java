@@ -91,11 +91,11 @@ public class ScrollCraftingScreenHandler extends AbstractRecipeScreenHandler<Scr
         this.context = context;
         this.player = playerInventory.player;
 
-        _outputSlot = this.addSlot(new OutputSlot(this, this.player, this.inventory, this.resultInventory, 0, 132, 29));
+        _outputSlot = this.addSlot(new OutputSlot(this, this.player, this.inventory, this.resultInventory, 0, 132, 29+4));
         
-        _parchmentSlot = this.addSlot(new ItemSpecificSlot(this, this.inventory, PARCHMENT_SLOT, Ingredient.fromTag(SuperflatProgressionTags.ItemTags.PARCHMENTS), 37-15, 32-15));
-        _essenceSlot = this.addSlot(new ItemSpecificSlot(this, this.inventory, ESSENCE_SLOT, Ingredient.ofItems(SuperflatProgressionItems.ESSENCE), 37-15, 55-15));
-        _inputSlot = this.addSlot(new CustomSlot(this, this.inventory, INPUT_SLOT, 86-15, 44-15));
+        _parchmentSlot = this.addSlot(new ItemSpecificSlot(this, this.inventory, PARCHMENT_SLOT, Ingredient.fromTag(SuperflatProgressionTags.ItemTags.PARCHMENTS), 37-15, 32-15+4));
+        _essenceSlot = this.addSlot(new ItemSpecificSlot(this, this.inventory, ESSENCE_SLOT, Ingredient.ofItems(SuperflatProgressionItems.ESSENCE), 37-15, 55-15+4));
+        _inputSlot = this.addSlot(new CustomSlot(this, this.inventory, INPUT_SLOT, 86-15, 44-15+4));
         
         this.addPlayerSlots(playerInventory, 8, 84);
     }
