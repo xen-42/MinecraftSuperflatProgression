@@ -1,16 +1,10 @@
 {
-	"parent": "block/block",
-    "display": {
-        "firstperson_righthand": {
-            "rotation": [ 0, 135, 0 ],
-            "translation": [ 0, 0, 0 ],
-            "scale": [ 0.4, 0.4, 0.4 ]
-        }
-    },
+	"format_version": "1.21.6",
+	"credit": "Made with Blockbench",
 	"texture_size": [64, 64],
 	"textures": {
-		"0": "superflat-progression:block/grinder",
-		"particle": "superflat-progression:block/grinder"
+		"0": "grinder",
+		"particle": "grinder"
 	},
 	"elements": [
 		{
