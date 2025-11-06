@@ -1,0 +1,13 @@
+{
+  "type": "superflat-progression:grinder",
+  "count": 1,
+  "input": {
+    "item": {
+      "item": "minecraft:soul_soil"
+    }
+  },
+  "needsBucket": false,
+  "result": {
+    "item": "minecraft:soul_sand"
+  }
+}

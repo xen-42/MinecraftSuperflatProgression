@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "X": {
+      "item": "minecraft:hopper"
+    },
+    "Y": {
+      "item": "minecraft:stonecutter"
+    },
+    "Z": {
+      "item": "minecraft:cobblestone"
+    }
+  },
+  "pattern": [
+    " X ",
+    "GYG",
+    "ZZZ"
+  ],
+  "result": {
+    "item": "superflat-progression:grinder"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,13 @@
+{
+  "type": "superflat-progression:grinder",
+  "count": 2,
+  "input": {
+    "item": {
+      "item": "minecraft:rose_bush"
+    }
+  },
+  "needsBucket": false,
+  "result": {
+    "item": "minecraft:red_dye"
+  }
+}

@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_magma_block": {
+    "has_sunflower": {
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:magma_block"
+              "minecraft:sunflower"
             ]
           }
         ]
@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "superflat-progression:lava_bucket"
+        "recipe": "superflat-progression:sunflower"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -23,12 +23,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_magma_block"
+      "has_sunflower"
     ]
   ],
   "rewards": {
     "recipes": [
-      "superflat-progression:lava_bucket"
+      "superflat-progression:sunflower"
     ]
   },
   "sends_telemetry_event": false

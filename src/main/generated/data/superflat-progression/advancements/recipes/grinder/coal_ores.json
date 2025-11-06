@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_TagKey[minecraft:item / minecraft:coal_ores]": {
+      "conditions": {
+        "items": [
+          {
+            "tag": "minecraft:coal_ores"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "superflat-progression:coal_ores"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_TagKey[minecraft:item / minecraft:coal_ores]"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "superflat-progression:coal_ores"
+    ]
+  },
+  "sends_telemetry_event": false
+}

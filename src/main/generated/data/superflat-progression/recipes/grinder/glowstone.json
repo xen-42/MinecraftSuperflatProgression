@@ -1,0 +1,13 @@
+{
+  "type": "superflat-progression:grinder",
+  "count": 4,
+  "input": {
+    "item": {
+      "item": "minecraft:glowstone"
+    }
+  },
+  "needsBucket": false,
+  "result": {
+    "item": "minecraft:glowstone_dust"
+  }
+}

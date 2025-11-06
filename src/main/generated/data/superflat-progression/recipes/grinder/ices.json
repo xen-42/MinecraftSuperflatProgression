@@ -1,12 +1,13 @@
 {
   "type": "superflat-progression:grinder",
+  "count": 1,
   "input": {
     "item": {
-      "item": "minecraft:magma_block"
+      "tag": "superflat-progression:ices"
     }
   },
   "needsBucket": true,
   "result": {
-    "item": "minecraft:lava_bucket"
+    "item": "minecraft:water_bucket"
   }
 }

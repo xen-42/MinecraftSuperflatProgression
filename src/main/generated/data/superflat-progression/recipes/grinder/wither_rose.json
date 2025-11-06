@@ -1,12 +1,13 @@
 {
   "type": "superflat-progression:grinder",
+  "count": 2,
   "input": {
     "item": {
-      "item": "minecraft:gravel"
+      "item": "minecraft:wither_rose"
     }
   },
   "needsBucket": false,
   "result": {
-    "item": "minecraft:sand"
+    "item": "minecraft:black_dye"
   }
 }

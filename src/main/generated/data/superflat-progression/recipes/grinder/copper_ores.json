@@ -1,0 +1,13 @@
+{
+  "type": "superflat-progression:grinder",
+  "count": 6,
+  "input": {
+    "item": {
+      "tag": "minecraft:copper_ores"
+    }
+  },
+  "needsBucket": false,
+  "result": {
+    "item": "minecraft:copper_ingot"
+  }
+}

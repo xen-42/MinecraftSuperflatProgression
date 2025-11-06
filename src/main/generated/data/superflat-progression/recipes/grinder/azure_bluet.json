@@ -1,0 +1,13 @@
+{
+  "type": "superflat-progression:grinder",
+  "count": 2,
+  "input": {
+    "item": {
+      "item": "minecraft:azure_bluet"
+    }
+  },
+  "needsBucket": false,
+  "result": {
+    "item": "minecraft:light_gray_dye"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "type": "superflat-progression:grinder",
+  "count": 1,
+  "input": {
+    "item": {
+      "item": "minecraft:magma_block"
+    }
+  },
+  "needsBucket": true,
+  "result": {
+    "item": "minecraft:lava_bucket"
+  }
+}

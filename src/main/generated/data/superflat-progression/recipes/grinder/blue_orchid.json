@@ -1,12 +1,13 @@
 {
   "type": "superflat-progression:grinder",
+  "count": 2,
   "input": {
     "item": {
-      "tag": "superflat-progression:diamond_gear"
+      "item": "minecraft:blue_orchid"
     }
   },
   "needsBucket": false,
   "result": {
-    "item": "superflat-progression:diamond_shard"
+    "item": "minecraft:light_blue_dye"
   }
 }

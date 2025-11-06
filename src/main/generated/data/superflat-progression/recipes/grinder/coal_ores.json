@@ -1,0 +1,13 @@
+{
+  "type": "superflat-progression:grinder",
+  "count": 2,
+  "input": {
+    "item": {
+      "tag": "minecraft:coal_ores"
+    }
+  },
+  "needsBucket": false,
+  "result": {
+    "item": "minecraft:coal"
+  }
+}

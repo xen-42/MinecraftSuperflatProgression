@@ -26,14 +26,16 @@ public class GrinderRecipe implements Recipe<GrinderRecipeInput> {
 	public final ItemStack result;
 	public final Ingredient input;
 	public final boolean needsBucket;
+	public final int count;
 	final String group;
 
-	public GrinderRecipe(Identifier id, String group, Ingredient input, ItemStack result, boolean needsBucket) {
+	public GrinderRecipe(Identifier id, String group, Ingredient input, ItemStack result, boolean needsBucket, int count) {
 		this.id = id;
 		this.group = group;
 		this.input = input;
 		this.result = result;
 		this.needsBucket = needsBucket;
+		this.count = count;
 	}
 
 	@Override
@@ -95,7 +97,7 @@ public class GrinderRecipe implements Recipe<GrinderRecipeInput> {
 	}
 
 	public ItemStack craft(GrinderRecipeInput input, DynamicRegistryManager registryManager) {
-		return this.result.copy();
+		return new ItemStack(this.result.getItem(), this.count);
 	}
 
 	public static class Serializer implements RecipeSerializer<GrinderRecipe> {
@@ -113,8 +115,9 @@ public class GrinderRecipe implements Recipe<GrinderRecipeInput> {
 			ItemStack result = new ItemStack(item, 1);
 
 			var needsBucket = json.get("needsBucket").getAsBoolean();
+			var count = json.get("count").getAsInt();
 
-			return new GrinderRecipe(id, group, ingredient, result, needsBucket);
+			return new GrinderRecipe(id, group, ingredient, result, needsBucket, count);
 		}
 
 		public void write(PacketByteBuf buf, GrinderRecipe recipe) {
@@ -122,6 +125,7 @@ public class GrinderRecipe implements Recipe<GrinderRecipeInput> {
 			recipe.input.write(buf);
 			buf.writeItemStack(recipe.result);
 			buf.writeBoolean(recipe.needsBucket);
+			buf.writeInt(recipe.count);
 		}
 
 		public GrinderRecipe read(Identifier id, PacketByteBuf buf) {
@@ -129,7 +133,8 @@ public class GrinderRecipe implements Recipe<GrinderRecipeInput> {
 			var ingredient = Ingredient.fromPacket(buf);
 			ItemStack result = buf.readItemStack();
 			var needsBucket = buf.readBoolean();
-			return new GrinderRecipe(id, string, ingredient, result, needsBucket);
+			var count = buf.readInt();
+			return new GrinderRecipe(id, string, ingredient, result, needsBucket, count);
 		}
 	}
 

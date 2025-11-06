@@ -1,12 +1,13 @@
 {
   "type": "superflat-progression:grinder",
+  "count": 1,
   "input": {
     "item": {
-      "item": "minecraft:stone"
+      "item": "minecraft:cobblestone"
     }
   },
   "needsBucket": false,
   "result": {
-    "item": "minecraft:cobblestone"
+    "item": "minecraft:gravel"
   }
 }

@@ -25,6 +25,7 @@ import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryEntryLookup;
 import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
 import xen42.superflatprogression.SuperflatProgression;
 
@@ -34,17 +35,42 @@ public class GrinderRecipeJsonBuilder extends RecipeJsonBuilder implements Craft
 	private final Item output;
 	private final Ingredient input;
 	private final boolean needsBucket;
+	private int count = 1;
 	private final Map<String, CriterionConditions> criteria = new LinkedHashMap<String, CriterionConditions>();
 	@Nullable
 	private String group;
 
+	private Identifier uniqueID;
+
 	private final RegistryEntryLookup<Item> registryLookup;
 
-	public GrinderRecipeJsonBuilder(RegistryEntryLookup<Item> registryLookup, Ingredient input, ItemConvertible output, boolean needsBucket) {
+	public GrinderRecipeJsonBuilder(RegistryEntryLookup<Item> registryLookup, Item input, ItemConvertible output, boolean needsBucket) {
 		this.registryLookup = registryLookup;
 		this.output = output.asItem();
-        this.input = input;
+        this.input = Ingredient.ofItems(input);
+		this.uniqueID = getItemId(input);
 		this.needsBucket = needsBucket;
+	}
+
+	public GrinderRecipeJsonBuilder(RegistryEntryLookup<Item> registryLookup, TagKey<Item> input, ItemConvertible output, boolean needsBucket) {
+		this.registryLookup = registryLookup;
+		this.output = output.asItem();
+        this.input = Ingredient.fromTag(input);
+		this.uniqueID = getTagId(input);
+		this.needsBucket = needsBucket;
+	}
+
+	public static Identifier getItemId(ItemConvertible item) {
+		return Identifier.of(SuperflatProgression.MOD_ID, Registries.ITEM.getId(item.asItem()).getPath());
+	}
+
+	public static Identifier getTagId(TagKey<Item> itemTag) {
+		return Identifier.of(SuperflatProgression.MOD_ID, itemTag.id().getPath());
+	}
+
+	public GrinderRecipeJsonBuilder setCount(int count) {
+		this.count = count;
+		return this;
 	}
 
 	@Override
@@ -77,6 +103,7 @@ public class GrinderRecipeJsonBuilder extends RecipeJsonBuilder implements Craft
 				this.needsBucket,
 				this.group == null ? "" : this.group,
                 this.input,
+				this.count,
 				recipeId.withPrefixedPath("recipes/grinder/"),
 				builder));
 	}
@@ -89,16 +116,16 @@ public class GrinderRecipeJsonBuilder extends RecipeJsonBuilder implements Craft
 		if (this.criteria.isEmpty()) {
 			throw new IllegalStateException("No way of obtaining recipe " + recipeId);
 		} else {
-			return new GrinderRecipe(recipeId, this.group, this.input, new ItemStack(this.output, 1), this.needsBucket);
+			return new GrinderRecipe(recipeId, this.group, this.input, new ItemStack(this.output, this.count), this.needsBucket, this.count);
 		}
 	}
 	
 	public void offerTo(Consumer<RecipeJsonProvider> exporter) {
-		this.offerTo(exporter, getItemId(this.getOutputItem()));
+		this.offerTo(exporter, this.uniqueID);
 	}
 
 	public void offerTo(Consumer<RecipeJsonProvider> exporter, String recipePath) {
-		Identifier identifier = getItemId(this.getOutputItem());
+		Identifier identifier = this.uniqueID;
 		Identifier identifier2 = Identifier.of(SuperflatProgression.MOD_ID, recipePath);
 		if (identifier2.equals(identifier)) {
 			throw new IllegalStateException("Recipe " + recipePath + " should remove its 'save' argument as it is equal to default one");
@@ -107,16 +134,13 @@ public class GrinderRecipeJsonBuilder extends RecipeJsonBuilder implements Craft
 		}
 	}
 
-	public static Identifier getItemId(ItemConvertible item) {
-		return Identifier.of(SuperflatProgression.MOD_ID, Registries.ITEM.getId(item.asItem()).getPath());
-	}
-
 	private static class JsonProvider implements RecipeJsonProvider {
 		private final Identifier id;
 		private final Item output;
 		private final boolean needsBucket;
 		private final String group;
 		private final Ingredient input;
+		private final int count;
 		private final Identifier advancementId;
 		private final Advancement.Builder advancementBuilder;
 
@@ -126,6 +150,7 @@ public class GrinderRecipeJsonBuilder extends RecipeJsonBuilder implements Craft
 				boolean needsBucket, 
 				String group,
 				Ingredient input,
+				int count,
 				Identifier advancementId,
 				Advancement.Builder advancementBuilder) {
 			this.id = id;
@@ -133,6 +158,7 @@ public class GrinderRecipeJsonBuilder extends RecipeJsonBuilder implements Craft
 			this.needsBucket = needsBucket;
 			this.group = group;
 			this.input = input;
+			this.count = count;
 			this.advancementId = advancementId;
 			this.advancementBuilder = advancementBuilder;
 		}
@@ -150,6 +176,8 @@ public class GrinderRecipeJsonBuilder extends RecipeJsonBuilder implements Craft
 			JsonObject result = new JsonObject();
 			result.addProperty("item", Registries.ITEM.getId(this.output).toString());
 			json.add("result", result);
+
+			json.addProperty("count", this.count);
 
 			json.addProperty("needsBucket", this.needsBucket);
 		}

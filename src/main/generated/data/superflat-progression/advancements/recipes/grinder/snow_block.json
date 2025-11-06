@@ -1,11 +1,13 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_TagKey[minecraft:item / superflat-progression:diamond_gear]": {
+    "has_snow_block": {
       "conditions": {
         "items": [
           {
-            "tag": "superflat-progression:diamond_gear"
+            "items": [
+              "minecraft:snow_block"
+            ]
           }
         ]
       },
@@ -13,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "superflat-progression:diamond_shard"
+        "recipe": "superflat-progression:snow_block"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +23,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_TagKey[minecraft:item / superflat-progression:diamond_gear]"
+      "has_snow_block"
     ]
   ],
   "rewards": {
     "recipes": [
-      "superflat-progression:diamond_shard"
+      "superflat-progression:snow_block"
     ]
   },
   "sends_telemetry_event": false

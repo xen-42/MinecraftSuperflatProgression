@@ -1,0 +1,13 @@
+{
+  "type": "superflat-progression:grinder",
+  "count": 2,
+  "input": {
+    "item": {
+      "item": "minecraft:lilac"
+    }
+  },
+  "needsBucket": false,
+  "result": {
+    "item": "minecraft:magenta_dye"
+  }
+}

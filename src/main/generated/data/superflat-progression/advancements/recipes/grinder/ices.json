@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_TagKey[minecraft:item / superflat-progression:ices]": {
+      "conditions": {
+        "items": [
+          {
+            "tag": "superflat-progression:ices"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "superflat-progression:ices"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_TagKey[minecraft:item / superflat-progression:ices]"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "superflat-progression:ices"
+    ]
+  },
+  "sends_telemetry_event": false
+}

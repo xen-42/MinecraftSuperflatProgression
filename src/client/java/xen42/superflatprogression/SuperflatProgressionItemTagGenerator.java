@@ -34,5 +34,10 @@ public class SuperflatProgressionItemTagGenerator extends ItemTagProvider {
 			.add(Items.DIAMOND_HELMET)
 			.add(Items.DIAMOND_LEGGINGS)
 			.add(Items.DIAMOND_HORSE_ARMOR);
+
+		this.getOrCreateTagBuilder(SuperflatProgressionTags.ItemTags.DIAMOND_GEAR)
+			.add(Items.ICE)
+			.add(Items.BLUE_ICE)
+			.add(Items.PACKED_ICE);
     }
 }

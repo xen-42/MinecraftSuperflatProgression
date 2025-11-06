@@ -201,6 +201,21 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
                         .criterion(hasItem(Blocks.OAK_PLANKS), conditionsFromTag(ItemTags.PLANKS))
                         , exporter);
                 
+                offerTo(createShaped(RecipeCategory.MISC, SuperflatProgressionBlocks.GRINDER)
+                        .pattern(" X ")
+                        .pattern("GYG")
+                        .pattern("ZZZ")
+                        .input('X', Blocks.HOPPER)
+                        .input('G', Items.GOLD_INGOT)
+                        .input('Y', Blocks.STONECUTTER)
+                        .input('Z', Blocks.COBBLESTONE)
+                        // Advancement that gives the recipe
+                        .criterion(hasItem(Items.GOLD_INGOT), conditionsFromItem(Items.GOLD_INGOT))
+                        .criterion(hasItem(Blocks.COBBLESTONE), conditionsFromItem(Items.COBBLESTONE))
+                        .criterion(hasItem(Blocks.HOPPER), conditionsFromItem(Items.HOPPER))
+                        .criterion(hasItem(Blocks.STONECUTTER), conditionsFromItem(Items.STONECUTTER))
+                        , exporter);
+                
                 offerTo(createShaped(RecipeCategory.MISC, Items.DIAMOND)
                         .pattern("XXX")
                         .pattern("XXX")
@@ -225,6 +240,54 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
                 createGrinder(Blocks.MAGMA_BLOCK.asItem(), Items.LAVA_BUCKET, true).offerTo(exporter);
                 createGrinder(Blocks.SOUL_SOIL.asItem(), Items.SOUL_SAND, false).offerTo(exporter);
                 createGrinder(SuperflatProgressionTags.ItemTags.DIAMOND_GEAR, SuperflatProgressionItems.DIAMOND_SHARD, false).offerTo(exporter);
+
+                // Extra recipes to flesh it out
+                createGrinder(ItemTags.WOOL, Items.STRING, false).setCount(4).offerTo(exporter); 
+
+                createGrinder(SuperflatProgressionTags.ItemTags.ICES, Items.WATER_BUCKET, true).offerTo(exporter);
+                createGrinder(Items.SNOW_BLOCK, Items.POWDER_SNOW_BUCKET, true).offerTo(exporter);
+
+                createGrinder(Items.SUGAR_CANE, Items.SUGAR, false).setCount(2).offerTo(exporter); 
+
+                createGrinder(ItemTags.DIAMOND_ORES, Items.DIAMOND, false).setCount(2).offerTo(exporter); 
+                createGrinder(ItemTags.GOLD_ORES, Items.GOLD_ORE, false).setCount(2).offerTo(exporter); 
+                createGrinder(ItemTags.IRON_ORES, Items.IRON_INGOT, false).setCount(2).offerTo(exporter); 
+                createGrinder(ItemTags.COPPER_ORES, Items.COPPER_INGOT, false).setCount(6).offerTo(exporter); 
+                createGrinder(ItemTags.COAL_ORES, Items.COAL, false).setCount(2).offerTo(exporter); 
+                createGrinder(ItemTags.EMERALD_ORES, Items.EMERALD, false).setCount(2).offerTo(exporter); 
+                createGrinder(ItemTags.LAPIS_ORES, Items.LAPIS_LAZULI, false).setCount(6).offerTo(exporter); 
+                createGrinder(ItemTags.REDSTONE_ORES, Items.REDSTONE, false).setCount(6).offerTo(exporter); 
+
+                createGrinder(Items.GLOWSTONE, Items.GLOWSTONE_DUST, false).setCount(4).offerTo(exporter); 
+
+                createGrinder(Items.CACTUS, Items.GREEN_DYE, false).setCount(2).offerTo(exporter); 
+                createGrinder(Items.SEA_PICKLE, Items.LIME_DYE, false).setCount(2).offerTo(exporter); 
+
+                createGrinder(Items.BONE_MEAL, Items.WHITE_DYE, false).setCount(2).offerTo(exporter);
+                createGrinder(Items.LILY_OF_THE_VALLEY, Items.WHITE_DYE, false).setCount(2).offerTo(exporter);
+                createGrinder(Items.AZURE_BLUET, Items.LIGHT_GRAY_DYE, false).setCount(2).offerTo(exporter);
+                createGrinder(Items.OXEYE_DAISY, Items.LIGHT_GRAY_DYE, false).setCount(2).offerTo(exporter);
+                createGrinder(Items.WHITE_TULIP, Items.LIGHT_GRAY_DYE, false).setCount(2).offerTo(exporter);
+                createGrinder(Items.INK_SAC, Items.BLACK_DYE, false).setCount(2).offerTo(exporter);
+                createGrinder(Items.WITHER_ROSE, Items.BLACK_DYE, false).setCount(2).offerTo(exporter);
+                createGrinder(Items.COCOA_BEANS, Items.BROWN_DYE, false).setCount(2).offerTo(exporter);
+                createGrinder(Items.POPPY, Items.RED_DYE, false).setCount(2).offerTo(exporter);
+                createGrinder(Items.RED_TULIP, Items.RED_DYE, false).setCount(2).offerTo(exporter);
+                createGrinder(Items.ROSE_BUSH, Items.RED_DYE, false).setCount(2).offerTo(exporter);
+                createGrinder(Items.BEETROOT, Items.RED_DYE, false).setCount(2).offerTo(exporter);
+                createGrinder(Items.ORANGE_TULIP, Items.ORANGE_DYE, false).setCount(2).offerTo(exporter);
+                createGrinder(Items.TORCHFLOWER, Items.ORANGE_DYE, false).setCount(2).offerTo(exporter);
+                createGrinder(Items.DANDELION, Items.YELLOW_DYE, false).setCount(2).offerTo(exporter);
+                createGrinder(Items.SUNFLOWER, Items.YELLOW_DYE, false).setCount(2).offerTo(exporter);
+                createGrinder(Items.PITCHER_PLANT, Items.CYAN_DYE, false).setCount(2).offerTo(exporter);
+                createGrinder(Items.BLUE_ORCHID, Items.LIGHT_BLUE_DYE, false).setCount(2).offerTo(exporter);
+                createGrinder(Items.LAPIS_LAZULI, Items.BLUE_DYE, false).setCount(2).offerTo(exporter);
+                createGrinder(Items.CORNFLOWER, Items.BLUE_DYE, false).setCount(2).offerTo(exporter);
+                createGrinder(Items.ALLIUM, Items.MAGENTA_DYE, false).setCount(2).offerTo(exporter);
+                createGrinder(Items.LILAC, Items.MAGENTA_DYE, false).setCount(2).offerTo(exporter);
+                createGrinder(Items.PINK_TULIP, Items.PINK_DYE, false).setCount(2).offerTo(exporter);
+                createGrinder(Items.PEONY, Items.PINK_DYE, false).setCount(2).offerTo(exporter);
+                createGrinder(Items.PINK_PETALS, Items.PINK_DYE, false).setCount(2).offerTo(exporter);
             }
 
             public ScrollCraftingRecipeJsonBuilder createScroll(ItemConvertible output, Item input, int cost) {
@@ -236,13 +299,13 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
 
             public GrinderRecipeJsonBuilder createGrinder(Item input, ItemConvertible output, boolean needsBucket) {
                 return new GrinderRecipeJsonBuilder(registryLookup.getWrapperOrThrow(RegistryKeys.ITEM), 
-                    Ingredient.ofItems(input), output, needsBucket)
+                    input, output, needsBucket)
                     .criterion(hasItem(input), conditionsFromItem(input));
             }
 
             public GrinderRecipeJsonBuilder createGrinder(TagKey<Item> input, ItemConvertible output, boolean needsBucket) {
                 return new GrinderRecipeJsonBuilder(registryLookup.getWrapperOrThrow(RegistryKeys.ITEM), 
-                    Ingredient.fromTag(input), output, needsBucket)
+                    input, output, needsBucket)
                     .criterion("has_" + input.toString(), conditionsFromTag(input));
             }
         };

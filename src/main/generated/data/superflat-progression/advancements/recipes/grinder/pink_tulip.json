@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_gravel": {
+    "has_pink_tulip": {
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:gravel"
+              "minecraft:pink_tulip"
             ]
           }
         ]
@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "superflat-progression:sand"
+        "recipe": "superflat-progression:pink_tulip"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -23,12 +23,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_gravel"
+      "has_pink_tulip"
     ]
   ],
   "rewards": {
     "recipes": [
-      "superflat-progression:sand"
+      "superflat-progression:pink_tulip"
     ]
   },
   "sends_telemetry_event": false
