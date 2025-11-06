@@ -248,6 +248,7 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
                 createGrinder(Items.SNOW_BLOCK, Items.POWDER_SNOW_BUCKET, true).offerTo(exporter);
 
                 createGrinder(Items.SUGAR_CANE, Items.SUGAR, false).setCount(2).offerTo(exporter); 
+                createGrinder(Items.SPECTRAL_ARROW, Items.GLOWSTONE_DUST, false).setCount(2).offerTo(exporter); 
 
                 createGrinder(ItemTags.DIAMOND_ORES, Items.DIAMOND, false).setCount(2).offerTo(exporter); 
                 createGrinder(ItemTags.GOLD_ORES, Items.GOLD_ORE, false).setCount(2).offerTo(exporter); 
