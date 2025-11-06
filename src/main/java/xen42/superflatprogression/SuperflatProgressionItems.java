@@ -26,6 +26,7 @@ import xen42.superflatprogression.items.ScrollItem;
 
 public class SuperflatProgressionItems {
     public static final Item ESSENCE = register("essence", Item::new, new Item.Settings());
+    public static final Item DIAMOND_SHARD = register("diamond_shard", Item::new, new Item.Settings());
     public static final Item PARCHMENT = register("parchment", Item::new, new Item.Settings());
 	public static final Item ENRICHED_BONEMEAL = register("enriched_bonemeal", EnrichedBoneMealItem::new, new Item.Settings());
 	public static final Item FIRE_STARTER = register("fire_starter", FireStarterItem::new, new Item.Settings());
@@ -71,6 +72,7 @@ public class SuperflatProgressionItems {
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register((itemGroup) -> {
             itemGroup.add(ESSENCE);
             itemGroup.add(PARCHMENT);
+            itemGroup.add(DIAMOND_SHARD);
         }); 
 
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register((itemGroup) -> {

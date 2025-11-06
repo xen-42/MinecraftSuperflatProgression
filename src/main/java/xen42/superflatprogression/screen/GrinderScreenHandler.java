@@ -41,8 +41,8 @@ import xen42.superflatprogression.recipe.GrinderRecipeInput;
 public class GrinderScreenHandler extends AbstractRecipeScreenHandler<GrinderRecipeInput> {
 
     public static final int OUTPUT_SLOT = 0;
-    public static final int PARCHMENT_SLOT = 1;
-    public static final int ESSENCE_SLOT = 2;
+    public static final int SECONDARY_OUTPUT_SLOT = 1;
+    public static final int BUCKET_SLOT = 2;
     public static final int INPUT_SLOT = 3;
     public static final int INVENTORY_SLOTS_START = 4;
     public static final int INVENTORY_SLOTS_END = 30;
@@ -60,9 +60,7 @@ public class GrinderScreenHandler extends AbstractRecipeScreenHandler<GrinderRec
     }
 
     private Slot _outputSlot;
-    private Slot _inputSlot;
-    private Slot _parchmentSlot;
-    private Slot _essenceSlot;
+    private Slot _secondaryOutputSlot;
     
     private boolean filling;
 
@@ -77,11 +75,11 @@ public class GrinderScreenHandler extends AbstractRecipeScreenHandler<GrinderRec
         this.context = context;
         this.player = playerInventory.player;
 
-        _outputSlot = this.addSlot(new OutputSlot(this, this.player, this.inventory, this.resultInventory, 0, 132, 29+4));
+        _outputSlot = this.addSlot(new OutputSlot(this, this.player, this.inventory, this.resultInventory, 0, 112, 34));
+        _secondaryOutputSlot = this.addSlot(new OutputSlot(this, this.player, this.inventory, this.resultInventory, 1, 142, 34));
         
-        _parchmentSlot = this.addSlot(new ItemSpecificSlot(this, this.inventory, PARCHMENT_SLOT, Ingredient.fromTag(SuperflatProgressionTags.ItemTags.PARCHMENTS), 37-15, 32-15+4));
-        _essenceSlot = this.addSlot(new ItemSpecificSlot(this, this.inventory, ESSENCE_SLOT, Ingredient.ofItems(SuperflatProgressionItems.ESSENCE), 37-15, 55-15+4));
-        _inputSlot = this.addSlot(new CustomSlot(this, this.inventory, INPUT_SLOT, 86-15, 44-15+4));
+        this.addSlot(new CustomSlot(this, this.inventory, INPUT_SLOT, 53, 34));
+        this.addSlot(new ItemSpecificSlot(this, this.inventory, BUCKET_SLOT, Ingredient.ofItems(Items.BUCKET), 27, 34));
         
         this.addPlayerSlots(playerInventory, 8, 84);
     }
@@ -120,10 +118,10 @@ public class GrinderScreenHandler extends AbstractRecipeScreenHandler<GrinderRec
         
         Optional<GrinderRecipe> optional = world.getServer().getRecipeManager().getFirstMatch(SuperflatProgression.GRINDER_RECIPE_TYPE, recipeInput, world);
         if (optional.isPresent()) {
-            GrinderRecipe scrollRecipe = optional.get();
-            boolean shouldCraftRecipe = resultInventory.shouldCraftRecipe(world, serverPlayerEntity, scrollRecipe);
+            GrinderRecipe grinderRecipe = optional.get();
+            boolean shouldCraftRecipe = resultInventory.shouldCraftRecipe(world, serverPlayerEntity, grinderRecipe);
             if (shouldCraftRecipe) {
-                ItemStack craftedStack = scrollRecipe.craft(recipeInput, world.getRegistryManager());
+                ItemStack craftedStack = grinderRecipe.craft(recipeInput, world.getRegistryManager());
                 boolean isItemEnabled = craftedStack.isItemEnabled(world.getEnabledFeatures());
                 if (isItemEnabled) {
                     resultStack = craftedStack;
@@ -162,13 +160,8 @@ public class GrinderScreenHandler extends AbstractRecipeScreenHandler<GrinderRec
 
                 slotAtIndex.onQuickTransfer(itemStackAtIndex, itemStack);
             } else if (slot >= INVENTORY_SLOTS_START && slot < HOTBAR_SLOTS_END) {
-                if (itemStackAtIndex.isOf(SuperflatProgressionItems.ESSENCE)) {
-                    if (!this.insertItem(itemStackAtIndex, ESSENCE_SLOT, ESSENCE_SLOT + 1, false)) {
-                        return ItemStack.EMPTY;
-                    }
-                }
-                else if (itemStackAtIndex.isIn(SuperflatProgressionTags.ItemTags.PARCHMENTS)) {
-                    if (!this.insertItem(itemStackAtIndex, PARCHMENT_SLOT, PARCHMENT_SLOT + 1, false)) {
+                if (itemStackAtIndex.isOf(Items.BUCKET)) {
+                    if (!this.insertItem(itemStackAtIndex, BUCKET_SLOT, BUCKET_SLOT + 1, false)) {
                         return ItemStack.EMPTY;
                     }
                 }
@@ -249,7 +242,7 @@ public class GrinderScreenHandler extends AbstractRecipeScreenHandler<GrinderRec
     }
 
     public List<Slot> getInputSlots() {
-        return this.slots.subList(PARCHMENT_SLOT, INPUT_SLOT);
+        return this.slots.subList(BUCKET_SLOT, INPUT_SLOT);
     }
 
     public PlayerEntity getPlayer() {
@@ -263,7 +256,7 @@ public class GrinderScreenHandler extends AbstractRecipeScreenHandler<GrinderRec
 
     @Override
     public int getCraftingWidth() {
-        return 3;
+        return 2;
     }
 
     @Override
@@ -273,7 +266,7 @@ public class GrinderScreenHandler extends AbstractRecipeScreenHandler<GrinderRec
 
     @Override
     public int getCraftingSlotCount() {
-        return INPUT_SLOT;
+        return 2;
     }
 
     @Override
@@ -302,7 +295,7 @@ public class GrinderScreenHandler extends AbstractRecipeScreenHandler<GrinderRec
 
         @Override
         public int getWidth() {
-            return 3;
+            return 2;
         }
 
         @Override
@@ -446,7 +439,7 @@ public class GrinderScreenHandler extends AbstractRecipeScreenHandler<GrinderRec
                 world.playSound((Entity)null, pos, SoundEvents.UI_STONECUTTER_TAKE_RESULT, SoundCategory.BLOCKS, 1.0F, world.random.nextFloat() * 0.1F + 0.9F);
             });
 
-            for (int z = 1; z <= 3; z++) {
+            for (int z = 2; z <= 3; z++) {
                 if(!this.input.getStack(z).isEmpty()) {
                     this.input.removeStack(z, 1);
                 }

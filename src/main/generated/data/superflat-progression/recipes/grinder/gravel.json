@@ -1,10 +1,11 @@
 {
-  "type": "superflat-progression:scroll_crafting",
+  "type": "superflat-progression:grinder",
   "input": {
     "item": {
       "item": "minecraft:cobblestone"
     }
   },
+  "needsBucket": false,
   "result": {
     "item": "minecraft:gravel"
   },

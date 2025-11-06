@@ -72,7 +72,7 @@ public class ScrollCraftingRecipeJsonBuilder extends RecipeJsonBuilder implement
 			.criteriaMerger(CriterionMerger.OR);
 		this.criteria.forEach(builder::criterion);
 		exporter.accept(new JsonProvider(
-				recipeId,
+				recipeId.withPrefixedPath("scrolls/"),
 				this.output,
 				this.group == null ? "" : this.group,
                 this.input,

@@ -197,17 +197,26 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
                         .criterion(hasItem(Blocks.OAK_SLAB), conditionsFromTag(ItemTags.WOODEN_SLABS))
                         .criterion(hasItem(Blocks.OAK_PLANKS), conditionsFromTag(ItemTags.PLANKS))
                         , exporter);
+                
+                offerTo(createShaped(RecipeCategory.MISC, Items.DIAMOND)
+                        .pattern("XXX")
+                        .pattern("XXX")
+                        .pattern("XXX")
+                        .input('X', SuperflatProgressionItems.DIAMOND_SHARD)
+                        // Advancement that gives the recipe
+                        .criterion(hasItem(SuperflatProgressionItems.DIAMOND_SHARD), conditionsFromItem(SuperflatProgressionItems.DIAMOND_SHARD))
+                        , exporter);        
 
                 createScroll(SuperflatProgressionItems.SCROLL_RAIN, Items.BUCKET, 2).offerTo(exporter);
                 createScroll(SuperflatProgressionItems.SCROLL_THUNDER, Items.LIGHTNING_ROD, 4).offerTo(exporter);
                 createScroll(SuperflatProgressionItems.SCROLL_CLEAR_WEATHER, Items.SUNFLOWER, 2).offerTo(exporter);
                 createScroll(SuperflatProgressionItems.SCROLL_TRADE, Items.BELL, 4).offerTo(exporter);
 
-                createGrinder(Blocks.STONE.asItem(), Blocks.COBBLESTONE.asItem(), null).offerTo(exporter);
-                createGrinder(Blocks.COBBLESTONE.asItem(), Blocks.GRAVEL.asItem(), null).offerTo(exporter);
-                createGrinder(Blocks.GRAVEL.asItem(), Blocks.SAND.asItem(), Items.FLINT).offerTo(exporter);
-                createGrinder(Blocks.MAGMA_BLOCK.asItem(), Items.LAVA_BUCKET, Items.QUARTZ).offerTo(exporter);
-                createGrinder(Blocks.SOUL_SOIL.asItem(), Items.SOUL_SAND, SuperflatProgressionItems.ESSENCE).offerTo(exporter);
+                createGrinder(Blocks.STONE.asItem(), Blocks.COBBLESTONE.asItem(), null, false).offerTo(exporter);
+                createGrinder(Blocks.COBBLESTONE.asItem(), Blocks.GRAVEL.asItem(), null, false).offerTo(exporter);
+                createGrinder(Blocks.GRAVEL.asItem(), Blocks.SAND.asItem(), Items.FLINT, false).offerTo(exporter);
+                createGrinder(Blocks.MAGMA_BLOCK.asItem(), Items.LAVA_BUCKET, Items.QUARTZ, true).offerTo(exporter);
+                createGrinder(Blocks.SOUL_SOIL.asItem(), Items.SOUL_SAND, SuperflatProgressionItems.ESSENCE, false).offerTo(exporter);
             }
 
             public ScrollCraftingRecipeJsonBuilder createScroll(ItemConvertible output, Item input, int cost) {
@@ -217,9 +226,9 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
                     .criterion(hasItem(input), conditionsFromItem(input));
             }
 
-            public GrinderRecipeJsonBuilder createGrinder(Item input, ItemConvertible output, ItemConvertible secondaryOutput) {
+            public GrinderRecipeJsonBuilder createGrinder(Item input, ItemConvertible output, ItemConvertible secondaryOutput, boolean needsBucket) {
                 return new GrinderRecipeJsonBuilder(registryLookup.getWrapperOrThrow(RegistryKeys.ITEM), 
-                    Ingredient.ofItems(input), output, secondaryOutput == null ? Blocks.AIR.asItem() : secondaryOutput)
+                    Ingredient.ofItems(input), output, secondaryOutput == null ? Blocks.AIR.asItem() : secondaryOutput, needsBucket)
                     .criterion(hasItem(input), conditionsFromItem(input));
             }
         };

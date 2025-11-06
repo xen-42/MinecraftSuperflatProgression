@@ -8,7 +8,7 @@ import net.minecraft.util.Identifier;
 import xen42.superflatprogression.SuperflatProgression;
 
 public class GrinderHandledScreen extends HandledScreen<GrinderScreenHandler> {
-    private static final Identifier TEXTURE = Identifier.of(SuperflatProgression.MOD_ID, "textures/gui/scroll_crafting_gui.png");
+    private static final Identifier TEXTURE = Identifier.of(SuperflatProgression.MOD_ID, "textures/gui/grinder_gui.png");
 
     public GrinderHandledScreen(GrinderScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
