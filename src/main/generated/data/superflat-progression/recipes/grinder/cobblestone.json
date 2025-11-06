@@ -8,8 +8,5 @@
   "needsBucket": false,
   "result": {
     "item": "minecraft:cobblestone"
-  },
-  "secondaryResult": {
-    "item": "minecraft:air"
   }
 }

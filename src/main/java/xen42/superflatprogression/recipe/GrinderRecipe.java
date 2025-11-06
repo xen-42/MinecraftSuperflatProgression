@@ -19,24 +19,20 @@ import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 import xen42.superflatprogression.SuperflatProgression;
-import xen42.superflatprogression.SuperflatProgressionItems;
-import xen42.superflatprogression.SuperflatProgressionTags;
 import xen42.superflatprogression.screen.GrinderScreenHandler;
 
 public class GrinderRecipe implements Recipe<GrinderRecipeInput> {
 	final Identifier id;
 	public final ItemStack result;
-	public final ItemStack secondaryResult;
 	public final Ingredient input;
 	public final boolean needsBucket;
 	final String group;
 
-	public GrinderRecipe(Identifier id, String group, Ingredient input, ItemStack result, ItemStack secondaryResult, boolean needsBucket) {
+	public GrinderRecipe(Identifier id, String group, Ingredient input, ItemStack result, boolean needsBucket) {
 		this.id = id;
 		this.group = group;
 		this.input = input;
 		this.result = result;
-		this.secondaryResult = secondaryResult;
 		this.needsBucket = needsBucket;
 	}
 
@@ -95,7 +91,7 @@ public class GrinderRecipe implements Recipe<GrinderRecipeInput> {
 	@Override
 	public boolean matches(GrinderRecipeInput input, World world) {
 		var hasBucket = input.getStackInSlot(GrinderScreenHandler.BUCKET_SLOT).isOf(Items.BUCKET);
-		return (hasBucket || !needsBucket) && this.input.test(input.getStackInSlot(GrinderScreenHandler.INPUT_SLOT));
+		return (hasBucket == needsBucket) && this.input.test(input.getStackInSlot(GrinderScreenHandler.INPUT_SLOT));
 	}
 
 	public ItemStack craft(GrinderRecipeInput input, DynamicRegistryManager registryManager) {
@@ -116,21 +112,15 @@ public class GrinderRecipe implements Recipe<GrinderRecipeInput> {
 			Item item = Registries.ITEM.get(new Identifier(JsonHelper.getString(resultObj, "item")));
 			ItemStack result = new ItemStack(item, 1);
 
-			// Secondary
-			JsonObject secondaryResultObj = JsonHelper.getObject(json, "secondaryResult");
-			Item secondaryItem = Registries.ITEM.get(new Identifier(JsonHelper.getString(secondaryResultObj, "item")));
-			ItemStack secondaryResult = new ItemStack(secondaryItem, 1);
-
 			var needsBucket = json.get("needsBucket").getAsBoolean();
 
-			return new GrinderRecipe(id, group, ingredient, result, secondaryResult, needsBucket);
+			return new GrinderRecipe(id, group, ingredient, result, needsBucket);
 		}
 
 		public void write(PacketByteBuf buf, GrinderRecipe recipe) {
 			buf.writeString(recipe.group);
 			recipe.input.write(buf);
 			buf.writeItemStack(recipe.result);
-			buf.writeItemStack(recipe.secondaryResult);
 			buf.writeBoolean(recipe.needsBucket);
 		}
 
@@ -138,9 +128,8 @@ public class GrinderRecipe implements Recipe<GrinderRecipeInput> {
 			String string = buf.readString();
 			var ingredient = Ingredient.fromPacket(buf);
 			ItemStack result = buf.readItemStack();
-			ItemStack secondaryResult = buf.readItemStack();
 			var needsBucket = buf.readBoolean();
-			return new GrinderRecipe(id, string, ingredient, result, secondaryResult, needsBucket);
+			return new GrinderRecipe(id, string, ingredient, result, needsBucket);
 		}
 	}
 

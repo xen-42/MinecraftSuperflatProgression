@@ -22,5 +22,17 @@ public class SuperflatProgressionItemTagGenerator extends ItemTagProvider {
 		this.getOrCreateTagBuilder(SuperflatProgressionTags.ItemTags.PARCHMENTS)
 			.add(SuperflatProgressionItems.PARCHMENT)
 			.add(Items.PAPER);
+		
+		this.getOrCreateTagBuilder(SuperflatProgressionTags.ItemTags.DIAMOND_GEAR)
+			.add(Items.DIAMOND_AXE)
+			.add(Items.DIAMOND_HOE)
+			.add(Items.DIAMOND_PICKAXE)
+			.add(Items.DIAMOND_SHOVEL)
+			.add(Items.DIAMOND_SWORD)
+			.add(Items.DIAMOND_BOOTS)
+			.add(Items.DIAMOND_CHESTPLATE)
+			.add(Items.DIAMOND_HELMET)
+			.add(Items.DIAMOND_LEGGINGS)
+			.add(Items.DIAMOND_HORSE_ARMOR);
     }
 }

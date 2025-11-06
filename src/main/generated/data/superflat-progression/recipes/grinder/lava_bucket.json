@@ -8,8 +8,5 @@
   "needsBucket": true,
   "result": {
     "item": "minecraft:lava_bucket"
-  },
-  "secondaryResult": {
-    "item": "minecraft:quartz"
   }
 }

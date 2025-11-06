@@ -2,11 +2,11 @@
   "type": "superflat-progression:grinder",
   "input": {
     "item": {
-      "item": "minecraft:soul_soil"
+      "tag": "superflat-progression:diamond_gear"
     }
   },
   "needsBucket": false,
   "result": {
-    "item": "minecraft:soul_sand"
+    "item": "superflat-progression:diamond_shard"
   }
 }

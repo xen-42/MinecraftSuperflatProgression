@@ -32,7 +32,6 @@ public class GrinderRecipeJsonBuilder extends RecipeJsonBuilder implements Craft
 	public static final String SPACE = " ";
 	Identifier ROOT = Identifier.of("minecraft","recipes/root");
 	private final Item output;
-	private final Item secondaryOutput;
 	private final Ingredient input;
 	private final boolean needsBucket;
 	private final Map<String, CriterionConditions> criteria = new LinkedHashMap<String, CriterionConditions>();
@@ -41,10 +40,9 @@ public class GrinderRecipeJsonBuilder extends RecipeJsonBuilder implements Craft
 
 	private final RegistryEntryLookup<Item> registryLookup;
 
-	public GrinderRecipeJsonBuilder(RegistryEntryLookup<Item> registryLookup, Ingredient input, ItemConvertible output, ItemConvertible secondaryOutput, boolean needsBucket) {
+	public GrinderRecipeJsonBuilder(RegistryEntryLookup<Item> registryLookup, Ingredient input, ItemConvertible output, boolean needsBucket) {
 		this.registryLookup = registryLookup;
 		this.output = output.asItem();
-		this.secondaryOutput = secondaryOutput.asItem();
         this.input = input;
 		this.needsBucket = needsBucket;
 	}
@@ -76,7 +74,6 @@ public class GrinderRecipeJsonBuilder extends RecipeJsonBuilder implements Craft
 		exporter.accept(new JsonProvider(
 				recipeId.withPrefixedPath("grinder/"),
 				this.output,
-				this.secondaryOutput,
 				this.needsBucket,
 				this.group == null ? "" : this.group,
                 this.input,
@@ -92,7 +89,7 @@ public class GrinderRecipeJsonBuilder extends RecipeJsonBuilder implements Craft
 		if (this.criteria.isEmpty()) {
 			throw new IllegalStateException("No way of obtaining recipe " + recipeId);
 		} else {
-			return new GrinderRecipe(recipeId, this.group, this.input, new ItemStack(this.output, 1), new ItemStack(this.secondaryOutput, 1), this.needsBucket);
+			return new GrinderRecipe(recipeId, this.group, this.input, new ItemStack(this.output, 1), this.needsBucket);
 		}
 	}
 	
@@ -117,7 +114,6 @@ public class GrinderRecipeJsonBuilder extends RecipeJsonBuilder implements Craft
 	private static class JsonProvider implements RecipeJsonProvider {
 		private final Identifier id;
 		private final Item output;
-		private final Item secondaryOutput;
 		private final boolean needsBucket;
 		private final String group;
 		private final Ingredient input;
@@ -127,7 +123,6 @@ public class GrinderRecipeJsonBuilder extends RecipeJsonBuilder implements Craft
 		protected JsonProvider(
 				Identifier id,
 				Item output,
-				Item secondaryOutput,
 				boolean needsBucket, 
 				String group,
 				Ingredient input,
@@ -135,7 +130,6 @@ public class GrinderRecipeJsonBuilder extends RecipeJsonBuilder implements Craft
 				Advancement.Builder advancementBuilder) {
 			this.id = id;
 			this.output = output;
-			this.secondaryOutput = secondaryOutput;
 			this.needsBucket = needsBucket;
 			this.group = group;
 			this.input = input;
@@ -156,10 +150,6 @@ public class GrinderRecipeJsonBuilder extends RecipeJsonBuilder implements Craft
 			JsonObject result = new JsonObject();
 			result.addProperty("item", Registries.ITEM.getId(this.output).toString());
 			json.add("result", result);
-
-			JsonObject secondaryResult = new JsonObject();
-			secondaryResult.addProperty("item", Registries.ITEM.getId(this.secondaryOutput).toString());
-			json.add("secondaryResult", secondaryResult);
 
 			json.addProperty("needsBucket", this.needsBucket);
 		}

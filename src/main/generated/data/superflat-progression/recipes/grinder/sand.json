@@ -8,8 +8,5 @@
   "needsBucket": false,
   "result": {
     "item": "minecraft:sand"
-  },
-  "secondaryResult": {
-    "item": "minecraft:flint"
   }
 }

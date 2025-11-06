@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.jetbrains.annotations.Nullable;
+import org.lwjgl.system.windows.INPUT;
 
 import net.minecraft.network.packet.s2c.play.ScreenHandlerSlotUpdateS2CPacket;
 import net.minecraft.entity.Entity;
@@ -33,21 +34,18 @@ import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 import xen42.superflatprogression.SuperflatProgression;
 import xen42.superflatprogression.SuperflatProgressionBlocks;
-import xen42.superflatprogression.SuperflatProgressionItems;
-import xen42.superflatprogression.SuperflatProgressionTags;
 import xen42.superflatprogression.recipe.GrinderRecipe;
 import xen42.superflatprogression.recipe.GrinderRecipeInput;
 
 public class GrinderScreenHandler extends AbstractRecipeScreenHandler<GrinderRecipeInput> {
 
     public static final int OUTPUT_SLOT = 0;
-    public static final int SECONDARY_OUTPUT_SLOT = 1;
     public static final int BUCKET_SLOT = 2;
-    public static final int INPUT_SLOT = 3;
-    public static final int INVENTORY_SLOTS_START = 4;
-    public static final int INVENTORY_SLOTS_END = 30;
-    public static final int HOTBAR_SLOTS_START = 31;
-    public static final int HOTBAR_SLOTS_END = 40;
+    public static final int INPUT_SLOT = 1;
+    public static final int INVENTORY_SLOTS_START = 3;
+    public static final int INVENTORY_SLOTS_END = 29;
+    public static final int HOTBAR_SLOTS_START = 30;
+    public static final int HOTBAR_SLOTS_END = 39;
 
     public final RecipeInputInventory inventory;
     private final CraftingResultInventory resultInventory;
@@ -60,7 +58,6 @@ public class GrinderScreenHandler extends AbstractRecipeScreenHandler<GrinderRec
     }
 
     private Slot _outputSlot;
-    private Slot _secondaryOutputSlot;
     
     private boolean filling;
 
@@ -75,8 +72,7 @@ public class GrinderScreenHandler extends AbstractRecipeScreenHandler<GrinderRec
         this.context = context;
         this.player = playerInventory.player;
 
-        _outputSlot = this.addSlot(new OutputSlot(this, this.player, this.inventory, this.resultInventory, 0, 112, 34));
-        _secondaryOutputSlot = this.addSlot(new OutputSlot(this, this.player, this.inventory, this.resultInventory, 1, 142, 34));
+        _outputSlot = this.addSlot(new OutputSlot(this, this.player, this.inventory, this.resultInventory, 0, 111, 34));
         
         this.addSlot(new CustomSlot(this, this.inventory, INPUT_SLOT, 53, 34));
         this.addSlot(new ItemSpecificSlot(this, this.inventory, BUCKET_SLOT, Ingredient.ofItems(Items.BUCKET), 27, 34));
@@ -114,7 +110,6 @@ public class GrinderScreenHandler extends AbstractRecipeScreenHandler<GrinderRec
         GrinderRecipeInput recipeInput = GrinderRecipeInput.create(this, inventory.getInputStacks());
         ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity)player;
         ItemStack resultStack = ItemStack.EMPTY;
-        int cost = 0;
         
         Optional<GrinderRecipe> optional = world.getServer().getRecipeManager().getFirstMatch(SuperflatProgression.GRINDER_RECIPE_TYPE, recipeInput, world);
         if (optional.isPresent()) {
@@ -439,10 +434,11 @@ public class GrinderScreenHandler extends AbstractRecipeScreenHandler<GrinderRec
                 world.playSound((Entity)null, pos, SoundEvents.UI_STONECUTTER_TAKE_RESULT, SoundCategory.BLOCKS, 1.0F, world.random.nextFloat() * 0.1F + 0.9F);
             });
 
-            for (int z = 2; z <= 3; z++) {
-                if(!this.input.getStack(z).isEmpty()) {
-                    this.input.removeStack(z, 1);
-                }
+            if(!this.input.getStack(BUCKET_SLOT).isEmpty()) {
+                this.input.removeStack(BUCKET_SLOT, 1);
+            }
+            if(!this.input.getStack(INPUT_SLOT).isEmpty()) {
+                this.input.removeStack(INPUT_SLOT, 1);
             }
         }
     }

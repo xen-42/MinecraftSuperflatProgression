@@ -11,6 +11,7 @@ import net.minecraft.world.gen.structure.Structure;
 public class SuperflatProgressionTags {
     public class ItemTags {
         public static final TagKey<Item> PARCHMENTS = ofItem("parchments");
+		public static final TagKey<Item> DIAMOND_GEAR = ofItem("diamond_gear");
     }
 
     public static TagKey<Block> ofBlock(String name) {
