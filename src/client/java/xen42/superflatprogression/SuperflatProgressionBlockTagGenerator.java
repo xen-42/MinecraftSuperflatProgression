@@ -21,6 +21,11 @@ public class SuperflatProgressionBlockTagGenerator extends BlockTagProvider {
     @Override
     protected void configure(WrapperLookup wrapperLookup) {
         this.getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
-            .add(SuperflatProgressionBlocks.CHARCOAL_BLOCK);
+            .add(SuperflatProgressionBlocks.CHARCOAL_BLOCK)
+            .add(SuperflatProgressionBlocks.MAGIC_LANTERN)
+            .add(SuperflatProgressionBlocks.GRINDER);
+
+        this.getOrCreateTagBuilder(BlockTags.AXE_MINEABLE)
+            .add(SuperflatProgressionBlocks.SCROLL_CRAFTING);
     }
 }

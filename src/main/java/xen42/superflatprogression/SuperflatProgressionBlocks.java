@@ -75,7 +75,7 @@ public class SuperflatProgressionBlocks {
 	public static final DefaultParticleType MAGIC_TORCH_PARTICLE = FabricParticleTypes.simple();
 
 	public static final ScrollCraftingBlock SCROLL_CRAFTING = (ScrollCraftingBlock)register(
-		"scroll_crafting", ScrollCraftingBlock::new, AbstractBlock.Settings.copy(Blocks.STONE).nonOpaque(), true);
+		"scroll_crafting", ScrollCraftingBlock::new, AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque(), true);
 
 	public static final GrinderBlock GRINDER = (GrinderBlock)register(
 		"grinder", GrinderBlock::new, AbstractBlock.Settings.copy(Blocks.STONE).nonOpaque(), true);

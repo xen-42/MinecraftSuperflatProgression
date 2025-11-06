@@ -1,8 +1,15 @@
 package xen42.superflatprogression;
 
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
+import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
+import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.SpawnGroup;
+import net.minecraft.entity.SpawnRestriction;
+import net.minecraft.entity.SpawnRestriction.Location;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
@@ -17,6 +24,8 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.util.Identifier;
+import net.minecraft.world.Heightmap;
+import xen42.superflatprogression.entities.PixieEntity;
 import xen42.superflatprogression.recipe.GrinderRecipe;
 import xen42.superflatprogression.recipe.ScrollCraftingRecipe;
 import xen42.superflatprogression.screen.GrinderScreenHandler;
@@ -65,6 +74,12 @@ public class SuperflatProgression implements ModInitializer {
 		Identifier.of(MOD_ID, "grinder"),
 		new ScreenHandlerType<GrinderScreenHandler>(GrinderScreenHandler::new, null));
 
+	public static final RegistryKey<EntityType<?>> PIXIE_ENTITY_KEY = RegistryKey.of(RegistryKeys.ENTITY_TYPE, Identifier.of(MOD_ID,"pixie"));
+	public static final EntityType<PixieEntity> PIXIE_ENTITY = Registry.register(
+		Registries.ENTITY_TYPE, 
+		Identifier.of(MOD_ID, "pixie"), 
+		EntityType.Builder.create(PixieEntity::new, SpawnGroup.AMBIENT).setDimensions(0.5f, 0.5f).build(PIXIE_ENTITY_KEY.toString()));
+
 
 	@Override
 	public void onInitialize() {
@@ -78,5 +93,10 @@ public class SuperflatProgression implements ModInitializer {
 		SuperflatProgressionItems.initialize();
 		SuperflatProgressionBlocks.initialize();
 		SuperflatProgressionPotions.initialize();
+
+		FabricDefaultAttributeRegistry.register(PIXIE_ENTITY, PixieEntity.createPixieAttributes());
+
+		BiomeModifications.addSpawn(BiomeSelectors.foundInOverworld(), SpawnGroup.AMBIENT, PIXIE_ENTITY, 100, 2, 3);
+		SpawnRestriction.register(PIXIE_ENTITY, Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, PixieEntity::isValidSpawn);
 	}
 }

@@ -20,6 +20,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 import net.minecraft.util.math.Direction;
+import xen42.superflatprogression.items.DispensibleSpawnEggItem;
 import xen42.superflatprogression.items.EnrichedBoneMealItem;
 import xen42.superflatprogression.items.FireStarterItem;
 import xen42.superflatprogression.items.ScrollItem;
@@ -32,6 +33,8 @@ public class SuperflatProgressionItems {
 	public static final Item FIRE_STARTER = register("fire_starter", FireStarterItem::new, new Item.Settings());
 	public static final Item MAGIC_TORCH = register("magic_torch", (settings) -> new VerticallyAttachableBlockItem(SuperflatProgressionBlocks.MAGIC_TORCH,
 		SuperflatProgressionBlocks.WALL_MAGIC_TORCH, settings, Direction.DOWN), new Item.Settings());
+	public static final Item PIXIE_SPAWN_EGG = register("pixie_spawn_egg", (settings) -> 
+        new DispensibleSpawnEggItem(SuperflatProgression.PIXIE_ENTITY, 0x6F4B6F, 0x2B1E2B, settings), new Item.Settings());
 
     public static final Item SCROLL_RAIN = register("scroll_rain", (settings) ->
 		new ScrollItem(settings, (ServerPlayerEntity user) -> {
@@ -86,6 +89,10 @@ public class SuperflatProgressionItems {
 
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register((itemGroup) -> {
             itemGroup.add(SuperflatProgressionBlocks.CHARCOAL_BLOCK.asItem());
+		});
+
+		ItemGroupEvents.modifyEntriesEvent(ItemGroups.SPAWN_EGGS).register((itemGroup) -> {
+            itemGroup.add(PIXIE_SPAWN_EGG);
 		});
 
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register((itemGroup) -> {

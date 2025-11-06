@@ -26,7 +26,7 @@ import xen42.superflatprogression.screen.GrinderScreenHandler;
 
 public class GrinderBlock extends Block {
 	public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
-    private static VoxelShape SHAPE = Block.createCuboidShape(2, 0, 2, 12, 14, 12);
+    private static VoxelShape SHAPE = Block.createCuboidShape(2, 0, 2, 14, 14, 14);
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {

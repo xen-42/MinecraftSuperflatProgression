@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
-    "superflat-progression:charcoal_block"
+    "superflat-progression:charcoal_block",
+    "superflat-progression:magic_lantern",
+    "superflat-progression:grinder"
   ]
 }
