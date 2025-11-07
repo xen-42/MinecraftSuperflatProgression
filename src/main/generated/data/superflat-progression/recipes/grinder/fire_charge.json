@@ -1,0 +1,13 @@
+{
+  "type": "superflat-progression:grinder",
+  "count": 1,
+  "input": {
+    "item": {
+      "item": "minecraft:fire_charge"
+    }
+  },
+  "needsBucket": false,
+  "result": {
+    "item": "minecraft:blaze_powder"
+  }
+}
