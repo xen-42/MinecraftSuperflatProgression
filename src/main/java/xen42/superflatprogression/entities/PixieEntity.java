@@ -17,6 +17,7 @@ import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.BatEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
@@ -82,4 +83,23 @@ public class PixieEntity extends PassiveEntity {
     public static boolean isValidSpawn(EntityType<? extends PixieEntity> type, ServerWorldAccess world, SpawnReason spawnReason, BlockPos pos, Random random) {
         return world.getBlockState(pos).isAir() && !world.getBlockState(pos.down()).isAir() && !world.getBlockState(pos).isOf(Blocks.LAVA);
     }
+
+	@Override
+	public void tick() {
+		super.tick();
+		if (this.age % 10 == 0) {
+			var world = this.getWorld();
+			if (!world.isClient) {
+				((ServerWorld) world).spawnParticles(
+				SuperflatProgression.PIXIE_PARTICLE,
+				this.getX(),
+				this.getY() + this.getHeight() * 3f / 4f,
+				this.getZ(),
+				5,
+				0.3, 0.3, 0.3,
+				1
+				);
+			}
+		}
+	}
 }

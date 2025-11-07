@@ -25,6 +25,7 @@ public class SuperflatProgressionClient implements ClientModInitializer {
 		BlockRenderLayerMap.INSTANCE.putBlock(SuperflatProgressionBlocks.GRINDER, RenderLayer.getCutout());
 
 		ParticleFactoryRegistry.getInstance().register(SuperflatProgression.MAGIC_TORCH_PARTICLE, SuperflatProgressionParticleFactory::new);
+		ParticleFactoryRegistry.getInstance().register(SuperflatProgression.PIXIE_PARTICLE, SuperflatProgressionParticleFactory::new);
 
 		HandledScreens.register(SuperflatProgression.SCROLL_CRAFTING_SCREEN_HANDLER, ScrollCraftingHandledScreen::new);
 		HandledScreens.register(SuperflatProgression.GRINDER_SCREEN_HANDLER, GrinderHandledScreen::new);

@@ -43,6 +43,7 @@ public class SuperflatProgression implements ModInitializer {
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
 	public static final DefaultParticleType MAGIC_TORCH_PARTICLE = registerParticleType("magic_torch_flame");
+	public static final DefaultParticleType PIXIE_PARTICLE = registerParticleType("pixie_particle");
 
 	private static DefaultParticleType registerParticleType(String name) {
 		var particle = FabricParticleTypes.simple();
@@ -78,7 +79,7 @@ public class SuperflatProgression implements ModInitializer {
 	public static final EntityType<PixieEntity> PIXIE_ENTITY = Registry.register(
 		Registries.ENTITY_TYPE, 
 		Identifier.of(MOD_ID, "pixie"), 
-		EntityType.Builder.create(PixieEntity::new, SpawnGroup.AMBIENT).setDimensions(0.5f, 0.5f).build(PIXIE_ENTITY_KEY.toString()));
+		EntityType.Builder.create(PixieEntity::new, SpawnGroup.AMBIENT).setDimensions(0.5f, 1f).build(PIXIE_ENTITY_KEY.toString()));
 
 
 	@Override
