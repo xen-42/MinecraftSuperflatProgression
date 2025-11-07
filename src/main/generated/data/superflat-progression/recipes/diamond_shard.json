@@ -1,7 +1,11 @@
 {
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
-  "ingredients": [],
+  "ingredients": [
+    {
+      "item": "minecraft:diamond"
+    }
+  ],
   "result": {
     "count": 9,
     "item": "superflat-progression:diamond_shard"

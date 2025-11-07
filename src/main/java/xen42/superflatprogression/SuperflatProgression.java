@@ -3,6 +3,7 @@ package xen42.superflatprogression;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
+import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
 import net.minecraft.entity.EntityType;
@@ -13,6 +14,17 @@ import net.minecraft.entity.SpawnRestriction.Location;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
+import net.minecraft.item.Items;
+import net.minecraft.loot.LootPool;
+import net.minecraft.loot.LootTable;
+import net.minecraft.loot.entry.ItemEntry;
+import net.minecraft.loot.function.LootFunction;
+import net.minecraft.loot.function.LootingEnchantLootFunction;
+import net.minecraft.loot.function.SetCountLootFunction;
+import net.minecraft.loot.function.SetNbtLootFunction;
+import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
+import net.minecraft.loot.provider.number.UniformLootNumberProvider;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
@@ -99,5 +111,22 @@ public class SuperflatProgression implements ModInitializer {
 
 		BiomeModifications.addSpawn(BiomeSelectors.foundInOverworld(), SpawnGroup.AMBIENT, PIXIE_ENTITY, 100, 2, 3);
 		SpawnRestriction.register(PIXIE_ENTITY, Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, PixieEntity::isValidSpawn);
+
+        var waterPotionNbt = new NbtCompound();
+        waterPotionNbt.putString("Potion","minecraft:water");
+
+		LootTableEvents.MODIFY.register((resourceManager, lootManager, id, tableBuilder, source) -> {
+			if (id.equals(Identifier.of("minecraft", "entities/witch"))) {
+				tableBuilder.pool(LootPool.builder()
+					.rolls(ConstantLootNumberProvider.create(1f))
+					.with(
+					ItemEntry.builder(Items.POTION)
+						.apply(SetNbtLootFunction.builder(waterPotionNbt))
+						.apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0F, 1.0F)))
+						.apply(LootingEnchantLootFunction.builder(UniformLootNumberProvider.create(0.0F, 1.0F)))
+					).build()
+				);
+			}
+		});
 	}
 }

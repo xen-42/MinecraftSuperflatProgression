@@ -233,6 +233,7 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
                         , exporter);     
                 
                 offerTo(createShapeless(RecipeCategory.MISC, SuperflatProgressionItems.DIAMOND_SHARD, 9)
+                    .input(Items.DIAMOND)
                     .criterion(hasItem(Items.DIAMOND), conditionsFromItem(Items.DIAMOND))
                     , exporter);
 
