@@ -79,7 +79,7 @@ public class SuperflatProgression implements ModInitializer {
 	public static final EntityType<PixieEntity> PIXIE_ENTITY = Registry.register(
 		Registries.ENTITY_TYPE, 
 		Identifier.of(MOD_ID, "pixie"), 
-		EntityType.Builder.create(PixieEntity::new, SpawnGroup.AMBIENT).setDimensions(0.5f, 1f).build(PIXIE_ENTITY_KEY.toString()));
+		EntityType.Builder.create(PixieEntity::new, SpawnGroup.AMBIENT).setDimensions(0.5f, 1.5f).build(PIXIE_ENTITY_KEY.toString()));
 
 
 	@Override

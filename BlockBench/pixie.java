@@ -13,7 +13,8 @@ public class pixie extends EntityModel<Entity> {
 	public static TexturedModelData getTexturedModelData() {
 		ModelData modelData = new ModelData();
 		ModelPartData modelPartData = modelData.getRoot();
-		ModelPartData body = modelPartData.addChild("body", ModelPartBuilder.create().uv(8, 20).cuboid(-3.0F, -15.0F, -3.0F, 6.0F, 6.0F, 6.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, 24.0F, 0.0F));
+		ModelPartData body = modelPartData.addChild("body", ModelPartBuilder.create().uv(8, 1).cuboid(-3.0F, -15.0F, -3.0F, 6.0F, 6.0F, 6.0F, new Dilation(0.0F))
+		.uv(0, 16).cuboid(-4.0F, -16.0F, -4.0F, 8.0F, 8.0F, 8.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, 24.0F, 0.0F));
 
 		ModelPartData right_wing = modelPartData.addChild("right_wing", ModelPartBuilder.create().uv(-7, 0).mirrored().cuboid(0.0F, 0.0F, 0.0F, 5.0F, 0.0F, 7.0F, new Dilation(0.0F)).mirrored(false), ModelTransform.pivot(2.0F, 9.0F, 0.0F));
 

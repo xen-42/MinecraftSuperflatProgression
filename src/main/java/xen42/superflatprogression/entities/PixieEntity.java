@@ -36,7 +36,7 @@ public class PixieEntity extends PassiveEntity {
     
     public static DefaultAttributeContainer.Builder createPixieAttributes() {
         return PassiveEntity.createLivingAttributes()
-            .add(EntityAttributes.GENERIC_MAX_HEALTH, 4.0f)
+            .add(EntityAttributes.GENERIC_MAX_HEALTH, 1.0f)
             .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.25f)
             .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 16.0);
     }
@@ -81,25 +81,31 @@ public class PixieEntity extends PassiveEntity {
     }
 
     public static boolean isValidSpawn(EntityType<? extends PixieEntity> type, ServerWorldAccess world, SpawnReason spawnReason, BlockPos pos, Random random) {
-        return world.getBlockState(pos).isAir() && !world.getBlockState(pos.down()).isAir() && !world.getBlockState(pos).isOf(Blocks.LAVA);
+        return !world.toServerWorld().isDay() &&
+			world.getBlockState(pos).isAir() && 
+			!world.getBlockState(pos.down()).isAir() && 
+			!world.getBlockState(pos).isOf(Blocks.LAVA);
     }
 
 	@Override
 	public void tick() {
 		super.tick();
+		var world = this.getWorld();
 		if (this.age % 10 == 0) {
-			var world = this.getWorld();
 			if (!world.isClient) {
 				((ServerWorld) world).spawnParticles(
 				SuperflatProgression.PIXIE_PARTICLE,
 				this.getX(),
-				this.getY() + this.getHeight() * 3f / 4f,
+				this.getY() + 1,
 				this.getZ(),
-				5,
-				0.3, 0.3, 0.3,
+				2,
+				0.35, 0.35, 0.35,
 				1
 				);
 			}
+		}
+		if (!world.isClient && world.isDay()) {
+			this.discard();
 		}
 	}
 }
