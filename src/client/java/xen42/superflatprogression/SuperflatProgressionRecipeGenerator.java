@@ -166,6 +166,13 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
                         .criterion(hasItem(SuperflatProgressionItems.ESSENCE), conditionsFromItem(SuperflatProgressionItems.ESSENCE))
                         , exporter);
 
+                offerTo(createShapeless(RecipeCategory.BUILDING_BLOCKS, Blocks.TUFF, 2)
+                        .input(Blocks.ANDESITE) 
+                        .input(Blocks.DIORITE) 
+                        .criterion(hasItem(Blocks.ANDESITE), conditionsFromItem(Blocks.ANDESITE))
+                        .criterion(hasItem(Blocks.DIORITE), conditionsFromItem(Blocks.DIORITE))
+                        , exporter);
+
                 offerTo(createShaped(RecipeCategory.MISC, SuperflatProgressionItems.MAGIC_TORCH)
                         .pattern("X")
                         .pattern("Y")
@@ -250,6 +257,7 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
                 createGrinder(Items.SUGAR_CANE, Items.SUGAR, false).setCount(2).offerTo(exporter); 
                 // Can get from piglin bartering
                 createGrinder(Items.SPECTRAL_ARROW, Items.GLOWSTONE_DUST, false).setCount(2).offerTo(exporter); 
+                createGrinder(Items.FIRE_CHARGE, Items.BLAZE_POWDER, false).setCount(1).offerTo(exporter); 
 
                 createGrinder(ItemTags.DIAMOND_ORES, Items.DIAMOND, false).setCount(2).offerTo(exporter); 
                 createGrinder(ItemTags.GOLD_ORES, Items.GOLD_ORE, false).setCount(2).offerTo(exporter); 
