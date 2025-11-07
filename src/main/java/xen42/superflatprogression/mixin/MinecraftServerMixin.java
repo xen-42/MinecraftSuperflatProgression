@@ -1,6 +1,7 @@
 package xen42.superflatprogression.mixin;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.Executor;
@@ -14,6 +15,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import com.mojang.datafixers.DataFixer;
 
 import net.minecraft.block.Blocks;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.mob.BlazeEntity;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
@@ -29,11 +33,18 @@ import net.minecraft.structure.StructureSetKeys;
 import net.minecraft.structure.StructureSets;
 import net.minecraft.structure.StructureTemplateManager;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
+import net.minecraft.util.math.random.Random;
+import net.minecraft.world.Heightmap;
 import net.minecraft.world.PersistentStateManager;
+import net.minecraft.world.SpawnDensityCapper;
+import net.minecraft.world.SpawnHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeKeys;
 import net.minecraft.world.biome.source.BiomeSource;
 import net.minecraft.world.chunk.ChunkStatusChangeListener;
+import net.minecraft.world.chunk.WorldChunk;
 import net.minecraft.world.dimension.DimensionOptions;
 import net.minecraft.world.dimension.DimensionTypes;
 import net.minecraft.world.gen.WorldPreset;
@@ -44,6 +55,10 @@ import net.minecraft.world.gen.chunk.FlatChunkGeneratorConfig;
 import net.minecraft.world.gen.chunk.NoiseChunkGenerator;
 import net.minecraft.world.gen.structure.StructureKeys;
 import net.minecraft.world.level.storage.LevelStorage;
+import net.minecraft.world.spawner.PatrolSpawner;
+import net.minecraft.world.spawner.PhantomSpawner;
+import net.minecraft.world.spawner.Spawner;
+import xen42.superflatprogression.CustomSpawner;
 import xen42.superflatprogression.SuperflatProgression;
 
 @Mixin(MinecraftServer.class)
@@ -73,6 +88,15 @@ public class MinecraftServerMixin {
             netherConfig.getLayerBlocks().add(Blocks.NETHERRACK.getDefaultState());
             netherConfig.getLayerBlocks().add(Blocks.NETHERRACK.getDefaultState());
             MakeWorldSuperflat(server, listener, nether, netherConfig);
+
+            Field spawnersField = ServerWorld.class.getDeclaredField("spawners");
+            spawnersField.setAccessible(true);
+            List<Spawner> original = (List<Spawner>) spawnersField.get(nether);
+            var spawners = new ArrayList<>();
+            spawners.addAll(original);
+            spawners.add(new CustomSpawner(EntityType.BLAZE)); 
+            spawners.add(new CustomSpawner(EntityType.WITHER_SKELETON)); 
+            spawnersField.set(nether, spawners);
 
             /* Unfortunately this didn't work and end cities never spawn
             var endCities = server.getRegistryManager().get(RegistryKeys.STRUCTURE_SET).getEntry(StructureSetKeys.END_CITIES).get();
