@@ -6,7 +6,8 @@
 		"EntityMixin",
 		"PotionItemMixin",
 		"FireBlockMixin",
-		"LivingEntityMixin"
+		"LivingEntityMixin",
+		"MinecraftServerMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
