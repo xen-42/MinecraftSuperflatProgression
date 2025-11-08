@@ -1,0 +1,13 @@
+{
+  "type": "superflat-progression:grinder",
+  "count": 1,
+  "input": {
+    "item": {
+      "tag": "superflat-progression:bone_gear"
+    }
+  },
+  "needsBucket": false,
+  "result": {
+    "item": "minecraft:bone_meal"
+  }
+}

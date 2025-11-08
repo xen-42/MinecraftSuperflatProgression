@@ -6,10 +6,16 @@ import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.FireBlock;
+import net.minecraft.item.AxeItem;
 import net.minecraft.item.BoneMealItem;
+import net.minecraft.item.HoeItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.item.Items;
+import net.minecraft.item.PickaxeItem;
+import net.minecraft.item.ShovelItem;
+import net.minecraft.item.SwordItem;
+import net.minecraft.item.ToolMaterials;
 import net.minecraft.item.VerticallyAttachableBlockItem;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -70,6 +76,25 @@ public class SuperflatProgressionItems {
 		})
 	, new Item.Settings().maxCount(1).rarity(Rarity.UNCOMMON));
 
+	public static final Item BONE_SWORD = register("bone_sword", (settings) ->
+		new SwordItem(SuperflatProgressionTools.BONE, 3, -2.4f, settings),
+		new Item.Settings().maxCount(1));
+
+	public static final Item BONE_SHOVEL = register("bone_shovel", (settings) ->
+		new ShovelItem(SuperflatProgressionTools.BONE, 1.5f, -3f, settings),
+		new Item.Settings().maxCount(1));
+
+	public static final Item BONE_PICKAXE = register("bone_pickaxe", (settings) ->
+		new PickaxeItem(SuperflatProgressionTools.BONE, 1, -2.8f, settings),
+		new Item.Settings().maxCount(1));
+
+	public static final Item BONE_AXE = register("bone_axe", (settings) ->
+		new AxeItem(SuperflatProgressionTools.BONE, 6, -3.1f, settings),
+		new Item.Settings().maxCount(1));
+
+	public static final Item BONE_HOE = register("bone_hoe", (settings) ->
+		new HoeItem(SuperflatProgressionTools.BONE, -2, -1f, settings),
+		new Item.Settings().maxCount(1));
 
     public static void initialize() {
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register((itemGroup) -> {
@@ -85,7 +110,16 @@ public class SuperflatProgressionItems {
             itemGroup.add(SCROLL_THUNDER);
             itemGroup.add(SCROLL_CLEAR_WEATHER);
             itemGroup.add(SCROLL_TRADE);
+			
+            itemGroup.add(BONE_SHOVEL);
+            itemGroup.add(BONE_PICKAXE);
+            itemGroup.add(BONE_AXE);
+            itemGroup.add(BONE_HOE);
         });
+
+		ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register((itemGroup) -> {
+			itemGroup.add(BONE_SWORD);
+		});
 
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register((itemGroup) -> {
             itemGroup.add(SuperflatProgressionBlocks.CHARCOAL_BLOCK.asItem());

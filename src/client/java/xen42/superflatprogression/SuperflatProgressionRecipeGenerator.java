@@ -276,6 +276,9 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
                         // Advancement that gives the recipe
                         .criterion(hasItem(SuperflatProgressionBlocks.GRASS_SLAB), conditionsFromItem(SuperflatProgressionBlocks.GRASS_SLAB))
                         , exporter); 
+                    
+                offerTools(SuperflatProgressionItems.BONE_AXE, SuperflatProgressionItems.BONE_HOE, SuperflatProgressionItems.BONE_SHOVEL,
+                    SuperflatProgressionItems.BONE_PICKAXE, SuperflatProgressionItems.BONE_SWORD, Items.BONE);
 
                 createScroll(SuperflatProgressionItems.SCROLL_RAIN, Items.BUCKET, 2).offerTo(exporter);
                 createScroll(SuperflatProgressionItems.SCROLL_THUNDER, Items.LIGHTNING_ROD, 4).offerTo(exporter);
@@ -288,6 +291,7 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
                 createGrinder(Blocks.MAGMA_BLOCK.asItem(), Items.LAVA_BUCKET, true).offerTo(exporter);
                 createGrinder(Blocks.SOUL_SOIL.asItem(), Items.SOUL_SAND, false).offerTo(exporter);
                 createGrinder(SuperflatProgressionTags.ItemTags.DIAMOND_GEAR, SuperflatProgressionItems.DIAMOND_SHARD, false).offerTo(exporter);
+                createGrinder(SuperflatProgressionTags.ItemTags.BONE_GEAR, Items.BONE_MEAL, false).offerTo(exporter);
 
                 // Extra recipes to flesh it out
                 createGrinder(ItemTags.WOOL, Items.STRING, false).setCount(4).offerTo(exporter); 
@@ -364,6 +368,58 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
                 return new GrinderRecipeJsonBuilder(registryLookup.getWrapperOrThrow(RegistryKeys.ITEM), 
                     input, output, needsBucket)
                     .criterion("has_" + input.toString(), conditionsFromTag(input));
+            }
+
+            public void offerTools(Item axe, Item hoe, Item shovel, Item pickaxe, Item sword, Item material) {
+                offerTo(createShaped(RecipeCategory.TOOLS, axe)
+                    .pattern("XX")
+                    .pattern("XY")
+                    .pattern(" Y")
+                    .input('X', material)
+                    .input('Y', Items.STICK)
+                    .criterion(hasItem(material), conditionsFromItem(material)),
+                    exporter
+                );
+
+                offerTo(createShaped(RecipeCategory.TOOLS, hoe)
+                    .pattern("XX")
+                    .pattern(" Y")
+                    .pattern(" Y")
+                    .input('X', material)
+                    .input('Y', Items.STICK)
+                    .criterion(hasItem(material), conditionsFromItem(material)),
+                    exporter
+                );
+
+                offerTo(createShaped(RecipeCategory.TOOLS, shovel)
+                    .pattern("X")
+                    .pattern("Y")
+                    .pattern("Y")
+                    .input('X', material)
+                    .input('Y', Items.STICK)
+                    .criterion(hasItem(material), conditionsFromItem(material)),
+                    exporter
+                );
+
+                offerTo(createShaped(RecipeCategory.TOOLS, pickaxe)
+                    .pattern("XXX")
+                    .pattern(" Y ")
+                    .pattern(" Y ")
+                    .input('X', material)
+                    .input('Y', Items.STICK)
+                    .criterion(hasItem(material), conditionsFromItem(material)),
+                    exporter
+                );
+
+                offerTo(createShaped(RecipeCategory.TOOLS, sword)
+                    .pattern("X")
+                    .pattern("X")
+                    .pattern("Y")
+                    .input('X', material)
+                    .input('Y', Items.STICK)
+                    .criterion(hasItem(material), conditionsFromItem(material)),
+                    exporter
+                );
             }
         };
     }

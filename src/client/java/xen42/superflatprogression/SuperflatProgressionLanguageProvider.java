@@ -121,6 +121,12 @@ public abstract class SuperflatProgressionLanguageProvider extends FabricLanguag
 			translationBuilder.add(SuperflatProgressionItems.DIAMOND_SHARD, "Diamond Shard");
 			translationBuilder.add(SuperflatProgressionItems.PIXIE_SPAWN_EGG, "Pixie Spawn Egg");
 
+			translationBuilder.add(SuperflatProgressionItems.BONE_AXE, "Bone Axe");
+			translationBuilder.add(SuperflatProgressionItems.BONE_HOE, "Bone Hoe");
+			translationBuilder.add(SuperflatProgressionItems.BONE_PICKAXE, "Bone Pickaxe");
+			translationBuilder.add(SuperflatProgressionItems.BONE_SHOVEL, "Bone Shovel");
+			translationBuilder.add(SuperflatProgressionItems.BONE_SWORD, "Bone Sword");
+
 			translationBuilder.add(SuperflatProgressionBlocks.CHARCOAL_BLOCK, "Block of Charcoal");
 			translationBuilder.add(SuperflatProgressionItems.MAGIC_TORCH, "Magic Torch");
 			translationBuilder.add(SuperflatProgressionBlocks.MAGIC_LANTERN, "Magic Lantern");
@@ -132,6 +138,7 @@ public abstract class SuperflatProgressionLanguageProvider extends FabricLanguag
 
 			translationBuilder.add(SuperflatProgressionTags.ItemTags.PARCHMENTS, "Parchments");
 			translationBuilder.add(SuperflatProgressionTags.ItemTags.DIAMOND_GEAR, "Diamond Gear");
+			translationBuilder.add(SuperflatProgressionTags.ItemTags.BONE_GEAR, "Bone Tools");
 			translationBuilder.add(SuperflatProgressionTags.ItemTags.ICES, "Ices");
 
 			translationBuilder.add(SuperflatProgression.PIXIE_ENTITY, "Pixie");

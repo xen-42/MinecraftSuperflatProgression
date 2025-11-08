@@ -79,6 +79,12 @@ public class SuperflatProgressionModelGenerator extends FabricModelProvider {
         itemModelGenerator.register(SuperflatProgressionItems.SCROLL_TRADE, Models.GENERATED);
         itemModelGenerator.register(SuperflatProgressionItems.DIAMOND_SHARD, Models.GENERATED);
         itemModelGenerator.register(SuperflatProgressionItems.PIXIE_SPAWN_EGG, Models.GENERATED);
+
+        itemModelGenerator.register(SuperflatProgressionItems.BONE_AXE, Models.GENERATED);
+        itemModelGenerator.register(SuperflatProgressionItems.BONE_HOE, Models.GENERATED);
+        itemModelGenerator.register(SuperflatProgressionItems.BONE_SWORD, Models.GENERATED);
+        itemModelGenerator.register(SuperflatProgressionItems.BONE_SHOVEL, Models.GENERATED);
+        itemModelGenerator.register(SuperflatProgressionItems.BONE_PICKAXE, Models.GENERATED);
     }
 
     @Override

@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "superflat-progression:bone_pickaxe",
+    "superflat-progression:bone_axe",
+    "superflat-progression:bone_shovel",
+    "superflat-progression:bone_hoe",
+    "superflat-progression:bone_sword"
+  ]
+}
