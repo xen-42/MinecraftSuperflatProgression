@@ -27,5 +27,9 @@ public class SuperflatProgressionBlockTagGenerator extends BlockTagProvider {
 
         this.getOrCreateTagBuilder(BlockTags.AXE_MINEABLE)
             .add(SuperflatProgressionBlocks.SCROLL_CRAFTING);
+
+        this.getOrCreateTagBuilder(BlockTags.SHOVEL_MINEABLE)
+            .add(SuperflatProgressionBlocks.DIRT_SLAB)
+            .add(SuperflatProgressionBlocks.GRASS_SLAB);
     }
 }

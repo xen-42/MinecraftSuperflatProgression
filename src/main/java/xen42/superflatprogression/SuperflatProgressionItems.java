@@ -90,6 +90,7 @@ public class SuperflatProgressionItems {
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register((itemGroup) -> {
             itemGroup.add(SuperflatProgressionBlocks.CHARCOAL_BLOCK.asItem());
             itemGroup.add(SuperflatProgressionBlocks.DIRT_SLAB.asItem());
+            itemGroup.add(SuperflatProgressionBlocks.GRASS_SLAB.asItem());
 		});
 
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.SPAWN_EGGS).register((itemGroup) -> {

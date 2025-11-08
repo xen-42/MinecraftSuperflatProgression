@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "superflat-progression:block/grass_slab_bottom"
+    },
+    "type=double": {
+      "model": "minecraft:block/grass_block"
+    },
+    "type=top": {
+      "model": "superflat-progression:block/grass_slab_top"
+    }
+  }
+}

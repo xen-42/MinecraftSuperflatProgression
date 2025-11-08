@@ -42,15 +42,29 @@ public class SuperflatProgressionModelGenerator extends FabricModelProvider {
 		blockStateModelGenerator.registerParentedItemModel(SuperflatProgressionBlocks.SCROLL_CRAFTING, ModelIds.getBlockModelId(SuperflatProgressionBlocks.SCROLL_CRAFTING));
 		blockStateModelGenerator.registerParentedItemModel(SuperflatProgressionBlocks.GRINDER, ModelIds.getBlockModelId(SuperflatProgressionBlocks.GRINDER));
 
-		makeSlabOfAnotherBlock(Blocks.DIRT, SuperflatProgressionBlocks.DIRT_SLAB, blockStateModelGenerator);
+		makeSlabOfAnotherBlockAll(Blocks.DIRT, SuperflatProgressionBlocks.DIRT_SLAB, blockStateModelGenerator);
+		//makeGrassSlab(SuperflatProgressionBlocks.GRASS_SLAB, blockStateModelGenerator);
     }
 
-	private void makeSlabOfAnotherBlock(Block original, Block slab, BlockStateModelGenerator blockStateModelGenerator) {
+	private void makeSlabOfAnotherBlockAll(Block original, Block slab, BlockStateModelGenerator blockStateModelGenerator) {
 		TextureMap textureMap = TextureMap.all(original);
 		Identifier identifier = Models.SLAB.upload(slab, textureMap, blockStateModelGenerator.modelCollector);
 		Identifier identifier2 = Models.SLAB_TOP.upload(slab, textureMap, blockStateModelGenerator.modelCollector);
 		Identifier identifier3 = Models.CUBE_COLUMN.uploadWithoutVariant(slab, "_double", textureMap, blockStateModelGenerator.modelCollector);
 		blockStateModelGenerator.blockStateCollector.accept(blockStateModelGenerator.createSlabBlockState(slab, identifier, identifier2, identifier3));
+	}
+
+	private void makeGrassSlab(Block slab, BlockStateModelGenerator blockStateModelGenerator) {
+		TextureMap textureMap = new TextureMap()
+			.put(TextureKey.SIDE, TextureMap.getSubId(Blocks.GRASS_BLOCK, "_side"))
+			.put(TextureKey.TOP, TextureMap.getSubId(Blocks.GRASS_BLOCK, "_top"))
+			.put(TextureKey.END, TextureMap.getSubId(Blocks.GRASS_BLOCK, "_end"))
+			.put(TextureKey.BOTTOM, TextureMap.getSubId(Blocks.DIRT, ""));
+		
+		Identifier bottomSlab = Models.SLAB.upload(slab, textureMap, blockStateModelGenerator.modelCollector);
+		Identifier topSlab = Models.SLAB_TOP.upload(slab, textureMap, blockStateModelGenerator.modelCollector);
+		Identifier doubleSlab = Models.CUBE_BOTTOM_TOP.upload(slab, "_double", textureMap, blockStateModelGenerator.modelCollector);
+		blockStateModelGenerator.blockStateCollector.accept(blockStateModelGenerator.createSlabBlockState(slab, bottomSlab, topSlab, doubleSlab));
 	}
 
     @Override

@@ -28,6 +28,7 @@ import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
+import xen42.superflatprogression.blocks.DirtSlabBlock;
 import xen42.superflatprogression.blocks.GrinderBlock;
 import xen42.superflatprogression.blocks.MagicTorchBlock;
 import xen42.superflatprogression.blocks.MagicTorchBlockEntity;
@@ -82,7 +83,10 @@ public class SuperflatProgressionBlocks {
 	public static final GrinderBlock GRINDER = (GrinderBlock)register(
 		"grinder", GrinderBlock::new, AbstractBlock.Settings.copy(Blocks.STONE).nonOpaque(), true);
 
-	public static final SlabBlock DIRT_SLAB = (SlabBlock)register("dirt_slab", SlabBlock::new, AbstractBlock.Settings.copy(Blocks.DIRT), true);
+	public static final SlabBlock DIRT_SLAB = (SlabBlock)register("dirt_slab", (settings) -> new DirtSlabBlock(settings, false), 
+		AbstractBlock.Settings.copy(Blocks.DIRT).ticksRandomly(), true);
+	public static final SlabBlock GRASS_SLAB = (SlabBlock)register("grass_slab", (settings) -> new DirtSlabBlock(settings, true), 
+		AbstractBlock.Settings.copy(Blocks.DIRT).ticksRandomly(), true);
 
 	private static Block register(String name, Function<AbstractBlock.Settings, Block> blockFactory, AbstractBlock.Settings settings, boolean shouldRegisterItem) {
 		// Create a registry key for the block
