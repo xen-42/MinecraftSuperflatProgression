@@ -261,6 +261,22 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
                         .criterion(hasItem(Blocks.GRASS_BLOCK), conditionsFromItem(Blocks.GRASS_BLOCK))
                         , exporter); 
 
+                offerTo(createShaped(RecipeCategory.MISC, Blocks.DIRT)
+                        .pattern("X")
+                        .pattern("X")
+                        .input('X', SuperflatProgressionBlocks.DIRT_SLAB)
+                        // Advancement that gives the recipe
+                        .criterion(hasItem(SuperflatProgressionBlocks.DIRT_SLAB), conditionsFromItem(SuperflatProgressionBlocks.DIRT_SLAB))
+                        , exporter); 
+
+                offerTo(createShaped(RecipeCategory.MISC, Blocks.GRASS_BLOCK)
+                        .pattern("X")
+                        .pattern("X")
+                        .input('X', SuperflatProgressionBlocks.GRASS_SLAB)
+                        // Advancement that gives the recipe
+                        .criterion(hasItem(SuperflatProgressionBlocks.GRASS_SLAB), conditionsFromItem(SuperflatProgressionBlocks.GRASS_SLAB))
+                        , exporter); 
+
                 createScroll(SuperflatProgressionItems.SCROLL_RAIN, Items.BUCKET, 2).offerTo(exporter);
                 createScroll(SuperflatProgressionItems.SCROLL_THUNDER, Items.LIGHTNING_ROD, 4).offerTo(exporter);
                 createScroll(SuperflatProgressionItems.SCROLL_CLEAR_WEATHER, Items.SUNFLOWER, 2).offerTo(exporter);

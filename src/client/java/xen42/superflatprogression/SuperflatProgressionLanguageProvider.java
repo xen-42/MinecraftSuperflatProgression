@@ -138,6 +138,7 @@ public abstract class SuperflatProgressionLanguageProvider extends FabricLanguag
 			translationBuilder.add("item.minecraft.potion.effect.magic_torch", "Potion of Magical Favour");
 			translationBuilder.add("item.minecraft.splash_potion.effect.magic_torch", "Splash Potion of Magical Favour");
 			translationBuilder.add("item.minecraft.lingering_potion.effect.magic_torch", "Lingering Potion of Magical Favour");
+			translationBuilder.add("item.minecraft.tipped_arrow.effect.magic_torch", "Arrow of Magical Favour");
         }
 	}
 	

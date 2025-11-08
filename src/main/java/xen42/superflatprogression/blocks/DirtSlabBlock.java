@@ -1,8 +1,16 @@
 package xen42.superflatprogression.blocks;
 
+import org.jetbrains.annotations.Nullable;
+
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.SlabBlock;
+import net.minecraft.block.enums.SlabType;
+import net.minecraft.fluid.FluidState;
+import net.minecraft.fluid.Fluids;
+import net.minecraft.item.BlockItem;
+import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.item.ItemStack;
 import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
@@ -80,6 +88,39 @@ public class DirtSlabBlock extends SlabBlock {
 					}
 				}
 			}
+		}
+	}
+
+	@Nullable
+	@Override
+	public BlockState getPlacementState(ItemPlacementContext ctx) {
+		BlockPos blockPos = ctx.getBlockPos();
+		BlockState blockState = ctx.getWorld().getBlockState(blockPos);
+		if (blockState.getBlock() instanceof DirtSlabBlock) {
+			// If we are placing a grass slab on top, make the result be double grass slab
+			// If we are placing a dirt slab on top, make the result be double dirt slab
+			// If we are placing a slab on the bottom, keep the original block type
+			if (blockState.get(TYPE) == SlabType.TOP) {
+				return blockState.with(TYPE, SlabType.DOUBLE).with(WATERLOGGED, false);
+			}
+			else {
+				return this.getDefaultState().with(TYPE, SlabType.DOUBLE).with(WATERLOGGED, false);
+			}			
+		} else {
+			return super.getPlacementState(ctx);
+		}
+	}
+
+	@Override
+	public boolean canReplace(BlockState state, ItemPlacementContext context) {
+		ItemStack itemStack = context.getStack();
+		SlabType slabType = state.get(TYPE);
+
+		if (slabType != SlabType.DOUBLE && itemStack.getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof DirtSlabBlock replacementSlab) {
+			return true;
+		}
+		else {
+			return super.canReplace(state, context);
 		}
 	}
 }
