@@ -106,6 +106,7 @@ public class SuperflatProgression implements ModInitializer {
 		SuperflatProgressionItems.initialize();
 		SuperflatProgressionBlocks.initialize();
 		SuperflatProgressionPotions.initialize();
+		SuperflatProgressionVillagers.initialize();
 
 		FabricDefaultAttributeRegistry.register(PIXIE_ENTITY, PixieEntity.createPixieAttributes());
 
