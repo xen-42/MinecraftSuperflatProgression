@@ -127,6 +127,8 @@ public abstract class SuperflatProgressionLanguageProvider extends FabricLanguag
 			translationBuilder.add(SuperflatProgressionBlocks.SCROLL_CRAFTING, "Scriptorium");
 			translationBuilder.add(SuperflatProgressionBlocks.GRINDER, "Pulverizer");
 
+			translationBuilder.add(SuperflatProgressionBlocks.DIRT_SLAB, "Dirt Slab");
+
 			translationBuilder.add(SuperflatProgressionTags.ItemTags.PARCHMENTS, "Parchments");
 			translationBuilder.add(SuperflatProgressionTags.ItemTags.DIAMOND_GEAR, "Diamond Gear");
 			translationBuilder.add(SuperflatProgressionTags.ItemTags.ICES, "Ices");

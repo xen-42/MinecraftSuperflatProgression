@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "superflat-progression:block/dirt_slab"
+    },
+    "type=double": {
+      "model": "superflat-progression:block/dirt_slab_double"
+    },
+    "type=top": {
+      "model": "superflat-progression:block/dirt_slab_top"
+    }
+  }
+}

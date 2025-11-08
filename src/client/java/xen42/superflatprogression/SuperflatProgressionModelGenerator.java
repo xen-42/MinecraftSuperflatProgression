@@ -41,7 +41,17 @@ public class SuperflatProgressionModelGenerator extends FabricModelProvider {
 
 		blockStateModelGenerator.registerParentedItemModel(SuperflatProgressionBlocks.SCROLL_CRAFTING, ModelIds.getBlockModelId(SuperflatProgressionBlocks.SCROLL_CRAFTING));
 		blockStateModelGenerator.registerParentedItemModel(SuperflatProgressionBlocks.GRINDER, ModelIds.getBlockModelId(SuperflatProgressionBlocks.GRINDER));
+
+		makeSlabOfAnotherBlock(Blocks.DIRT, SuperflatProgressionBlocks.DIRT_SLAB, blockStateModelGenerator);
     }
+
+	private void makeSlabOfAnotherBlock(Block original, Block slab, BlockStateModelGenerator blockStateModelGenerator) {
+		TextureMap textureMap = TextureMap.all(original);
+		Identifier identifier = Models.SLAB.upload(slab, textureMap, blockStateModelGenerator.modelCollector);
+		Identifier identifier2 = Models.SLAB_TOP.upload(slab, textureMap, blockStateModelGenerator.modelCollector);
+		Identifier identifier3 = Models.CUBE_COLUMN.uploadWithoutVariant(slab, "_double", textureMap, blockStateModelGenerator.modelCollector);
+		blockStateModelGenerator.blockStateCollector.accept(blockStateModelGenerator.createSlabBlockState(slab, identifier, identifier2, identifier3));
+	}
 
     @Override
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {

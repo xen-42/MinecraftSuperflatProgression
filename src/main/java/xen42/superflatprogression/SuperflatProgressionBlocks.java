@@ -8,8 +8,10 @@ import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.GrassBlock;
 import net.minecraft.block.LanternBlock;
 import net.minecraft.block.MapColor;
+import net.minecraft.block.SlabBlock;
 import net.minecraft.block.TorchBlock;
 import net.minecraft.block.WallTorchBlock;
 import net.minecraft.block.entity.BlockEntityType;
@@ -79,6 +81,8 @@ public class SuperflatProgressionBlocks {
 
 	public static final GrinderBlock GRINDER = (GrinderBlock)register(
 		"grinder", GrinderBlock::new, AbstractBlock.Settings.copy(Blocks.STONE).nonOpaque(), true);
+
+	public static final SlabBlock DIRT_SLAB = (SlabBlock)register("dirt_slab", SlabBlock::new, AbstractBlock.Settings.copy(Blocks.DIRT), true);
 
 	private static Block register(String name, Function<AbstractBlock.Settings, Block> blockFactory, AbstractBlock.Settings settings, boolean shouldRegisterItem) {
 		// Create a registry key for the block
