@@ -87,6 +87,16 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
                 this.fixedOfferMultipleOptions(RecipeSerializer.BLASTING, inputs, category, output, experience, cookingTime, group, "_from_blasting");
             }
 
+            public void offerCampfire(List<ItemConvertible> inputs, RecipeCategory category, ItemConvertible output, float experience, int cookingTime, String group) {
+                var suffix = "_from_campfire";
+                for (var input : inputs) {
+                    offerTo(CookingRecipeJsonBuilder.createCampfireCooking(Ingredient.ofItems(input), category, output, experience, cookingTime)
+                        .group(group)
+                        .criterion(hasItem(input), conditionsFromItem(input))
+                        , exporter, getItemPath(output) + suffix + "_" + getItemPath(input));
+                }
+            }
+
             @Override
             public void offerStonecuttingRecipe(RecipeCategory category, ItemConvertible output, ItemConvertible input, int count) {
                 offerTo(SingleItemRecipeJsonBuilder.createStonecutting(Ingredient.ofItems(input), category, output, count)
@@ -252,10 +262,12 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
                 // Extra recipes to flesh it out
                 createGrinder(ItemTags.WOOL, Items.STRING, false).setCount(4).offerTo(exporter); 
 
-                createGrinder(SuperflatProgressionTags.ItemTags.ICES, Items.WATER_BUCKET, true).offerTo(exporter);
+                createGrinder(SuperflatProgressionTags.ItemTags.ICES, Items.SNOWBALL, false).offerTo(exporter);
                 createGrinder(Items.SNOW_BLOCK, Items.POWDER_SNOW_BUCKET, true).offerTo(exporter);
 
                 createGrinder(Items.SUGAR_CANE, Items.SUGAR, false).setCount(2).offerTo(exporter); 
+                createGrinder(Items.BONE, Items.BONE_MEAL, false).setCount(4).offerTo(exporter); 
+                createGrinder(Items.FURNACE, Items.COBBLESTONE, false).setCount(8).offerTo(exporter); 
                 // Can get from piglin bartering
                 createGrinder(Items.SPECTRAL_ARROW, Items.GLOWSTONE_DUST, false).setCount(2).offerTo(exporter); 
                 createGrinder(Items.FIRE_CHARGE, Items.BLAZE_POWDER, false).setCount(1).offerTo(exporter); 
@@ -299,6 +311,10 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
                 createGrinder(Items.PINK_TULIP, Items.PINK_DYE, false).setCount(2).offerTo(exporter);
                 createGrinder(Items.PEONY, Items.PINK_DYE, false).setCount(2).offerTo(exporter);
                 createGrinder(Items.PINK_PETALS, Items.PINK_DYE, false).setCount(2).offerTo(exporter);
+
+                offerSmelting(List.of(Items.GLASS_BOTTLE), RecipeCategory.MISC, Blocks.GLASS, 0f, 200, Items.GLASS_BOTTLE.getName().toString());
+                offerSmelting(List.of(Items.ROTTEN_FLESH), RecipeCategory.MISC, Items.LEATHER, 0.35f, 200, Items.ROTTEN_FLESH.getName().toString());
+                offerCampfire(List.of(Items.ROTTEN_FLESH), RecipeCategory.MISC, Items.LEATHER, 0.35f, 200, Items.ROTTEN_FLESH.getName().toString());
             }
 
             public ScrollCraftingRecipeJsonBuilder createScroll(ItemConvertible output, Item input, int cost) {

@@ -1,13 +1,13 @@
 {
   "type": "superflat-progression:grinder",
-  "count": 1,
+  "count": 4,
   "input": {
     "item": {
-      "tag": "superflat-progression:ices"
+      "item": "minecraft:bone"
     }
   },
   "needsBucket": false,
   "result": {
-    "item": "minecraft:snowball"
+    "item": "minecraft:bone_meal"
   }
 }

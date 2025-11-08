@@ -1,13 +1,13 @@
 {
   "type": "superflat-progression:grinder",
-  "count": 1,
+  "count": 8,
   "input": {
     "item": {
-      "tag": "superflat-progression:ices"
+      "item": "minecraft:furnace"
     }
   },
   "needsBucket": false,
   "result": {
-    "item": "minecraft:snowball"
+    "item": "minecraft:cobblestone"
   }
 }
