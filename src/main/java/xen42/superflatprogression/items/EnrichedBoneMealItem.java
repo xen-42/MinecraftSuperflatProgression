@@ -23,6 +23,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
+import net.minecraft.world.WorldEvents;
 
 public class EnrichedBoneMealItem extends BoneMealItem {
 
@@ -39,6 +40,19 @@ public class EnrichedBoneMealItem extends BoneMealItem {
         BlockState blockState = world.getBlockState(blockPos);
         boolean bl = blockState.isSideSolidFullSquare(world, blockPos, context.getSide());
 
+        if (!bl) {
+            // Do a 3x3 bonemeal square
+            for (int i = -1; i <= 1; i++) {
+                for (int j = -1; j <= 1; j++) {
+                    var pos = blockPos.add(i, 0, j);
+                    if (useOnFertilizable(context.getStack(), world, pos)) {
+                        if (!world.isClient) {
+                            world.syncWorldEvent(WorldEvents.BONE_MEAL_USED, pos, 0);
+                        }
+                    }
+                }
+            }
+        }
         if (bl && enrichedUseOnGround(context.getStack(), world, blockPos2)) {
             return ActionResult.success(world.isClient);
         } 

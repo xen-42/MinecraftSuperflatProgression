@@ -35,6 +35,8 @@ public class DirtSlabBlock extends SlabBlock {
 			return false;
 		} else if (state.getProperties().contains(SlabBlock.WATERLOGGED) && state.get(SlabBlock.WATERLOGGED)) {
 			return false;
+		} else if (state.getProperties().contains(SlabBlock.TYPE) && state.get(TYPE) == SlabType.BOTTOM) {
+			return world.getLightLevel(pos) > 9;
 		} else {
 			int i = ChunkLightProvider.getRealisticOpacity(world, state.getBlock().getDefaultState(),
 				pos, stateUp, posUp, Direction.UP, stateUp.getOpacity(world, posUp));
@@ -55,21 +57,22 @@ public class DirtSlabBlock extends SlabBlock {
 				world.setBlockState(pos, SuperflatProgressionBlocks.DIRT_SLAB.getDefaultState()
 					.with(TYPE, world.getBlockState(pos).get(TYPE)));
 			} else {
-				if (world.getLightLevel(pos.up()) >= 9) {
-					BlockState blockState = Blocks.GRASS_BLOCK.getDefaultState();
-
+				if (world.getLightLevel(pos.up()) >= 9) {				 
 					// Grass slab can spread to dirt slabs and regular dirt, dirt slabs will handle their own logic to spread from grass
 					for (int i = 0; i < 4; i++) {
 						BlockPos blockPos = pos.add(random.nextInt(3) - 1, random.nextInt(5) - 3, random.nextInt(3) - 1);
 						// We are grass slab, it is dirt slab -> change to grass slab with the right slab type
-						if (world.getBlockState(blockPos).isOf(SuperflatProgressionBlocks.DIRT_SLAB) && canSpread(blockState, world, blockPos)) {
+						if (world.getBlockState(blockPos).isOf(SuperflatProgressionBlocks.DIRT_SLAB)) {
 							var dirtBlockState = world.getBlockState(blockPos);
+							BlockState grassBlockState = SuperflatProgressionBlocks.GRASS_SLAB.getDefaultState().with(SlabBlock.TYPE,
+								dirtBlockState.get(SlabBlock.TYPE));
 
-							world.setBlockState(blockPos, SuperflatProgressionBlocks.GRASS_SLAB.getDefaultState()
-								.with(TYPE, dirtBlockState.get(SlabBlock.TYPE)));
+							if (canSpread(grassBlockState, world, blockPos)) {
+								world.setBlockState(blockPos, grassBlockState);
+							}
 						}
-						// We are grass, it is dirt -> change it to grass
-						else if (world.getBlockState(blockPos).isOf(Blocks.DIRT) && canSpread(blockState, world, blockPos)) {
+						// We are grass slab, it is dirt block -> change it to grass block
+						else if (world.getBlockState(blockPos).isOf(Blocks.DIRT) && canSpread(Blocks.GRASS_BLOCK.getDefaultState(), world, blockPos)) {
 							world.setBlockState(blockPos, Blocks.GRASS_BLOCK.getDefaultState());
 						}
 					}
@@ -81,8 +84,8 @@ public class DirtSlabBlock extends SlabBlock {
 				for (int i = 0; i < 4; i++) {
 					BlockPos blockPos = pos.add(random.nextInt(3) - 1, random.nextInt(5) - 3, random.nextInt(3) - 1);
 					// We are dirt, it is a nearby grass block, spread it to us
-					if (world.getBlockState(blockPos).isOf(Blocks.GRASS_BLOCK) && canSpread(SuperflatProgressionBlocks.GRASS_SLAB.getDefaultState(),
-							world, pos)) {
+					BlockState blockState = SuperflatProgressionBlocks.GRASS_SLAB.getDefaultState().with(SlabBlock.TYPE, state.get(SlabBlock.TYPE));
+					if (world.getBlockState(blockPos).isOf(Blocks.GRASS_BLOCK) && canSpread(blockState,	world, pos)) {
 						world.setBlockState(pos, SuperflatProgressionBlocks.GRASS_SLAB.getDefaultState()
 							.with(TYPE, world.getBlockState(pos).get(SlabBlock.TYPE)));
 					}
@@ -116,11 +119,16 @@ public class DirtSlabBlock extends SlabBlock {
 		ItemStack itemStack = context.getStack();
 		SlabType slabType = state.get(TYPE);
 
-		if (slabType != SlabType.DOUBLE && itemStack.getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof DirtSlabBlock replacementSlab) {
-			return true;
+		if (slabType != SlabType.DOUBLE && itemStack.getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof DirtSlabBlock) {
+			if (context.canReplaceExisting()) {
+				boolean bl = context.getHitPos().y - context.getBlockPos().getY() > 0.5;
+				Direction direction = context.getSide();
+				return slabType == SlabType.BOTTOM
+					? direction == Direction.UP || bl && direction.getAxis().isHorizontal()
+					: direction == Direction.DOWN || !bl && direction.getAxis().isHorizontal();
+			}
 		}
-		else {
-			return super.canReplace(state, context);
-		}
+
+		return super.canReplace(state, context);
 	}
 }
