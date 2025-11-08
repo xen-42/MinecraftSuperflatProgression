@@ -1,0 +1,13 @@
+{
+  "type": "superflat-progression:grinder",
+  "count": 4,
+  "input": {
+    "item": {
+      "item": "minecraft:prismarine"
+    }
+  },
+  "needsBucket": false,
+  "result": {
+    "item": "minecraft:prismarine_shard"
+  }
+}

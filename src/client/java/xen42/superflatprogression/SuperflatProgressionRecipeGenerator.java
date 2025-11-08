@@ -346,6 +346,11 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
                 createGrinder(Items.PEONY, Items.PINK_DYE, false).setCount(2).offerTo(exporter);
                 createGrinder(Items.PINK_PETALS, Items.PINK_DYE, false).setCount(2).offerTo(exporter);
 
+                createGrinder(Items.SEA_LANTERN, Items.PRISMARINE_CRYSTALS, false).setCount(5).offerTo(exporter);
+                createGrinder(Items.PRISMARINE_BRICKS, Items.PRISMARINE_SHARD, false).setCount(9).offerTo(exporter);
+                createGrinder(Items.DARK_PRISMARINE, Items.PRISMARINE_SHARD, false).setCount(8).offerTo(exporter);
+                createGrinder(Items.PRISMARINE, Items.PRISMARINE_SHARD, false).setCount(4).offerTo(exporter);
+
                 offerSmelting(List.of(Items.GLASS_BOTTLE), RecipeCategory.MISC, Blocks.GLASS, 0f, 200, Items.GLASS_BOTTLE.getName().toString());
                 offerSmelting(List.of(Items.ROTTEN_FLESH), RecipeCategory.MISC, Items.LEATHER, 0.35f, 200, Items.ROTTEN_FLESH.getName().toString());
                 offerCampfire(List.of(Items.ROTTEN_FLESH), RecipeCategory.MISC, Items.LEATHER, 0.35f, 200, Items.ROTTEN_FLESH.getName().toString());

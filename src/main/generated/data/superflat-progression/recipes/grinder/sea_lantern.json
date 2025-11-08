@@ -1,0 +1,13 @@
+{
+  "type": "superflat-progression:grinder",
+  "count": 5,
+  "input": {
+    "item": {
+      "item": "minecraft:sea_lantern"
+    }
+  },
+  "needsBucket": false,
+  "result": {
+    "item": "minecraft:prismarine_crystals"
+  }
+}

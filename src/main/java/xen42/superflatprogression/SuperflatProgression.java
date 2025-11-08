@@ -17,6 +17,8 @@ import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.item.Items;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTable;
+import net.minecraft.loot.LootTables;
+import net.minecraft.loot.condition.RandomChanceLootCondition;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.function.LootFunction;
 import net.minecraft.loot.function.LootingEnchantLootFunction;
@@ -127,6 +129,11 @@ public class SuperflatProgression implements ModInitializer {
 						.apply(LootingEnchantLootFunction.builder(UniformLootNumberProvider.create(0.0F, 1.0F)))
 					).build()
 				);
+			}
+			if (LootTables.FISHING_FISH_GAMEPLAY.equals(id)) {
+				tableBuilder.modifyPools(pool -> {
+					pool.with(ItemEntry.builder(Items.BAMBOO).weight(10));
+				});
 			}
 		});
 	}

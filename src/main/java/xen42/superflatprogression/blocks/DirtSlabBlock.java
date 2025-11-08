@@ -4,6 +4,7 @@ import org.jetbrains.annotations.Nullable;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.CropBlock;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.block.enums.SlabType;
 import net.minecraft.fluid.FluidState;
@@ -16,6 +17,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
+import net.minecraft.world.LightType;
 import net.minecraft.world.WorldView;
 import net.minecraft.world.chunk.light.ChunkLightProvider;
 import xen42.superflatprogression.SuperflatProgressionBlocks;
@@ -36,7 +38,7 @@ public class DirtSlabBlock extends SlabBlock {
 		} else if (state.getProperties().contains(SlabBlock.WATERLOGGED) && state.get(SlabBlock.WATERLOGGED)) {
 			return false;
 		} else if (state.getProperties().contains(SlabBlock.TYPE) && state.get(TYPE) == SlabType.BOTTOM) {
-			return world.getLightLevel(pos) > 9;
+			return true;
 		} else {
 			int i = ChunkLightProvider.getRealisticOpacity(world, state.getBlock().getDefaultState(),
 				pos, stateUp, posUp, Direction.UP, stateUp.getOpacity(world, posUp));
@@ -55,7 +57,8 @@ public class DirtSlabBlock extends SlabBlock {
 			if (!canSurvive(state, world, pos)) {
 				// We are grass but can't survive -> change us to dirt with right state
 				world.setBlockState(pos, SuperflatProgressionBlocks.DIRT_SLAB.getDefaultState()
-					.with(TYPE, world.getBlockState(pos).get(TYPE)));
+					.with(TYPE, world.getBlockState(pos).get(TYPE))
+					.with(WATERLOGGED, world.getBlockState(pos).get(WATERLOGGED)));
 			} else {
 				if (world.getLightLevel(pos.up()) >= 9) {				 
 					// Grass slab can spread to dirt slabs and regular dirt, dirt slabs will handle their own logic to spread from grass
@@ -64,8 +67,9 @@ public class DirtSlabBlock extends SlabBlock {
 						// We are grass slab, it is dirt slab -> change to grass slab with the right slab type
 						if (world.getBlockState(blockPos).isOf(SuperflatProgressionBlocks.DIRT_SLAB)) {
 							var dirtBlockState = world.getBlockState(blockPos);
-							BlockState grassBlockState = SuperflatProgressionBlocks.GRASS_SLAB.getDefaultState().with(SlabBlock.TYPE,
-								dirtBlockState.get(SlabBlock.TYPE));
+							BlockState grassBlockState = SuperflatProgressionBlocks.GRASS_SLAB.getDefaultState()
+								.with(SlabBlock.TYPE, dirtBlockState.get(SlabBlock.TYPE))
+								.with(SlabBlock.WATERLOGGED, dirtBlockState.get(SlabBlock.WATERLOGGED));
 
 							if (canSpread(grassBlockState, world, blockPos)) {
 								world.setBlockState(blockPos, grassBlockState);
@@ -84,7 +88,9 @@ public class DirtSlabBlock extends SlabBlock {
 				for (int i = 0; i < 4; i++) {
 					BlockPos blockPos = pos.add(random.nextInt(3) - 1, random.nextInt(5) - 3, random.nextInt(3) - 1);
 					// We are dirt, it is a nearby grass block, spread it to us
-					BlockState blockState = SuperflatProgressionBlocks.GRASS_SLAB.getDefaultState().with(SlabBlock.TYPE, state.get(SlabBlock.TYPE));
+					BlockState blockState = SuperflatProgressionBlocks.GRASS_SLAB.getDefaultState()
+						.with(SlabBlock.TYPE, state.get(SlabBlock.TYPE))
+						.with(SlabBlock.WATERLOGGED, state.get(SlabBlock.WATERLOGGED));
 					if (world.getBlockState(blockPos).isOf(Blocks.GRASS_BLOCK) && canSpread(blockState,	world, pos)) {
 						world.setBlockState(pos, SuperflatProgressionBlocks.GRASS_SLAB.getDefaultState()
 							.with(TYPE, world.getBlockState(pos).get(SlabBlock.TYPE)));
