@@ -23,6 +23,9 @@ public class SuperflatProgressionVillagers {
             factories.add((entity, random) -> new TradeOffer(
 				new ItemStack(Items.EMERALD, 3),
 				new ItemStack(Items.PRISMARINE_BRICKS, 1), 12, 20, 0.05f));
+			factories.add((entity, random) -> new TradeOffer(
+				new ItemStack(Items.EMERALD, 3),
+				new ItemStack(Items.AMETHYST_SHARD, 1), 12, 20, 0.05f));
 		});
     }
 }

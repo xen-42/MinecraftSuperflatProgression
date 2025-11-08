@@ -276,6 +276,17 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
                         // Advancement that gives the recipe
                         .criterion(hasItem(SuperflatProgressionBlocks.GRASS_SLAB), conditionsFromItem(SuperflatProgressionBlocks.GRASS_SLAB))
                         , exporter); 
+
+                offerTo(createShaped(RecipeCategory.MISC, Blocks.BUDDING_AMETHYST)
+                        .pattern("XXX")
+                        .pattern("XYX")
+                        .pattern("XXX")
+                        .input('X', SuperflatProgressionItems.ESSENCE)
+                        .input('Y', Blocks.AMETHYST_BLOCK)
+                        // Advancement that gives the recipe
+                        .criterion(hasItem(SuperflatProgressionItems.ESSENCE), conditionsFromItem(SuperflatProgressionItems.ESSENCE))
+                        .criterion(hasItem(Items.AMETHYST_BLOCK), conditionsFromItem(Items.AMETHYST_BLOCK))
+                        , exporter); 
                     
                 offerTools(SuperflatProgressionItems.BONE_AXE, SuperflatProgressionItems.BONE_HOE, SuperflatProgressionItems.BONE_SHOVEL,
                     SuperflatProgressionItems.BONE_PICKAXE, SuperflatProgressionItems.BONE_SWORD, Items.BONE);
