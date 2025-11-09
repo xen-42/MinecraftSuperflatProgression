@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "C": {
-      "item": "minecraft:end_crystal"
+      "item": "minecraft:obsidian"
     },
     "D": {
       "item": "minecraft:diamond"
@@ -16,7 +16,7 @@
     }
   },
   "pattern": [
-    " C ",
+    "CCC",
     "DSD",
     "XXX"
   ],

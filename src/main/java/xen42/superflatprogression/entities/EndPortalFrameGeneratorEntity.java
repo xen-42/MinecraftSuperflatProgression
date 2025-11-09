@@ -25,17 +25,15 @@ public class EndPortalFrameGeneratorEntity extends BlockEntity {
     
     public static void tick(World world, BlockPos pos, BlockState state, EndPortalFrameGeneratorEntity blockEntity) {
 		if (!world.isClient) {
-            if (EndPortalFrameGeneratorBlock.canCreateEndPortalFrame(world, state, pos)) {
-                if (world.getTime() % 20 == 0) {
-                    spawnParticles(ParticleTypes.ASH, world, pos);
-                }
+            if (world.getTime() % 40 == 0) {
+                spawnParticles(EndPortalFrameGeneratorBlock.canCreateEndPortalFrame(world, state, pos) ? 
+                    SuperflatProgression.PIXIE_PARTICLE : ParticleTypes.SMOKE, world, pos.up());
 
-                if (world.getTime() % 40 == 0) {
-                    for (var dir : List.of(Direction.NORTH, Direction.SOUTH, Direction.EAST, Direction.WEST)) {
-                        for (int i = -1; i <= 1; i++) {
-                            var framePos = pos.subtract(dir.getVector().multiply(2)).add(dir.getVector().crossProduct(new Vec3i(0, 1, 0).multiply(i))); 
-                            spawnParticles(ParticleTypes.HAPPY_VILLAGER, world, framePos);
-                        }
+                for (var dir : List.of(Direction.NORTH, Direction.SOUTH, Direction.EAST, Direction.WEST)) {
+                    for (int i = -1; i <= 1; i++) {
+                        var framePos = pos.subtract(dir.getVector().multiply(2)).add(dir.getVector().crossProduct(new Vec3i(0, 1, 0).multiply(i))); 
+                        spawnParticles(EndPortalFrameGeneratorBlock.canCreateEndPortalFrame(world, state, pos) ? 
+                            ParticleTypes.HAPPY_VILLAGER : ParticleTypes.SMOKE, world, framePos);
                     }
                 }
             }
@@ -49,7 +47,7 @@ public class EndPortalFrameGeneratorEntity extends BlockEntity {
             pos.getY() + 0.5f,
             pos.getZ() + 0.5f,
             5,
-            0.25, 0.25, 0.25,
+            0.3, 0.2, 0.3,
             0
         );
     }

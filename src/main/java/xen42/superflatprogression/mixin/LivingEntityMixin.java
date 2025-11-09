@@ -22,6 +22,7 @@ import xen42.superflatprogression.SuperflatProgressionStatusEffects;
 
 @Mixin(LivingEntity.class)
 public class LivingEntityMixin {
+    // This is what applies the Bounty buff by re-rolling loot drops
 	@Inject(at = @At("HEAD"), method = "dropLoot", cancellable = true)
 	private void dropLoot(DamageSource damageSource, boolean causedByPlayer, CallbackInfo info) {
         var attacker = damageSource.getAttacker();

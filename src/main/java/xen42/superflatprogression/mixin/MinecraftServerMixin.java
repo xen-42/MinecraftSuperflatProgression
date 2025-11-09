@@ -64,6 +64,7 @@ import xen42.superflatprogression.SuperflatProgression;
 @Mixin(MinecraftServer.class)
 
 public class MinecraftServerMixin {
+    // This is what makes the nether also superflat
 	@Inject(at = @At("RETURN"), method = "createWorlds")
     private void createWorlds(WorldGenerationProgressListener listener, CallbackInfo info) {
         try {

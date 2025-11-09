@@ -28,6 +28,7 @@ import net.minecraft.world.event.GameEvent;
 
 @Mixin(PotionItem.class)
 public class PotionItemMixin {
+	// This is all to make it so using a water bottle on a lava block makes cobble
 	@Inject(at = @At("HEAD"), method = "useOnBlock", cancellable = true)
     private void useOnBlock(ItemUsageContext context, CallbackInfoReturnable<ActionResult> info) {
 		World world = context.getWorld();

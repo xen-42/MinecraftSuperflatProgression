@@ -13,7 +13,7 @@
 		"EndCrystalItemMixin",
 		"EndCrystalEntityMixin",
 		"AbstractBlockStateMixin",
-		"EndPortalBlockMixin"
+		"BlockMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

@@ -17,6 +17,7 @@ import xen42.superflatprogression.SuperflatProgressionBlocks;
 
 @Mixin(FireBlock.class)
 public class FireBlockMixin {
+    // This is the logic for having wood blocks turn to charcoal sometimes
 	@Inject(at = @At("HEAD"), method = "scheduledTick")
     private void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random, CallbackInfo info) {
         for (var adjBlock : List.of(pos.east(), pos.west(), pos.south(), pos.north(), pos.up(), pos.down())) {
