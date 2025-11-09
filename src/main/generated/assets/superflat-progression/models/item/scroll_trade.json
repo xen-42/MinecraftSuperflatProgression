@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "superflat-progression:item/scroll_trade"
+    "layer0": "superflat-progression:item/scroll_blank"
   }
 }

@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import org.jetbrains.annotations.Nullable;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.SpawnRestriction;
@@ -19,9 +20,15 @@ import net.minecraft.world.SpawnHelper;
 import net.minecraft.world.poi.PointOfInterestStorage;
 import net.minecraft.world.poi.PointOfInterestTypes;
 
-// Simialr to base game WanderingTraderManager
-public class WanderingTraderHelper {
-	public static boolean trySpawn(ServerPlayerEntity playerEntity) {
+// Simialar to base game WanderingTraderManager
+public class MobSpawnerHelper {
+	public static void spawnWanderingTrader(ServerPlayerEntity playerEntity) {
+		for (int i = 0; i < 10; i++) {
+			trySpawnWanderingTrader(playerEntity);
+		}
+	}
+
+	private static boolean trySpawnWanderingTrader(ServerPlayerEntity playerEntity) {
         var world = (ServerWorld)playerEntity.getWorld();
         BlockPos blockPos = playerEntity.getBlockPos();
         PointOfInterestStorage pointOfInterestStorage = world.getPointOfInterestStorage();
@@ -49,6 +56,20 @@ public class WanderingTraderHelper {
         }
 
         return false;
+	}
+
+	public static void spawnMob(ServerPlayerEntity playerEntity, EntityType<?> entityType) {
+		var range = 32;
+		var world = (ServerWorld)playerEntity.getWorld();
+		for (int i = 0; i < 10; i++) {
+			BlockPos blockPos = getNearbySpawnPos(world, playerEntity.getBlockPos(), range);
+			if (blockPos != null) {
+				entityType.spawn(world, blockPos, SpawnReason.EVENT);
+				return;
+			}
+		}
+		// If we failed just put them on the player
+		entityType.spawn(world, playerEntity.getBlockPos(), SpawnReason.EVENT);
 	}
 
 	private static void spawnLlama(ServerWorld world, WanderingTraderEntity wanderingTrader, int range) {

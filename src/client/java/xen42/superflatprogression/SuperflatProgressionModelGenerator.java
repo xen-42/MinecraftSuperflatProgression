@@ -73,10 +73,6 @@ public class SuperflatProgressionModelGenerator extends FabricModelProvider {
         itemModelGenerator.register(SuperflatProgressionItems.FIRE_STARTER, Models.GENERATED);
         itemModelGenerator.register(SuperflatProgressionItems.ESSENCE, Models.GENERATED);
         itemModelGenerator.register(SuperflatProgressionItems.PARCHMENT, Models.GENERATED);
-        itemModelGenerator.register(SuperflatProgressionItems.SCROLL_RAIN, Models.GENERATED);
-        itemModelGenerator.register(SuperflatProgressionItems.SCROLL_THUNDER, Models.GENERATED);
-        itemModelGenerator.register(SuperflatProgressionItems.SCROLL_CLEAR_WEATHER, Models.GENERATED);
-        itemModelGenerator.register(SuperflatProgressionItems.SCROLL_TRADE, Models.GENERATED);
         itemModelGenerator.register(SuperflatProgressionItems.DIAMOND_SHARD, Models.GENERATED);
         itemModelGenerator.register(SuperflatProgressionItems.PIXIE_SPAWN_EGG, Models.GENERATED);
 
@@ -85,6 +81,57 @@ public class SuperflatProgressionModelGenerator extends FabricModelProvider {
         itemModelGenerator.register(SuperflatProgressionItems.BONE_SWORD, Models.GENERATED);
         itemModelGenerator.register(SuperflatProgressionItems.BONE_SHOVEL, Models.GENERATED);
         itemModelGenerator.register(SuperflatProgressionItems.BONE_PICKAXE, Models.GENERATED);
+
+		Identifier scrollTexture = new Identifier(SuperflatProgression.MOD_ID, "item/scroll_blank");
+		TextureMap textureMap = new TextureMap().put(TextureKey.LAYER0, scrollTexture);
+
+		for (var scroll : new Item[] {
+			SuperflatProgressionItems.SCROLL_RAIN,
+			SuperflatProgressionItems.SCROLL_THUNDER,
+			SuperflatProgressionItems.SCROLL_CLEAR_WEATHER,
+			SuperflatProgressionItems.SCROLL_TRADE,
+
+			SuperflatProgressionItems.SCROLL_PIG,
+			SuperflatProgressionItems.SCROLL_COW,
+			SuperflatProgressionItems.SCROLL_CHICKEN,
+			SuperflatProgressionItems.SCROLL_SHEEP,
+			SuperflatProgressionItems.SCROLL_CAT,
+			SuperflatProgressionItems.SCROLL_WOLF,
+
+			SuperflatProgressionItems.SCROLL_ZOMBIE,
+			SuperflatProgressionItems.SCROLL_SKELETON,
+			SuperflatProgressionItems.SCROLL_WITCH,
+			SuperflatProgressionItems.SCROLL_ENDERMAN,
+			SuperflatProgressionItems.SCROLL_SLIME,
+			SuperflatProgressionItems.SCROLL_MAGMA_CUBE,
+			SuperflatProgressionItems.SCROLL_BLAZE,
+			SuperflatProgressionItems.SCROLL_SPIDER
+		}) {
+			Models.GENERATED.upload(ModelIds.getItemModelId(scroll), textureMap, itemModelGenerator.writer);
+		}
+
+		/*
+        itemModelGenerator.register(SuperflatProgressionItems.SCROLL_RAIN, Models.GENERATED);
+        itemModelGenerator.register(SuperflatProgressionItems.SCROLL_THUNDER, Models.GENERATED);
+        itemModelGenerator.register(SuperflatProgressionItems.SCROLL_CLEAR_WEATHER, Models.GENERATED);
+        itemModelGenerator.register(SuperflatProgressionItems.SCROLL_TRADE, Models.GENERATED);
+
+		itemModelGenerator.register(SuperflatProgressionItems.SCROLL_PIG, Models.GENERATED);
+		itemModelGenerator.register(SuperflatProgressionItems.SCROLL_COW, Models.GENERATED);
+		itemModelGenerator.register(SuperflatProgressionItems.SCROLL_CHICKEN, Models.GENERATED);
+		itemModelGenerator.register(SuperflatProgressionItems.SCROLL_SHEEP, Models.GENERATED);
+		itemModelGenerator.register(SuperflatProgressionItems.SCROLL_CAT, Models.GENERATED);
+		itemModelGenerator.register(SuperflatProgressionItems.SCROLL_WOLF, Models.GENERATED);
+
+		itemModelGenerator.register(SuperflatProgressionItems.SCROLL_ZOMBIE, Models.GENERATED);
+		itemModelGenerator.register(SuperflatProgressionItems.SCROLL_SKELETON, Models.GENERATED);
+		itemModelGenerator.register(SuperflatProgressionItems.SCROLL_WITCH, Models.GENERATED);
+		itemModelGenerator.register(SuperflatProgressionItems.SCROLL_ENDERMAN, Models.GENERATED);
+		itemModelGenerator.register(SuperflatProgressionItems.SCROLL_SLIME, Models.GENERATED);
+		itemModelGenerator.register(SuperflatProgressionItems.SCROLL_MAGMA_CUBE, Models.GENERATED);
+		itemModelGenerator.register(SuperflatProgressionItems.SCROLL_BLAZE, Models.GENERATED);
+		itemModelGenerator.register(SuperflatProgressionItems.SCROLL_SPIDER, Models.GENERATED);
+		*/
     }
 
     @Override

@@ -1,11 +1,13 @@
 package xen42.superflatprogression;
 
+import java.util.function.Consumer;
 import java.util.function.Function;
 
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.FireBlock;
+import net.minecraft.entity.EntityType;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.BoneMealItem;
 import net.minecraft.item.HoeItem;
@@ -21,6 +23,7 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.tag.EntityTypeTags;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
@@ -42,39 +45,45 @@ public class SuperflatProgressionItems {
 	public static final Item PIXIE_SPAWN_EGG = register("pixie_spawn_egg", (settings) -> 
         new DispensibleSpawnEggItem(SuperflatProgression.PIXIE_ENTITY, 0x6F4B6F, 0x2B1E2B, settings), new Item.Settings());
 
-    public static final Item SCROLL_RAIN = register("scroll_rain", (settings) ->
-		new ScrollItem(settings, (ServerPlayerEntity user) -> {
+    public static final Item SCROLL_RAIN = registerScroll("scroll_rain",  (ServerPlayerEntity user) -> {
 			var world = (ServerWorld)(user.getWorld());
 			var duration = ServerWorld.RAIN_WEATHER_DURATION_PROVIDER.get(world.getRandom());
 			world.setWeather(0, duration, true, false);
-		})
-	, new Item.Settings().maxCount(1).rarity(Rarity.UNCOMMON));
+		});
 
-    public static final Item SCROLL_THUNDER = register("scroll_thunder", (settings) ->
-		new ScrollItem(settings, (ServerPlayerEntity user) -> {
+    public static final Item SCROLL_THUNDER = registerScroll("scroll_thunder", (ServerPlayerEntity user) -> {
 			var world = (ServerWorld)(user.getWorld());
 			var duration = ServerWorld.THUNDER_WEATHER_DURATION_PROVIDER.get(world.getRandom());
 			world.setWeather(0, duration, true, true);
-		})
-	, new Item.Settings().maxCount(1).rarity(Rarity.UNCOMMON));
+		});
 
-	public static final Item SCROLL_CLEAR_WEATHER = register("scroll_clear_weather", (settings) ->
-		new ScrollItem(settings, (ServerPlayerEntity user) -> {
+	public static final Item SCROLL_CLEAR_WEATHER = registerScroll("scroll_clear_weather", (ServerPlayerEntity user) -> {
 			var world = (ServerWorld)(user.getWorld());
 			var duration = ServerWorld.CLEAR_WEATHER_DURATION_PROVIDER.get(world.getRandom());
 			world.setWeather(duration, 0, false, false);
-		})
-	, new Item.Settings().maxCount(1).rarity(Rarity.UNCOMMON));
+		});
 
-    public static final Item SCROLL_TRADE = register("scroll_trade", (settings) ->
-		new ScrollItem(settings, (ServerPlayerEntity user) -> {
-			// Try to spawn 10 times
-			var i = 0;
-			while (!WanderingTraderHelper.trySpawn(user) && i < 10) {
-				i++;
-			}
-		})
-	, new Item.Settings().maxCount(1).rarity(Rarity.UNCOMMON));
+    public static final Item SCROLL_TRADE = registerScroll("scroll_trade", MobSpawnerHelper::spawnWanderingTrader);
+    public static final Item SCROLL_PIG = registerScroll("scroll_pig", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, EntityType.PIG));
+    public static final Item SCROLL_COW = registerScroll("scroll_cow", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, EntityType.COW));
+    public static final Item SCROLL_CHICKEN = registerScroll("scroll_chicken", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, EntityType.CHICKEN));
+    public static final Item SCROLL_SHEEP = registerScroll("scroll_sheep", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, EntityType.SHEEP));
+    public static final Item SCROLL_CAT = registerScroll("scroll_cat", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, EntityType.CAT));
+    public static final Item SCROLL_WOLF = registerScroll("scroll_wolf", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, EntityType.WOLF));
+
+    public static final Item SCROLL_ZOMBIE = registerScroll("scroll_zombie", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, EntityType.ZOMBIE));
+    public static final Item SCROLL_SKELETON = registerScroll("scroll_skeleton", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, EntityType.SKELETON));
+    public static final Item SCROLL_WITCH = registerScroll("scroll_witch", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, EntityType.WITCH));
+    public static final Item SCROLL_ENDERMAN = registerScroll("scroll_enderman", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, EntityType.ENDERMAN));
+    public static final Item SCROLL_SLIME = registerScroll("scroll_slime", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, EntityType.SLIME));
+    public static final Item SCROLL_MAGMA_CUBE = registerScroll("scroll_magma_cube", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, EntityType.MAGMA_CUBE));
+    public static final Item SCROLL_BLAZE = registerScroll("scroll_blaze", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, EntityType.BLAZE));
+    public static final Item SCROLL_SPIDER = registerScroll("scroll_spider", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, EntityType.SPIDER));
+
+	private static final Item registerScroll(String name, Consumer<ServerPlayerEntity> onUse) {
+		return register(name, (settings) -> new ScrollItem(settings, onUse)
+		, new Item.Settings().maxCount(1).rarity(Rarity.UNCOMMON));
+	}
 
 	public static final Item BONE_SWORD = register("bone_sword", (settings) ->
 		new SwordItem(SuperflatProgressionTools.BONE, 3, -2.4f, settings),
@@ -110,6 +119,22 @@ public class SuperflatProgressionItems {
             itemGroup.add(SCROLL_THUNDER);
             itemGroup.add(SCROLL_CLEAR_WEATHER);
             itemGroup.add(SCROLL_TRADE);
+
+			itemGroup.add(SCROLL_PIG);
+			itemGroup.add(SCROLL_COW);
+			itemGroup.add(SCROLL_CHICKEN);
+			itemGroup.add(SCROLL_SHEEP);
+			itemGroup.add(SCROLL_CAT);
+			itemGroup.add(SCROLL_WOLF);
+
+			itemGroup.add(SCROLL_ZOMBIE);
+			itemGroup.add(SCROLL_SKELETON);
+			itemGroup.add(SCROLL_WITCH);
+			itemGroup.add(SCROLL_ENDERMAN);
+			itemGroup.add(SCROLL_SLIME);
+			itemGroup.add(SCROLL_MAGMA_CUBE);
+			itemGroup.add(SCROLL_BLAZE);
+			itemGroup.add(SCROLL_SPIDER);
 			
             itemGroup.add(BONE_SHOVEL);
             itemGroup.add(BONE_PICKAXE);

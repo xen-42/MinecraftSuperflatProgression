@@ -114,12 +114,28 @@ public abstract class SuperflatProgressionLanguageProvider extends FabricLanguag
 			translationBuilder.add(SuperflatProgressionItems.ENRICHED_BONEMEAL, "Enriched Bone Meal");
 			translationBuilder.add(SuperflatProgressionItems.FIRE_STARTER, "Fire Starter");
 			translationBuilder.add(SuperflatProgressionItems.PARCHMENT, "Parchment");
-			translationBuilder.add(SuperflatProgressionItems.SCROLL_CLEAR_WEATHER, "Clear Weather Scroll");
-			translationBuilder.add(SuperflatProgressionItems.SCROLL_RAIN, "Rain Scroll");
-			translationBuilder.add(SuperflatProgressionItems.SCROLL_THUNDER, "Thunder Scroll");
-			translationBuilder.add(SuperflatProgressionItems.SCROLL_TRADE, "Trade Scroll");
+			translationBuilder.add(SuperflatProgressionItems.SCROLL_CLEAR_WEATHER, "Scroll of Clear Weather");
+			translationBuilder.add(SuperflatProgressionItems.SCROLL_RAIN, "Scroll of Rain");
+			translationBuilder.add(SuperflatProgressionItems.SCROLL_THUNDER, "Scroll of Thunder");
+			translationBuilder.add(SuperflatProgressionItems.SCROLL_TRADE, "Scroll of Summon Trader");
 			translationBuilder.add(SuperflatProgressionItems.DIAMOND_SHARD, "Diamond Shard");
 			translationBuilder.add(SuperflatProgressionItems.PIXIE_SPAWN_EGG, "Pixie Spawn Egg");
+
+			translationBuilder.add(SuperflatProgressionItems.SCROLL_PIG, "Scroll of Summon Pig");
+			translationBuilder.add(SuperflatProgressionItems.SCROLL_COW, "Scroll of Summon Cow");
+			translationBuilder.add(SuperflatProgressionItems.SCROLL_CHICKEN, "Scroll of Summon Chicken");
+			translationBuilder.add(SuperflatProgressionItems.SCROLL_SHEEP, "Scroll of Summon Sheep");
+			translationBuilder.add(SuperflatProgressionItems.SCROLL_CAT, "Scroll of Summon Cat");
+			translationBuilder.add(SuperflatProgressionItems.SCROLL_WOLF, "Scroll of Summon Wolf");
+
+			translationBuilder.add(SuperflatProgressionItems.SCROLL_ZOMBIE, "Scroll of Summon Zombie");
+			translationBuilder.add(SuperflatProgressionItems.SCROLL_SKELETON, "Scroll of Summon Skeleton");
+			translationBuilder.add(SuperflatProgressionItems.SCROLL_WITCH, "Scroll of Summon Witch");
+			translationBuilder.add(SuperflatProgressionItems.SCROLL_ENDERMAN, "Scroll of Summon Enderman");
+			translationBuilder.add(SuperflatProgressionItems.SCROLL_SLIME, "Scroll of Summon Slime");
+			translationBuilder.add(SuperflatProgressionItems.SCROLL_MAGMA_CUBE, "Scroll of Summon Magma Cube");
+			translationBuilder.add(SuperflatProgressionItems.SCROLL_BLAZE, "Scroll of Summon Blaze");
+			translationBuilder.add(SuperflatProgressionItems.SCROLL_SPIDER, "Scroll of Summon Spider");
 
 			translationBuilder.add(SuperflatProgressionItems.BONE_AXE, "Bone Axe");
 			translationBuilder.add(SuperflatProgressionItems.BONE_HOE, "Bone Hoe");

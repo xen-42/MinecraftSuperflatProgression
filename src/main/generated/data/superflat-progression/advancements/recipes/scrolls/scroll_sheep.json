@@ -1,0 +1,57 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_TagKey[minecraft:item / minecraft:wool]": {
+      "conditions": {
+        "items": [
+          {
+            "tag": "minecraft:wool"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_essence": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "superflat-progression:essence"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_parchment": {
+      "conditions": {
+        "items": [
+          {
+            "tag": "superflat-progression:parchments"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "superflat-progression:scroll_sheep"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_essence",
+      "has_parchment",
+      "has_TagKey[minecraft:item / minecraft:wool]"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "superflat-progression:scroll_sheep"
+    ]
+  },
+  "sends_telemetry_event": false
+}

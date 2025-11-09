@@ -3,10 +3,10 @@
   "cost": 5,
   "input": {
     "item": {
-      "item": "minecraft:lightning_rod"
+      "item": "minecraft:slime_ball"
     }
   },
   "result": {
-    "item": "superflat-progression:scroll_thunder"
+    "item": "superflat-progression:scroll_slime"
   }
 }

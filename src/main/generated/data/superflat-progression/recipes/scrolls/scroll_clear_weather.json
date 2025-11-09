@@ -1,6 +1,6 @@
 {
   "type": "superflat-progression:scroll_crafting",
-  "cost": 2,
+  "cost": 5,
   "input": {
     "item": {
       "item": "minecraft:sunflower"

@@ -291,10 +291,26 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
                 offerTools(SuperflatProgressionItems.BONE_AXE, SuperflatProgressionItems.BONE_HOE, SuperflatProgressionItems.BONE_SHOVEL,
                     SuperflatProgressionItems.BONE_PICKAXE, SuperflatProgressionItems.BONE_SWORD, Items.BONE);
 
-                createScroll(SuperflatProgressionItems.SCROLL_RAIN, Items.BUCKET, 2).offerTo(exporter);
-                createScroll(SuperflatProgressionItems.SCROLL_THUNDER, Items.LIGHTNING_ROD, 4).offerTo(exporter);
-                createScroll(SuperflatProgressionItems.SCROLL_CLEAR_WEATHER, Items.SUNFLOWER, 2).offerTo(exporter);
-                createScroll(SuperflatProgressionItems.SCROLL_TRADE, Items.BELL, 4).offerTo(exporter);
+                createScroll(SuperflatProgressionItems.SCROLL_RAIN, Items.BUCKET, 5).offerTo(exporter);
+                createScroll(SuperflatProgressionItems.SCROLL_THUNDER, Items.LIGHTNING_ROD, 5).offerTo(exporter);
+                createScroll(SuperflatProgressionItems.SCROLL_CLEAR_WEATHER, Items.SUNFLOWER, 5).offerTo(exporter);
+                createScroll(SuperflatProgressionItems.SCROLL_TRADE, Items.BELL, 5).offerTo(exporter);
+
+                createScroll(SuperflatProgressionItems.SCROLL_PIG, Items.CARROT, 5).offerTo(exporter);
+                createScroll(SuperflatProgressionItems.SCROLL_COW, Items.WHEAT, 5).offerTo(exporter);
+                createScroll(SuperflatProgressionItems.SCROLL_CHICKEN, Items.WHEAT_SEEDS, 5).offerTo(exporter);
+                createScroll(SuperflatProgressionItems.SCROLL_SHEEP, ItemTags.WOOL, 5).offerTo(exporter);
+                createScroll(SuperflatProgressionItems.SCROLL_CAT, ItemTags.FISHES, 5).offerTo(exporter);
+                createScroll(SuperflatProgressionItems.SCROLL_WOLF, Items.BONE, 5).offerTo(exporter);
+
+                createScroll(SuperflatProgressionItems.SCROLL_ZOMBIE, Items.ROTTEN_FLESH, 5).offerTo(exporter);
+                createScroll(SuperflatProgressionItems.SCROLL_SKELETON, Items.ARROW, 5).offerTo(exporter);
+                createScroll(SuperflatProgressionItems.SCROLL_WITCH, Items.CAULDRON, 5).offerTo(exporter);
+                createScroll(SuperflatProgressionItems.SCROLL_ENDERMAN, Items.ENDER_PEARL, 5).offerTo(exporter);
+                createScroll(SuperflatProgressionItems.SCROLL_SLIME, Items.SLIME_BALL, 5).offerTo(exporter);
+                createScroll(SuperflatProgressionItems.SCROLL_MAGMA_CUBE, Items.MAGMA_CREAM, 5).offerTo(exporter);
+                createScroll(SuperflatProgressionItems.SCROLL_BLAZE, Items.BLAZE_ROD, 5).offerTo(exporter);
+                createScroll(SuperflatProgressionItems.SCROLL_SPIDER, Items.SPIDER_EYE, 5).offerTo(exporter);
 
                 createGrinder(Blocks.STONE.asItem(), Blocks.COBBLESTONE.asItem(), false).offerTo(exporter);
                 createGrinder(Blocks.COBBLESTONE.asItem(), Blocks.GRAVEL.asItem(), false).offerTo(exporter);
@@ -372,6 +388,13 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
                     .criterion(hasItem(SuperflatProgressionItems.ESSENCE), conditionsFromItem(SuperflatProgressionItems.ESSENCE))
                     .criterion(hasItem(SuperflatProgressionItems.PARCHMENT), conditionsFromTag(SuperflatProgressionTags.ItemTags.PARCHMENTS))
                     .criterion(hasItem(input), conditionsFromItem(input));
+            }
+
+            public ScrollCraftingRecipeJsonBuilder createScroll(ItemConvertible output, TagKey<Item> input, int cost) {
+                return new ScrollCraftingRecipeJsonBuilder(registryLookup.getWrapperOrThrow(RegistryKeys.ITEM), output, Ingredient.fromTag(input), cost)
+                    .criterion(hasItem(SuperflatProgressionItems.ESSENCE), conditionsFromItem(SuperflatProgressionItems.ESSENCE))
+                    .criterion(hasItem(SuperflatProgressionItems.PARCHMENT), conditionsFromTag(SuperflatProgressionTags.ItemTags.PARCHMENTS))
+                    .criterion("has_" + input.toString(), conditionsFromTag(input));
             }
 
             public GrinderRecipeJsonBuilder createGrinder(Item input, ItemConvertible output, boolean needsBucket) {
