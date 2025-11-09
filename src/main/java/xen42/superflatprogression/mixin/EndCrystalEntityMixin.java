@@ -10,7 +10,7 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.decoration.EndCrystalEntity;
 import net.minecraft.server.world.ServerWorld;
 import xen42.superflatprogression.SuperflatProgressionBlocks;
-import xen42.superflatprogression.blocks.EndPortalFrameGenerator;
+import xen42.superflatprogression.blocks.EndPortalFrameGeneratorBlock;
 
 @Mixin(EndCrystalEntity.class)
 public class EndCrystalEntityMixin {
@@ -23,7 +23,7 @@ public class EndCrystalEntityMixin {
             var pos = crystal.getBlockPos().down();
             var blockState = crystal.getWorld().getBlockState(pos);
             if (blockState.isOf(SuperflatProgressionBlocks.END_PORTAL_FRAME_GENERATOR)) {
-                EndPortalFrameGenerator.tryCreateEndPortalFrame((ServerWorld)world, blockState, pos);
+                EndPortalFrameGeneratorBlock.tryCreateEndPortalFrame((ServerWorld)world, blockState, pos);
             }
         }
     }

@@ -16,7 +16,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 import xen42.superflatprogression.SuperflatProgressionBlocks;
-import xen42.superflatprogression.blocks.EndPortalFrameGenerator;
+import xen42.superflatprogression.blocks.EndPortalFrameGeneratorBlock;
 
 @Mixin(EndCrystalItem.class)
 public class EndCrystalItemMixin {
@@ -28,7 +28,7 @@ public class EndCrystalItemMixin {
         if (blockState.isOf(SuperflatProgressionBlocks.END_PORTAL_FRAME_GENERATOR)) {
             // Custom stuff!
 
-            if (EndPortalFrameGenerator.canCreateEndPortalFrame(context.getWorld(), blockState, blockPos)) {
+            if (EndPortalFrameGeneratorBlock.canCreateEndPortalFrame(context.getWorld(), blockState, blockPos)) {
                 if (world instanceof ServerWorld) {
                     var blockPosUp = blockPos.up();
 

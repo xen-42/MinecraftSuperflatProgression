@@ -11,6 +11,7 @@ import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import xen42.superflatprogression.SuperflatProgressionBlocks;
+import xen42.superflatprogression.entities.MagicTorchBlockEntity;
 
 public class MagicLanternBlock extends LanternBlock implements BlockEntityProvider {
     public MagicLanternBlock(Settings settings) {

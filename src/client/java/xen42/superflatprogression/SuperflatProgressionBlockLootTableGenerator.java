@@ -41,6 +41,7 @@ public class SuperflatProgressionBlockLootTableGenerator extends FabricBlockLoot
         addDrop(SuperflatProgressionBlocks.MAGIC_LANTERN);
         addDrop(SuperflatProgressionBlocks.SCROLL_CRAFTING);
         addDrop(SuperflatProgressionBlocks.GRINDER);
+        addDrop(SuperflatProgressionBlocks.END_PORTAL_FRAME_GENERATOR);
         addDrop(SuperflatProgressionBlocks.DIRT_SLAB, slabDrops(SuperflatProgressionBlocks.DIRT_SLAB));
         slabDropsWithSilkTouch(SuperflatProgressionBlocks.GRASS_SLAB, SuperflatProgressionBlocks.DIRT_SLAB);
     }

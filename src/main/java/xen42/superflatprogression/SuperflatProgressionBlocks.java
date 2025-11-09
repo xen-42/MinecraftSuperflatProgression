@@ -29,12 +29,13 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import xen42.superflatprogression.blocks.DirtSlabBlock;
-import xen42.superflatprogression.blocks.EndPortalFrameGenerator;
+import xen42.superflatprogression.blocks.EndPortalFrameGeneratorBlock;
 import xen42.superflatprogression.blocks.GrinderBlock;
 import xen42.superflatprogression.blocks.MagicTorchBlock;
-import xen42.superflatprogression.blocks.MagicTorchBlockEntity;
 import xen42.superflatprogression.blocks.ScrollCraftingBlock;
 import xen42.superflatprogression.blocks.WallMagicTorchBlock;
+import xen42.superflatprogression.entities.EndPortalFrameGeneratorEntity;
+import xen42.superflatprogression.entities.MagicTorchBlockEntity;
 
 public class SuperflatProgressionBlocks {
     public static void initialize() { 
@@ -89,8 +90,14 @@ public class SuperflatProgressionBlocks {
 	public static final SlabBlock GRASS_SLAB = (SlabBlock)register("grass_slab", (settings) -> new DirtSlabBlock(settings, true), 
 		AbstractBlock.Settings.copy(Blocks.DIRT).ticksRandomly(), true);
 
-	public static final EndPortalFrameGenerator END_PORTAL_FRAME_GENERATOR = (EndPortalFrameGenerator)register(
-		"end_portal_frame_generator", EndPortalFrameGenerator::new, AbstractBlock.Settings.copy(Blocks.STONE).nonOpaque(), true);
+	public static final EndPortalFrameGeneratorBlock END_PORTAL_FRAME_GENERATOR = (EndPortalFrameGeneratorBlock)register(
+		"end_portal_frame_generator", EndPortalFrameGeneratorBlock::new, AbstractBlock.Settings.copy(Blocks.OBSIDIAN).nonOpaque(), true);
+
+	public static final BlockEntityType<EndPortalFrameGeneratorEntity> END_PORTAL_FRAME_GENERATOR_ENTITY = registerBlockEntityType(
+		"end_portal_frame_generator_entity",
+		FabricBlockEntityTypeBuilder.create(EndPortalFrameGeneratorEntity::new, 
+			new Block[] { END_PORTAL_FRAME_GENERATOR }).build()
+	);
 
 	private static Block register(String name, Function<AbstractBlock.Settings, Block> blockFactory, AbstractBlock.Settings settings, boolean shouldRegisterItem) {
 		// Create a registry key for the block

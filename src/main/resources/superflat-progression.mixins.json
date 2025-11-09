@@ -11,7 +11,9 @@
 		"EndermanEntityMixin",
 		"EndermanPlaceBlockGoalMixin",
 		"EndCrystalItemMixin",
-		"EndCrystalEntityMixin"
+		"EndCrystalEntityMixin",
+		"AbstractBlockStateMixin",
+		"EndPortalBlockMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

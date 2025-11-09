@@ -24,6 +24,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 import xen42.superflatprogression.SuperflatProgressionBlocks;
+import xen42.superflatprogression.entities.MagicTorchBlockEntity;
 
 public class MagicTorchBlock extends TorchBlock implements BlockEntityProvider {
 

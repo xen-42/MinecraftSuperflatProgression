@@ -3,6 +3,8 @@
   "values": [
     "superflat-progression:charcoal_block",
     "superflat-progression:magic_lantern",
+    "superflat-progression:end_portal_frame_generator",
+    "minecraft:end_portal_frame",
     "superflat-progression:grinder"
   ]
 }

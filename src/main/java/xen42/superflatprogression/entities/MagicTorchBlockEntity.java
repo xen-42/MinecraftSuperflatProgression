@@ -1,4 +1,4 @@
-package xen42.superflatprogression.blocks;
+package xen42.superflatprogression.entities;
 
 import java.util.List;
 
