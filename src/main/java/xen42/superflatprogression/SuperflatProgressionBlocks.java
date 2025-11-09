@@ -29,6 +29,7 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import xen42.superflatprogression.blocks.DirtSlabBlock;
+import xen42.superflatprogression.blocks.EndPortalFrameGenerator;
 import xen42.superflatprogression.blocks.GrinderBlock;
 import xen42.superflatprogression.blocks.MagicTorchBlock;
 import xen42.superflatprogression.blocks.MagicTorchBlockEntity;
@@ -87,6 +88,9 @@ public class SuperflatProgressionBlocks {
 		AbstractBlock.Settings.copy(Blocks.DIRT).ticksRandomly(), true);
 	public static final SlabBlock GRASS_SLAB = (SlabBlock)register("grass_slab", (settings) -> new DirtSlabBlock(settings, true), 
 		AbstractBlock.Settings.copy(Blocks.DIRT).ticksRandomly(), true);
+
+	public static final EndPortalFrameGenerator END_PORTAL_FRAME_GENERATOR = (EndPortalFrameGenerator)register(
+		"end_portal_frame_generator", EndPortalFrameGenerator::new, AbstractBlock.Settings.copy(Blocks.STONE).nonOpaque(), true);
 
 	private static Block register(String name, Function<AbstractBlock.Settings, Block> blockFactory, AbstractBlock.Settings settings, boolean shouldRegisterItem) {
 		// Create a registry key for the block

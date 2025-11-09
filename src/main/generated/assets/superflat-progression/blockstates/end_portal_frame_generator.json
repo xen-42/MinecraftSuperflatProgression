@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "superflat-progression:block/end_portal_frame_generator"
+    }
+  }
+}

@@ -9,6 +9,7 @@ import com.google.gson.JsonObject;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.LeveledCauldronBlock;
 import net.minecraft.client.render.item.ItemModels;
@@ -42,16 +43,31 @@ public class SuperflatProgressionModelGenerator extends FabricModelProvider {
 		blockStateModelGenerator.registerParentedItemModel(SuperflatProgressionBlocks.SCROLL_CRAFTING, ModelIds.getBlockModelId(SuperflatProgressionBlocks.SCROLL_CRAFTING));
 		blockStateModelGenerator.registerParentedItemModel(SuperflatProgressionBlocks.GRINDER, ModelIds.getBlockModelId(SuperflatProgressionBlocks.GRINDER));
 
+		registerCubeTopSideBottom(SuperflatProgressionBlocks.END_PORTAL_FRAME_GENERATOR, blockStateModelGenerator);
+
 		makeSlabOfAnotherBlockAll(Blocks.DIRT, SuperflatProgressionBlocks.DIRT_SLAB, blockStateModelGenerator);
 		//makeGrassSlab(SuperflatProgressionBlocks.GRASS_SLAB, blockStateModelGenerator);
     }
+
+	private void registerCubeTopSideBottom(Block block, BlockStateModelGenerator blockStateModelGenerator) {
+		TextureMap textureMap = new TextureMap()
+			.put(TextureKey.TOP, TextureMap.getSubId(block, "_top"))
+			.put(TextureKey.SIDE, TextureMap.getSubId(block, "_side"))
+			.put(TextureKey.BOTTOM, TextureMap.getSubId(block, "_bottom"));
+        blockStateModelGenerator.blockStateCollector.accept(
+                BlockStateModelGenerator.createSingletonBlockState(
+                        block,
+                        Models.CUBE_BOTTOM_TOP.upload(block, textureMap, blockStateModelGenerator.modelCollector)
+                )
+        );
+	}
 
 	private void makeSlabOfAnotherBlockAll(Block original, Block slab, BlockStateModelGenerator blockStateModelGenerator) {
 		TextureMap textureMap = TextureMap.all(original);
 		Identifier identifier = Models.SLAB.upload(slab, textureMap, blockStateModelGenerator.modelCollector);
 		Identifier identifier2 = Models.SLAB_TOP.upload(slab, textureMap, blockStateModelGenerator.modelCollector);
 		Identifier identifier3 = Models.CUBE_COLUMN.uploadWithoutVariant(slab, "_double", textureMap, blockStateModelGenerator.modelCollector);
-		blockStateModelGenerator.blockStateCollector.accept(blockStateModelGenerator.createSlabBlockState(slab, identifier, identifier2, identifier3));
+		blockStateModelGenerator.blockStateCollector.accept(BlockStateModelGenerator.createSlabBlockState(slab, identifier, identifier2, identifier3));
 	}
 
 	private void makeGrassSlab(Block slab, BlockStateModelGenerator blockStateModelGenerator) {

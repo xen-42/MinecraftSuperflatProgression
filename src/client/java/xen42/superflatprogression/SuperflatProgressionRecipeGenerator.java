@@ -287,6 +287,18 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
                         .criterion(hasItem(SuperflatProgressionItems.ESSENCE), conditionsFromItem(SuperflatProgressionItems.ESSENCE))
                         .criterion(hasItem(Items.AMETHYST_BLOCK), conditionsFromItem(Items.AMETHYST_BLOCK))
                         , exporter); 
+
+                offerTo(createShaped(RecipeCategory.MISC, SuperflatProgressionBlocks.END_PORTAL_FRAME_GENERATOR)
+                        .pattern(" C ")
+                        .pattern("DSD")
+                        .pattern("XXX")
+                        .input('X', Items.END_STONE)
+                        .input('D', Items.DIAMOND)
+                        .input('S', Items.NETHER_STAR)
+                        .input('C', Items.END_CRYSTAL)
+                        // Advancement that gives the recipe
+                        .criterion(hasItem(Items.END_STONE), conditionsFromItem(Items.END_STONE))
+                        , exporter); 
                     
                 offerTools(SuperflatProgressionItems.BONE_AXE, SuperflatProgressionItems.BONE_HOE, SuperflatProgressionItems.BONE_SHOVEL,
                     SuperflatProgressionItems.BONE_PICKAXE, SuperflatProgressionItems.BONE_SWORD, Items.BONE);

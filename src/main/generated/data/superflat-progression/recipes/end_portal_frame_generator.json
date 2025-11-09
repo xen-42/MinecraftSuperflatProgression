@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "minecraft:end_crystal"
+    },
+    "D": {
+      "item": "minecraft:diamond"
+    },
+    "S": {
+      "item": "minecraft:nether_star"
+    },
+    "X": {
+      "item": "minecraft:end_stone"
+    }
+  },
+  "pattern": [
+    " C ",
+    "DSD",
+    "XXX"
+  ],
+  "result": {
+    "item": "superflat-progression:end_portal_frame_generator"
+  },
+  "show_notification": true
+}

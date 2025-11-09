@@ -7,7 +7,11 @@
 		"PotionItemMixin",
 		"FireBlockMixin",
 		"LivingEntityMixin",
-		"MinecraftServerMixin"
+		"MinecraftServerMixin",
+		"EndermanEntityMixin",
+		"EndermanPlaceBlockGoalMixin",
+		"EndCrystalItemMixin",
+		"EndCrystalEntityMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

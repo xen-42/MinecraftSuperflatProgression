@@ -161,6 +161,7 @@ public class SuperflatProgressionItems {
             itemGroup.add(SuperflatProgressionBlocks.MAGIC_LANTERN);
             itemGroup.add(SuperflatProgressionBlocks.SCROLL_CRAFTING);
             itemGroup.add(SuperflatProgressionBlocks.GRINDER);
+            itemGroup.add(SuperflatProgressionBlocks.END_PORTAL_FRAME_GENERATOR);
 		});
 
 		FuelRegistry.INSTANCE.add(SuperflatProgressionBlocks.CHARCOAL_BLOCK, 16000);

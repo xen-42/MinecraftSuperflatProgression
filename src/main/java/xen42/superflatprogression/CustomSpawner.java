@@ -51,8 +51,6 @@ public class CustomSpawner<T extends MobEntity> implements Spawner {
                     if (playerEntity.isSpectator()) {
                         return 0;
                     } else {
-                        SuperflatProgression.LOGGER.info("erm that just happened");
-
                         int j = (24 + random.nextInt(24)) * (random.nextBoolean() ? -1 : 1);
                         int k = (24 + random.nextInt(24)) * (random.nextBoolean() ? -1 : 1);
                         BlockPos.Mutable mutable = playerEntity.getBlockPos().mutableCopy().move(j, 0, k);
