@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "X": {
+      "item": "superflat-progression:essence"
+    },
+    "Y": {
+      "item": "minecraft:amethyst_block"
+    }
+  },
+  "pattern": [
+    "XXX",
+    "XYX",
+    "XXX"
+  ],
+  "result": {
+    "item": "minecraft:budding_amethyst"
+  },
+  "show_notification": true
+}

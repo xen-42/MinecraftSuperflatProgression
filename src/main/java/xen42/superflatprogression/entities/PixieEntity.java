@@ -66,17 +66,17 @@ public class PixieEntity extends PassiveEntity implements Flutterer {
 
     @Override
 	protected SoundEvent getAmbientSound() {
-		return SoundEvents.ENTITY_ALLAY_AMBIENT_WITHOUT_ITEM;
+		return SoundEvents.BLOCK_AMETHYST_CLUSTER_HIT;
 	}
 
 	@Override
 	protected SoundEvent getHurtSound(DamageSource source) {
-		return SoundEvents.ENTITY_ALLAY_HURT;
+		return SoundEvents.BLOCK_AMETHYST_BLOCK_HIT;
 	}
 
 	@Override
 	protected SoundEvent getDeathSound() {
-		return SoundEvents.ENTITY_ALLAY_DEATH;
+		return SoundEvents.BLOCK_AMETHYST_BLOCK_HIT;
 	}
 
     @Override
