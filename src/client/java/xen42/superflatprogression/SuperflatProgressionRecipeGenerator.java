@@ -8,6 +8,9 @@ import com.mojang.datafixers.types.templates.Tag;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
+import net.fabricmc.fabric.api.resource.conditions.v1.DefaultResourceConditions;
+import net.fabricmc.fabric.api.resource.conditions.v1.ResourceConditions;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.server.recipe.CookingRecipeJsonBuilder;
 import net.minecraft.data.server.recipe.CraftingRecipeJsonBuilder;
@@ -376,6 +379,11 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
                 createGrinder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_MAGENTA, Items.MAGENTA_DYE, false).setCount(2).offerTo(exporter);
                 createGrinder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_PINK, Items.PINK_DYE, false).setCount(2).offerTo(exporter);
                 createGrinder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_PURPLE, Items.PURPLE_DYE, false).setCount(2).offerTo(exporter);
+                
+                // We don't add anything to this tag, unless peaceful progression is installed
+                createGrinder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_GRAY, Items.GRAY_DYE, false).setCount(2).offerTo(
+                    withConditions(exporter, DefaultResourceConditions.tagsPopulated(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_GRAY))
+                );
 
                 createGrinder(Items.SEA_LANTERN, Items.PRISMARINE_CRYSTALS, false).setCount(5).offerTo(exporter);
                 createGrinder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_PRISMARINE_SHARD, Items.PRISMARINE_SHARD, false).setCount(4).offerTo(exporter);
@@ -383,6 +391,13 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
                 offerSmelting(List.of(Items.GLASS_BOTTLE), RecipeCategory.MISC, Blocks.GLASS, 0f, 200, Items.GLASS_BOTTLE.getName().toString());
                 offerSmelting(List.of(Items.ROTTEN_FLESH), RecipeCategory.MISC, Items.LEATHER, 0.35f, 200, Items.ROTTEN_FLESH.getName().toString());
                 offerCampfire(List.of(Items.ROTTEN_FLESH), RecipeCategory.MISC, Items.LEATHER, 0.35f, 200, Items.ROTTEN_FLESH.getName().toString());
+                
+                // Mod support
+                new GrinderRecipeJsonBuilder(registryLookup.getWrapperOrThrow(RegistryKeys.ITEM), 
+                    Items.WHEAT, Registries.ITEM.get(Identifier.of("canadamod", "flour")), false)
+                    .criterion(hasItem(Items.WHEAT), conditionsFromItem(Items.WHEAT)).setCount(4).offerTo(
+                        withConditions(exporter, DefaultResourceConditions.allModsLoaded("canadamod"))
+                );
             }
 
             public ScrollCraftingRecipeJsonBuilder createScroll(ItemConvertible output, Item input, int cost) {

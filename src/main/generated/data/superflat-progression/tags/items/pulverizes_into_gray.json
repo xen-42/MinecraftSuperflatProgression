@@ -1,9 +1,8 @@
 {
   "replace": false,
   "values": [
-    "superflat-progression:essence",
     {
-      "id": "#peaceful-items:guano",
+      "id": "peaceful-items:breeze_coral",
       "required": false
     }
   ]

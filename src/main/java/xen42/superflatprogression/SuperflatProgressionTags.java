@@ -18,6 +18,7 @@ public class SuperflatProgressionTags {
 		public static final TagKey<Item> PULVERIZES_INTO_GREEN = ofItem("pulverizes_into_green");
 		public static final TagKey<Item> PULVERIZES_INTO_LIME = ofItem("pulverizes_into_lime");
 		public static final TagKey<Item> PULVERIZES_INTO_WHITE = ofItem("pulverizes_into_white");
+		public static final TagKey<Item> PULVERIZES_INTO_GRAY = ofItem("pulverizes_into_gray");
 		public static final TagKey<Item> PULVERIZES_INTO_LIGHT_GRAY = ofItem("pulverizes_into_light_gray");
 		public static final TagKey<Item> PULVERIZES_INTO_BLACK = ofItem("pulverizes_into_black");
 		public static final TagKey<Item> PULVERIZES_INTO_BROWN = ofItem("pulverizes_into_brown");

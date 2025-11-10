@@ -2,6 +2,10 @@
   "replace": false,
   "values": [
     "minecraft:orange_tulip",
-    "minecraft:torchflower"
+    "minecraft:torchflower",
+    {
+      "id": "#peaceful-items:blaze_coral",
+      "required": false
+    }
   ]
 }

@@ -1,0 +1,21 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:tags_populated",
+      "values": [
+        "superflat-progression:pulverizes_into_gray"
+      ]
+    }
+  ],
+  "type": "superflat-progression:grinder",
+  "count": 2,
+  "input": {
+    "item": {
+      "tag": "superflat-progression:pulverizes_into_gray"
+    }
+  },
+  "needsBucket": false,
+  "result": {
+    "item": "minecraft:gray_dye"
+  }
+}

@@ -6,6 +6,7 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider.ItemTagProv
 import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryWrapper.WrapperLookup;
 import net.minecraft.registry.tag.ItemTags;
+import net.minecraft.util.Identifier;
 
 public class SuperflatProgressionItemTagGenerator extends ItemTagProvider {
 	public SuperflatProgressionItemTagGenerator(FabricDataOutput output, CompletableFuture<WrapperLookup> registriesFuture,
@@ -57,6 +58,9 @@ public class SuperflatProgressionItemTagGenerator extends ItemTagProvider {
 		this.getOrCreateTagBuilder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_WHITE)
 			.add(Items.BONE_MEAL)
 			.add(Items.LILY_OF_THE_VALLEY);
+		
+		this.getOrCreateTagBuilder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_GRAY)
+			.addOptional(Identifier.of("peaceful-items", "breeze_coral"));
 
 		this.getOrCreateTagBuilder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_LIGHT_GRAY)
 			.add(Items.AZURE_BLUET)
@@ -78,11 +82,13 @@ public class SuperflatProgressionItemTagGenerator extends ItemTagProvider {
 
 		this.getOrCreateTagBuilder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_ORANGE)
 			.add(Items.ORANGE_TULIP)
-			.add(Items.TORCHFLOWER);
+			.add(Items.TORCHFLOWER)
+			.addOptionalTag(Identifier.of("peaceful-items", "blaze_coral"));
 
 		this.getOrCreateTagBuilder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_YELLOW)
 			.add(Items.DANDELION)
-			.add(Items.SUNFLOWER);
+			.add(Items.SUNFLOWER)
+			.addOptional(Identifier.of("peaceful-items", "sulphur"));
 
 		this.getOrCreateTagBuilder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_CYAN)
 			.add(Items.PITCHER_PLANT);
@@ -104,7 +110,8 @@ public class SuperflatProgressionItemTagGenerator extends ItemTagProvider {
 			.add(Items.PINK_PETALS);
 
 		this.getOrCreateTagBuilder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_PURPLE)
-			.add(SuperflatProgressionItems.ESSENCE);
+			.add(SuperflatProgressionItems.ESSENCE)
+			.addOptionalTag(Identifier.of("peaceful-items", "guano"));
 		
 		this.getOrCreateTagBuilder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_BONE_MEAL)
 			.add(Items.BONE)

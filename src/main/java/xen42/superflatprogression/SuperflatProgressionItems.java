@@ -5,25 +5,20 @@ import java.util.function.Function;
 
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.FireBlock;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.AxeItem;
-import net.minecraft.item.BoneMealItem;
 import net.minecraft.item.HoeItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroups;
-import net.minecraft.item.Items;
 import net.minecraft.item.PickaxeItem;
 import net.minecraft.item.ShovelItem;
 import net.minecraft.item.SwordItem;
-import net.minecraft.item.ToolMaterials;
 import net.minecraft.item.VerticallyAttachableBlockItem;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.tag.EntityTypeTags;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
@@ -79,10 +74,16 @@ public class SuperflatProgressionItems {
     public static final Item SCROLL_MAGMA_CUBE = registerScroll("scroll_magma_cube", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, EntityType.MAGMA_CUBE));
     public static final Item SCROLL_BLAZE = registerScroll("scroll_blaze", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, EntityType.BLAZE));
     public static final Item SCROLL_SPIDER = registerScroll("scroll_spider", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, EntityType.SPIDER));
+    
+	//public static final Item SCROLL_BEAVER = registerScroll("scroll_beaver", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, Registries.ENTITY_TYPE.get(Identifier.of("canadamod", "beaver"))), "canadamod");
 
 	private static final Item registerScroll(String name, Consumer<ServerPlayerEntity> onUse) {
+		return registerScroll(name, onUse, null);
+	}
+
+	private static final Item registerScroll(String name, Consumer<ServerPlayerEntity> onUse, String optionalModID) {
 		return register(name, (settings) -> new ScrollItem(settings, onUse)
-		, new Item.Settings().maxCount(1).rarity(Rarity.UNCOMMON));
+		, new Item.Settings().maxCount(1).rarity(Rarity.UNCOMMON), optionalModID);
 	}
 
 	public static final Item BONE_SWORD = register("bone_sword", (settings) ->
@@ -169,14 +170,20 @@ public class SuperflatProgressionItems {
     }
 
 	public static Item register(String name, Function<Item.Settings, Item> itemFactory, Item.Settings settings) {
-		// Create the item key.
-		RegistryKey<Item> itemKey = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(SuperflatProgression.MOD_ID, name));
+		return register(name, itemFactory, settings, null);
+	}
 
+	public static Item register(String name, Function<Item.Settings, Item> itemFactory, Item.Settings settings, String optionalModID) {
 		// Create the item instance.
 		Item item = itemFactory.apply(settings);
+		
+		if (optionalModID == null || FabricLoader.getInstance().isModLoaded(optionalModID)) {
+			// Create the item key.
+			RegistryKey<Item> itemKey = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(SuperflatProgression.MOD_ID, name));
 
-		// Register the item.
-		Registry.register(Registries.ITEM, itemKey, item);
+			// Register the item.
+			Registry.register(Registries.ITEM, itemKey, item);
+		}
 
 		return item;
 	}

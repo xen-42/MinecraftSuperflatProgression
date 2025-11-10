@@ -3,7 +3,7 @@ package xen42.superflatprogression.items;
 import java.util.ArrayList;
 import java.util.List;
 
-
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -14,10 +14,12 @@ import net.minecraft.item.BoneMealItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.registry.Registries;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
@@ -136,6 +138,9 @@ public class EnrichedBoneMealItem extends BoneMealItem {
                 else if (groundState.isOf(Blocks.GRASS_BLOCK)) {
                     possibleBlocks = new ArrayList<>(List.of(Blocks.GRASS, Blocks.GRASS, Blocks.GRASS, Blocks.TALL_GRASS, Blocks.TALL_GRASS,
                         Blocks.FERN, Blocks.OAK_SAPLING, Blocks.SUNFLOWER, Blocks.ROSE_BUSH, Blocks.LILAC, Blocks.PEONY));
+                    if (FabricLoader.getInstance().isModLoaded("peaceful-items")) {
+                        possibleBlocks.add(Registries.BLOCK.get(Identifier.of("peaceful-items", "flax_crop")));
+                    }
                 }
                 else if (groundState.isOf(Blocks.SOUL_SAND)) {
                     possibleBlocks = new ArrayList<>(List.of(Blocks.NETHER_WART));
@@ -150,7 +155,7 @@ public class EnrichedBoneMealItem extends BoneMealItem {
             else if (isWater && groundState.isOpaque()) {
                 possibleBlocks = new ArrayList<>(List.of(Blocks.SEAGRASS, Blocks.SEAGRASS, Blocks.SEAGRASS, Blocks.SEAGRASS, Blocks.SEAGRASS, Blocks.SEAGRASS,
                     Blocks.SEA_PICKLE, Blocks.FIRE_CORAL_BLOCK, Blocks.HORN_CORAL_BLOCK, Blocks.TUBE_CORAL_BLOCK, Blocks.BRAIN_CORAL_BLOCK, Blocks.BUBBLE_CORAL_BLOCK,
-                    Blocks.FIRE_CORAL_FAN, Blocks.HORN_CORAL_FAN, Blocks.TUBE_CORAL_FAN, Blocks.BRAIN_CORAL_FAN, Blocks.BUBBLE_CORAL_FAN));
+                    Blocks.FIRE_CORAL_FAN, Blocks.HORN_CORAL_FAN, Blocks.TUBE_CORAL_FAN, Blocks.BRAIN_CORAL_FAN, Blocks.BUBBLE_CORAL_FAN, Blocks.KELP));
             }
 
             if (possibleBlocks != null) {

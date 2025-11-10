@@ -1,0 +1,21 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "canadamod"
+      ]
+    }
+  ],
+  "type": "superflat-progression:grinder",
+  "count": 4,
+  "input": {
+    "item": {
+      "item": "minecraft:wheat"
+    }
+  },
+  "needsBucket": false,
+  "result": {
+    "item": "minecraft:air"
+  }
+}

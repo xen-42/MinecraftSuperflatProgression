@@ -17,6 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import com.google.common.base.Suppliers;
 import com.mojang.datafixers.DataFixer;
 
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -25,6 +26,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.decoration.EndCrystalEntity;
 import net.minecraft.entity.mob.BlazeEntity;
+import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
@@ -120,16 +122,27 @@ public class MinecraftServerMixin {
             MakeWorldSuperflat(server, listener, nether, netherConfig);
 
             // If no structures make blazes and wither skeletons just spawn
+
+
+            Field spawnersField = ServerWorld.class.getDeclaredField("spawners");
+            spawnersField.setAccessible(true);
+
+            List<Spawner> original = (List<Spawner>) spawnersField.get(nether);
+            var spawners = new ArrayList<>();
+            spawners.addAll(original);
             if (!structuresEnabled) {
-                Field spawnersField = ServerWorld.class.getDeclaredField("spawners");
-                spawnersField.setAccessible(true);
-                List<Spawner> original = (List<Spawner>) spawnersField.get(nether);
-                var spawners = new ArrayList<>();
-                spawners.addAll(original);
                 spawners.add(new CustomSpawner(EntityType.BLAZE)); 
                 spawners.add(new CustomSpawner(EntityType.WITHER_SKELETON)); 
-                spawnersField.set(nether, spawners);
             }
+
+            if (FabricLoader.getInstance().isModLoaded("peaceful-items")) {
+                if (!structuresEnabled) {
+                    spawners.add(new CustomSpawner(Registries.ENTITY_TYPE.get(Identifier.of("peaceful-items", "ghastling"))));
+                }
+                spawners.add(new CustomSpawner(Registries.ENTITY_TYPE.get(Identifier.of("peaceful-items", "end_clam"))));
+            }
+
+            spawnersField.set(nether, spawners);
 
             var endCities = server.getRegistryManager().get(RegistryKeys.STRUCTURE_SET).getEntry(StructureSetKeys.END_CITIES).get();
             var endConfig = new FlatChunkGeneratorConfig(
@@ -149,15 +162,16 @@ public class MinecraftServerMixin {
                 endConfig.getLayerBlocks().add(Blocks.END_STONE.getDefaultState());
             }
 
+            List<Spawner> endOriginal = (List<Spawner>) spawnersField.get(end);
+            var endSpawners = new ArrayList<>();
+            endSpawners.addAll(endOriginal);
             if (!structuresEnabled) {
-                Field spawnersField = ServerWorld.class.getDeclaredField("spawners");
-                spawnersField.setAccessible(true);
-                List<Spawner> original = (List<Spawner>) spawnersField.get(end);
-                var spawners = new ArrayList<>();
-                spawners.addAll(original);
-                spawners.add(new CustomSpawner(EntityType.SHULKER)); 
-                spawnersField.set(end, spawners);
+                endSpawners.add(new CustomSpawner(EntityType.SHULKER)); 
             }
+            if (FabricLoader.getInstance().isModLoaded("peaceful-items")) {
+                endSpawners.add(new CustomSpawner(Registries.ENTITY_TYPE.get(Identifier.of("peaceful-items", "end_clam"))));
+            }
+            spawnersField.set(end, endSpawners);
 
             MakeWorldSuperflat(server, listener, end, endConfig);       
         } catch (Exception e) {
