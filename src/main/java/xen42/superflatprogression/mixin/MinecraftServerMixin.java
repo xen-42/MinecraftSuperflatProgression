@@ -141,9 +141,10 @@ public class MinecraftServerMixin {
             endConfig.enableFeatures();
             
             // Spawn platform is always at 49, but End Cities only spawn above y level 64
-            for (int i = 0; i < 48; i++) {
-                endConfig.getLayerBlocks().add(Blocks.BEDROCK.getDefaultState());
+            for (int i = 0; i < 47; i++) {
+                endConfig.getLayerBlocks().add(Blocks.AIR.getDefaultState());
             }
+            endConfig.getLayerBlocks().add(Blocks.BEDROCK.getDefaultState());
             for (int i = 0; i < 63-48; i++) {
                 endConfig.getLayerBlocks().add(Blocks.END_STONE.getDefaultState());
             }
