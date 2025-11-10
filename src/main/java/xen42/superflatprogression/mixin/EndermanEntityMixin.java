@@ -22,7 +22,7 @@ public class EndermanEntityMixin {
         var enderman = (EndermanEntity) (Object) this;
         if (world.getRandom().nextFloat() < 0.05) {
             var possibleBlocks = world.getRegistryKey() == World.END ? 
-                List.of(Blocks.END_STONE, Blocks.CHORUS_FLOWER) :
+                List.of(Blocks.END_STONE) :
                 List.of(Blocks.END_STONE, Blocks.WARPED_NYLIUM, Blocks.CRIMSON_NYLIUM);
 
             enderman.setCarriedBlock(
