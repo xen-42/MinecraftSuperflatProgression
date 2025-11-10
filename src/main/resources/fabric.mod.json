@@ -39,6 +39,7 @@
 			"environment": "client"
 		}
 	],
+	"accessWidener": "superflat-progression.accesswidener",
 	"depends": {
 		"fabricloader": ">=0.17.3",
 		"minecraft": "~1.20.1",
