@@ -333,8 +333,8 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
                 createGrinder(Blocks.GRAVEL.asItem(), Blocks.SAND.asItem(), false).offerTo(exporter);
                 createGrinder(Blocks.MAGMA_BLOCK.asItem(), Items.LAVA_BUCKET, true).offerTo(exporter);
                 createGrinder(Blocks.SOUL_SOIL.asItem(), Items.SOUL_SAND, false).offerTo(exporter);
+
                 createGrinder(SuperflatProgressionTags.ItemTags.DIAMOND_GEAR, SuperflatProgressionItems.DIAMOND_SHARD, false).offerTo(exporter);
-                createGrinder(SuperflatProgressionTags.ItemTags.BONE_GEAR, Items.BONE_MEAL, false).offerTo(exporter);
 
                 // Extra recipes to flesh it out
                 createGrinder(ItemTags.WOOL, Items.STRING, false).setCount(4).offerTo(exporter); 
@@ -342,17 +342,18 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
                 createGrinder(SuperflatProgressionTags.ItemTags.ICES, Items.SNOWBALL, false).offerTo(exporter);
                 createGrinder(Items.SNOW_BLOCK, Items.POWDER_SNOW_BUCKET, true).offerTo(exporter);
 
-                createGrinder(Items.SUGAR_CANE, Items.SUGAR, false).setCount(2).offerTo(exporter); 
-                createGrinder(Items.BONE, Items.BONE_MEAL, false).setCount(4).offerTo(exporter); 
-                createGrinder(Items.FURNACE, Items.COBBLESTONE, false).setCount(8).offerTo(exporter); 
+                createGrinder(Items.SUGAR_CANE, Items.SUGAR, false).setCount(3).offerTo(exporter); 
+                createGrinder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_BONE_MEAL, Items.BONE_MEAL, false).setCount(4).offerTo(exporter); 
+                createGrinder(Items.FURNACE, Items.COBBLESTONE, false).setCount(8).offerTo(exporter);
+
                 // Can get from piglin bartering
                 createGrinder(Items.SPECTRAL_ARROW, Items.GLOWSTONE_DUST, false).setCount(2).offerTo(exporter); 
                 createGrinder(Items.FIRE_CHARGE, Items.BLAZE_POWDER, false).setCount(1).offerTo(exporter); 
 
                 createGrinder(ItemTags.DIAMOND_ORES, Items.DIAMOND, false).setCount(2).offerTo(exporter); 
-                createGrinder(ItemTags.GOLD_ORES, Items.GOLD_ORE, false).setCount(2).offerTo(exporter); 
-                createGrinder(ItemTags.IRON_ORES, Items.IRON_INGOT, false).setCount(2).offerTo(exporter); 
-                createGrinder(ItemTags.COPPER_ORES, Items.COPPER_INGOT, false).setCount(6).offerTo(exporter); 
+                createGrinder(ItemTags.GOLD_ORES, Items.RAW_GOLD, false).setCount(2).offerTo(exporter); 
+                createGrinder(ItemTags.IRON_ORES, Items.RAW_IRON, false).setCount(2).offerTo(exporter); 
+                createGrinder(ItemTags.COPPER_ORES, Items.RAW_COPPER, false).setCount(6).offerTo(exporter); 
                 createGrinder(ItemTags.COAL_ORES, Items.COAL, false).setCount(2).offerTo(exporter); 
                 createGrinder(ItemTags.EMERALD_ORES, Items.EMERALD, false).setCount(2).offerTo(exporter); 
                 createGrinder(ItemTags.LAPIS_ORES, Items.LAPIS_LAZULI, false).setCount(6).offerTo(exporter); 
@@ -360,40 +361,24 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
 
                 createGrinder(Items.GLOWSTONE, Items.GLOWSTONE_DUST, false).setCount(4).offerTo(exporter); 
 
-                createGrinder(Items.CACTUS, Items.GREEN_DYE, false).setCount(2).offerTo(exporter); 
-                createGrinder(Items.SEA_PICKLE, Items.LIME_DYE, false).setCount(2).offerTo(exporter); 
-
-                createGrinder(Items.BONE_MEAL, Items.WHITE_DYE, false).setCount(2).offerTo(exporter);
-                createGrinder(Items.LILY_OF_THE_VALLEY, Items.WHITE_DYE, false).setCount(2).offerTo(exporter);
-                createGrinder(Items.AZURE_BLUET, Items.LIGHT_GRAY_DYE, false).setCount(2).offerTo(exporter);
-                createGrinder(Items.OXEYE_DAISY, Items.LIGHT_GRAY_DYE, false).setCount(2).offerTo(exporter);
-                createGrinder(Items.WHITE_TULIP, Items.LIGHT_GRAY_DYE, false).setCount(2).offerTo(exporter);
-                createGrinder(Items.INK_SAC, Items.BLACK_DYE, false).setCount(2).offerTo(exporter);
-                createGrinder(Items.WITHER_ROSE, Items.BLACK_DYE, false).setCount(2).offerTo(exporter);
-                createGrinder(Items.COCOA_BEANS, Items.BROWN_DYE, false).setCount(2).offerTo(exporter);
-                createGrinder(Items.POPPY, Items.RED_DYE, false).setCount(2).offerTo(exporter);
-                createGrinder(Items.RED_TULIP, Items.RED_DYE, false).setCount(2).offerTo(exporter);
-                createGrinder(Items.ROSE_BUSH, Items.RED_DYE, false).setCount(2).offerTo(exporter);
-                createGrinder(Items.BEETROOT, Items.RED_DYE, false).setCount(2).offerTo(exporter);
-                createGrinder(Items.ORANGE_TULIP, Items.ORANGE_DYE, false).setCount(2).offerTo(exporter);
-                createGrinder(Items.TORCHFLOWER, Items.ORANGE_DYE, false).setCount(2).offerTo(exporter);
-                createGrinder(Items.DANDELION, Items.YELLOW_DYE, false).setCount(2).offerTo(exporter);
-                createGrinder(Items.SUNFLOWER, Items.YELLOW_DYE, false).setCount(2).offerTo(exporter);
-                createGrinder(Items.PITCHER_PLANT, Items.CYAN_DYE, false).setCount(2).offerTo(exporter);
-                createGrinder(Items.BLUE_ORCHID, Items.LIGHT_BLUE_DYE, false).setCount(2).offerTo(exporter);
-                createGrinder(Items.LAPIS_LAZULI, Items.BLUE_DYE, false).setCount(2).offerTo(exporter);
-                createGrinder(Items.CORNFLOWER, Items.BLUE_DYE, false).setCount(2).offerTo(exporter);
-                createGrinder(Items.ALLIUM, Items.MAGENTA_DYE, false).setCount(2).offerTo(exporter);
-                createGrinder(Items.LILAC, Items.MAGENTA_DYE, false).setCount(2).offerTo(exporter);
-                createGrinder(Items.PINK_TULIP, Items.PINK_DYE, false).setCount(2).offerTo(exporter);
-                createGrinder(Items.PEONY, Items.PINK_DYE, false).setCount(2).offerTo(exporter);
-                createGrinder(Items.PINK_PETALS, Items.PINK_DYE, false).setCount(2).offerTo(exporter);
-                createGrinder(SuperflatProgressionItems.ESSENCE, Items.PURPLE_DYE, false).setCount(2).offerTo(exporter);
+                createGrinder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_GREEN, Items.GREEN_DYE, false).setCount(2).offerTo(exporter);
+                createGrinder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_LIME, Items.LIME_DYE, false).setCount(2).offerTo(exporter);
+                createGrinder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_WHITE, Items.WHITE_DYE, false).setCount(2).offerTo(exporter);
+                createGrinder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_LIGHT_GRAY, Items.LIGHT_GRAY_DYE, false).setCount(2).offerTo(exporter);
+                createGrinder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_BLACK, Items.BLACK_DYE, false).setCount(2).offerTo(exporter);
+                createGrinder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_BROWN, Items.BROWN_DYE, false).setCount(2).offerTo(exporter);
+                createGrinder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_RED, Items.RED_DYE, false).setCount(2).offerTo(exporter);
+                createGrinder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_ORANGE, Items.ORANGE_DYE, false).setCount(2).offerTo(exporter);
+                createGrinder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_YELLOW, Items.YELLOW_DYE, false).setCount(2).offerTo(exporter);
+                createGrinder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_CYAN, Items.CYAN_DYE, false).setCount(2).offerTo(exporter);
+                createGrinder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_LIGHT_BLUE, Items.LIGHT_BLUE_DYE, false).setCount(2).offerTo(exporter);
+                createGrinder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_BLUE, Items.BLUE_DYE, false).setCount(2).offerTo(exporter);
+                createGrinder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_MAGENTA, Items.MAGENTA_DYE, false).setCount(2).offerTo(exporter);
+                createGrinder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_PINK, Items.PINK_DYE, false).setCount(2).offerTo(exporter);
+                createGrinder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_PURPLE, Items.PURPLE_DYE, false).setCount(2).offerTo(exporter);
 
                 createGrinder(Items.SEA_LANTERN, Items.PRISMARINE_CRYSTALS, false).setCount(5).offerTo(exporter);
-                createGrinder(Items.PRISMARINE_BRICKS, Items.PRISMARINE_SHARD, false).setCount(9).offerTo(exporter);
-                createGrinder(Items.DARK_PRISMARINE, Items.PRISMARINE_SHARD, false).setCount(8).offerTo(exporter);
-                createGrinder(Items.PRISMARINE, Items.PRISMARINE_SHARD, false).setCount(4).offerTo(exporter);
+                createGrinder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_PRISMARINE_SHARD, Items.PRISMARINE_SHARD, false).setCount(4).offerTo(exporter);
 
                 offerSmelting(List.of(Items.GLASS_BOTTLE), RecipeCategory.MISC, Blocks.GLASS, 0f, 200, Items.GLASS_BOTTLE.getName().toString());
                 offerSmelting(List.of(Items.ROTTEN_FLESH), RecipeCategory.MISC, Items.LEATHER, 0.35f, 200, Items.ROTTEN_FLESH.getName().toString());

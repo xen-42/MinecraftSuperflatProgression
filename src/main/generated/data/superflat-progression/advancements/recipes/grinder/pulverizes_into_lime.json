@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_TagKey[minecraft:item / superflat-progression:pulverizes_into_lime]": {
+      "conditions": {
+        "items": [
+          {
+            "tag": "superflat-progression:pulverizes_into_lime"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "superflat-progression:pulverizes_into_lime"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_TagKey[minecraft:item / superflat-progression:pulverizes_into_lime]"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "superflat-progression:pulverizes_into_lime"
+    ]
+  },
+  "sends_telemetry_event": false
+}

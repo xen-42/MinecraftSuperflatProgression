@@ -47,6 +47,73 @@ public class SuperflatProgressionItemTagGenerator extends ItemTagProvider {
 			.add(SuperflatProgressionItems.BONE_SHOVEL)
 			.add(SuperflatProgressionItems.BONE_HOE)
 			.add(SuperflatProgressionItems.BONE_SWORD);
+
+		this.getOrCreateTagBuilder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_GREEN)
+			.add(Items.CACTUS);
+
+		this.getOrCreateTagBuilder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_LIME)
+			.add(Items.SEA_PICKLE);
+
+		this.getOrCreateTagBuilder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_WHITE)
+			.add(Items.BONE_MEAL)
+			.add(Items.LILY_OF_THE_VALLEY);
+
+		this.getOrCreateTagBuilder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_LIGHT_GRAY)
+			.add(Items.AZURE_BLUET)
+			.add(Items.OXEYE_DAISY)
+			.add(Items.WHITE_TULIP);
+
+		this.getOrCreateTagBuilder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_BLACK)
+			.add(Items.INK_SAC)
+			.add(Items.WITHER_ROSE);
+
+		this.getOrCreateTagBuilder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_BROWN)
+			.add(Items.COCOA_BEANS);
+
+		this.getOrCreateTagBuilder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_RED)
+			.add(Items.POPPY)
+			.add(Items.RED_TULIP)
+			.add(Items.ROSE_BUSH)
+			.add(Items.BEETROOT);
+
+		this.getOrCreateTagBuilder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_ORANGE)
+			.add(Items.ORANGE_TULIP)
+			.add(Items.TORCHFLOWER);
+
+		this.getOrCreateTagBuilder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_YELLOW)
+			.add(Items.DANDELION)
+			.add(Items.SUNFLOWER);
+
+		this.getOrCreateTagBuilder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_CYAN)
+			.add(Items.PITCHER_PLANT);
+
+		this.getOrCreateTagBuilder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_LIGHT_BLUE)
+			.add(Items.BLUE_ORCHID);
+
+		this.getOrCreateTagBuilder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_BLUE)
+			.add(Items.LAPIS_LAZULI)
+			.add(Items.CORNFLOWER);
+
+		this.getOrCreateTagBuilder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_MAGENTA)
+			.add(Items.ALLIUM)
+			.add(Items.LILAC);
+
+		this.getOrCreateTagBuilder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_PINK)
+			.add(Items.PINK_TULIP)
+			.add(Items.PEONY)
+			.add(Items.PINK_PETALS);
+
+		this.getOrCreateTagBuilder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_PURPLE)
+			.add(SuperflatProgressionItems.ESSENCE);
+		
+		this.getOrCreateTagBuilder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_BONE_MEAL)
+			.add(Items.BONE)
+			.addTag(SuperflatProgressionTags.ItemTags.BONE_GEAR);
+
+		this.getOrCreateTagBuilder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_PRISMARINE_SHARD)
+			.add(Items.PRISMARINE_BRICKS)
+			.add(Items.DARK_PRISMARINE)
+			.add(Items.PRISMARINE);
 		
 		this.getOrCreateTagBuilder(ItemTags.PICKAXES).add(SuperflatProgressionItems.BONE_PICKAXE);
 		this.getOrCreateTagBuilder(ItemTags.AXES).add(SuperflatProgressionItems.BONE_AXE);

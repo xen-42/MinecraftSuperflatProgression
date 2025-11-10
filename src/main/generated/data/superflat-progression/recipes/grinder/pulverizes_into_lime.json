@@ -3,11 +3,11 @@
   "count": 2,
   "input": {
     "item": {
-      "tag": "minecraft:gold_ores"
+      "tag": "superflat-progression:pulverizes_into_lime"
     }
   },
   "needsBucket": false,
   "result": {
-    "item": "minecraft:raw_gold"
+    "item": "minecraft:lime_dye"
   }
 }

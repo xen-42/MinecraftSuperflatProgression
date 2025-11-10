@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:bone",
+    "#superflat-progression:bone_gear"
+  ]
+}

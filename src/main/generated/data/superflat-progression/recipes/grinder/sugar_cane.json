@@ -1,6 +1,6 @@
 {
   "type": "superflat-progression:grinder",
-  "count": 2,
+  "count": 3,
   "input": {
     "item": {
       "item": "minecraft:sugar_cane"

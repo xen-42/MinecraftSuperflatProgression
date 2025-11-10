@@ -3,11 +3,11 @@
   "count": 2,
   "input": {
     "item": {
-      "tag": "minecraft:gold_ores"
+      "tag": "superflat-progression:pulverizes_into_yellow"
     }
   },
   "needsBucket": false,
   "result": {
-    "item": "minecraft:raw_gold"
+    "item": "minecraft:yellow_dye"
   }
 }

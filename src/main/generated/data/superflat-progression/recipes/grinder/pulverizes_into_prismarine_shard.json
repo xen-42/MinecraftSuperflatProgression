@@ -1,13 +1,13 @@
 {
   "type": "superflat-progression:grinder",
-  "count": 2,
+  "count": 4,
   "input": {
     "item": {
-      "tag": "minecraft:gold_ores"
+      "tag": "superflat-progression:pulverizes_into_prismarine_shard"
     }
   },
   "needsBucket": false,
   "result": {
-    "item": "minecraft:raw_gold"
+    "item": "minecraft:prismarine_shard"
   }
 }
