@@ -24,7 +24,9 @@ import net.minecraft.world.poi.PointOfInterestTypes;
 public class MobSpawnerHelper {
 	public static void spawnWanderingTrader(ServerPlayerEntity playerEntity) {
 		for (int i = 0; i < 10; i++) {
-			trySpawnWanderingTrader(playerEntity);
+			if (trySpawnWanderingTrader(playerEntity)) {
+				return;
+			}
 		}
 	}
 
