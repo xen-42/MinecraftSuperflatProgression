@@ -106,6 +106,8 @@ public class MinecraftServerMixin {
             // Only superflat the Nether if the Overworld is superflat
             if (!(overworld.getChunkManager().getChunkGenerator() instanceof FlatChunkGenerator)) return;
 
+            var structuresEnabled = server.getSaveProperties().getGeneratorOptions().shouldGenerateStructures();;
+
             var netherConfig = new FlatChunkGeneratorConfig(
                 Optional.empty(),
                 server.getRegistryManager().get(RegistryKeys.BIOME).getEntry(BiomeKeys.NETHER_WASTES).get(),
@@ -117,35 +119,26 @@ public class MinecraftServerMixin {
             netherConfig.getLayerBlocks().add(Blocks.NETHERRACK.getDefaultState());
             MakeWorldSuperflat(server, listener, nether, netherConfig);
 
-            Field spawnersField = ServerWorld.class.getDeclaredField("spawners");
-            spawnersField.setAccessible(true);
-            List<Spawner> original = (List<Spawner>) spawnersField.get(nether);
-            var spawners = new ArrayList<>();
-            spawners.addAll(original);
-            spawners.add(new CustomSpawner(EntityType.BLAZE)); 
-            spawners.add(new CustomSpawner(EntityType.WITHER_SKELETON)); 
-            spawnersField.set(nether, spawners);
+            // If no structures make blazes and wither skeletons just spawn
+            if (!structuresEnabled) {
+                Field spawnersField = ServerWorld.class.getDeclaredField("spawners");
+                spawnersField.setAccessible(true);
+                List<Spawner> original = (List<Spawner>) spawnersField.get(nether);
+                var spawners = new ArrayList<>();
+                spawners.addAll(original);
+                spawners.add(new CustomSpawner(EntityType.BLAZE)); 
+                spawners.add(new CustomSpawner(EntityType.WITHER_SKELETON)); 
+                spawnersField.set(nether, spawners);
+            }
 
-            // Unfortunately this didn't work and end cities never spawn
             var endCities = server.getRegistryManager().get(RegistryKeys.STRUCTURE_SET).getEntry(StructureSetKeys.END_CITIES).get();
-
-
-
             var endConfig = new FlatChunkGeneratorConfig(
-                Optional.of(RegistryEntryList.of(endCities)),
+                structuresEnabled ? Optional.of(RegistryEntryList.of(endCities)) : Optional.empty(),
                 server.getRegistryManager().get(RegistryKeys.BIOME).getEntry(BiomeKeys.END_HIGHLANDS).get(),
-                List.of(getPlacedFeature(server, "chorus_plant"), getPlacedFeature(server, "end_spike"), getPlacedFeature(server, "end_island_decorated"))
+                List.of(getPlacedFeature(server, "chorus_plant"))
             );
             endConfig.enableFeatures();
             
-
-            /* 
-            var endConfig = new FlatChunkGeneratorConfig(
-                Optional.empty(),
-                server.getRegistryManager().get(RegistryKeys.BIOME).getEntry(BiomeKeys.END_HIGHLANDS).get(),
-                List.of()
-            );
-            */
             // Spawn platform is always at 49, but End Cities only spawn above y level 64
             for (int i = 0; i < 48; i++) {
                 endConfig.getLayerBlocks().add(Blocks.BEDROCK.getDefaultState());
@@ -153,17 +146,7 @@ public class MinecraftServerMixin {
             for (int i = 0; i < 63-48; i++) {
                 endConfig.getLayerBlocks().add(Blocks.END_STONE.getDefaultState());
             }
-            var gen = MakeWorldSuperflat(server, listener, end, endConfig);       
-
-            for (int i = -5; i <= 5; i++) {
-                for (int j = -5; j <= 5; j++) {
-                    end.getChunk(i, j, ChunkStatus.FULL, true);
-                }
-            }
-
-            getPlacedFeature(server, "iceberg_blue").value().generate(end, gen, end.getRandom(), new BlockPos(0, 64, 0));
-            getPlacedFeature(server, "end_spike").value().generate(end, gen, end.getRandom(), new BlockPos(104, 64, 0));
-            SuperflatProgression.LOGGER.info("Okay did it do it");
+            MakeWorldSuperflat(server, listener, end, endConfig);       
         } catch (Exception e) {
             SuperflatProgression.LOGGER.error("Failed to make worlds superflat", e);
         }
