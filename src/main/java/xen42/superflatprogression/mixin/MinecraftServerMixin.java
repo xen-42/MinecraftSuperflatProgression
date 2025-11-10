@@ -1,12 +1,9 @@
 package xen42.superflatprogression.mixin;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.Executor;
-import java.util.function.Function;
 import java.util.function.Supplier;
 
 import org.spongepowered.asm.mixin.Mixin;
@@ -14,77 +11,29 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import com.google.common.base.Suppliers;
 import com.mojang.datafixers.DataFixer;
 
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.PaneBlock;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.decoration.EndCrystalEntity;
-import net.minecraft.entity.mob.BlazeEntity;
 import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.entry.RegistryEntryList;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.WorldGenerationProgressListener;
 import net.minecraft.server.world.ServerChunkManager;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.server.world.ThreadedAnvilChunkStorage;
-import net.minecraft.structure.StructureSet;
 import net.minecraft.structure.StructureSetKeys;
-import net.minecraft.structure.StructureSets;
 import net.minecraft.structure.StructureTemplateManager;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ChunkPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.ChunkRegion;
-import net.minecraft.world.HeightLimitView;
-import net.minecraft.world.Heightmap;
 import net.minecraft.world.PersistentStateManager;
-import net.minecraft.world.SpawnDensityCapper;
-import net.minecraft.world.SpawnHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeKeys;
-import net.minecraft.world.biome.source.BiomeSource;
-import net.minecraft.world.chunk.Chunk;
-import net.minecraft.world.chunk.ChunkStatus;
 import net.minecraft.world.chunk.ChunkStatusChangeListener;
-import net.minecraft.world.chunk.WorldChunk;
-import net.minecraft.world.dimension.DimensionOptions;
-import net.minecraft.world.dimension.DimensionType;
-import net.minecraft.world.dimension.DimensionTypes;
-import net.minecraft.world.gen.HeightContext;
-import net.minecraft.world.gen.StructureAccessor;
-import net.minecraft.world.gen.StructureWeightSampler;
-import net.minecraft.world.gen.WorldPreset;
-import net.minecraft.world.gen.chunk.AquiferSampler;
-import net.minecraft.world.gen.chunk.Blender;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
-import net.minecraft.world.gen.chunk.ChunkGeneratorSettings;
-import net.minecraft.world.gen.chunk.ChunkNoiseSampler;
 import net.minecraft.world.gen.chunk.FlatChunkGenerator;
 import net.minecraft.world.gen.chunk.FlatChunkGeneratorConfig;
-import net.minecraft.world.gen.chunk.GenerationShapeConfig;
-import net.minecraft.world.gen.chunk.NoiseChunkGenerator;
-import net.minecraft.world.gen.feature.EndPortalFeature;
-import net.minecraft.world.gen.feature.EndSpikeFeature;
-import net.minecraft.world.gen.feature.EndSpikeFeature.Spike;
-import net.minecraft.world.gen.feature.PlacedFeature;
-import net.minecraft.world.gen.feature.PlacedFeatures;
-import net.minecraft.world.gen.noise.NoiseConfig;
-import net.minecraft.world.gen.structure.StructureKeys;
 import net.minecraft.world.level.storage.LevelStorage;
-import net.minecraft.world.spawner.PatrolSpawner;
-import net.minecraft.world.spawner.PhantomSpawner;
 import net.minecraft.world.spawner.Spawner;
 import xen42.superflatprogression.CustomSpawner;
 import xen42.superflatprogression.SuperflatProgression;
@@ -122,13 +71,8 @@ public class MinecraftServerMixin {
             MakeWorldSuperflat(server, listener, nether, netherConfig);
 
             // If no structures make blazes and wither skeletons just spawn
-
-
-            Field spawnersField = ServerWorld.class.getDeclaredField("spawners");
-            spawnersField.setAccessible(true);
-
-            List<Spawner> original = (List<Spawner>) spawnersField.get(nether);
-            var spawners = new ArrayList<>();
+            List<Spawner> original = nether.spawners;
+            var spawners = new ArrayList<Spawner>();
             spawners.addAll(original);
             if (!structuresEnabled) {
                 spawners.add(new CustomSpawner(EntityType.BLAZE)); 
@@ -142,7 +86,7 @@ public class MinecraftServerMixin {
                 spawners.add(new CustomSpawner(Registries.ENTITY_TYPE.get(Identifier.of("peaceful-items", "end_clam"))));
             }
 
-            spawnersField.set(nether, spawners);
+            nether.spawners = spawners;
 
             var endCities = server.getRegistryManager().get(RegistryKeys.STRUCTURE_SET).getEntry(StructureSetKeys.END_CITIES).get();
             var endConfig = new FlatChunkGeneratorConfig(
@@ -162,16 +106,15 @@ public class MinecraftServerMixin {
                 endConfig.getLayerBlocks().add(Blocks.END_STONE.getDefaultState());
             }
 
-            List<Spawner> endOriginal = (List<Spawner>) spawnersField.get(end);
-            var endSpawners = new ArrayList<>();
-            endSpawners.addAll(endOriginal);
+            var endSpawners = new ArrayList<Spawner>();
+            endSpawners.addAll(end.spawners);
             if (!structuresEnabled) {
                 endSpawners.add(new CustomSpawner(EntityType.SHULKER)); 
             }
             if (FabricLoader.getInstance().isModLoaded("peaceful-items")) {
                 endSpawners.add(new CustomSpawner(Registries.ENTITY_TYPE.get(Identifier.of("peaceful-items", "end_clam"))));
             }
-            spawnersField.set(end, endSpawners);
+            end.spawners = spawners;
 
             MakeWorldSuperflat(server, listener, end, endConfig);       
         } catch (Exception e) {
@@ -179,50 +122,22 @@ public class MinecraftServerMixin {
         }
     }
 
-    private RegistryEntry<PlacedFeature> getPlacedFeature(MinecraftServer server, String name) {
-        var key = RegistryKey.of(RegistryKeys.PLACED_FEATURE, Identifier.of("minecraft", name));
-        var value = server.getRegistryManager().get(RegistryKeys.PLACED_FEATURE).entryOf(key);
-        return value;
-    };
-
     private ChunkGenerator MakeWorldSuperflat(MinecraftServer server, WorldGenerationProgressListener listener, ServerWorld dimension, FlatChunkGeneratorConfig config) {
         try { 
-            // Everything ever is private
-            Field executorField = MinecraftServer.class.getDeclaredField("workerExecutor");
-            executorField.setAccessible(true);
-            Executor workerExecutor = (Executor) executorField.get(server);
-
-            Field sessionField = MinecraftServer.class.getDeclaredField("session");
-            sessionField.setAccessible(true);
-            LevelStorage.Session session = (LevelStorage.Session) sessionField.get(server);
-
-            Field dataFixerField = MinecraftServer.class.getDeclaredField("dataFixer");
-            dataFixerField.setAccessible(true);
-            DataFixer dataFixer = (DataFixer) dataFixerField.get(server);
-
-            Field structureTemplateField = MinecraftServer.class.getDeclaredField("structureTemplateManager");
-            structureTemplateField.setAccessible(true);
-            StructureTemplateManager structureTemplateManager = (StructureTemplateManager) structureTemplateField.get(server);
-
+            Executor workerExecutor = server.workerExecutor;
+            LevelStorage.Session session = server.session;
+            DataFixer dataFixer = server.dataFixer;
+            StructureTemplateManager structureTemplateManager = server.structureTemplateManager;
             ServerChunkManager oldChunkManager = dimension.getChunkManager();
-
-            Field chunkStatusChangeListenerField = ThreadedAnvilChunkStorage.class.getDeclaredField("chunkStatusChangeListener");
-            chunkStatusChangeListenerField.setAccessible(true);
-            ChunkStatusChangeListener chunkStatusChangeListener = (ChunkStatusChangeListener) chunkStatusChangeListenerField.get(oldChunkManager.threadedAnvilChunkStorage);
-
-            var oldGenerator = (NoiseChunkGenerator)oldChunkManager.getChunkGenerator();
+            ChunkStatusChangeListener chunkStatusChangeListener = oldChunkManager.threadedAnvilChunkStorage.chunkStatusChangeListener;
 
             ChunkGenerator flatWorldGen = dimension.getRegistryKey() == World.END ? 
                 new FlatEndChunkGenerator(config) :
                 new FlatChunkGenerator(config);
 
-            // Replace chunk manager to change how it generates
-            Field chunkManagerField = ServerWorld.class.getDeclaredField("chunkManager");
-            chunkManagerField.setAccessible(true);
-
             Supplier<PersistentStateManager> persistentStateFactory = () -> dimension.getPersistentStateManager();
 
-            var newChunkManager = new ServerChunkManager(
+            dimension.chunkManager = new ServerChunkManager(
                 dimension, 
                 session, 
                 dataFixer, 
@@ -235,8 +150,6 @@ public class MinecraftServerMixin {
                 listener, 
                 chunkStatusChangeListener, 
                 persistentStateFactory);
-
-            chunkManagerField.set(dimension, newChunkManager);
 
             return flatWorldGen;
         } catch (Exception e) {

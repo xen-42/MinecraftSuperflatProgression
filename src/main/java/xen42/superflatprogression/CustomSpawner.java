@@ -21,12 +21,12 @@ import net.minecraft.world.spawner.Spawner;
 import net.minecraft.world.Heightmap;
 
 
-public class CustomSpawner<T extends MobEntity> implements Spawner {
+public class CustomSpawner implements Spawner {
 	private int cooldown;
 
-    private EntityType<T> type;
+    private EntityType<?> type;
 
-    public CustomSpawner(EntityType<T> type) {
+    public CustomSpawner(EntityType<?> type) {
         this.type = type;
     }
 
@@ -98,7 +98,7 @@ public class CustomSpawner<T extends MobEntity> implements Spawner {
 		if (!SpawnHelper.isClearForSpawn(world, pos, blockState, blockState.getFluidState(), type)) {
 			return false;
 		} else {
-			T entity = type.create(world);
+			var entity = (MobEntity)type.create(world);
 			if (entity != null) {
 				entity.setPosition(pos.getX(), pos.getY(), pos.getZ());
 				entity.initialize(world, world.getLocalDifficulty(pos), SpawnReason.NATURAL, null, null);

@@ -139,7 +139,9 @@ public class EnrichedBoneMealItem extends BoneMealItem {
                     possibleBlocks = new ArrayList<>(List.of(Blocks.GRASS, Blocks.GRASS, Blocks.GRASS, Blocks.TALL_GRASS, Blocks.TALL_GRASS,
                         Blocks.FERN, Blocks.OAK_SAPLING, Blocks.SUNFLOWER, Blocks.ROSE_BUSH, Blocks.LILAC, Blocks.PEONY));
                     if (FabricLoader.getInstance().isModLoaded("peaceful-items")) {
-                        possibleBlocks.add(Registries.BLOCK.get(Identifier.of("peaceful-items", "flax_crop")));
+                        var flax = Registries.BLOCK.get(Identifier.of("peaceful-items", "flax_crop"));
+                        possibleBlocks.add(flax);
+                        possibleBlocks.add(flax);
                     }
                 }
                 else if (groundState.isOf(Blocks.SOUL_SAND)) {
