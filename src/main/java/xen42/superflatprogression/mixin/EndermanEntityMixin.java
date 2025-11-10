@@ -11,7 +11,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.mob.EndermanEntity;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.world.World;
 import xen42.superflatprogression.SuperflatProgression;
@@ -22,7 +21,9 @@ public class EndermanEntityMixin {
     private void onEndermanSpawned(EntityType<? extends EndermanEntity> entityType, World world, CallbackInfo info) {
         var enderman = (EndermanEntity) (Object) this;
         if (world.getRandom().nextFloat() < 0.05) {
-            var possibleBlocks = List.of(Blocks.END_STONE, Blocks.WARPED_NYLIUM, Blocks.CRIMSON_NYLIUM);
+            var possibleBlocks = world.getRegistryKey() == World.END ? 
+                List.of(Blocks.END_STONE, Blocks.CHORUS_FLOWER) :
+                List.of(Blocks.END_STONE, Blocks.WARPED_NYLIUM, Blocks.CRIMSON_NYLIUM);
 
             enderman.setCarriedBlock(
                     possibleBlocks.get(world.getRandom().nextInt(possibleBlocks.size() - 1)).getDefaultState());

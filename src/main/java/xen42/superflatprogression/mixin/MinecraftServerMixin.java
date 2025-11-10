@@ -135,7 +135,8 @@ public class MinecraftServerMixin {
             var endConfig = new FlatChunkGeneratorConfig(
                 structuresEnabled ? Optional.of(RegistryEntryList.of(endCities)) : Optional.empty(),
                 server.getRegistryManager().get(RegistryKeys.BIOME).getEntry(BiomeKeys.END_HIGHLANDS).get(),
-                List.of(getPlacedFeature(server, "chorus_plant"))
+                List.of()
+                //List.of(getPlacedFeature(server, "chorus_plant"))
             );
             endConfig.enableFeatures();
             
@@ -146,6 +147,17 @@ public class MinecraftServerMixin {
             for (int i = 0; i < 63-48; i++) {
                 endConfig.getLayerBlocks().add(Blocks.END_STONE.getDefaultState());
             }
+
+            if (!structuresEnabled) {
+                Field spawnersField = ServerWorld.class.getDeclaredField("spawners");
+                spawnersField.setAccessible(true);
+                List<Spawner> original = (List<Spawner>) spawnersField.get(end);
+                var spawners = new ArrayList<>();
+                spawners.addAll(original);
+                spawners.add(new CustomSpawner(EntityType.SHULKER)); 
+                spawnersField.set(end, spawners);
+            }
+
             MakeWorldSuperflat(server, listener, end, endConfig);       
         } catch (Exception e) {
             SuperflatProgression.LOGGER.error("Failed to make worlds superflat", e);

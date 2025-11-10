@@ -62,23 +62,7 @@ public class FlatEndChunkGenerator extends FlatChunkGenerator {
                     }
                 }
             }
-        }
-
-        /*
-        var r = 12;
-        if ((x == 0 || x == -1) && (z == 0 || z == -1)) {
-            for (int i = 0; i < r; i++) {
-                for (int j = 0; j < r; j++) {
-                    for (int y = 40; y < 62; y++) {
-                        var dx = x == 0 ? i : 15-i;
-                        var dz = z == 0 ? j : 15-j;
-                        chunk.setBlockState(new BlockPos(dx, y, dz), Blocks.BEDROCK.getDefaultState(), false);
-                    }
-                }
-            }
-        }
-            */
-        
+        }        
 
         for (var spike : EndSpikeFeature.getSpikes(region)) {
             if (spike.isInChunk(chunk.getPos().getBlockPos(0, 0, 0))) {
