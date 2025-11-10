@@ -364,24 +364,24 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
 
                 createGrinder(Items.GLOWSTONE, Items.GLOWSTONE_DUST, false).setCount(4).offerTo(exporter); 
 
-                createGrinder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_GREEN, Items.GREEN_DYE, false).setCount(2).offerTo(exporter);
-                createGrinder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_LIME, Items.LIME_DYE, false).setCount(2).offerTo(exporter);
-                createGrinder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_WHITE, Items.WHITE_DYE, false).setCount(2).offerTo(exporter);
-                createGrinder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_LIGHT_GRAY, Items.LIGHT_GRAY_DYE, false).setCount(2).offerTo(exporter);
-                createGrinder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_BLACK, Items.BLACK_DYE, false).setCount(2).offerTo(exporter);
-                createGrinder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_BROWN, Items.BROWN_DYE, false).setCount(2).offerTo(exporter);
-                createGrinder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_RED, Items.RED_DYE, false).setCount(2).offerTo(exporter);
-                createGrinder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_ORANGE, Items.ORANGE_DYE, false).setCount(2).offerTo(exporter);
-                createGrinder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_YELLOW, Items.YELLOW_DYE, false).setCount(2).offerTo(exporter);
-                createGrinder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_CYAN, Items.CYAN_DYE, false).setCount(2).offerTo(exporter);
-                createGrinder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_LIGHT_BLUE, Items.LIGHT_BLUE_DYE, false).setCount(2).offerTo(exporter);
-                createGrinder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_BLUE, Items.BLUE_DYE, false).setCount(2).offerTo(exporter);
-                createGrinder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_MAGENTA, Items.MAGENTA_DYE, false).setCount(2).offerTo(exporter);
-                createGrinder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_PINK, Items.PINK_DYE, false).setCount(2).offerTo(exporter);
-                createGrinder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_PURPLE, Items.PURPLE_DYE, false).setCount(2).offerTo(exporter);
+                createGrinder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_GREEN, Items.GREEN_DYE, false).setCount(3).offerTo(exporter);
+                createGrinder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_LIME, Items.LIME_DYE, false).setCount(3).offerTo(exporter);
+                createGrinder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_WHITE, Items.WHITE_DYE, false).setCount(3).offerTo(exporter);
+                createGrinder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_LIGHT_GRAY, Items.LIGHT_GRAY_DYE, false).setCount(3).offerTo(exporter);
+                createGrinder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_BLACK, Items.BLACK_DYE, false).setCount(3).offerTo(exporter);
+                createGrinder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_BROWN, Items.BROWN_DYE, false).setCount(3).offerTo(exporter);
+                createGrinder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_RED, Items.RED_DYE, false).setCount(3).offerTo(exporter);
+                createGrinder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_ORANGE, Items.ORANGE_DYE, false).setCount(3).offerTo(exporter);
+                createGrinder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_YELLOW, Items.YELLOW_DYE, false).setCount(3).offerTo(exporter);
+                createGrinder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_CYAN, Items.CYAN_DYE, false).setCount(3).offerTo(exporter);
+                createGrinder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_LIGHT_BLUE, Items.LIGHT_BLUE_DYE, false).setCount(3).offerTo(exporter);
+                createGrinder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_BLUE, Items.BLUE_DYE, false).setCount(3).offerTo(exporter);
+                createGrinder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_MAGENTA, Items.MAGENTA_DYE, false).setCount(3).offerTo(exporter);
+                createGrinder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_PINK, Items.PINK_DYE, false).setCount(3).offerTo(exporter);
+                createGrinder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_PURPLE, Items.PURPLE_DYE, false).setCount(3).offerTo(exporter);
                 
                 // We don't add anything to this tag, unless peaceful progression is installed
-                createGrinder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_GRAY, Items.GRAY_DYE, false).setCount(2).offerTo(
+                createGrinder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_GRAY, Items.GRAY_DYE, false).setCount(3).offerTo(
                     withConditions(exporter, DefaultResourceConditions.tagsPopulated(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_GRAY))
                 );
 
