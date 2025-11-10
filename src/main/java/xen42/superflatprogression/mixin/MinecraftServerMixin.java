@@ -1,10 +1,12 @@
 package xen42.superflatprogression.mixin;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.Executor;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 import org.spongepowered.asm.mixin.Mixin;
@@ -12,11 +14,16 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import com.google.common.base.Suppliers;
 import com.mojang.datafixers.DataFixer;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.PaneBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.decoration.EndCrystalEntity;
 import net.minecraft.entity.mob.BlazeEntity;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
@@ -35,7 +42,10 @@ import net.minecraft.structure.StructureTemplateManager;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.random.Random;
+import net.minecraft.world.ChunkRegion;
+import net.minecraft.world.HeightLimitView;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.PersistentStateManager;
 import net.minecraft.world.SpawnDensityCapper;
@@ -43,16 +53,32 @@ import net.minecraft.world.SpawnHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeKeys;
 import net.minecraft.world.biome.source.BiomeSource;
+import net.minecraft.world.chunk.Chunk;
+import net.minecraft.world.chunk.ChunkStatus;
 import net.minecraft.world.chunk.ChunkStatusChangeListener;
 import net.minecraft.world.chunk.WorldChunk;
 import net.minecraft.world.dimension.DimensionOptions;
+import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.dimension.DimensionTypes;
+import net.minecraft.world.gen.HeightContext;
+import net.minecraft.world.gen.StructureAccessor;
+import net.minecraft.world.gen.StructureWeightSampler;
 import net.minecraft.world.gen.WorldPreset;
+import net.minecraft.world.gen.chunk.AquiferSampler;
+import net.minecraft.world.gen.chunk.Blender;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.chunk.ChunkGeneratorSettings;
+import net.minecraft.world.gen.chunk.ChunkNoiseSampler;
 import net.minecraft.world.gen.chunk.FlatChunkGenerator;
 import net.minecraft.world.gen.chunk.FlatChunkGeneratorConfig;
+import net.minecraft.world.gen.chunk.GenerationShapeConfig;
 import net.minecraft.world.gen.chunk.NoiseChunkGenerator;
+import net.minecraft.world.gen.feature.EndPortalFeature;
+import net.minecraft.world.gen.feature.EndSpikeFeature;
+import net.minecraft.world.gen.feature.EndSpikeFeature.Spike;
+import net.minecraft.world.gen.feature.PlacedFeature;
+import net.minecraft.world.gen.feature.PlacedFeatures;
+import net.minecraft.world.gen.noise.NoiseConfig;
 import net.minecraft.world.gen.structure.StructureKeys;
 import net.minecraft.world.level.storage.LevelStorage;
 import net.minecraft.world.spawner.PatrolSpawner;
@@ -60,6 +86,7 @@ import net.minecraft.world.spawner.PhantomSpawner;
 import net.minecraft.world.spawner.Spawner;
 import xen42.superflatprogression.CustomSpawner;
 import xen42.superflatprogression.SuperflatProgression;
+import xen42.superflatprogression.worldgen.FlatEndChunkGenerator;
 
 @Mixin(MinecraftServer.class)
 
@@ -99,14 +126,18 @@ public class MinecraftServerMixin {
             spawners.add(new CustomSpawner(EntityType.WITHER_SKELETON)); 
             spawnersField.set(nether, spawners);
 
-            /* Unfortunately this didn't work and end cities never spawn
+            // Unfortunately this didn't work and end cities never spawn
             var endCities = server.getRegistryManager().get(RegistryKeys.STRUCTURE_SET).getEntry(StructureSetKeys.END_CITIES).get();
+
+
+
             var endConfig = new FlatChunkGeneratorConfig(
                 Optional.of(RegistryEntryList.of(endCities)),
                 server.getRegistryManager().get(RegistryKeys.BIOME).getEntry(BiomeKeys.END_HIGHLANDS).get(),
-                List.of()
+                List.of(getPlacedFeature(server, "chorus_plant"), getPlacedFeature(server, "end_spike"), getPlacedFeature(server, "end_island_decorated"))
             );
-            */
+            endConfig.enableFeatures();
+            
 
             /* 
             var endConfig = new FlatChunkGeneratorConfig(
@@ -114,19 +145,37 @@ public class MinecraftServerMixin {
                 server.getRegistryManager().get(RegistryKeys.BIOME).getEntry(BiomeKeys.END_HIGHLANDS).get(),
                 List.of()
             );
-            endConfig.getLayerBlocks().add(Blocks.BEDROCK.getDefaultState());
-            endConfig.getLayerBlocks().add(Blocks.END_STONE.getDefaultState());
-            endConfig.getLayerBlocks().add(Blocks.END_STONE.getDefaultState());
-            endConfig.getLayerBlocks().add(Blocks.END_STONE.getDefaultState());
-            MakeWorldSuperflat(server, listener, end, endConfig);
             */
+            // Spawn platform is always at 49, but End Cities only spawn above y level 64
+            for (int i = 0; i < 48; i++) {
+                endConfig.getLayerBlocks().add(Blocks.BEDROCK.getDefaultState());
+            }
+            for (int i = 0; i < 63-48; i++) {
+                endConfig.getLayerBlocks().add(Blocks.END_STONE.getDefaultState());
+            }
+            var gen = MakeWorldSuperflat(server, listener, end, endConfig);       
 
+            for (int i = -5; i <= 5; i++) {
+                for (int j = -5; j <= 5; j++) {
+                    end.getChunk(i, j, ChunkStatus.FULL, true);
+                }
+            }
+
+            getPlacedFeature(server, "iceberg_blue").value().generate(end, gen, end.getRandom(), new BlockPos(0, 64, 0));
+            getPlacedFeature(server, "end_spike").value().generate(end, gen, end.getRandom(), new BlockPos(104, 64, 0));
+            SuperflatProgression.LOGGER.info("Okay did it do it");
         } catch (Exception e) {
-            e.printStackTrace();
+            SuperflatProgression.LOGGER.error("Failed to make worlds superflat", e);
         }
     }
 
-    private void MakeWorldSuperflat(MinecraftServer server, WorldGenerationProgressListener listener, ServerWorld dimension, FlatChunkGeneratorConfig config) {
+    private RegistryEntry<PlacedFeature> getPlacedFeature(MinecraftServer server, String name) {
+        var key = RegistryKey.of(RegistryKeys.PLACED_FEATURE, Identifier.of("minecraft", name));
+        var value = server.getRegistryManager().get(RegistryKeys.PLACED_FEATURE).entryOf(key);
+        return value;
+    };
+
+    private ChunkGenerator MakeWorldSuperflat(MinecraftServer server, WorldGenerationProgressListener listener, ServerWorld dimension, FlatChunkGeneratorConfig config) {
         try { 
             // Everything ever is private
             Field executorField = MinecraftServer.class.getDeclaredField("workerExecutor");
@@ -151,7 +200,11 @@ public class MinecraftServerMixin {
             chunkStatusChangeListenerField.setAccessible(true);
             ChunkStatusChangeListener chunkStatusChangeListener = (ChunkStatusChangeListener) chunkStatusChangeListenerField.get(oldChunkManager.threadedAnvilChunkStorage);
 
-            ChunkGenerator flatNetherGen = new FlatChunkGenerator(config);
+            var oldGenerator = (NoiseChunkGenerator)oldChunkManager.getChunkGenerator();
+
+            ChunkGenerator flatWorldGen = dimension.getRegistryKey() == World.END ? 
+                new FlatEndChunkGenerator(config, oldGenerator.getSettings().value(), server, dimension) :
+                new FlatChunkGenerator(config);
 
             // Replace chunk manager to change how it generates
             Field chunkManagerField = ServerWorld.class.getDeclaredField("chunkManager");
@@ -165,7 +218,7 @@ public class MinecraftServerMixin {
                 dataFixer, 
                 structureTemplateManager, 
                 workerExecutor, 
-                flatNetherGen, 
+                flatWorldGen, 
                 12, 
                 12, 
                 false, 
@@ -174,8 +227,11 @@ public class MinecraftServerMixin {
                 persistentStateFactory);
 
             chunkManagerField.set(dimension, newChunkManager);
+
+            return flatWorldGen;
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return null;
     }
 }

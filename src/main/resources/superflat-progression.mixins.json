@@ -3,6 +3,7 @@
 	"package": "xen42.superflatprogression.mixin",
 	"compatibilityLevel": "JAVA_17",
 	"mixins": [
+		"EnderDragonFightMixin",
 		"EntityMixin",
 		"PotionItemMixin",
 		"FireBlockMixin",
