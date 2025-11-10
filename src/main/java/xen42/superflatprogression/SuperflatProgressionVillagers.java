@@ -12,7 +12,7 @@ import net.minecraft.village.TradeOffer;
 
 public class SuperflatProgressionVillagers {
     public static void initialize() {
-		TradeOfferHelper.registerWanderingTraderOffers(0, factories -> {
+		TradeOfferHelper.registerWanderingTraderOffers(1, factories -> {
 			factories.add((entity, random) -> new TradeOffer(
 				new ItemStack(Items.EMERALD, 10),
 				new ItemStack(Items.SNIFFER_EGG, 1), 12, 20, 0.05f));
