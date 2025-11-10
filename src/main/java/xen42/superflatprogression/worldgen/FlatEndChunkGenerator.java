@@ -3,8 +3,11 @@ package xen42.superflatprogression.worldgen;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.PaneBlock;
+import net.minecraft.block.pattern.BlockPatternBuilder;
+import net.minecraft.block.pattern.CachedBlockPosition;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.decoration.EndCrystalEntity;
+import net.minecraft.predicate.block.BlockPredicate;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
@@ -27,94 +30,79 @@ import xen42.superflatprogression.SuperflatProgression;
 
 public class FlatEndChunkGenerator extends FlatChunkGenerator {
 
-    private MinecraftServer server;
-    private ChunkGeneratorSettings settings;
-    private FlatChunkGeneratorConfig config;
+	public FlatEndChunkGenerator(FlatChunkGeneratorConfig config) {
+		super(config);
+	}
 
-    public FlatEndChunkGenerator(FlatChunkGeneratorConfig config, ChunkGeneratorSettings settings, MinecraftServer server, ServerWorld world) {
-        super(config);
-        this.config = config;
-        this.server = server;
-        this.settings = settings;
-    }
+	@Override
+	public void buildSurface(ChunkRegion region, StructureAccessor structures, NoiseConfig noiseConfig, Chunk chunk) {
+		for (var spike : EndSpikeFeature.getSpikes(region)) {
+			if (checkChunkOverlap(spike, chunk)) {
+				createSpire(spike, region, chunk);
+			}
+		}
+	}
 
-    @Override
-    public void buildSurface(ChunkRegion region, StructureAccessor structures, NoiseConfig noiseConfig, Chunk chunk) {
-        var cx = chunk.getPos().x;
-        var cz = chunk.getPos().z;
-        if (cx == 0 && cz == 0) {
-            for (int y = 40; y < 67; y++) {
-                for (int x = -1; x <= 1; x++) {
-                    for (int z = -1; z <= 1; z++) {
-                        chunk.setBlockState(new BlockPos(3 + x, y, 3 + z), Blocks.BEDROCK.getDefaultState(), false);
-                    }
-                }
-            }
-            var start = 0;
-            var end = 7;
-            for (int x = start; x < end; x++) {
-                for (int z = start; z < end; z++) {
-                    if (x == start && z == start || x == end && z == start || x == 0 && z == end || x == 6 && z == end) {
-                        //continue;
-                    }
-                    for (int y = 40; y < 66; y++) {
-                        chunk.setBlockState(new BlockPos(x, y, z), Blocks.BEDROCK.getDefaultState(), false);
-                    }
-                }
-            }
-        }        
+	private boolean checkChunkOverlap(Spike spike, Chunk chunk) {
+		return chunk.getPos().getBlockPos(0, 0, 0).isWithinDistance(new BlockPos(spike.getCenterX(), 0, spike.getCenterZ()), 32);
+	}
 
-        for (var spike : EndSpikeFeature.getSpikes(region)) {
-            if (spike.isInChunk(chunk.getPos().getBlockPos(0, 0, 0))) {
-                createSpire(spike, region, chunk);
-            }
-        }
-    }
+	private void createSpire(Spike spike, ChunkRegion region, Chunk chunk) {
+		var r = spike.getRadius();
+		for(int y = 50; y < spike.getHeight(); y++) {
+			for (int x = -r; x <= r; x++) {
+				for (int z = -r; z <= r; z++) {
+					if (x * x + z * z <= r * r + 1) {
+						var dx = spike.getCenterX() + x - (chunk.getPos().x * 16);
+						var dz = spike.getCenterZ() + z - (chunk.getPos().z * 16);
 
-    private void createSpire(Spike spike, ChunkRegion region, Chunk chunk) {
-        SuperflatProgression.LOGGER.info("What are the spike positions (x) : " + spike.getCenterX());
+						if (dx >= 0 && dx < 16 && dz >= 0 && dz < 16) {
+							chunk.setBlockState(new BlockPos(dx, y, dz), Blocks.OBSIDIAN.getDefaultState(), false);
+						}
+					}
+				}
+			}
+		}
 
-        var r = spike.getRadius();
-        for(int y = 50; y < spike.getHeight(); y++) {
-            for (int x = -r; x <= r; x++) {
-                for (int z = -r; z <= r; z++) {
-                    if (x * x + z * z <= r * r + 1) {
-                        chunk.setBlockState(new BlockPos(8 + x, y, 8 + z), Blocks.OBSIDIAN.getDefaultState(), false);
-                    }
-                }
-            }
-        }
+		if (spike.isGuarded()) {
+			for(int x = -2; x <= 2; ++x) {
+				for(int z = -2; z <= 2; ++z) {
+					for(int y = 0; y <= 3; ++y) {
+						boolean xAxisWall = MathHelper.abs(x) == 2;
+						boolean zAxisWall = MathHelper.abs(z) == 2;
+						boolean ceiling = y == 3;
+						if (xAxisWall || zAxisWall || ceiling) {
 
-        if (spike.isGuarded()) {
-            for(int dx = -2; dx <= 2; ++dx) {
-                for(int dz = -2; dz <= 2; ++dz) {
-                    for(int dy = 0; dy <= 3; ++dy) {
-                        boolean xAxisWall = MathHelper.abs(dx) == 2;
-                        boolean zAxisWall = MathHelper.abs(dz) == 2;
-                        boolean ceiling = dy == 3;
-                        if (xAxisWall || zAxisWall || ceiling) {
-                            boolean bl4 = dx == -2 || dx == 2 || ceiling;
-                            boolean bl5 = dz == -2 || dz == 2 || ceiling;
-                            var blockState = Blocks.IRON_BARS.getDefaultState()
-                                .with(PaneBlock.NORTH, bl4 && dz != -2)
-                                .with(PaneBlock.SOUTH, bl4 && dz != 2)
-                                .with(PaneBlock.WEST, bl5 && dx != -2)
-                                .with(PaneBlock.EAST, bl5 && dx != 2);
-                            chunk.setBlockState(new BlockPos(8 + dx, spike.getHeight() + dy, 8 + dz), blockState, false);
-                        }
-                    }
-                }
-            }
-        }
+							var dx = spike.getCenterX() + x - (chunk.getPos().x * 16);
+							var dz = spike.getCenterZ() + z - (chunk.getPos().z * 16);
 
-        EndCrystalEntity endCrystalEntity = EntityType.END_CRYSTAL.create(region.toServerWorld());
-        if (endCrystalEntity != null) {
-            var chunkCenter = chunk.getPos().getBlockPos(8, spike.getHeight(), 8);
+							if (dx >= 0 && dx < 16 && dz >= 0 && dz < 16) {
+								boolean bl4 = x == -2 || x == 2 || ceiling;
+								boolean bl5 = z == -2 || z == 2 || ceiling;
+								var blockState = Blocks.IRON_BARS.getDefaultState()
+									.with(PaneBlock.NORTH, bl4 && z != -2)
+									.with(PaneBlock.SOUTH, bl4 && z != 2)
+									.with(PaneBlock.WEST, bl5 && x != -2)
+									.with(PaneBlock.EAST, bl5 && x != 2);
+								chunk.setBlockState(new BlockPos(dx, spike.getHeight() + y, dz), blockState, false);
+							}
+						}
+					}
+				}
+			}
+		}
 
-            endCrystalEntity.refreshPositionAndAngles(chunkCenter.getX() + 0.5, spike.getHeight() + 1, chunkCenter.getZ() + 0.5, 
-                region.getRandom().nextFloat() * 360.0F, 0.0F);
-            region.toServerWorld().spawnEntity(endCrystalEntity);
-            chunk.setBlockState(new BlockPos(8, spike.getHeight(), 8), Blocks.BEDROCK.getDefaultState(), false);
-        }
-    }
+		EndCrystalEntity endCrystalEntity = EntityType.END_CRYSTAL.create(region.toServerWorld());
+		if (endCrystalEntity != null) {
+			if (spike.isInChunk(chunk.getPos().getBlockPos(0, 0, 0))) {
+				endCrystalEntity.refreshPositionAndAngles(spike.getCenterX() + 0.5, spike.getHeight() + 1, spike.getCenterZ() + 0.5, 
+					region.getRandom().nextFloat() * 360.0F, 0.0F);
+				region.toServerWorld().spawnEntity(endCrystalEntity);
+
+				var dx = spike.getCenterX() - (chunk.getPos().x * 16);
+				var dz = spike.getCenterZ() - (chunk.getPos().z * 16);
+				chunk.setBlockState(new BlockPos(dx, spike.getHeight(), dz), Blocks.BEDROCK.getDefaultState(), false);
+			}
+		}
+	}
 }
