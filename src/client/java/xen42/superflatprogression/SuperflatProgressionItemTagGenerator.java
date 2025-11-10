@@ -83,7 +83,7 @@ public class SuperflatProgressionItemTagGenerator extends ItemTagProvider {
 		this.getOrCreateTagBuilder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_ORANGE)
 			.add(Items.ORANGE_TULIP)
 			.add(Items.TORCHFLOWER)
-			.addOptionalTag(Identifier.of("peaceful-items", "blaze_coral"));
+			.addOptional(Identifier.of("peaceful-items", "blaze_coral"));
 
 		this.getOrCreateTagBuilder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_YELLOW)
 			.add(Items.DANDELION)
@@ -111,7 +111,7 @@ public class SuperflatProgressionItemTagGenerator extends ItemTagProvider {
 
 		this.getOrCreateTagBuilder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_PURPLE)
 			.add(SuperflatProgressionItems.ESSENCE)
-			.addOptionalTag(Identifier.of("peaceful-items", "guano"));
+			.addOptional(Identifier.of("peaceful-items", "guano"));
 		
 		this.getOrCreateTagBuilder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_BONE_MEAL)
 			.add(Items.BONE)

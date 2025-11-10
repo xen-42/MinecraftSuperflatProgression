@@ -111,10 +111,7 @@ public class MinecraftServerMixin {
             if (!structuresEnabled) {
                 endSpawners.add(new CustomSpawner(EntityType.SHULKER)); 
             }
-            if (FabricLoader.getInstance().isModLoaded("peaceful-items")) {
-                endSpawners.add(new CustomSpawner(Registries.ENTITY_TYPE.get(Identifier.of("peaceful-items", "end_clam"))));
-            }
-            end.spawners = spawners;
+            end.spawners = endSpawners;
 
             MakeWorldSuperflat(server, listener, end, endConfig);       
         } catch (Exception e) {
