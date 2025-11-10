@@ -199,7 +199,7 @@ public class MinecraftServerMixin {
             var oldGenerator = (NoiseChunkGenerator)oldChunkManager.getChunkGenerator();
 
             ChunkGenerator flatWorldGen = dimension.getRegistryKey() == World.END ? 
-                new FlatEndChunkGenerator(config, oldGenerator.getSettings().value(), server, dimension) :
+                new FlatEndChunkGenerator(config) :
                 new FlatChunkGenerator(config);
 
             // Replace chunk manager to change how it generates
