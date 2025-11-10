@@ -49,6 +49,10 @@ public class ScriptoriumREIDisplay extends BasicDisplay implements SimpleGridMen
             EntryIngredients.of(SuperflatProgressionItems.ESSENCE)), List.of(EntryIngredients.of(recipe.result)), recipe.cost);
 	}
 
+    public List<EntryIngredient> getInputs() {
+        return this.inputs;
+    }
+
     @Override
     public CategoryIdentifier<?> getCategoryIdentifier() {
         return SuperflatProgressionREIServerPlugin.SCRIPTORIUM_CATEGORY;
