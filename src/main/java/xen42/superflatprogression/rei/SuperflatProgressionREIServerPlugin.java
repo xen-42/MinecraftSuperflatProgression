@@ -1,0 +1,27 @@
+package xen42.superflatprogression.rei;
+
+import net.minecraft.util.Identifier;
+import xen42.superflatprogression.SuperflatProgression;
+import me.shedaniel.rei.api.common.category.CategoryIdentifier;
+import me.shedaniel.rei.api.common.display.DisplaySerializerRegistry;
+import me.shedaniel.rei.api.common.plugins.REIServerPlugin;
+
+public class SuperflatProgressionREIServerPlugin implements REIServerPlugin {
+	public static final Identifier SCRIPTORIUM = Identifier.of(SuperflatProgression.MOD_ID, "plugins/scriptorium");
+	public static final CategoryIdentifier<ScriptoriumREIDisplay> SCRIPTORIUM_CATEGORY = CategoryIdentifier.of(SuperflatProgression.MOD_ID, "plugins/scriptorium");
+
+    public static final Identifier PULVERIZER = Identifier.of(SuperflatProgression.MOD_ID, "plugins/pulverizer");
+	public static final CategoryIdentifier<PulverizerREIDisplay> PULVERIZER_CATEGORY = CategoryIdentifier.of(SuperflatProgression.MOD_ID, "plugins/pulverizer");
+
+	public SuperflatProgressionREIServerPlugin() {
+		SuperflatProgression.LOGGER.info("Creating REI server plugin");
+	}
+	
+	@Override
+	public void registerDisplaySerializer(DisplaySerializerRegistry registry) {
+		SuperflatProgression.LOGGER.info("Registering display serializers");
+
+		registry.register(SCRIPTORIUM_CATEGORY, ScriptoriumREIDisplay.SERIALIZER);
+		registry.register(PULVERIZER_CATEGORY, PulverizerREIDisplay.SERIALIZER);
+	}
+}

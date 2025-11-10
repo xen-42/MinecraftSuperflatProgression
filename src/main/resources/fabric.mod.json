@@ -3,15 +3,16 @@
 	"id": "superflat-progression",
 	"version": "${version}",
 	"name": "Superflat Progression",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "Makes blocks/items/dimensions available in superflat structureless by adding new mobs, crafting, and behaviours",
 	"authors": [
-		"Me!"
+		"xen-42"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "https://github.com/xen-42/MinecraftSuperflatProgression/releases",
+		"sources": "https://github.com/xen-42/MinecraftSuperflatProgression",
+		"issues": "https://github.com/xen-42/MinecraftSuperflatProgression/issues"
 	},
-	"license": "CC0-1.0",
+	"license": "MIT",
 	"icon": "assets/superflat-progression/icon.png",
 	"environment": "*",
 	"entrypoints": {
@@ -23,6 +24,12 @@
 		],
 		"fabric-datagen": [
 			"xen42.superflatprogression.SuperflatProgressionDataGenerator"
+		],
+		"rei_client": [
+			"xen42.superflatprogression.rei.SuperflatProgressionREIClientPlugin"
+		],
+		"rei_common": [
+			"xen42.superflatprogression.rei.SuperflatProgressionREIServerPlugin"
 		]
 	},
 	"mixins": [
@@ -39,6 +46,6 @@
 		"fabric-api": "*"
 	},
 	"suggests": {
-		"another-mod": "*"
+		"roughlyenoughitems": ">=12.1.785"
 	}
 }
