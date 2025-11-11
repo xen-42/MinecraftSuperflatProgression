@@ -3,7 +3,7 @@
   "values": [
     "superflat-progression:essence",
     {
-      "id": "#peaceful-items:guano",
+      "id": "peaceful-items:guano",
       "required": false
     }
   ]

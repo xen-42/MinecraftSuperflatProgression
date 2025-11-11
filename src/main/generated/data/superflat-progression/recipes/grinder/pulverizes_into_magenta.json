@@ -1,6 +1,6 @@
 {
   "type": "superflat-progression:grinder",
-  "count": 2,
+  "count": 3,
   "input": {
     "item": {
       "tag": "superflat-progression:pulverizes_into_magenta"

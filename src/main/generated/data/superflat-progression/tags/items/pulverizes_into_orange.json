@@ -4,7 +4,7 @@
     "minecraft:orange_tulip",
     "minecraft:torchflower",
     {
-      "id": "#peaceful-items:blaze_coral",
+      "id": "peaceful-items:blaze_coral",
       "required": false
     }
   ]
