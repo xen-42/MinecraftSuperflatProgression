@@ -12,7 +12,14 @@ import net.minecraft.util.Identifier;
 
 public class SuperflatProgressionPotions {
     public static final RegistryEntry<Potion> MAGIC_TORCH = register("magic_torch", 
-        new Potion("magic_torch", new StatusEffectInstance[] { new StatusEffectInstance(SuperflatProgressionStatusEffects.MAGIC_TORCH_EFFECT.value(), 600) }));
+        new Potion("magic_torch", new StatusEffectInstance[] { 
+            new StatusEffectInstance(SuperflatProgressionStatusEffects.MAGIC_TORCH_EFFECT.value(), 600) 
+        }));
+    public static final RegistryEntry<Potion> WARP = register("warp", 
+        new Potion("warp", new StatusEffectInstance[] { 
+            new StatusEffectInstance(SuperflatProgressionStatusEffects.WARP_EFFECT.value(), 200) 
+        }));
+
 
     private static RegistryEntry<Potion> register(String name, Potion potion) {
         return (RegistryEntry<Potion>)Registry.registerReference(Registries.POTION, Identifier.of(SuperflatProgression.MOD_ID, name), potion);
@@ -20,8 +27,12 @@ public class SuperflatProgressionPotions {
 
     public static void initialize() {
     	BrewingRecipeRegistry.registerPotionRecipe(
-                Potions.AWKWARD,
-                SuperflatProgressionItems.ESSENCE,
-                MAGIC_TORCH.value());
+            Potions.AWKWARD,
+            SuperflatProgressionItems.ESSENCE,
+            MAGIC_TORCH.value());
+        BrewingRecipeRegistry.registerPotionRecipe(
+            Potions.AWKWARD, 
+            SuperflatProgressionItems.END_DUST, 
+            WARP.value());
     }
 }

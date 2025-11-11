@@ -1,0 +1,13 @@
+{
+  "type": "superflat-progression:grinder",
+  "count": 3,
+  "input": {
+    "item": {
+      "item": "minecraft:ender_pearl"
+    }
+  },
+  "needsBucket": false,
+  "result": {
+    "item": "superflat-progression:end_dust"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "minecraft:sandstone"
+    },
+    "D": {
+      "item": "superflat-progression:end_dust"
+    }
+  },
+  "pattern": [
+    "DDD",
+    "DCD",
+    "DDD"
+  ],
+  "result": {
+    "item": "minecraft:end_stone"
+  },
+  "show_notification": true
+}

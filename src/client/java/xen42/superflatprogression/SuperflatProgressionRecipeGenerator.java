@@ -303,6 +303,16 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
                         .criterion(hasItem(Items.END_STONE), conditionsFromItem(Items.END_STONE))
                         , exporter); 
 
+                    offerTo(createShaped(RecipeCategory.MISC, Blocks.END_STONE)
+                        .pattern("DDD")
+                        .pattern("DCD")
+                        .pattern("DDD")
+                        .input('C', Items.SANDSTONE)
+                        .input('D', SuperflatProgressionItems.END_DUST)
+                        // Advancement that gives the recipe
+                        .criterion(hasItem(SuperflatProgressionItems.END_DUST), conditionsFromItem(SuperflatProgressionItems.END_DUST))
+                        , exporter); 
+
                 offerTo(createShapeless(RecipeCategory.MISC, Items.PURPLE_DYE).input(SuperflatProgressionItems.ESSENCE)
                     .criterion(hasItem(SuperflatProgressionItems.ESSENCE), conditionsFromItem(SuperflatProgressionItems.ESSENCE)),
                     exporter);
@@ -336,6 +346,8 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
                 createGrinder(Blocks.GRAVEL.asItem(), Blocks.SAND.asItem(), false).offerTo(exporter);
                 createGrinder(Blocks.MAGMA_BLOCK.asItem(), Items.LAVA_BUCKET, true).offerTo(exporter);
                 createGrinder(Blocks.SOUL_SOIL.asItem(), Items.SOUL_SAND, false).offerTo(exporter);
+
+                createGrinder(Items.ENDER_PEARL, SuperflatProgressionItems.END_DUST, false).setCount(3).offerTo(exporter);
 
                 createGrinder(SuperflatProgressionTags.ItemTags.DIAMOND_GEAR, SuperflatProgressionItems.DIAMOND_SHARD, false).offerTo(exporter);
 
