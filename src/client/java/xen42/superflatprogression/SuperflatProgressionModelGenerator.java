@@ -89,6 +89,7 @@ public class SuperflatProgressionModelGenerator extends FabricModelProvider {
         itemModelGenerator.register(SuperflatProgressionItems.FIRE_STARTER, Models.GENERATED);
         itemModelGenerator.register(SuperflatProgressionItems.ESSENCE, Models.GENERATED);
         itemModelGenerator.register(SuperflatProgressionItems.END_DUST, Models.GENERATED);
+        itemModelGenerator.register(SuperflatProgressionItems.ENDER_STAR, Models.GENERATED);
         itemModelGenerator.register(SuperflatProgressionItems.PARCHMENT, Models.GENERATED);
         itemModelGenerator.register(SuperflatProgressionItems.DIAMOND_SHARD, Models.GENERATED);
         itemModelGenerator.register(SuperflatProgressionItems.PIXIE_SPAWN_EGG, Models.GENERATED);

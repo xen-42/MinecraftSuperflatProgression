@@ -303,15 +303,25 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
                         .criterion(hasItem(Items.END_STONE), conditionsFromItem(Items.END_STONE))
                         , exporter); 
 
-                    offerTo(createShaped(RecipeCategory.MISC, Blocks.END_STONE)
-                        .pattern("DDD")
-                        .pattern("DCD")
-                        .pattern("DDD")
-                        .input('C', Items.SANDSTONE)
-                        .input('D', SuperflatProgressionItems.END_DUST)
-                        // Advancement that gives the recipe
-                        .criterion(hasItem(SuperflatProgressionItems.END_DUST), conditionsFromItem(SuperflatProgressionItems.END_DUST))
-                        , exporter); 
+                offerTo(createShaped(RecipeCategory.MISC, Blocks.END_STONE)
+                    .pattern("DDD")
+                    .pattern("DCD")
+                    .pattern("DDD")
+                    .input('C', Items.SANDSTONE)
+                    .input('D', SuperflatProgressionItems.END_DUST)
+                    // Advancement that gives the recipe
+                    .criterion(hasItem(SuperflatProgressionItems.END_DUST), conditionsFromItem(SuperflatProgressionItems.END_DUST))
+                    , exporter); 
+
+                offerTo(createShaped(RecipeCategory.MISC, Items.ELYTRA)
+                    .pattern("MSM")
+                    .pattern("MEM")
+                    .input('M', Items.PHANTOM_MEMBRANE)
+                    .input('S', Items.STRING)
+                    .input('E', SuperflatProgressionItems.ENDER_STAR)
+                    // Advancement that gives the recipe
+                    .criterion(hasItem(SuperflatProgressionItems.ENDER_STAR), conditionsFromItem(SuperflatProgressionItems.ENDER_STAR))
+                    , exporter); 
 
                 offerTo(createShapeless(RecipeCategory.MISC, Items.PURPLE_DYE).input(SuperflatProgressionItems.ESSENCE)
                     .criterion(hasItem(SuperflatProgressionItems.ESSENCE), conditionsFromItem(SuperflatProgressionItems.ESSENCE)),

@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "E": {
+      "item": "superflat-progression:ender_star"
+    },
+    "M": {
+      "item": "minecraft:phantom_membrane"
+    },
+    "S": {
+      "item": "minecraft:string"
+    }
+  },
+  "pattern": [
+    "MSM",
+    "MEM"
+  ],
+  "result": {
+    "item": "minecraft:elytra"
+  },
+  "show_notification": true
+}

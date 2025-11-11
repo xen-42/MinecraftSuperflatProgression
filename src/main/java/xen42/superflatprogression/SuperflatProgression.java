@@ -136,7 +136,7 @@ public class SuperflatProgression implements ModInitializer {
 					).build()
 				);
 			}
-			if (LootTables.FISHING_FISH_GAMEPLAY.equals(id)) {
+			else if (LootTables.FISHING_FISH_GAMEPLAY.equals(id)) {
 				tableBuilder.modifyPools(pool -> {
 					pool.with(ItemEntry.builder(Items.BAMBOO).weight(10));
 				});

@@ -11,6 +11,8 @@ import net.minecraft.item.AxeItem;
 import net.minecraft.item.HoeItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroups;
+import net.minecraft.item.Items;
+import net.minecraft.item.NetherStarItem;
 import net.minecraft.item.PickaxeItem;
 import net.minecraft.item.ShovelItem;
 import net.minecraft.item.SwordItem;
@@ -32,6 +34,7 @@ import xen42.superflatprogression.items.ScrollItem;
 public class SuperflatProgressionItems {
     public static final Item ESSENCE = register("essence", Item::new, new Item.Settings());
     public static final Item END_DUST = register("end_dust", Item::new, new Item.Settings());
+    public static final Item ENDER_STAR = register("ender_star", NetherStarItem::new, new Item.Settings().rarity(Rarity.UNCOMMON));
     public static final Item DIAMOND_SHARD = register("diamond_shard", Item::new, new Item.Settings());
     public static final Item PARCHMENT = register("parchment", Item::new, new Item.Settings());
 	public static final Item ENRICHED_BONEMEAL = register("enriched_bonemeal", EnrichedBoneMealItem::new, new Item.Settings());
@@ -112,6 +115,7 @@ public class SuperflatProgressionItems {
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register((itemGroup) -> {
             itemGroup.add(ESSENCE);
             itemGroup.add(END_DUST);
+            itemGroup.add(ENDER_STAR);
             itemGroup.add(PARCHMENT);
             itemGroup.add(DIAMOND_SHARD);
         }); 
