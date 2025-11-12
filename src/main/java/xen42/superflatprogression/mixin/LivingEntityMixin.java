@@ -9,15 +9,18 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.mob.PiglinBruteEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.loot.LootTable;
 import net.minecraft.loot.context.LootContextParameterSet;
 import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.loot.context.LootContextTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.Vec3d;
 import xen42.superflatprogression.SuperflatProgressionStatusEffects;
 
 @Mixin(LivingEntity.class)
@@ -68,4 +71,24 @@ public class LivingEntityMixin {
             info.cancel();
         }
 	}
+
+    @Inject(at = @At("HEAD"), method = "onDeath")
+    private void onDeath(DamageSource damageSource, CallbackInfo info) {
+        // 1 in 20 chance of piglin brute dropping netherite smithing upgrade if structureless
+        var entity = (LivingEntity)(Object) this;
+        if (entity instanceof PiglinBruteEntity) {
+            if (!entity.getWorld().isClient) {
+                var world = (ServerWorld)entity.getWorld();
+                if (world.getRandom().nextFloat() < 1f/20f) {
+                    var server = world.getServer();
+                    var generateStructures = server.getSaveProperties().getGeneratorOptions().shouldGenerateStructures();
+
+                    if (!generateStructures) {
+                        var item = entity.dropItem(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE);
+                        item.setPosition(new Vec3d(entity.getX(), entity.getY(), entity.getZ()));
+                    }
+                }
+            }
+        }
+    }
 }

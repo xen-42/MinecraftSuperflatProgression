@@ -38,6 +38,7 @@ import net.minecraft.world.spawner.Spawner;
 import xen42.superflatprogression.CustomSpawner;
 import xen42.superflatprogression.SuperflatProgression;
 import xen42.superflatprogression.worldgen.FlatEndChunkGenerator;
+import xen42.superflatprogression.worldgen.FlatNetherChunkGenerator;
 
 @Mixin(MinecraftServer.class)
 
@@ -57,7 +58,7 @@ public class MinecraftServerMixin {
             // Only superflat the Nether if the Overworld is superflat
             if (!(overworld.getChunkManager().getChunkGenerator() instanceof FlatChunkGenerator)) return;
 
-            var structuresEnabled = server.getSaveProperties().getGeneratorOptions().shouldGenerateStructures();;
+            var structuresEnabled = server.getSaveProperties().getGeneratorOptions().shouldGenerateStructures();
 
             var netherConfig = new FlatChunkGeneratorConfig(
                 Optional.empty(),
@@ -75,8 +76,9 @@ public class MinecraftServerMixin {
             var spawners = new ArrayList<Spawner>();
             spawners.addAll(original);
             if (!structuresEnabled) {
-                spawners.add(new CustomSpawner(EntityType.BLAZE)); 
-                spawners.add(new CustomSpawner(EntityType.WITHER_SKELETON)); 
+                spawners.add(new CustomSpawner(EntityType.BLAZE).requiresDark()); 
+                spawners.add(new CustomSpawner(EntityType.WITHER_SKELETON).requiresDark()); 
+                spawners.add(new CustomSpawner(EntityType.PIGLIN_BRUTE).requiresDark().setMaxCount(3)); 
             }
 
             if (FabricLoader.getInstance().isModLoaded("peaceful-items")) {
@@ -128,9 +130,13 @@ public class MinecraftServerMixin {
             ServerChunkManager oldChunkManager = dimension.getChunkManager();
             ChunkStatusChangeListener chunkStatusChangeListener = oldChunkManager.threadedAnvilChunkStorage.chunkStatusChangeListener;
 
-            ChunkGenerator flatWorldGen = dimension.getRegistryKey() == World.END ? 
-                new FlatEndChunkGenerator(config) :
-                new FlatChunkGenerator(config);
+            ChunkGenerator flatWorldGen = new FlatChunkGenerator(config);
+            if (dimension.getRegistryKey() == World.END) {
+                flatWorldGen = new FlatEndChunkGenerator(config);
+            }
+            else if (dimension.getRegistryKey() == World.NETHER) {
+                flatWorldGen = new FlatNetherChunkGenerator(config);
+            }
 
             Supplier<PersistentStateManager> persistentStateFactory = () -> dimension.getPersistentStateManager();
 

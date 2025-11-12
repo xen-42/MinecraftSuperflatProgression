@@ -25,9 +25,21 @@ public class CustomSpawner implements Spawner {
 	private int cooldown;
 
     private EntityType<?> type;
+    private boolean requireDark;
+    private int maxCount = 5;
 
     public CustomSpawner(EntityType<?> type) {
         this.type = type;
+    }
+
+    public CustomSpawner requiresDark() {
+        this.requireDark = true;
+        return this;
+    }
+
+    public CustomSpawner setMaxCount(int maxCount) {
+        this.maxCount = maxCount;
+        return this;
     }
 
 	@Override
@@ -55,7 +67,7 @@ public class CustomSpawner implements Spawner {
                         int k = (24 + random.nextInt(24)) * (random.nextBoolean() ? -1 : 1);
                         BlockPos.Mutable mutable = playerEntity.getBlockPos().mutableCopy().move(j, 0, k);
 
-                        if (world.getLightLevel(mutable) > 11) {
+                        if (world.getLightLevel(mutable) > 11 && requireDark) {
                             return 0;
                         }
 
@@ -66,7 +78,7 @@ public class CustomSpawner implements Spawner {
                         );
                         var mobCount = world.getEntitiesByClass(MobEntity.class, box, e -> e.getType() == this.type).size();
 
-                        if (mobCount > 5) return 0;
+                        if (mobCount > maxCount) return 0;
 
                         int m = 10;
                         if (!world.isRegionLoaded(mutable.getX() - 10, mutable.getZ() - 10, mutable.getX() + 10, mutable.getZ() + 10)) {
