@@ -19,6 +19,7 @@ A new crafting station which breaks items down into their constitient parts. For
 - Ore blocks can be converted into a higher amount of ores (wait that's useless in Superflat).
 - Dye ingredients can be converted at a higher yield
 - Cobblestone can be turned to gravel, and gravel to sand. Magma blocks can be converted to lava, sould soil to sould sand.
+- Ender Pearls can be turned into End Dust, used to craft End Stone (required for End Portal Frame Generator) or a spatial instablity potion (teleports the target randomly for its duration).
 - Other recipes: Wool into string, ice into snowballs, snow blocks into powdered snow, furnace back into cobblestone.
 
 ### Quality of life improvements
@@ -34,30 +35,35 @@ A new crafting station which breaks items down into their constitient parts. For
 - Dirt can be crafted into slabs, which grow grass appropriately. More materials for blocking slimes from spawning!
 - Fishing can now give you bamboo even outside jungle biomes.
 - Soul soil can be crafted using mud and pixie dust, and converted to soul sand using a grinder.
-- Endermen will rarely spawn in holding end stone or nylium, kill them to take it for yourself!
+- Endermen will rarely spawn in holding end stone or nylium.
+- Craftable Elytra recipe that uses an Ender Star dropped by defeating the Ender Dragon.
 
 ### Other Dimensions
 - **The Nether is now Superflat when the Superflat world preset is chosen**
-- In the Superflat Neather, Blazes and Wither Skeletons spawn outside of the Nether Fortress
-- An End portal can be created using an End Portal Frame Generator block, crafted with diamonds, obsidian, End stone, and a Nether star. Activate it by placing an End Crystal on top and destroying it, if there is adequate space nearby.
+- Ancient debris still spawns underground in the superflat Nether.
+- If structures are disabled then Blazes, Wither Skeletons, and Piglin Brutes will spawn outside of their respective structures. Piglin Brutes will have a 1 in 20 chance of dropping Netherite upgrade templates.
+- An End portal can be created using an End Portal Frame Generator block, crafted with diamonds, obsidian, End stone, and a Eye of Ender. Activate it by placing an End Crystal on top and destroying it, if there is adequate space nearby.
+
+### Mod compatibility
+If played with my Peaceful Progression mod the pulverizer will work for some dye recipes, enriched bone meal will produce flax seeds, and both ghastlings and end clams will spawn in the Nether without structures. That said, you will not be able to progress without hostile mobs spawning.
 
 ## How to progress
 Many elements of the original Superflat progression are maintained, just with ways of speeding certain tedious parts up. New progression is meant to continue in the spirit of original Superflat without removing the unique nature of it.
 
 1. First, you want enriched bonemeal. Kill skeletons and pixies the first night to craft this, and use it to get plants and, most importantly, oak saplings.
 2. With access to wood you can now get charcoal (see QoL), allowing you to craft a magic torch from pixie dust to increase rare mob drops.
-3. Convert rotten flesh to leather for armor, and use wood and bones to create better tools.
-4. Craft a Scriptorium using parchment leather and wood. If you have no pigs be sure to summon some now and start breeding them up with carrots, they will be important later!
+3. Convert rotten flesh to leather on a campfire for armor, and use wood and bones to create better tools.
+4. Craft a Scriptorium using parchment (leather) and wood. If you have no pigs be sure to summon some now and start breeding them up with carrots, they will be important later!
 5. Create a mob spawner and spawn-proof slime chunks. Keep a magic torch nearby!
 6. Kill zombies to collect iron for a cauldron and a bucket. Create a Scroll of Rain to fill your cauldron or kill witches for water bottles. 
 7. With access to water, convert zombies into drowned to get copper.
 8. Use copper to make lightning rods and Scrolls of Thunder. Place a lightning rod near pigs or slime to get zombie piglins and mamga cubes, unlocking gold and magma blocks.
-9. Convert magma blocks into cobblestone using water bottles. Get enough for a furnace, and craft a pulverizer using your gold. Your first lava bucket should go towards a cobblestone generator!
-10. Collect two zombie villagers and a witch. Standing near the witch, have her throw weakness potions at you so that the zombies get hit as well. Feed them golden apples to convert to regular villagers.
-11. Either farm enough magma cubes for enough lava for a Nether portal, or get dripstone from a summoned wandering trader to make a lava generator (now that you have villagers as a source of emeralds).
-12. Enter the Nether to farm blaze rods and Wither skeleton skulls. 
-13. Summon and defeat the Wither for its Nether star
-14. Trade with your villagers for diamond gear that can be pulverized down into diamond shards
-15. Craft an End Portal Frame Generator, activate it by placing an End Crystal on top and destroying it. 
-16. Beat the game! 
+9. Convert magma blocks into cobblestone using water bottles. Get enough for a furnace, and craft a pulverizer using your gold. Pulverize magma blocks into lava buckets and make a cobblestone generator.
+10. Collect two zombie villagers and a witch. Standing near the witch, have her throw weakness potions at you so that the zombies get hit as well. Feed them golden apples to convert to regular villagers. Alternatively, farm enough Magma Cubes to get enough lava for a Nether portal and start your own potion production to not have to use a witch.
+11. Either farm enough magma cubes to get lava for a Nether portal, or get dripstone from a summoned wandering trader to make a lava generator (now that you have villagers as a source of emeralds).
+12. Trade with your villagers for diamond gear that can be pulverized down into diamond shards (toolsmith has a pretty cheap trade for a diamond hoe).
+13. Craft an End Portal Frame Generator, activate it by placing an End Crystal on top and destroying it.
+14. Prepare for the Ender Dragon fight - brew potions, get gear from an iron farm using your villagers, buy diamond gear from them, etc.
+15. Beat the game!
+16. Post-End you can also defeat the Wither (brutally hard in Superflat, nowhere to hide and it constantly regens health by killing slimes), upgrade your gear to full Netherite, or craft an Elytra (or just get one if structures enabled).
 
