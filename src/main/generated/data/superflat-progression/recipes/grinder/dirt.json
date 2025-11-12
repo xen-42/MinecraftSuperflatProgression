@@ -3,11 +3,11 @@
   "count": 1,
   "input": {
     "item": {
-      "item": "minecraft:gravel"
+      "item": "minecraft:dirt"
     }
   },
   "needsBucket": false,
   "result": {
-    "item": "minecraft:dirt"
+    "item": "minecraft:sand"
   }
 }
