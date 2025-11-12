@@ -25,15 +25,21 @@ public class CustomSpawner implements Spawner {
 	private int cooldown;
 
     private EntityType<?> type;
-    private boolean requireDark;
+    private boolean isHostile;
+    private boolean requiresDark;
     private int maxCount = 5;
 
     public CustomSpawner(EntityType<?> type) {
         this.type = type;
     }
 
-    public CustomSpawner requiresDark() {
-        this.requireDark = true;
+    public CustomSpawner markIsHostile() {
+        this.isHostile = true;
+        return this;
+    }
+
+    public CustomSpawner markRequiresDark() {
+        this.requiresDark = true;
         return this;
     }
 
@@ -44,10 +50,15 @@ public class CustomSpawner implements Spawner {
 
 	@Override
 	public int spawn(ServerWorld world, boolean spawnMonsters, boolean spawnAnimals) {
-
-		if (!spawnMonsters || !world.getGameRules().getBoolean(GameRules.DO_MOB_SPAWNING) || world.getDifficulty() == Difficulty.PEACEFUL) {
-			return 0;
-		} else {
+        if (isHostile && (!spawnMonsters || world.getDifficulty() == Difficulty.PEACEFUL)) {
+            return 0;
+        }
+        else if (!isHostile && !spawnAnimals) {
+            return 0;
+        }
+        else if (!world.getGameRules().getBoolean(GameRules.DO_MOB_SPAWNING)) {
+            return 0;
+        } else {
 			Random random = world.random;
 			this.cooldown--;
 			if (this.cooldown > 0) {
@@ -67,7 +78,7 @@ public class CustomSpawner implements Spawner {
                         int k = (24 + random.nextInt(24)) * (random.nextBoolean() ? -1 : 1);
                         BlockPos.Mutable mutable = playerEntity.getBlockPos().mutableCopy().move(j, 0, k);
 
-                        if (world.getLightLevel(mutable) > 11 && requireDark) {
+                        if (world.getLightLevel(mutable) > 11 && requiresDark) {
                             return 0;
                         }
 
