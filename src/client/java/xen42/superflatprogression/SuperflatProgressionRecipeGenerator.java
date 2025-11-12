@@ -297,7 +297,7 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
                         .pattern("XXX")
                         .input('X', Items.END_STONE)
                         .input('D', Items.DIAMOND)
-                        .input('S', Items.NETHER_STAR)
+                        .input('S', Items.ENDER_EYE)
                         .input('C', Items.OBSIDIAN)
                         // Advancement that gives the recipe
                         .criterion(hasItem(Items.END_STONE), conditionsFromItem(Items.END_STONE))
