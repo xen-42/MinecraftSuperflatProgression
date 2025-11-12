@@ -24,4 +24,6 @@ mutable field net/minecraft/server/MinecraftServer structureTemplateManager Lnet
 accessible field net/minecraft/server/world/ThreadedAnvilChunkStorage chunkStatusChangeListener Lnet/minecraft/world/chunk/ChunkStatusChangeListener;
 mutable field net/minecraft/server/world/ThreadedAnvilChunkStorage chunkStatusChangeListener Lnet/minecraft/world/chunk/ChunkStatusChangeListener;
 
+accessible field net/minecraft/recipe/RecipeManager recipes Ljava/util/Map;
+
 
