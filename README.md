@@ -21,6 +21,7 @@ A new crafting station which breaks items down into their constitient parts. For
 - Cobblestone can be turned to gravel, and gravel to sand. Magma blocks can be converted to lava, sould soil to sould sand.
 - Ender Pearls can be turned into End Dust, used to craft End Stone (required for End Portal Frame Generator) or a spatial instablity potion (teleports the target randomly for its duration).
 - Other recipes: Wool into string, ice into snowballs, snow blocks into powdered snow, furnace back into cobblestone.
+
 The pulverizer can be automated using hoppers and redstone: The hopper on top supplies ingredients, hoppers on the sides supply buckets if required, and it places items into the storage container in front of it. It must be powered by a redstone pulse for each item it processes.  
 
 ### Quality of life improvements
