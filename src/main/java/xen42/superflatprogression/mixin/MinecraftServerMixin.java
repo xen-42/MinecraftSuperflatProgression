@@ -78,7 +78,7 @@ public class MinecraftServerMixin {
             if (!structuresEnabled) {
                 spawners.add(new CustomSpawner(EntityType.BLAZE).markIsHostile().markRequiresDark()); 
                 spawners.add(new CustomSpawner(EntityType.WITHER_SKELETON).markIsHostile().markRequiresDark()); 
-                spawners.add(new CustomSpawner(EntityType.PIGLIN_BRUTE).markIsHostile().setMaxCount(3).markRequiresDark()); 
+                spawners.add(new CustomSpawner(EntityType.PIGLIN_BRUTE).markIsHostile().setMaxCount(1).markRequiresDark()); 
             }
 
             if (FabricLoader.getInstance().isModLoaded("peaceful-items")) {
@@ -112,7 +112,7 @@ public class MinecraftServerMixin {
             endSpawners.addAll(end.spawners);
             if (!structuresEnabled) {
                 // Shulkers can spawn in peaceful and just don't attack
-                endSpawners.add(new CustomSpawner(EntityType.SHULKER).markRequiresDark().setMaxCount(2)); 
+                endSpawners.add(new CustomSpawner(EntityType.SHULKER).markRequiresDark().setMaxCount(1).disableDuringDragonFight()); 
             }
             end.spawners = endSpawners;
 

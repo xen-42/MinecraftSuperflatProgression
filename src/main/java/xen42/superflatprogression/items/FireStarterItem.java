@@ -2,11 +2,15 @@ package xen42.superflatprogression.items;
 
 import net.minecraft.block.AbstractFireBlock;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.CampfireBlock;
 import net.minecraft.block.CandleBlock;
 import net.minecraft.block.CandleCakeBlock;
+import net.minecraft.block.TntBlock;
+import net.minecraft.item.FlintAndSteelItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemUsageContext;
+import net.minecraft.item.Items;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.property.Properties;
@@ -26,23 +30,29 @@ public class FireStarterItem extends Item {
 		World world = context.getWorld();
 		BlockPos blockPos = context.getBlockPos();
 		BlockState blockState = world.getBlockState(blockPos);
-		boolean bl = false;
-		if (!CampfireBlock.canBeLit(blockState) && !CandleBlock.canBeLit(blockState) && !CandleCakeBlock.canBeLit(blockState)) {
+		boolean wasUsed = false;
+
+		if (world.getBlockState(blockPos).isOf(Blocks.TNT)) {
+			TntBlock.primeTnt(world, blockPos, context.getPlayer());
+			world.setBlockState(blockPos, Blocks.AIR.getDefaultState(), 11);
+			wasUsed = true;
+		}
+		else if (!CampfireBlock.canBeLit(blockState) && !CandleBlock.canBeLit(blockState) && !CandleCakeBlock.canBeLit(blockState)) {
 			blockPos = blockPos.offset(context.getSide());
 			if (AbstractFireBlock.canPlaceAt(world, blockPos, context.getHorizontalPlayerFacing())) {
 				this.playUseSound(world, blockPos);
 				world.setBlockState(blockPos, AbstractFireBlock.getState(world, blockPos));
 				world.emitGameEvent(context.getPlayer(), GameEvent.BLOCK_PLACE, blockPos);
-				bl = true;
+				wasUsed = true;
 			}
 		} else {
 			this.playUseSound(world, blockPos);
 			world.setBlockState(blockPos, blockState.with(Properties.LIT, true));
 			world.emitGameEvent(context.getPlayer(), GameEvent.BLOCK_CHANGE, blockPos);
-			bl = true;
+			wasUsed = true;
 		}
 
-		if (bl) {
+		if (wasUsed) {
 			context.getStack().decrement(1);
 			return ActionResult.success(world.isClient);
 		} else {

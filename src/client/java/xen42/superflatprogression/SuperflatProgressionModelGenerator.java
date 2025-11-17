@@ -94,11 +94,11 @@ public class SuperflatProgressionModelGenerator extends FabricModelProvider {
         itemModelGenerator.register(SuperflatProgressionItems.DIAMOND_SHARD, Models.GENERATED);
         itemModelGenerator.register(SuperflatProgressionItems.PIXIE_SPAWN_EGG, Models.GENERATED);
 
-        itemModelGenerator.register(SuperflatProgressionItems.BONE_AXE, Models.GENERATED);
-        itemModelGenerator.register(SuperflatProgressionItems.BONE_HOE, Models.GENERATED);
-        itemModelGenerator.register(SuperflatProgressionItems.BONE_SWORD, Models.GENERATED);
-        itemModelGenerator.register(SuperflatProgressionItems.BONE_SHOVEL, Models.GENERATED);
-        itemModelGenerator.register(SuperflatProgressionItems.BONE_PICKAXE, Models.GENERATED);
+        itemModelGenerator.register(SuperflatProgressionItems.BONE_AXE, Models.HANDHELD);
+        itemModelGenerator.register(SuperflatProgressionItems.BONE_HOE, Models.HANDHELD);
+        itemModelGenerator.register(SuperflatProgressionItems.BONE_SWORD, Models.HANDHELD);
+        itemModelGenerator.register(SuperflatProgressionItems.BONE_SHOVEL, Models.HANDHELD);
+        itemModelGenerator.register(SuperflatProgressionItems.BONE_PICKAXE, Models.HANDHELD);
 
 		Identifier scrollTexture = new Identifier(SuperflatProgression.MOD_ID, "item/scroll_blank");
 		TextureMap textureMap = new TextureMap().put(TextureKey.LAYER0, scrollTexture);

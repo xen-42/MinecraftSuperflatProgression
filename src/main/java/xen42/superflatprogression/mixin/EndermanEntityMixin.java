@@ -26,7 +26,7 @@ public class EndermanEntityMixin {
                 List.of(Blocks.END_STONE, Blocks.WARPED_NYLIUM, Blocks.CRIMSON_NYLIUM);
 
             enderman.setCarriedBlock(
-                    possibleBlocks.get(world.getRandom().nextInt(possibleBlocks.size() - 1)).getDefaultState());
+                    possibleBlocks.get(world.getRandom().nextInt(possibleBlocks.size())).getDefaultState());
             enderman.getDataTracker().set(SuperflatProgression.ENDERMAN_CANNOT_DROP, true);
         }
     }

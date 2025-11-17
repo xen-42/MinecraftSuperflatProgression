@@ -34,7 +34,7 @@ import xen42.superflatprogression.items.ScrollItem;
 public class SuperflatProgressionItems {
     public static final Item ESSENCE = register("essence", Item::new, new Item.Settings());
     public static final Item END_DUST = register("end_dust", Item::new, new Item.Settings());
-    public static final Item ENDER_STAR = register("ender_star", NetherStarItem::new, new Item.Settings().rarity(Rarity.UNCOMMON));
+    public static final Item ENDER_STAR = register("ender_star", NetherStarItem::new, new Item.Settings().rarity(Rarity.UNCOMMON).fireproof());
     public static final Item DIAMOND_SHARD = register("diamond_shard", Item::new, new Item.Settings());
     public static final Item PARCHMENT = register("parchment", Item::new, new Item.Settings());
 	public static final Item ENRICHED_BONEMEAL = register("enriched_bonemeal", EnrichedBoneMealItem::new, new Item.Settings());

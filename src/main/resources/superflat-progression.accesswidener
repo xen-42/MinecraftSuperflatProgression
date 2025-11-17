@@ -26,4 +26,4 @@ mutable field net/minecraft/server/world/ThreadedAnvilChunkStorage chunkStatusCh
 
 accessible field net/minecraft/recipe/RecipeManager recipes Ljava/util/Map;
 
-
+accessible method net/minecraft/block/TntBlock primeTnt (Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/LivingEntity;)V

@@ -17,6 +17,7 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.SpawnHelper;
+import net.minecraft.world.World;
 import net.minecraft.world.spawner.Spawner;
 import net.minecraft.world.Heightmap;
 
@@ -28,6 +29,7 @@ public class CustomSpawner implements Spawner {
     private boolean isHostile;
     private boolean requiresDark;
     private int maxCount = 5;
+    private boolean disableDuringDragonFight;
 
     public CustomSpawner(EntityType<?> type) {
         this.type = type;
@@ -48,6 +50,11 @@ public class CustomSpawner implements Spawner {
         return this;
     }
 
+    public CustomSpawner disableDuringDragonFight() {
+        this.disableDuringDragonFight = true;
+        return this;
+    }
+
 	@Override
 	public int spawn(ServerWorld world, boolean spawnMonsters, boolean spawnAnimals) {
         if (isHostile && (!spawnMonsters || world.getDifficulty() == Difficulty.PEACEFUL)) {
@@ -57,6 +64,8 @@ public class CustomSpawner implements Spawner {
             return 0;
         }
         else if (!world.getGameRules().getBoolean(GameRules.DO_MOB_SPAWNING)) {
+            return 0;
+        } else if (disableDuringDragonFight && !world.getAliveEnderDragons().isEmpty()) {
             return 0;
         } else {
 			Random random = world.random;

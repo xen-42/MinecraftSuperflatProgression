@@ -8,6 +8,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import net.minecraft.entity.boss.dragon.EnderDragonEntity;
 import net.minecraft.entity.boss.dragon.EnderDragonFight;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.Vec3d;
 import xen42.superflatprogression.SuperflatProgressionItems;
 
@@ -16,10 +17,10 @@ public class EnderDragonFightMixin {
     @Inject(at = @At("HEAD"), method = "dragonKilled")
     private void dragonKilled(EnderDragonEntity dragon, CallbackInfo info) {
         if (!dragon.getWorld().isClient) {
-            var killer = dragon.getLastAttacker();
+            var serverWorld = (ServerWorld) dragon.getWorld();
+            var killer = dragon.getAttacker();
             if (killer == null || !(killer instanceof PlayerEntity)) {
-                // Fallback - Drop at self
-                killer = dragon;
+                killer = serverWorld.getRandomAlivePlayer();
             }
             var item = killer.dropItem(SuperflatProgressionItems.ENDER_STAR);
             item.setPosition(new Vec3d(killer.getX(), killer.getY(), killer.getZ()));
