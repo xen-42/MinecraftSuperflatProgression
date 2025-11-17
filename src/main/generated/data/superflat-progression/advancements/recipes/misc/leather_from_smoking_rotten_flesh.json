@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "superflat-progression:leather_from_smelting_rotten_flesh"
+        "recipe": "superflat-progression:leather_from_smoking_rotten_flesh"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "superflat-progression:leather_from_smelting_rotten_flesh"
+      "superflat-progression:leather_from_smoking_rotten_flesh"
     ]
   },
   "sends_telemetry_event": false

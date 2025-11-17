@@ -90,6 +90,10 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
                 this.fixedOfferMultipleOptions(RecipeSerializer.BLASTING, inputs, category, output, experience, cookingTime, group, "_from_blasting");
             }
 
+            public void offerSmoking(List<ItemConvertible> inputs, RecipeCategory category, ItemConvertible output, float experience, int cookingTime, String group) {
+                this.fixedOfferMultipleOptions(RecipeSerializer.SMOKING, inputs, category, output, experience, cookingTime, group, "_from_smoking");
+            }
+
             public void offerCampfire(List<ItemConvertible> inputs, RecipeCategory category, ItemConvertible output, float experience, int cookingTime, String group) {
                 var suffix = "_from_campfire";
                 for (var input : inputs) {
@@ -412,8 +416,9 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
                 createGrinder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_PRISMARINE_SHARD, Items.PRISMARINE_SHARD, false).setCount(4).offerTo(exporter);
 
                 offerSmelting(List.of(Items.GLASS_BOTTLE), RecipeCategory.MISC, Blocks.GLASS, 0f, 200, Items.GLASS_BOTTLE.getName().toString());
-                offerSmelting(List.of(Items.ROTTEN_FLESH), RecipeCategory.MISC, Items.LEATHER, 0.35f, 200, Items.ROTTEN_FLESH.getName().toString());
+                //offerSmelting(List.of(Items.ROTTEN_FLESH), RecipeCategory.MISC, Items.LEATHER, 0.35f, 200, Items.ROTTEN_FLESH.getName().toString());
                 offerCampfire(List.of(Items.ROTTEN_FLESH), RecipeCategory.MISC, Items.LEATHER, 0.35f, 200, Items.ROTTEN_FLESH.getName().toString());
+                offerSmoking(List.of(Items.ROTTEN_FLESH), RecipeCategory.MISC, Items.LEATHER, 0.35f, 200, Items.ROTTEN_FLESH.getName().toString());
                 
                 // Mod support
                 new GrinderRecipeJsonBuilder(registryLookup.getWrapperOrThrow(RegistryKeys.ITEM), 
