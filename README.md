@@ -22,6 +22,8 @@ A new crafting station which breaks items down into their constitient parts. For
 - Ender Pearls can be turned into End Dust, used to craft End Stone (required for End Portal Frame Generator) or a spatial instablity potion (teleports the target randomly for its duration).
 - Other recipes: Wool into string, ice into snowballs, snow blocks into powdered snow, furnace back into cobblestone.
 
+The pulverizer can be automated using hoppers and redstone: The hopper on top supplies ingredients, hoppers on the sides supply buckets if required, and it places items into the storage container in front of it. It must be powered by a redstone pulse for each item it processes.  
+
 ### Quality of life improvements
 - Bone tools offer an intermediary between stone and iron tools.
 - When a log is burnt surrounded by at least 4 other blocks it has a chance of turning into a charcoal block. A single-use firestarter may be made with string and sticks.
