@@ -31,6 +31,7 @@ import net.minecraft.util.Identifier;
 import xen42.superflatprogression.blocks.DirtSlabBlock;
 import xen42.superflatprogression.blocks.EndPortalFrameGeneratorBlock;
 import xen42.superflatprogression.blocks.GrinderBlock;
+import xen42.superflatprogression.blocks.MagicLanternBlock;
 import xen42.superflatprogression.blocks.MagicTorchBlock;
 import xen42.superflatprogression.blocks.ScrollCraftingBlock;
 import xen42.superflatprogression.blocks.WallMagicTorchBlock;
@@ -65,7 +66,7 @@ public class SuperflatProgressionBlocks {
 
 	public static final Block MAGIC_LANTERN = register(
 		"magic_lantern", 
-		(settings) -> new LanternBlock(settings), 
+		(settings) -> new MagicLanternBlock(settings), 
 		AbstractBlock.Settings.create().mapColor(MapColor.IRON_GRAY).solid().requiresTool().strength(3.5F).sounds(BlockSoundGroup.LANTERN)
 				.luminance(state -> 10).nonOpaque().pistonBehavior(PistonBehavior.DESTROY),
 		true
