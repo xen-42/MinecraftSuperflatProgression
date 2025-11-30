@@ -61,7 +61,7 @@ public class MobSpawnerHelper {
 	}
 
 	public static void spawnMob(ServerPlayerEntity playerEntity, EntityType<?> entityType) {
-		var range = 32;
+		var range = 12;
 		var world = (ServerWorld)playerEntity.getWorld();
 		for (int i = 0; i < 10; i++) {
 			BlockPos blockPos = getNearbySpawnPos(world, playerEntity.getBlockPos(), range);
