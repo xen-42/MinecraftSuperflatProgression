@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "superflat-progression:end_dust"
+    }
+  ],
+  "result": {
+    "item": "minecraft:cyan_dye"
+  }
+}

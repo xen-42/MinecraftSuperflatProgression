@@ -330,6 +330,9 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
                 offerTo(createShapeless(RecipeCategory.MISC, Items.PURPLE_DYE).input(SuperflatProgressionItems.ESSENCE)
                     .criterion(hasItem(SuperflatProgressionItems.ESSENCE), conditionsFromItem(SuperflatProgressionItems.ESSENCE)),
                     exporter);
+                offerTo(createShapeless(RecipeCategory.MISC, Items.CYAN_DYE).input(SuperflatProgressionItems.END_DUST)
+                    .criterion(hasItem(SuperflatProgressionItems.END_DUST), conditionsFromItem(SuperflatProgressionItems.END_DUST)),
+                    exporter);
                     
                 offerTools(SuperflatProgressionItems.BONE_AXE, SuperflatProgressionItems.BONE_HOE, SuperflatProgressionItems.BONE_SHOVEL,
                     SuperflatProgressionItems.BONE_PICKAXE, SuperflatProgressionItems.BONE_SWORD, Items.BONE);
