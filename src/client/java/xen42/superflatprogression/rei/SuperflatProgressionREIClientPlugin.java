@@ -1,12 +1,16 @@
 package xen42.superflatprogression.rei;
 
+import java.util.List;
+
 import me.shedaniel.math.Rectangle;
 import me.shedaniel.rei.api.client.plugins.REIClientPlugin;
 import me.shedaniel.rei.api.client.registry.category.CategoryRegistry;
 import me.shedaniel.rei.api.client.registry.display.DisplayRegistry;
 import me.shedaniel.rei.api.client.registry.screen.ScreenRegistry;
 import me.shedaniel.rei.api.client.registry.transfer.TransferHandlerRegistry;
+import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.util.EntryStacks;
+import net.minecraft.block.Blocks;
 import xen42.superflatprogression.SuperflatProgression;
 import xen42.superflatprogression.SuperflatProgressionBlocks;
 import xen42.superflatprogression.recipe.GrinderRecipe;
@@ -25,6 +29,7 @@ public class SuperflatProgressionREIClientPlugin implements REIClientPlugin {
 		
 		registry.add(new PulverizerCategory());
 		registry.add(new ScriptoriumCategory());
+		registry.add(new WaterBottleCategory());
 
 		SuperflatProgression.LOGGER.info("Registering workstations");
 		
@@ -38,6 +43,9 @@ public class SuperflatProgressionREIClientPlugin implements REIClientPlugin {
 
 		registry.registerRecipeFiller(ScrollCraftingRecipe.class, SuperflatProgression.SCROLL_CRAFTING_RECIPE_TYPE, ScriptoriumREIDisplay::new);
 		registry.registerRecipeFiller(GrinderRecipe.class, SuperflatProgression.GRINDER_RECIPE_TYPE, PulverizerREIDisplay::new);
+
+		registry.add(new WaterBottleREIDisplay(List.of(EntryIngredient.of(EntryStacks.of(Blocks.DIRT))), List.of(EntryIngredient.of(EntryStacks.of(Blocks.MUD)))));
+		registry.add(new WaterBottleREIDisplay(List.of(EntryIngredient.of(EntryStacks.of(Blocks.MAGMA_BLOCK))), List.of(EntryIngredient.of(EntryStacks.of(Blocks.COBBLESTONE)))));
 	}
 	
 	@Override

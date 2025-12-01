@@ -13,6 +13,9 @@ public class SuperflatProgressionREIServerPlugin implements REIServerPlugin {
     public static final Identifier PULVERIZER = Identifier.of(SuperflatProgression.MOD_ID, "plugins/pulverizer");
 	public static final CategoryIdentifier<PulverizerREIDisplay> PULVERIZER_CATEGORY = CategoryIdentifier.of(SuperflatProgression.MOD_ID, "plugins/pulverizer");
 
+	public static final Identifier WATER_BOTTLE = Identifier.of(SuperflatProgression.MOD_ID, "plugins/water_bottle");
+	public static final CategoryIdentifier<WaterBottleREIDisplay> WATER_BOTTLE_CATEGORY = CategoryIdentifier.of(SuperflatProgression.MOD_ID, "plugins/water_bottle");
+
 	public SuperflatProgressionREIServerPlugin() {
 		SuperflatProgression.LOGGER.info("Creating REI server plugin");
 	}

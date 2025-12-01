@@ -13,30 +13,31 @@ import me.shedaniel.rei.api.client.gui.widgets.Widgets;
 import me.shedaniel.rei.api.client.registry.display.DisplayCategory;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.util.EntryStacks;
-import net.minecraft.client.MinecraftClient;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.potion.PotionUtil;
+import net.minecraft.potion.Potions;
 import net.minecraft.text.Text;
-import xen42.superflatprogression.SuperflatProgressionBlocks;
 
-public class PulverizerCategory implements DisplayCategory<PulverizerREIDisplay> {
+public class WaterBottleCategory implements DisplayCategory<WaterBottleREIDisplay> {
 
 	@Override
-	public CategoryIdentifier<? extends PulverizerREIDisplay> getCategoryIdentifier() {
-		return SuperflatProgressionREIServerPlugin.PULVERIZER_CATEGORY;
+	public CategoryIdentifier<? extends WaterBottleREIDisplay> getCategoryIdentifier() {
+		return SuperflatProgressionREIServerPlugin.WATER_BOTTLE_CATEGORY;
 	}
 
 	@Override
 	public Text getTitle() {
-		return Text.translatable(SuperflatProgressionBlocks.GRINDER.getTranslationKey());
+		return Text.translatable(PotionUtil.setPotion(new ItemStack(Items.POTION), Potions.WATER).getTranslationKey());
 	}
 
 	@Override
 	public Renderer getIcon() {
-		return EntryStacks.of(SuperflatProgressionBlocks.GRINDER);
+		return EntryStacks.of(PotionUtil.setPotion(new ItemStack(Items.POTION), Potions.WATER));
 	}
 
 	@Override
-	public List<Widget> setupDisplay(PulverizerREIDisplay display, Rectangle bounds) {
+	public List<Widget> setupDisplay(WaterBottleREIDisplay display, Rectangle bounds) {
 		Point startPoint = new Point(bounds.getCenterX() - 58, bounds.getCenterY() - 27);
 		List<Widget> widgets = Lists.newArrayList();
 		widgets.add(Widgets.createRecipeBase(bounds));
@@ -60,18 +61,8 @@ public class PulverizerCategory implements DisplayCategory<PulverizerREIDisplay>
 		var outputSlotPoint = new Point(startPoint.x + 95 - 16, startPoint.y + 19);
 
 		widgets.add(Widgets.createSlot(outputSlotPoint).entries(display.getOutputEntries().get(0)).disableBackground().markOutput());
-		if (display.outputAmount > 1) {
-			// Regular label renders underneath the item womp womp
-			// widgets.add(Widgets.createLabel(new Point(outputSlotPoint.x + 14, outputSlotPoint.y + 9), Text.of(Integer.toString(display.outputAmount))));
-			widgets.add(Widgets.createDrawableWidget((drawContext, mouseX, mouseY, delta) -> {
-				drawContext.getMatrices().push();
-				drawContext.getMatrices().translate(0, 0, 200);
-				drawContext.drawTextWithShadow(MinecraftClient.getInstance().textRenderer, Text.of(Integer.toString(display.outputAmount)),
-					outputSlotPoint.x + 11, outputSlotPoint.y + 9, 0xFFFFFF);
-				drawContext.getMatrices().pop();
-			}));
-		}
 		
 		return widgets;
 	}
 }
+
