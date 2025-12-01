@@ -3,6 +3,7 @@ package xen42.superflatprogression;
 import java.util.concurrent.CompletableFuture;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider.ItemTagProvider;
+import net.minecraft.block.Blocks;
 import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryWrapper.WrapperLookup;
 import net.minecraft.registry.tag.ItemTags;
@@ -128,5 +129,12 @@ public class SuperflatProgressionItemTagGenerator extends ItemTagProvider {
 		this.getOrCreateTagBuilder(ItemTags.SHOVELS).add(SuperflatProgressionItems.BONE_SHOVEL);
 		this.getOrCreateTagBuilder(ItemTags.HOES).add(SuperflatProgressionItems.BONE_HOE);
 		this.getOrCreateTagBuilder(ItemTags.SWORDS).add(SuperflatProgressionItems.BONE_SWORD);
+
+		copy(SuperflatProgressionTags.BlockTags.ENRICHED_BONE_MEAL_MUSHROOM, SuperflatProgressionTags.ItemTags.ENRICHED_BONE_MEAL_MUSHROOM);
+		copy(SuperflatProgressionTags.BlockTags.ENRICHED_BONE_MEAL_ON_GRASS, SuperflatProgressionTags.ItemTags.ENRICHED_BONE_MEAL_ON_GRASS);
+		copy(SuperflatProgressionTags.BlockTags.ENRICHED_BONE_MEAL_ON_SAND, SuperflatProgressionTags.ItemTags.ENRICHED_BONE_MEAL_ON_SAND);
+		copy(SuperflatProgressionTags.BlockTags.ENRICHED_BONE_MEAL_ON_SOUL_SAND, SuperflatProgressionTags.ItemTags.ENRICHED_BONE_MEAL_ON_SOUL_SAND);
+		copy(SuperflatProgressionTags.BlockTags.ENRICHED_BONE_MEAL_UNDER_WATER, SuperflatProgressionTags.ItemTags.ENRICHED_BONE_MEAL_UNDER_WATER);
+		copy(SuperflatProgressionTags.BlockTags.MUSHROOM_BLOCK_PLACEABLE, SuperflatProgressionTags.ItemTags.MUSHROOM_BLOCK_PLACEABLE);
     }
 }

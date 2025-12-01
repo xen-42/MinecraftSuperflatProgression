@@ -3,7 +3,7 @@ package xen42.superflatprogression.items;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.fabricmc.loader.api.FabricLoader;
+import net.fabricmc.fabric.api.tag.convention.v1.ConventionalBlockTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -14,18 +14,16 @@ import net.minecraft.item.BoneMealItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.particle.ParticleTypes;
-import net.minecraft.registry.Registries;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldEvents;
+import xen42.superflatprogression.SuperflatProgressionTags;
 
 public class EnrichedBoneMealItem extends BoneMealItem {
 
@@ -113,39 +111,23 @@ public class EnrichedBoneMealItem extends BoneMealItem {
             }
 
             // Ok now place a thing
-            var isDark = world.getLightLevel(blockPos2, world.getAmbientDarkness()) < 12;
             var isAir = world.getBlockState(blockPos2).isAir();
             var isWater = world.getBlockState(blockPos2).isOf(Blocks.WATER);
-            var isAdjacentToWater = world.getBlockState(blockPos2.down().east()).isOf(Blocks.WATER) ||
-                world.getBlockState(blockPos2.down().north()).isOf(Blocks.WATER) ||
-                world.getBlockState(blockPos2.down().south()).isOf(Blocks.WATER) ||
-                world.getBlockState(blockPos2.down().west()).isOf(Blocks.WATER);
             var groundState = world.getBlockState(blockPos2.down());
             ArrayList<Block> possibleBlocks = null;
 
             if (isAir) {
-                if (isDark && (groundState.isOf(Blocks.STONE) || groundState.isOf(Blocks.DIRT))) {
-                    possibleBlocks = new ArrayList<>(List.of(Blocks.RED_MUSHROOM, Blocks.BROWN_MUSHROOM));
+                if (groundState.isIn(SuperflatProgressionTags.BlockTags.MUSHROOM_BLOCK_PLACEABLE)) {
+                    possibleBlocks = SuperflatProgressionTags.GetBlocksInTag(SuperflatProgressionTags.BlockTags.ENRICHED_BONE_MEAL_MUSHROOM);
                 }
                 else if (groundState.isOf(Blocks.SAND)) {
-                    if (isAdjacentToWater) {
-                        possibleBlocks = new ArrayList<>(List.of(Blocks.CACTUS, Blocks.DEAD_BUSH, Blocks.SUGAR_CANE, Blocks.SUGAR_CANE, Blocks.SUGAR_CANE));
-                    }
-                    else {
-                        possibleBlocks = new ArrayList<>(List.of(Blocks.CACTUS, Blocks.DEAD_BUSH));
-                    }
+                    possibleBlocks = SuperflatProgressionTags.GetBlocksInTag(SuperflatProgressionTags.BlockTags.ENRICHED_BONE_MEAL_ON_SAND);
                 }
                 else if (groundState.isOf(Blocks.GRASS_BLOCK)) {
-                    possibleBlocks = new ArrayList<>(List.of(Blocks.GRASS, Blocks.GRASS, Blocks.GRASS, Blocks.TALL_GRASS, Blocks.TALL_GRASS,
-                        Blocks.FERN, Blocks.OAK_SAPLING, Blocks.SUNFLOWER, Blocks.ROSE_BUSH, Blocks.LILAC, Blocks.PEONY));
-                    if (FabricLoader.getInstance().isModLoaded("peaceful-items")) {
-                        var flax = Registries.BLOCK.get(Identifier.of("peaceful-items", "flax_crop"));
-                        possibleBlocks.add(flax);
-                        possibleBlocks.add(flax);
-                    }
+                    possibleBlocks = SuperflatProgressionTags.GetBlocksInTag(SuperflatProgressionTags.BlockTags.ENRICHED_BONE_MEAL_ON_GRASS);
                 }
                 else if (groundState.isOf(Blocks.SOUL_SAND)) {
-                    possibleBlocks = new ArrayList<>(List.of(Blocks.NETHER_WART));
+                    possibleBlocks = SuperflatProgressionTags.GetBlocksInTag(SuperflatProgressionTags.BlockTags.ENRICHED_BONE_MEAL_ON_SOUL_SAND);
                 }
                 else if (groundState.isOf(Blocks.SUGAR_CANE) && !world.getBlockState(blockPos.down(2)).isOf(Blocks.SUGAR_CANE)) {
                     possibleBlocks = new ArrayList<>(List.of(Blocks.SUGAR_CANE));
@@ -155,9 +137,7 @@ public class EnrichedBoneMealItem extends BoneMealItem {
                 }
             }            
             else if (isWater && groundState.isOpaque()) {
-                possibleBlocks = new ArrayList<>(List.of(Blocks.SEAGRASS, Blocks.SEAGRASS, Blocks.SEAGRASS, Blocks.SEAGRASS, Blocks.SEAGRASS, Blocks.SEAGRASS,
-                    Blocks.SEA_PICKLE, Blocks.FIRE_CORAL_BLOCK, Blocks.HORN_CORAL_BLOCK, Blocks.TUBE_CORAL_BLOCK, Blocks.BRAIN_CORAL_BLOCK, Blocks.BUBBLE_CORAL_BLOCK,
-                    Blocks.FIRE_CORAL_FAN, Blocks.HORN_CORAL_FAN, Blocks.TUBE_CORAL_FAN, Blocks.BRAIN_CORAL_FAN, Blocks.BUBBLE_CORAL_FAN, Blocks.KELP));
+                possibleBlocks = SuperflatProgressionTags.GetBlocksInTag(SuperflatProgressionTags.BlockTags.ENRICHED_BONE_MEAL_UNDER_WATER);
             }
 
             if (possibleBlocks != null) {
@@ -166,7 +146,6 @@ public class EnrichedBoneMealItem extends BoneMealItem {
                     world.setBlockState(blockPos2, block.getDefaultState());
                     block.onPlaced(world, blockPos2, world.getBlockState(blockPos2), (LivingEntity)stack.getHolder(), stack);
                     flagDidAnything = true;
-
                     visitedSpaces.add(blockPos2);
                     if (block instanceof TallPlantBlock || block instanceof TallFlowerBlock) {
                         visitedSpaces.add(blockPos2.up());

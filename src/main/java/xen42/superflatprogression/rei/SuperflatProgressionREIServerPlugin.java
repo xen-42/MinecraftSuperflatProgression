@@ -16,6 +16,9 @@ public class SuperflatProgressionREIServerPlugin implements REIServerPlugin {
 	public static final Identifier WATER_BOTTLE = Identifier.of(SuperflatProgression.MOD_ID, "plugins/water_bottle");
 	public static final CategoryIdentifier<WaterBottleREIDisplay> WATER_BOTTLE_CATEGORY = CategoryIdentifier.of(SuperflatProgression.MOD_ID, "plugins/water_bottle");
 
+	public static final Identifier ENRICHED_BONE_MEAL = Identifier.of(SuperflatProgression.MOD_ID, "plugins/enriched_bone_meal");
+	public static final CategoryIdentifier<EnrichedBoneMealREIDisplay> ENRICHED_BONE_MEAL_CATEGORY = CategoryIdentifier.of(SuperflatProgression.MOD_ID, "plugins/enriched_bone_meal");
+
 	public SuperflatProgressionREIServerPlugin() {
 		SuperflatProgression.LOGGER.info("Creating REI server plugin");
 	}

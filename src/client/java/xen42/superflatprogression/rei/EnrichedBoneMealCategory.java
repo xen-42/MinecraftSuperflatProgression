@@ -13,31 +13,28 @@ import me.shedaniel.rei.api.client.gui.widgets.Widgets;
 import me.shedaniel.rei.api.client.registry.display.DisplayCategory;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.util.EntryStacks;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.potion.PotionUtil;
-import net.minecraft.potion.Potions;
 import net.minecraft.text.Text;
+import xen42.superflatprogression.SuperflatProgressionItems;
 
-public class WaterBottleCategory implements DisplayCategory<WaterBottleREIDisplay> {
+public class EnrichedBoneMealCategory implements DisplayCategory<EnrichedBoneMealREIDisplay> {
 
 	@Override
-	public CategoryIdentifier<? extends WaterBottleREIDisplay> getCategoryIdentifier() {
-		return SuperflatProgressionREIServerPlugin.WATER_BOTTLE_CATEGORY;
+	public CategoryIdentifier<? extends EnrichedBoneMealREIDisplay> getCategoryIdentifier() {
+		return SuperflatProgressionREIServerPlugin.ENRICHED_BONE_MEAL_CATEGORY;
 	}
 
 	@Override
 	public Text getTitle() {
-		return Text.translatable(PotionUtil.setPotion(new ItemStack(Items.POTION), Potions.WATER).getTranslationKey());
+		return Text.translatable(SuperflatProgressionItems.ENRICHED_BONEMEAL.getTranslationKey());
 	}
 
 	@Override
 	public Renderer getIcon() {
-		return EntryStacks.of(PotionUtil.setPotion(new ItemStack(Items.POTION), Potions.WATER));
+		return EntryStacks.of(SuperflatProgressionItems.ENRICHED_BONEMEAL);
 	}
 
 	@Override
-	public List<Widget> setupDisplay(WaterBottleREIDisplay display, Rectangle bounds) {
+	public List<Widget> setupDisplay(EnrichedBoneMealREIDisplay display, Rectangle bounds) {
 		Point startPoint = new Point(bounds.getCenterX() - 58, bounds.getCenterY() - 27);
 		List<Widget> widgets = Lists.newArrayList();
 		widgets.add(Widgets.createRecipeBase(bounds));
@@ -59,4 +56,3 @@ public class WaterBottleCategory implements DisplayCategory<WaterBottleREIDispla
 		return widgets;
 	}
 }
-

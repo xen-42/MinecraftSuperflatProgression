@@ -1,0 +1,17 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:grass",
+    "minecraft:tall_grass",
+    "minecraft:fern",
+    "minecraft:oak_sapling",
+    "minecraft:sunflower",
+    "minecraft:rose_bush",
+    "minecraft:lilac",
+    "minecraft:peony",
+    {
+      "id": "peaceful-items:flax_crop",
+      "required": false
+    }
+  ]
+}
