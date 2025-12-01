@@ -16,10 +16,12 @@ import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.LightType;
 import net.minecraft.world.WorldView;
 import net.minecraft.world.chunk.light.ChunkLightProvider;
+import xen42.superflatprogression.SuperflatProgression;
 import xen42.superflatprogression.SuperflatProgressionBlocks;
 
 public class DirtSlabBlock extends SlabBlock {
@@ -116,25 +118,31 @@ public class DirtSlabBlock extends SlabBlock {
 				return this.getDefaultState().with(TYPE, SlabType.DOUBLE).with(WATERLOGGED, false);
 			}			
 		} else {
-			return super.getPlacementState(ctx);
+			FluidState fluidState = ctx.getWorld().getFluidState(blockPos);
+			BlockState blockState2 = (BlockState)((BlockState)this.getDefaultState().with(TYPE, SlabType.BOTTOM)).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
+			Direction direction = ctx.getSide();
+			return direction != Direction.DOWN && (direction == Direction.UP || !(ctx.getHitPos().y - (double)blockPos.getY() > 0.5)) ? blockState2 : (BlockState)blockState2.with(TYPE, SlabType.TOP);
 		}
 	}
 
 	@Override
 	public boolean canReplace(BlockState state, ItemPlacementContext context) {
 		ItemStack itemStack = context.getStack();
-		SlabType slabType = state.get(TYPE);
-
+		SlabType slabType = (SlabType)state.get(TYPE);
 		if (slabType != SlabType.DOUBLE && itemStack.getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof DirtSlabBlock) {
 			if (context.canReplaceExisting()) {
-				boolean bl = context.getHitPos().y - context.getBlockPos().getY() > 0.5;
+				boolean bl = context.getHitPos().y - (double)context.getBlockPos().getY() > 0.5;
 				Direction direction = context.getSide();
-				return slabType == SlabType.BOTTOM
-					? direction == Direction.UP || bl && direction.getAxis().isHorizontal()
-					: direction == Direction.DOWN || !bl && direction.getAxis().isHorizontal();
+				if (slabType == SlabType.BOTTOM) {
+					return direction == Direction.UP || bl && direction.getAxis().isHorizontal();
+				} else {
+					return direction == Direction.DOWN || !bl && direction.getAxis().isHorizontal();
+				}
+			} else {
+				return true;
 			}
+		} else {
+			return false;
 		}
-
-		return super.canReplace(state, context);
 	}
 }
