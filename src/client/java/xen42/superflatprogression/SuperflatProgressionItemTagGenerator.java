@@ -91,7 +91,8 @@ public class SuperflatProgressionItemTagGenerator extends ItemTagProvider {
 			.addOptional(Identifier.of("peaceful-items", "sulphur"));
 
 		this.getOrCreateTagBuilder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_CYAN)
-			.add(Items.PITCHER_PLANT);
+			.add(Items.PITCHER_PLANT)
+			.add(SuperflatProgressionItems.END_DUST);
 
 		this.getOrCreateTagBuilder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_LIGHT_BLUE)
 			.add(Items.BLUE_ORCHID);

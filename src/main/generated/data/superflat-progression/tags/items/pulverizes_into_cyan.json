@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "minecraft:pitcher_plant"
+    "minecraft:pitcher_plant",
+    "superflat-progression:end_dust"
   ]
 }
