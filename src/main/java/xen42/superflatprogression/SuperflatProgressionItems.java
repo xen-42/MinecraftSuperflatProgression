@@ -1,5 +1,7 @@
 package xen42.superflatprogression;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
@@ -62,6 +64,8 @@ public class SuperflatProgressionItems {
 			world.setWeather(duration, 0, false, false);
 		});
 
+	public static ArrayList<Item> SCROLLS;
+
     public static final Item SCROLL_TRADE = registerScroll("scroll_trade", MobSpawnerHelper::spawnWanderingTrader);
     public static final Item SCROLL_PIG = registerScroll("scroll_pig", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, EntityType.PIG));
     public static final Item SCROLL_COW = registerScroll("scroll_cow", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, EntityType.COW));
@@ -69,6 +73,7 @@ public class SuperflatProgressionItems {
     public static final Item SCROLL_SHEEP = registerScroll("scroll_sheep", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, EntityType.SHEEP));
     public static final Item SCROLL_CAT = registerScroll("scroll_cat", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, EntityType.CAT));
     public static final Item SCROLL_WOLF = registerScroll("scroll_wolf", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, EntityType.WOLF));
+    public static final Item SCROLL_HORSE = registerScroll("scroll_horse", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, EntityType.HORSE));
 
     public static final Item SCROLL_ZOMBIE = registerScroll("scroll_zombie", (ServerPlayerEntity user) -> 
 		MobSpawnerHelper.spawnMob(user, user.getWorld().random.nextFloat() < 0.1 ? EntityType.ZOMBIE_VILLAGER : EntityType.ZOMBIE));
@@ -87,8 +92,14 @@ public class SuperflatProgressionItems {
 	}
 
 	private static final Item registerScroll(String name, Consumer<ServerPlayerEntity> onUse, String optionalModID) {
-		return register(name, (settings) -> new ScrollItem(settings, onUse)
-		, new Item.Settings().maxCount(1).rarity(Rarity.UNCOMMON), optionalModID);
+		var scroll = register(name, (settings) -> new ScrollItem(settings, onUse),
+			new Item.Settings().maxCount(1).rarity(Rarity.UNCOMMON), optionalModID);
+
+		if (SCROLLS == null) {
+			SCROLLS = new ArrayList<Item>();
+		}
+		SCROLLS.add(scroll);
+		return scroll;
 	}
 
 	public static final Item BONE_SWORD = register("bone_sword", (settings) ->
@@ -123,26 +134,10 @@ public class SuperflatProgressionItems {
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register((itemGroup) -> {
             itemGroup.add(ENRICHED_BONEMEAL);
             itemGroup.add(FIRE_STARTER);
-            itemGroup.add(SCROLL_RAIN);
-            itemGroup.add(SCROLL_THUNDER);
-            itemGroup.add(SCROLL_CLEAR_WEATHER);
-            itemGroup.add(SCROLL_TRADE);
 
-			itemGroup.add(SCROLL_PIG);
-			itemGroup.add(SCROLL_COW);
-			itemGroup.add(SCROLL_CHICKEN);
-			itemGroup.add(SCROLL_SHEEP);
-			itemGroup.add(SCROLL_CAT);
-			itemGroup.add(SCROLL_WOLF);
-
-			itemGroup.add(SCROLL_ZOMBIE);
-			itemGroup.add(SCROLL_SKELETON);
-			itemGroup.add(SCROLL_WITCH);
-			itemGroup.add(SCROLL_ENDERMAN);
-			itemGroup.add(SCROLL_SLIME);
-			itemGroup.add(SCROLL_MAGMA_CUBE);
-			itemGroup.add(SCROLL_BLAZE);
-			itemGroup.add(SCROLL_SPIDER);
+			for (var scroll : SCROLLS) {
+            	itemGroup.add(scroll);
+			}
 			
             itemGroup.add(BONE_SHOVEL);
             itemGroup.add(BONE_PICKAXE);

@@ -1,0 +1,12 @@
+{
+  "type": "superflat-progression:scroll_crafting",
+  "cost": 5,
+  "input": {
+    "item": {
+      "item": "minecraft:saddle"
+    }
+  },
+  "result": {
+    "item": "superflat-progression:scroll_horse"
+  }
+}
