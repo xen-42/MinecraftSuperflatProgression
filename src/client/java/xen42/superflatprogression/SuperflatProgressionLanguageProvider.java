@@ -7,6 +7,8 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.minecraft.block.BeaconBlock;
 import net.minecraft.block.Block;
 import net.minecraft.fluid.Fluid;
+import net.minecraft.item.Item;
+import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.RegistryWrapper.WrapperLookup;
@@ -174,7 +176,17 @@ public abstract class SuperflatProgressionLanguageProvider extends FabricLanguag
 			translationBuilder.add("item.minecraft.splash_potion.effect.warp", "Splash Potion of Spatial Instability");
 			translationBuilder.add("item.minecraft.lingering_potion.effect.warp", "Lingering Potion of Spatial Instability");
 			translationBuilder.add("item.minecraft.tipped_arrow.effect.warp", "Arrow of Spatial Instability");
+
+			translationBuilder.add(getHintKey(SuperflatProgressionBlocks.CHARCOAL_BLOCK.asItem()), "A log block surrounded on 4 or more sides by opaque blocks may turn into charcoal when burnt.");
+			translationBuilder.add(getHintKey(SuperflatProgressionBlocks.GRINDER.asItem()), "When supplied with a redstone signal it will take items from the container above it and process them into the container in front of it. Takes buckets from adjacent hoppers.");
+			translationBuilder.add(getHintKey(Items.MAGMA_CREAM), "Slimes struck by lightning become Magma Cubes. Magma blocks are used to make cobblestone.");
+			translationBuilder.add(getHintKey(Items.GOLD_INGOT), "Pigs struck by lightning become Zombie Piglins. Golden apples are used to cure zombie villagers.");
+			translationBuilder.add(getHintKey(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE), "If structure generation is disabled, Piglin Brutes have a chance to drop these.");
         }
+	}
+
+	public static String getHintKey(Item item) {
+		return "info." + SuperflatProgression.MOD_ID + "." + item.getTranslationKey();
 	}
 	
 	public static class EnglishUpsideDown extends English {

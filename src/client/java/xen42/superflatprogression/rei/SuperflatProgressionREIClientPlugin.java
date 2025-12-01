@@ -10,11 +10,14 @@ import me.shedaniel.rei.api.client.registry.screen.ScreenRegistry;
 import me.shedaniel.rei.api.client.registry.transfer.TransferHandlerRegistry;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.util.EntryStacks;
+import me.shedaniel.rei.plugin.client.BuiltinClientPlugin;
 import net.minecraft.block.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.potion.PotionUtil;
 import net.minecraft.potion.Potions;
+import net.minecraft.text.Text;
 import xen42.superflatprogression.SuperflatProgression;
 import xen42.superflatprogression.SuperflatProgressionBlocks;
 import xen42.superflatprogression.SuperflatProgressionItems;
@@ -61,6 +64,12 @@ public class SuperflatProgressionREIClientPlugin implements REIClientPlugin {
 		registry.add(new EnrichedBoneMealREIDisplay(Blocks.GRASS_BLOCK, SuperflatProgressionTags.ItemTags.ENRICHED_BONE_MEAL_ON_GRASS));
 		registry.add(new EnrichedBoneMealREIDisplay(Blocks.SOUL_SAND, SuperflatProgressionTags.ItemTags.ENRICHED_BONE_MEAL_ON_SOUL_SAND));
 		registry.add(new EnrichedBoneMealREIDisplay(Items.WATER_BUCKET, SuperflatProgressionTags.ItemTags.ENRICHED_BONE_MEAL_UNDER_WATER));
+
+		addInfo(SuperflatProgressionBlocks.CHARCOAL_BLOCK.asItem());
+		addInfo(SuperflatProgressionBlocks.GRINDER.asItem());
+		addInfo(Items.MAGMA_CREAM);
+		addInfo(Items.GOLD_INGOT);
+		addInfo(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE);
 	}
 	
 	@Override
@@ -80,5 +89,12 @@ public class SuperflatProgressionREIClientPlugin implements REIClientPlugin {
 		// Todo: fix these
 		//registry.register(new PulverizerTransferHandler());
 		//registry.register(new ScriptoriumTransferHandler());
+	}
+
+	private static void addInfo(Item item) {
+		var key = "info." + SuperflatProgression.MOD_ID + "." + item.getTranslationKey();
+		BuiltinClientPlugin.getInstance().registerInformation(EntryStacks.of(item), 
+			Text.of(key),
+			(text) -> List.of(Text.translatable(key)));
 	}
 }
