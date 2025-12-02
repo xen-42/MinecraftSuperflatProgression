@@ -1,3 +1,5 @@
+![Banner image](Screenshots/Banner.png)
+
 # Superflat Progression
 Makes certain items/blocks/dimensions which were previously inaccessible in structureless superflat available. Adds quality of life features to alleviate the more tedious aspects of Superflat. Should also make for a good skyblock playthrough as well!
 
@@ -49,6 +51,8 @@ The pulverizer can be automated using hoppers and redstone: The hopper on top su
 
 ### Mod compatibility
 If played with my Peaceful Progression mod the pulverizer will work for some dye recipes, enriched bone meal will produce flax seeds, and both ghastlings and end clams will spawn in the Nether without structures. That said, you will not be able to progress without hostile mobs spawning.
+
+REI is supported which provides both recipe information and some additional info about certain blocks and items.
 
 ## How to progress
 Many elements of the original Superflat progression are maintained, just with ways of speeding certain tedious parts up. New progression is meant to continue in the spirit of original Superflat without removing the unique nature of it.
