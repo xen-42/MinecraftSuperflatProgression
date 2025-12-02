@@ -136,5 +136,10 @@ public class SuperflatProgressionItemTagGenerator extends ItemTagProvider {
 		copy(SuperflatProgressionTags.BlockTags.ENRICHED_BONE_MEAL_ON_SOUL_SAND, SuperflatProgressionTags.ItemTags.ENRICHED_BONE_MEAL_ON_SOUL_SAND);
 		copy(SuperflatProgressionTags.BlockTags.ENRICHED_BONE_MEAL_UNDER_WATER, SuperflatProgressionTags.ItemTags.ENRICHED_BONE_MEAL_UNDER_WATER);
 		copy(SuperflatProgressionTags.BlockTags.MUSHROOM_BLOCK_PLACEABLE, SuperflatProgressionTags.ItemTags.MUSHROOM_BLOCK_PLACEABLE);
+
+		var scrollTagBuilder = this.getOrCreateTagBuilder(SuperflatProgressionTags.ItemTags.MAGIC_SCROLLS);
+		for (var scroll : SuperflatProgressionItems.SCROLLS) {
+			scrollTagBuilder.add(scroll);
+		}
     }
 }

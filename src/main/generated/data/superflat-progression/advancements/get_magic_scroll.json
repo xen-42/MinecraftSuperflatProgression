@@ -1,0 +1,36 @@
+{
+  "parent": "superflat-progression:get_scriptorium",
+  "criteria": {
+    "has_tag_get_magic_scroll": {
+      "conditions": {
+        "items": [
+          {
+            "tag": "superflat-progression:magic_scrolls"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.description.superflat-progression.get_magic_scroll"
+    },
+    "frame": "challenge",
+    "hidden": false,
+    "icon": {
+      "item": "superflat-progression:scroll_thunder"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancement.title.superflat-progression.get_magic_scroll"
+    }
+  },
+  "requirements": [
+    [
+      "has_tag_get_magic_scroll"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

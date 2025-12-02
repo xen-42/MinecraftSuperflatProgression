@@ -1,0 +1,38 @@
+{
+  "parent": "superflat-progression:get_charcoal",
+  "criteria": {
+    "has_item_get_magic_torch": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "superflat-progression:magic_torch"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.description.superflat-progression.get_magic_torch"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "superflat-progression:magic_torch"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancement.title.superflat-progression.get_magic_torch"
+    }
+  },
+  "requirements": [
+    [
+      "has_item_get_magic_torch"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

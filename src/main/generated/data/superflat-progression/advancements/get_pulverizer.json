@@ -1,0 +1,38 @@
+{
+  "parent": "superflat-progression:get_magic_torch",
+  "criteria": {
+    "has_item_get_pulverizer": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "superflat-progression:grinder"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.description.superflat-progression.get_pulverizer"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "superflat-progression:grinder"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancement.title.superflat-progression.get_pulverizer"
+    }
+  },
+  "requirements": [
+    [
+      "has_item_get_pulverizer"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

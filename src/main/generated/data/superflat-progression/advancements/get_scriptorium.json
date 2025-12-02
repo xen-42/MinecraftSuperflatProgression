@@ -1,0 +1,38 @@
+{
+  "parent": "superflat-progression:get_enriched_bone_meal",
+  "criteria": {
+    "has_item_get_scriptorium": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "superflat-progression:scroll_crafting"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.description.superflat-progression.get_scriptorium"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "superflat-progression:scroll_crafting"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancement.title.superflat-progression.get_scriptorium"
+    }
+  },
+  "requirements": [
+    [
+      "has_item_get_scriptorium"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

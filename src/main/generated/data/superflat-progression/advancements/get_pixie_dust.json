@@ -1,0 +1,38 @@
+{
+  "criteria": {
+    "has_item_get_pixie_dust": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "superflat-progression:essence"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "background": "minecraft:textures/gui/advancements/backgrounds/stone.png",
+    "description": {
+      "translate": "advancement.description.superflat-progression.get_pixie_dust"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "superflat-progression:essence"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancement.title.superflat-progression.get_pixie_dust"
+    }
+  },
+  "requirements": [
+    [
+      "has_item_get_pixie_dust"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -4,6 +4,7 @@ import java.util.concurrent.CompletableFuture;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
+import net.minecraft.advancement.Advancement;
 import net.minecraft.block.BeaconBlock;
 import net.minecraft.block.Block;
 import net.minecraft.fluid.Fluid;
@@ -83,6 +84,11 @@ public abstract class SuperflatProgressionLanguageProvider extends FabricLanguag
 		public void add(GameRules.Key<?> key, String title, String description) {
 			add(key.getTranslationKey(), title);
 			add(key.getTranslationKey() + ".description", description);
+		}
+
+		public void add(Advancement advancement, String title, String description) {
+			add(SuperflatProgressionAdvancementsProvider.getTitleKey(advancement.getId().getPath()), title);
+			add(SuperflatProgressionAdvancementsProvider.getDescriptionKey(advancement.getId().getPath()), description);
 		}
 
 		@SuppressWarnings("deprecation")
@@ -182,6 +188,16 @@ public abstract class SuperflatProgressionLanguageProvider extends FabricLanguag
 			translationBuilder.add(getHintKey(Items.MAGMA_CREAM), "Slimes struck by lightning become Magma Cubes. Magma blocks are used to make cobblestone.");
 			translationBuilder.add(getHintKey(Items.GOLD_INGOT), "Pigs struck by lightning become Zombie Piglins. Golden apples are used to cure zombie villagers.");
 			translationBuilder.add(getHintKey(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE), "If structure generation is disabled, Piglin Brutes have a chance to drop these.");
+			translationBuilder.add(getHintKey(SuperflatProgressionBlocks.END_PORTAL_FRAME_GENERATOR.asItem()), "Place and destroy an End Crystal on top of this block to generate an End portal frame.");
+
+			translationBuilder.add(SuperflatProgressionAdvancementsProvider.CHARCOAL, "Acquire Charcoal", "Burn a log surrounded on 4 sides by opaque blocks using a fire starter.");
+			translationBuilder.add(SuperflatProgressionAdvancementsProvider.PIXIE_DUST, "Hunt Pixies", "Pixie dust is used to unlock most Superflat Progression features!");
+			translationBuilder.add(SuperflatProgressionAdvancementsProvider.END_PORTAL_FRAME_GENERATOR, "Who Needs a Stronghold?", "An End portal frame generator allows you to reach the End without structures.");
+			translationBuilder.add(SuperflatProgressionAdvancementsProvider.ENRICHED_BONEMEAL, "I Can't Believe it's Not Bone Meal", "Used to get access to saplings.");
+			translationBuilder.add(SuperflatProgressionAdvancementsProvider.MAGIC_TORCH, "Bountiful", "Use a magic torch to increase rare mob drops. Put one by your mob farm!");
+			translationBuilder.add(SuperflatProgressionAdvancementsProvider.PULVERIZER, "Pulverization", "The pulverizer gives access to lava, diamonds, and more in superflat.");
+			translationBuilder.add(SuperflatProgressionAdvancementsProvider.SCRIPTORIUM, "The Scriptorium", "The scriptorium unlocks the ability to change the weather and summon useful mobs.");
+			translationBuilder.add(SuperflatProgressionAdvancementsProvider.SCROLL, "Do You Believe in Magic?", "You made a magic scroll! Use a thunder scroll and a lightning rod to acquire gold and cobblestone by converting pigs and slimes.");
         }
 	}
 

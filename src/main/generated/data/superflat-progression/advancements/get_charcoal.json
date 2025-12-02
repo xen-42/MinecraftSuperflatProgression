@@ -1,0 +1,38 @@
+{
+  "parent": "superflat-progression:get_pixie_dust",
+  "criteria": {
+    "has_item_get_charcoal": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "superflat-progression:charcoal_block"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.description.superflat-progression.get_charcoal"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "minecraft:charcoal"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancement.title.superflat-progression.get_charcoal"
+    }
+  },
+  "requirements": [
+    [
+      "has_item_get_charcoal"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

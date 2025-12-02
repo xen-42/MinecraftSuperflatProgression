@@ -1,0 +1,38 @@
+{
+  "parent": "superflat-progression:get_pixie_dust",
+  "criteria": {
+    "has_item_get_enriched_bone_meal": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "superflat-progression:enriched_bonemeal"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.description.superflat-progression.get_enriched_bone_meal"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "superflat-progression:enriched_bonemeal"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancement.title.superflat-progression.get_enriched_bone_meal"
+    }
+  },
+  "requirements": [
+    [
+      "has_item_get_enriched_bone_meal"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

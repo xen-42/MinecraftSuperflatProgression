@@ -70,6 +70,7 @@ public class SuperflatProgressionREIClientPlugin implements REIClientPlugin {
 		addInfo(Items.MAGMA_CREAM);
 		addInfo(Items.GOLD_INGOT);
 		addInfo(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE);
+		addInfo(SuperflatProgressionBlocks.END_PORTAL_FRAME_GENERATOR.asItem());
 	}
 	
 	@Override

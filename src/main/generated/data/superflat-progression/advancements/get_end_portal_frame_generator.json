@@ -1,0 +1,38 @@
+{
+  "parent": "superflat-progression:get_pulverizer",
+  "criteria": {
+    "has_item_get_end_portal_frame_generator": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "superflat-progression:end_portal_frame_generator"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.description.superflat-progression.get_end_portal_frame_generator"
+    },
+    "frame": "challenge",
+    "hidden": false,
+    "icon": {
+      "item": "superflat-progression:end_portal_frame_generator"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancement.title.superflat-progression.get_end_portal_frame_generator"
+    }
+  },
+  "requirements": [
+    [
+      "has_item_get_end_portal_frame_generator"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

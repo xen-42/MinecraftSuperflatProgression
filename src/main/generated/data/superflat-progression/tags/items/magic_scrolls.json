@@ -1,0 +1,24 @@
+{
+  "replace": false,
+  "values": [
+    "superflat-progression:scroll_rain",
+    "superflat-progression:scroll_thunder",
+    "superflat-progression:scroll_clear_weather",
+    "superflat-progression:scroll_trade",
+    "superflat-progression:scroll_pig",
+    "superflat-progression:scroll_cow",
+    "superflat-progression:scroll_chicken",
+    "superflat-progression:scroll_sheep",
+    "superflat-progression:scroll_cat",
+    "superflat-progression:scroll_wolf",
+    "superflat-progression:scroll_horse",
+    "superflat-progression:scroll_zombie",
+    "superflat-progression:scroll_skeleton",
+    "superflat-progression:scroll_witch",
+    "superflat-progression:scroll_enderman",
+    "superflat-progression:scroll_slime",
+    "superflat-progression:scroll_magma_cube",
+    "superflat-progression:scroll_blaze",
+    "superflat-progression:scroll_spider"
+  ]
+}

@@ -21,6 +21,7 @@ public class SuperflatProgressionTags {
 		public static final TagKey<Item> DIAMOND_GEAR = ofItem("diamond_gear");
 		public static final TagKey<Item> BONE_GEAR = ofItem("bone_gear");
 		public static final TagKey<Item> ICES = ofItem("ices");
+		public static final TagKey<Item> MAGIC_SCROLLS = ofItem("magic_scrolls");
 
 		public static final TagKey<Item> PULVERIZES_INTO_GREEN = ofItem("pulverizes_into_green");
 		public static final TagKey<Item> PULVERIZES_INTO_LIME = ofItem("pulverizes_into_lime");
