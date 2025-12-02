@@ -39,6 +39,7 @@ The pulverizer can be automated using hoppers and redstone: The hopper on top su
 - Soul soil can be crafted using mud and pixie dust, and converted to soul sand using a grinder.
 - Endermen will rarely spawn in holding end stone or nylium.
 - Craftable Elytra recipe that uses an Ender Star dropped by defeating the Ender Dragon.
+- Includes advancements and supports REI to guide progression.
 
 ### Other Dimensions
 - **The Nether is now Superflat when the Superflat world preset is chosen**
