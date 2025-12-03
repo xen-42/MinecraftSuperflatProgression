@@ -110,3 +110,9 @@ fabricApi {
 		client = true
 	}
 }
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
