@@ -7,7 +7,7 @@ name: Debug Build
 on: [pull_request, push, workflow_dispatch]
 
 env:
-  PROJ_NAME: PeacefulProgression
+  PROJ_NAME: SuperflatProgression
 
 jobs:
   build:
