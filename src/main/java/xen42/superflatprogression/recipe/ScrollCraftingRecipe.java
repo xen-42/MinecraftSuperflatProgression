@@ -131,7 +131,7 @@ public class ScrollCraftingRecipe implements Recipe<ScrollCraftingRecipeInput> {
 			buf.writeString(recipe.group);
 			recipe.input.write(buf);
 			buf.writeItemStack(recipe.result());
-			buf.writeVarInt(recipe.cost);
+			buf.writeInt(recipe.cost);
 		}
 
 		public ScrollCraftingRecipe read(Identifier id, PacketByteBuf buf) {
