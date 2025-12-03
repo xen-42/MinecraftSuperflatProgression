@@ -18,7 +18,7 @@ jobs:
   pre_job:
     name: Check For Other Releases
     outputs:
-      java_version: ${{ steps.read-java-version.outputs.java_version }}
+      java_version: 21
       minecraft_version: ${{ steps.read-minecraft-version.outputs.minecraft_version }}
       mod_version: ${{ steps.read-mod-version.outputs.mod_version }}
       exists: ${{ steps.check-tag.outputs.exists }}
