@@ -23,7 +23,7 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v4
         with:
-          java-version: ${{ steps.read-java-version.outputs.java_version }}
+          java-version: 21
           distribution: 'microsoft'
           cache: gradle
       - name: Loom Cache
