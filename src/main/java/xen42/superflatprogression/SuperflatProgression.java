@@ -43,6 +43,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.chunk.FlatChunkGenerator;
 import net.minecraft.world.gen.feature.EndPortalFeature;
 import net.minecraft.world.gen.feature.FeatureConfig;
+import xen42.superflatprogression.compat.ModEventCompatibility;
 import xen42.superflatprogression.entities.PixieEntity;
 import xen42.superflatprogression.recipe.GrinderRecipe;
 import xen42.superflatprogression.recipe.ScrollCraftingRecipe;
@@ -142,5 +143,7 @@ public class SuperflatProgression implements ModInitializer {
 				});
 			}
 		});
+
+		ModEventCompatibility.onInitialize();
 	}
 }
