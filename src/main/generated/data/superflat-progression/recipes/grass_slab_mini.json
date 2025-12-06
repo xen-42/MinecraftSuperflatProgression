@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "X": {
+      "item": "minecraft:grass_block"
+    }
+  },
+  "pattern": [
+    "XX"
+  ],
+  "result": {
+    "count": 4,
+    "item": "superflat-progression:grass_slab"
+  },
+  "show_notification": true
+}

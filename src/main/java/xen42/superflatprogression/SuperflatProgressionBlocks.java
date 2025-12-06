@@ -89,7 +89,7 @@ public class SuperflatProgressionBlocks {
 	public static final SlabBlock DIRT_SLAB = (SlabBlock)register("dirt_slab", (settings) -> new DirtSlabBlock(settings, false), 
 		AbstractBlock.Settings.copy(Blocks.DIRT).ticksRandomly(), true);
 	public static final SlabBlock GRASS_SLAB = (SlabBlock)register("grass_slab", (settings) -> new DirtSlabBlock(settings, true), 
-		AbstractBlock.Settings.copy(Blocks.DIRT).ticksRandomly(), true);
+		AbstractBlock.Settings.copy(Blocks.GRASS_BLOCK).ticksRandomly(), true);
 
 	public static final EndPortalFrameGeneratorBlock END_PORTAL_FRAME_GENERATOR = (EndPortalFrameGeneratorBlock)register(
 		"end_portal_frame_generator", EndPortalFrameGeneratorBlock::new, AbstractBlock.Settings.copy(Blocks.OBSIDIAN).nonOpaque(), true);
