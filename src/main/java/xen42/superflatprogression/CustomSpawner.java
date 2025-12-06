@@ -87,10 +87,6 @@ public class CustomSpawner implements Spawner {
                         int k = (24 + random.nextInt(24)) * (random.nextBoolean() ? -1 : 1);
                         BlockPos.Mutable mutable = playerEntity.getBlockPos().mutableCopy().move(j, 0, k);
 
-                        if (world.getLightLevel(mutable) > 11 && requiresDark) {
-                            return 0;
-                        }
-
                         var radius = 100;
                         Box box = new Box(
                             playerEntity.getX() - radius, playerEntity.getY() - radius, playerEntity.getZ() - radius,
@@ -111,7 +107,9 @@ public class CustomSpawner implements Spawner {
                                 n++;
                                 mutable.setY(world.getTopPosition(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, mutable).getY());
 
-                                spawnMob(world, mutable, random);
+                                if (world.getLightLevel(mutable) <= 11 || !requiresDark) {
+                                    spawnMob(world, mutable, random);
+                                }
 
                                 mutable.setX(mutable.getX() + random.nextInt(5) - random.nextInt(5));
                                 mutable.setZ(mutable.getZ() + random.nextInt(5) - random.nextInt(5));
