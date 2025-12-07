@@ -44,6 +44,7 @@ public class SuperflatProgressionTags {
 
 		public static final TagKey<Item> GHASTLING_SCROLL_INPUT = ofItem("ghastling_scroll_input");
 
+		public static final TagKey<Item> ENRICHED_BONE_MEAL_ON_END_STONE = ofItem("enriched_bone_meal_on_end_stone");
 		public static final TagKey<Item> ENRICHED_BONE_MEAL_ON_SAND = ofItem("enriched_bone_meal_on_sand");
 		public static final TagKey<Item> ENRICHED_BONE_MEAL_ON_GRASS = ofItem("enriched_bone_meal_on_grass");
 		public static final TagKey<Item> ENRICHED_BONE_MEAL_ON_SOUL_SAND = ofItem("enriched_bone_meal_on_soul_sand");
@@ -53,6 +54,7 @@ public class SuperflatProgressionTags {
     }
 
 	public class BlockTags {
+		public static final TagKey<Block> ENRICHED_BONE_MEAL_ON_END_STONE = ofBlock("enriched_bone_meal_on_end_stone");
 		public static final TagKey<Block> ENRICHED_BONE_MEAL_ON_SAND = ofBlock("enriched_bone_meal_on_sand");
 		public static final TagKey<Block> ENRICHED_BONE_MEAL_ON_GRASS = ofBlock("enriched_bone_meal_on_grass");
 		public static final TagKey<Block> ENRICHED_BONE_MEAL_ON_SOUL_SAND = ofBlock("enriched_bone_meal_on_soul_sand");

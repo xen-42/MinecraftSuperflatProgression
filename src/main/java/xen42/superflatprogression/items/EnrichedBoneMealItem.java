@@ -120,6 +120,9 @@ public class EnrichedBoneMealItem extends BoneMealItem {
                 if (groundState.isIn(SuperflatProgressionTags.BlockTags.MUSHROOM_BLOCK_PLACEABLE)) {
                     possibleBlocks = SuperflatProgressionTags.GetBlocksInTag(SuperflatProgressionTags.BlockTags.ENRICHED_BONE_MEAL_MUSHROOM);
                 }
+                else if (groundState.isOf(Blocks.END_STONE)) {
+                    possibleBlocks = SuperflatProgressionTags.GetBlocksInTag(SuperflatProgressionTags.BlockTags.ENRICHED_BONE_MEAL_ON_END_STONE);
+                }
                 else if (groundState.isOf(Blocks.SAND)) {
                     possibleBlocks = SuperflatProgressionTags.GetBlocksInTag(SuperflatProgressionTags.BlockTags.ENRICHED_BONE_MEAL_ON_SAND);
                 }

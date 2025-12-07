@@ -60,6 +60,7 @@ public class SuperflatProgressionREIClientPlugin implements REIClientPlugin {
 		registry.add(new WaterBottleREIDisplay(Blocks.MAGMA_BLOCK, Blocks.COBBLESTONE));
 
 		registry.add(new EnrichedBoneMealREIDisplay(SuperflatProgressionTags.ItemTags.MUSHROOM_BLOCK_PLACEABLE, SuperflatProgressionTags.ItemTags.ENRICHED_BONE_MEAL_MUSHROOM));
+		registry.add(new EnrichedBoneMealREIDisplay(Blocks.END_STONE, SuperflatProgressionTags.ItemTags.ENRICHED_BONE_MEAL_ON_END_STONE));
 		registry.add(new EnrichedBoneMealREIDisplay(Blocks.SAND, SuperflatProgressionTags.ItemTags.ENRICHED_BONE_MEAL_ON_SAND));
 		registry.add(new EnrichedBoneMealREIDisplay(Blocks.GRASS_BLOCK, SuperflatProgressionTags.ItemTags.ENRICHED_BONE_MEAL_ON_GRASS));
 		registry.add(new EnrichedBoneMealREIDisplay(Blocks.SOUL_SAND, SuperflatProgressionTags.ItemTags.ENRICHED_BONE_MEAL_ON_SOUL_SAND));

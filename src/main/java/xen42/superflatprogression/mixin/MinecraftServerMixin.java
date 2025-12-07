@@ -92,9 +92,8 @@ public class MinecraftServerMixin {
             var endCities = server.getRegistryManager().get(RegistryKeys.STRUCTURE_SET).getEntry(StructureSetKeys.END_CITIES).get();
             var endConfig = new FlatChunkGeneratorConfig(
                 structuresEnabled ? Optional.of(RegistryEntryList.of(endCities)) : Optional.empty(),
-                server.getRegistryManager().get(RegistryKeys.BIOME).getEntry(BiomeKeys.END_HIGHLANDS).get(),
+                server.getRegistryManager().get(RegistryKeys.BIOME).getEntry(BiomeKeys.END_MIDLANDS).get(),
                 List.of()
-                //List.of(getPlacedFeature(server, "chorus_plant"))
             );
             endConfig.enableFeatures();
             
