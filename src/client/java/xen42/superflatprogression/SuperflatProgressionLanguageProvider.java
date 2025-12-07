@@ -162,6 +162,7 @@ public abstract class SuperflatProgressionLanguageProvider extends FabricLanguag
 			translationBuilder.add(SuperflatProgressionBlocks.MAGIC_LANTERN, "Magic Lantern");
 			translationBuilder.add(SuperflatProgressionBlocks.SCROLL_CRAFTING, "Scriptorium");
 			translationBuilder.add(SuperflatProgressionBlocks.GRINDER, "Pulverizer");
+			translationBuilder.add(SuperflatProgression.MOD_ID + ".grind_button", "Grind");
 			translationBuilder.add(SuperflatProgressionBlocks.END_PORTAL_FRAME_GENERATOR, "End Portal Frame Generator");
 
 			translationBuilder.add(SuperflatProgressionBlocks.DIRT_SLAB, "Dirt Slab");

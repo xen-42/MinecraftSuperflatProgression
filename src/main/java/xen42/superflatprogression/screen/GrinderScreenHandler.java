@@ -72,7 +72,7 @@ public class GrinderScreenHandler extends AbstractRecipeScreenHandler<GrinderRec
         this.context = context;
         this.player = playerInventory.player;
 
-        _outputSlot = this.addSlot(new OutputSlot(this, this.player, this.inventory, this.resultInventory, 0, 111, 34));
+        _outputSlot = this.addSlot(new OutputSlot(this, this.player, this.inventory, this.resultInventory, 0, 138, 43));
         
         this.addSlot(new CustomSlot(this, this.inventory, INPUT_SLOT, 53, 34));
         this.addSlot(new ItemSpecificSlot(this, this.inventory, BUCKET_SLOT, Ingredient.ofItems(Items.BUCKET), 27, 34));
@@ -369,7 +369,7 @@ public class GrinderScreenHandler extends AbstractRecipeScreenHandler<GrinderRec
 
         @Override
         public boolean canTakeItems(PlayerEntity player) {
-            return true;
+            return false;
         }
 
         @Override
@@ -429,10 +429,6 @@ public class GrinderScreenHandler extends AbstractRecipeScreenHandler<GrinderRec
             this.onCrafted(stack);
             GrinderRecipeInput recipeInput = GrinderRecipeInput.create(this.handler, this.input.getInputStacks());
             DefaultedList<ItemStack> defaultedList = this.getRecipeRemainders(recipeInput, player.getWorld());
-
-            this.handler.context.run((world, pos) -> {
-                world.playSound((Entity)null, pos, SoundEvents.UI_STONECUTTER_TAKE_RESULT, SoundCategory.BLOCKS, 1.0F, world.random.nextFloat() * 0.1F + 0.9F);
-            });
 
             if(!this.input.getStack(BUCKET_SLOT).isEmpty()) {
                 this.input.removeStack(BUCKET_SLOT, 1);

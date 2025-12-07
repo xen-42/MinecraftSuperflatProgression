@@ -145,5 +145,6 @@ public class SuperflatProgression implements ModInitializer {
 		});
 
 		ModEventCompatibility.onInitialize();
+		SuperflatProgressionNetworking.initialize();
 	}
 }
