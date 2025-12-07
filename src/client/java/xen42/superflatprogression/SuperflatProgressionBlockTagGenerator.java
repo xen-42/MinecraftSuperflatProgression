@@ -35,7 +35,7 @@ public class SuperflatProgressionBlockTagGenerator extends BlockTagProvider {
             .add(SuperflatProgressionBlocks.GRASS_SLAB);
 
         this.getOrCreateTagBuilder(SuperflatProgressionTags.BlockTags.ENRICHED_BONE_MEAL_ON_SOUL_SAND)
-        .add(Blocks.NETHER_WART);
+            .add(Blocks.NETHER_WART);
 
         this.getOrCreateTagBuilder(SuperflatProgressionTags.BlockTags.ENRICHED_BONE_MEAL_MUSHROOM)
             .add(Blocks.RED_MUSHROOM)
@@ -57,6 +57,14 @@ public class SuperflatProgressionBlockTagGenerator extends BlockTagProvider {
             .add(Blocks.LILAC)
             .add(Blocks.PEONY)
             .addOptional(Identifier.of("peaceful-items", "flax_crop"));
+
+        this.getOrCreateTagBuilder(SuperflatProgressionTags.BlockTags.ENRICHED_BONE_MEAL_ON_CRIMSON_NYLIUM)
+            .add(Blocks.CRIMSON_FUNGUS)
+            .add(Blocks.CRIMSON_ROOTS);
+
+        this.getOrCreateTagBuilder(SuperflatProgressionTags.BlockTags.ENRICHED_BONE_MEAL_ON_WARPED_NYLIUM)
+            .add(Blocks.WARPED_FUNGUS)
+            .add(Blocks.WARPED_ROOTS);
 
         this.getOrCreateTagBuilder(SuperflatProgressionTags.BlockTags.ENRICHED_BONE_MEAL_ON_END_STONE)
             .add(Blocks.CHORUS_FLOWER);

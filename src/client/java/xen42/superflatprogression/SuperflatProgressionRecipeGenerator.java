@@ -179,6 +179,13 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
                         .criterion(hasItem(Blocks.DIORITE), conditionsFromItem(Blocks.DIORITE))
                         , exporter);
 
+                offerTo(createShapeless(RecipeCategory.BUILDING_BLOCKS, Blocks.WARPED_NYLIUM, 1)
+                        .input(Blocks.CRIMSON_NYLIUM) 
+                        .input(SuperflatProgressionItems.END_DUST) 
+                        .criterion(hasItem(Blocks.CRIMSON_NYLIUM), conditionsFromItem(Blocks.CRIMSON_NYLIUM))
+                        .criterion(hasItem(SuperflatProgressionItems.END_DUST), conditionsFromItem(SuperflatProgressionItems.END_DUST))
+                        , exporter);
+
                 offerTo(createShaped(RecipeCategory.MISC, SuperflatProgressionItems.MAGIC_TORCH)
                         .pattern("X")
                         .pattern("Y")

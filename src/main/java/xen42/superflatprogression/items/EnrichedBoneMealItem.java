@@ -132,11 +132,21 @@ public class EnrichedBoneMealItem extends BoneMealItem {
                 else if (groundState.isOf(Blocks.SOUL_SAND)) {
                     possibleBlocks = SuperflatProgressionTags.GetBlocksInTag(SuperflatProgressionTags.BlockTags.ENRICHED_BONE_MEAL_ON_SOUL_SAND);
                 }
+                else if (groundState.isOf(Blocks.CRIMSON_NYLIUM)) {
+                    possibleBlocks = SuperflatProgressionTags.GetBlocksInTag(SuperflatProgressionTags.BlockTags.ENRICHED_BONE_MEAL_ON_CRIMSON_NYLIUM);
+                }
+                else if (groundState.isOf(Blocks.WARPED_NYLIUM)) {
+                    possibleBlocks = SuperflatProgressionTags.GetBlocksInTag(SuperflatProgressionTags.BlockTags.ENRICHED_BONE_MEAL_ON_WARPED_NYLIUM);
+                }
                 else if (groundState.isOf(Blocks.SUGAR_CANE) && !world.getBlockState(blockPos.down(2)).isOf(Blocks.SUGAR_CANE)) {
                     possibleBlocks = new ArrayList<>(List.of(Blocks.SUGAR_CANE));
                 }
                 else if (groundState.isOf(Blocks.CACTUS) && !world.getBlockState(blockPos.down(2)).isOf(Blocks.CACTUS)) {
                     possibleBlocks = new ArrayList<>(List.of(Blocks.CACTUS));
+                }
+
+                if (groundState.isOf(Blocks.NETHERRACK) && world.getRandom().nextFloat() < 0.7f) {
+                    world.setBlockState(blockPos2.down(), Blocks.CRIMSON_NYLIUM.getDefaultState());
                 }
             }            
             else if (isWater && groundState.isOpaque()) {

@@ -133,6 +133,8 @@ public class SuperflatProgressionItemTagGenerator extends ItemTagProvider {
 		this.getOrCreateTagBuilder(ItemTags.HOES).add(SuperflatProgressionItems.BONE_HOE);
 		this.getOrCreateTagBuilder(ItemTags.SWORDS).add(SuperflatProgressionItems.BONE_SWORD);
 
+		copy(SuperflatProgressionTags.BlockTags.ENRICHED_BONE_MEAL_ON_CRIMSON_NYLIUM, SuperflatProgressionTags.ItemTags.ENRICHED_BONE_MEAL_ON_CRIMSON_NYLIUM);
+		copy(SuperflatProgressionTags.BlockTags.ENRICHED_BONE_MEAL_ON_WARPED_NYLIUM, SuperflatProgressionTags.ItemTags.ENRICHED_BONE_MEAL_ON_WARPED_NYLIUM);
 		copy(SuperflatProgressionTags.BlockTags.ENRICHED_BONE_MEAL_ON_END_STONE, SuperflatProgressionTags.ItemTags.ENRICHED_BONE_MEAL_ON_END_STONE);
 		copy(SuperflatProgressionTags.BlockTags.ENRICHED_BONE_MEAL_MUSHROOM, SuperflatProgressionTags.ItemTags.ENRICHED_BONE_MEAL_MUSHROOM);
 		copy(SuperflatProgressionTags.BlockTags.ENRICHED_BONE_MEAL_ON_GRASS, SuperflatProgressionTags.ItemTags.ENRICHED_BONE_MEAL_ON_GRASS);

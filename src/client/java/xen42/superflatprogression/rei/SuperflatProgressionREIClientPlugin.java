@@ -60,11 +60,14 @@ public class SuperflatProgressionREIClientPlugin implements REIClientPlugin {
 		registry.add(new WaterBottleREIDisplay(Blocks.MAGMA_BLOCK, Blocks.COBBLESTONE));
 
 		registry.add(new EnrichedBoneMealREIDisplay(SuperflatProgressionTags.ItemTags.MUSHROOM_BLOCK_PLACEABLE, SuperflatProgressionTags.ItemTags.ENRICHED_BONE_MEAL_MUSHROOM));
+		registry.add(new EnrichedBoneMealREIDisplay(Blocks.CRIMSON_NYLIUM, SuperflatProgressionTags.ItemTags.ENRICHED_BONE_MEAL_ON_CRIMSON_NYLIUM));
+		registry.add(new EnrichedBoneMealREIDisplay(Blocks.WARPED_NYLIUM, SuperflatProgressionTags.ItemTags.ENRICHED_BONE_MEAL_ON_WARPED_NYLIUM));
 		registry.add(new EnrichedBoneMealREIDisplay(Blocks.END_STONE, SuperflatProgressionTags.ItemTags.ENRICHED_BONE_MEAL_ON_END_STONE));
 		registry.add(new EnrichedBoneMealREIDisplay(Blocks.SAND, SuperflatProgressionTags.ItemTags.ENRICHED_BONE_MEAL_ON_SAND));
 		registry.add(new EnrichedBoneMealREIDisplay(Blocks.GRASS_BLOCK, SuperflatProgressionTags.ItemTags.ENRICHED_BONE_MEAL_ON_GRASS));
 		registry.add(new EnrichedBoneMealREIDisplay(Blocks.SOUL_SAND, SuperflatProgressionTags.ItemTags.ENRICHED_BONE_MEAL_ON_SOUL_SAND));
 		registry.add(new EnrichedBoneMealREIDisplay(Items.WATER_BUCKET, SuperflatProgressionTags.ItemTags.ENRICHED_BONE_MEAL_UNDER_WATER));
+		registry.add(new EnrichedBoneMealREIDisplay(Blocks.NETHERRACK, Blocks.CRIMSON_NYLIUM));
 
 		addInfo(SuperflatProgressionBlocks.CHARCOAL_BLOCK.asItem());
 		addInfo(SuperflatProgressionBlocks.GRINDER.asItem());
