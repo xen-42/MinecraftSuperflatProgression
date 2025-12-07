@@ -1,0 +1,20 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "peaceful-items"
+      ]
+    }
+  ],
+  "type": "superflat-progression:scroll_crafting",
+  "cost": 5,
+  "input": {
+    "item": {
+      "item": "superflat-progression:end_dust"
+    }
+  },
+  "result": {
+    "item": "superflat-progression:scroll_end_clam"
+  }
+}

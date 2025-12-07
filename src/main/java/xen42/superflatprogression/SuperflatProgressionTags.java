@@ -42,6 +42,8 @@ public class SuperflatProgressionTags {
 		public static final TagKey<Item> PULVERIZES_INTO_BONE_MEAL = ofItem("pulverizes_into_bone_meal");
 		public static final TagKey<Item> PULVERIZES_INTO_PRISMARINE_SHARD = ofItem("pulverizes_into_prismarine_shard");
 
+		public static final TagKey<Item> GHASTLING_SCROLL_INPUT = ofItem("ghastling_scroll_input");
+
 		public static final TagKey<Item> ENRICHED_BONE_MEAL_ON_SAND = ofItem("enriched_bone_meal_on_sand");
 		public static final TagKey<Item> ENRICHED_BONE_MEAL_ON_GRASS = ofItem("enriched_bone_meal_on_grass");
 		public static final TagKey<Item> ENRICHED_BONE_MEAL_ON_SOUL_SAND = ofItem("enriched_bone_meal_on_soul_sand");

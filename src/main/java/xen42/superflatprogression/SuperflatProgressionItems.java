@@ -9,6 +9,7 @@ import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.HoeItem;
 import net.minecraft.item.Item;
@@ -65,6 +66,7 @@ public class SuperflatProgressionItems {
 		});
 
 	public static ArrayList<Item> SCROLLS;
+	public static ArrayList<Item> SCROLLS_DATAGEN;
 
     public static final Item SCROLL_TRADE = registerScroll("scroll_trade", MobSpawnerHelper::spawnWanderingTrader);
     public static final Item SCROLL_PIG = registerScroll("scroll_pig", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, EntityType.PIG));
@@ -85,6 +87,9 @@ public class SuperflatProgressionItems {
     public static final Item SCROLL_BLAZE = registerScroll("scroll_blaze", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, EntityType.BLAZE));
     public static final Item SCROLL_SPIDER = registerScroll("scroll_spider", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, EntityType.SPIDER));
     
+	public static final Item SCROLL_GHASTLING = registerScroll("scroll_ghastling", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, Registries.ENTITY_TYPE.get(Identifier.of("peaceful-items", "ghastling"))), "peaceful-items");
+	public static final Item SCROLL_END_CLAM = registerScroll("scroll_end_clam", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, Registries.ENTITY_TYPE.get(Identifier.of("peaceful-items", "end_clam"))), "peaceful-items");
+	
 	//public static final Item SCROLL_BEAVER = registerScroll("scroll_beaver", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, Registries.ENTITY_TYPE.get(Identifier.of("canadamod", "beaver"))), "canadamod");
 
 	private static final Item registerScroll(String name, Consumer<ServerPlayerEntity> onUse) {
@@ -95,10 +100,21 @@ public class SuperflatProgressionItems {
 		var scroll = register(name, (settings) -> new ScrollItem(settings, onUse),
 			new Item.Settings().maxCount(1).rarity(Rarity.UNCOMMON), optionalModID);
 
-		if (SCROLLS == null) {
-			SCROLLS = new ArrayList<Item>();
+		if (SCROLLS_DATAGEN == null) {
+			SCROLLS_DATAGEN = new ArrayList<Item>();
 		}
-		SCROLLS.add(scroll);
+		SCROLLS_DATAGEN.add(scroll);
+
+		if (optionalModID == null || FabricLoader.getInstance().isModLoaded(optionalModID)) {
+			if (SCROLLS == null) {
+				SCROLLS = new ArrayList<Item>();
+			}
+			SCROLLS.add(scroll);
+		}
+		else {
+			SuperflatProgression.LOGGER.info("Supported mod " + optionalModID + " is not installed.");
+		}
+
 		return scroll;
 	}
 
@@ -135,6 +151,7 @@ public class SuperflatProgressionItems {
             itemGroup.add(ENRICHED_BONEMEAL);
             itemGroup.add(FIRE_STARTER);
 
+			// Only add scrolls that are relevant (not from optional mod compat)
 			for (var scroll : SCROLLS) {
             	itemGroup.add(scroll);
 			}
@@ -168,7 +185,6 @@ public class SuperflatProgressionItems {
 		});
 
 		FuelRegistry.INSTANCE.add(SuperflatProgressionBlocks.CHARCOAL_BLOCK, 16000);
-
     }
 
 	public static Item register(String name, Function<Item.Settings, Item> itemFactory, Item.Settings settings) {
@@ -176,16 +192,30 @@ public class SuperflatProgressionItems {
 	}
 
 	public static Item register(String name, Function<Item.Settings, Item> itemFactory, Item.Settings settings, String optionalModID) {
-		// Create the item instance.
-		Item item = itemFactory.apply(settings);
-		
+		Item item;
 		if (optionalModID == null || FabricLoader.getInstance().isModLoaded(optionalModID)) {
-			// Create the item key.
-			RegistryKey<Item> itemKey = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(SuperflatProgression.MOD_ID, name));
-
-			// Register the item.
-			Registry.register(Registries.ITEM, itemKey, item);
+			// Create the item instance.
+			item = itemFactory.apply(settings);
 		}
+		else {
+			// Dummy item for registering translations and recipes
+			item = new Item(new Item.Settings().maxCount(0)) {
+				@Override
+				public String getTranslationKey() {
+					return "item." + SuperflatProgression.MOD_ID + "." + name;
+				}
+
+				@Override public String toString() {
+					return SuperflatProgression.MOD_ID + ":" + name;
+				}
+			};
+		}
+
+		// Create the item key.
+		RegistryKey<Item> itemKey = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(SuperflatProgression.MOD_ID, name));
+
+		// Register the item.
+		Registry.register(Registries.ITEM, itemKey, item);
 
 		return item;
 	}

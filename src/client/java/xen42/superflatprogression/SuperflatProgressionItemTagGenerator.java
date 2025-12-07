@@ -123,6 +123,9 @@ public class SuperflatProgressionItemTagGenerator extends ItemTagProvider {
 			.add(Items.PRISMARINE_BRICKS)
 			.add(Items.DARK_PRISMARINE)
 			.add(Items.PRISMARINE);
+
+		this.getOrCreateTagBuilder(SuperflatProgressionTags.ItemTags.GHASTLING_SCROLL_INPUT)
+			.addOptional(Identifier.of("peaceful-items", "sulphur"));
 		
 		this.getOrCreateTagBuilder(ItemTags.PICKAXES).add(SuperflatProgressionItems.BONE_PICKAXE);
 		this.getOrCreateTagBuilder(ItemTags.AXES).add(SuperflatProgressionItems.BONE_AXE);
@@ -138,7 +141,7 @@ public class SuperflatProgressionItemTagGenerator extends ItemTagProvider {
 		copy(SuperflatProgressionTags.BlockTags.MUSHROOM_BLOCK_PLACEABLE, SuperflatProgressionTags.ItemTags.MUSHROOM_BLOCK_PLACEABLE);
 
 		var scrollTagBuilder = this.getOrCreateTagBuilder(SuperflatProgressionTags.ItemTags.MAGIC_SCROLLS);
-		for (var scroll : SuperflatProgressionItems.SCROLLS) {
+		for (var scroll : SuperflatProgressionItems.SCROLLS_DATAGEN) {
 			scrollTagBuilder.add(scroll);
 		}
     }

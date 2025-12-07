@@ -103,7 +103,7 @@ public class SuperflatProgressionModelGenerator extends FabricModelProvider {
 		Identifier scrollTexture = new Identifier(SuperflatProgression.MOD_ID, "item/scroll_blank");
 		TextureMap textureMap = new TextureMap().put(TextureKey.LAYER0, scrollTexture);
 
-		for (var scroll : SuperflatProgressionItems.SCROLLS) {
+		for (var scroll : SuperflatProgressionItems.SCROLLS_DATAGEN) {
 			Models.GENERATED.upload(ModelIds.getItemModelId(scroll), textureMap, itemModelGenerator.writer);
 		}
     }

@@ -432,6 +432,12 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
                     .criterion(hasItem(Items.WHEAT), conditionsFromItem(Items.WHEAT)).setCount(4).offerTo(
                         withConditions(exporter, DefaultResourceConditions.allModsLoaded("canadamod"))
                 );
+
+                createScroll(SuperflatProgressionItems.SCROLL_GHASTLING, SuperflatProgressionTags.ItemTags.GHASTLING_SCROLL_INPUT, 5).offerTo(
+                    withConditions(exporter, DefaultResourceConditions.allModsLoaded("peaceful-items")));
+
+                createScroll(SuperflatProgressionItems.SCROLL_END_CLAM, SuperflatProgressionItems.END_DUST, 5).offerTo(
+                    withConditions(exporter, DefaultResourceConditions.allModsLoaded("peaceful-items")));
             }
 
             public ScrollCraftingRecipeJsonBuilder createScroll(ItemConvertible output, Item input, int cost) {
