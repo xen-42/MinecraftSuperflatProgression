@@ -65,9 +65,9 @@ public class MinecraftServerMixin {
                 List.of()
             );
             netherConfig.getLayerBlocks().add(Blocks.BEDROCK.getDefaultState());
-            netherConfig.getLayerBlocks().add(Blocks.NETHERRACK.getDefaultState());
-            netherConfig.getLayerBlocks().add(Blocks.NETHERRACK.getDefaultState());
-            netherConfig.getLayerBlocks().add(Blocks.NETHERRACK.getDefaultState());
+            for (int i = 0; i < 3; i ++) {
+                netherConfig.getLayerBlocks().add(Blocks.NETHERRACK.getDefaultState());
+            }
             MakeWorldSuperflat(server, listener, nether, netherConfig);
 
             // If no structures make blazes and wither skeletons just spawn
