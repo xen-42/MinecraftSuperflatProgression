@@ -22,6 +22,18 @@ public class ScriptoriumTransferHandler implements SimpleTransferHandler {
 			return null;
 		}
 	}
+	
+	@Override
+	public ApplicabilityResult checkApplicable(Context context) {
+		if (context.getMenu() instanceof ScrollCraftingScreenHandler
+				&& context.getDisplay().getCategoryIdentifier() == SuperflatProgressionREIServerPlugin.SCRIPTORIUM_CATEGORY
+				&& context.getContainerScreen() != null) {
+			return ApplicabilityResult.createApplicable();
+		}
+		else {
+			return ApplicabilityResult.createNotApplicable();
+		}
+	}
 
 	@Override
 	public Iterable<SlotAccessor> getInputSlots(Context context) {

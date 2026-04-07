@@ -265,7 +265,7 @@ public class ScrollCraftingScreenHandler extends AbstractRecipeScreenHandler<Scr
     }
 
     public List<Slot> getInputSlots() {
-        return this.slots.subList(PARCHMENT_SLOT, INPUT_SLOT);
+        return List.of(_inputSlot, _parchmentSlot, _essenceSlot);
     }
 
     public PlayerEntity getPlayer() {

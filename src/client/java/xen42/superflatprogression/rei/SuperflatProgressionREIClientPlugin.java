@@ -93,7 +93,7 @@ public class SuperflatProgressionREIClientPlugin implements REIClientPlugin {
 		
 		// Todo: fix these
 		//registry.register(new PulverizerTransferHandler());
-		//registry.register(new ScriptoriumTransferHandler());
+		registry.register(new ScriptoriumTransferHandler());
 	}
 
 	private static void addInfo(Item item) {
