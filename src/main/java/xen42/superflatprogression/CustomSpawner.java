@@ -29,14 +29,14 @@ import net.minecraft.world.spawner.Spawner;
 public class CustomSpawner implements Spawner {
 	private int cooldown;
 
-	private int minCooldown = 160;
-	private int maxCooldown = 420;
+	private int minCooldown = 100;
+	private int maxCooldown = 300;
 
-	private int minAttempts = 3;
-	private int maxAttempts = 6;
+	private int minAttempts = 1;
+	private int maxAttempts = 3;
 
-	private int minSpawnDistance = 16;
-	private int maxSpawnDistance = 40;
+	private int minSpawnDistance = 24;
+	private int maxSpawnDistance = 48;
 
     private EntityType<?> type;
     private boolean isHostile;
@@ -156,19 +156,21 @@ public class CustomSpawner implements Spawner {
         var minY = world.getBottomY();
         var maxY = world.getTopY();
 
-        Box chunkBox = new Box(
-            chunk.getPos().getStartX(), minY, chunk.getPos().getStartZ(),
-            chunk.getPos().getEndX(), maxY, chunk.getPos().getEndZ()
+        var radius = regionCheckRadius * regionCheckRadius;
+        Box box = new Box(
+        	basePos.getX() - radius, minY, basePos.getZ() - radius,
+        	basePos.getX() + radius, maxY, basePos.getZ() + radius
         );
 
-        int mobCount = world.getEntitiesByClass(MobEntity.class, chunkBox, e -> e.getType() == this.type).size();
+        int mobCount = world.getEntitiesByClass(MobEntity.class, box, e -> e.getType() == this.type).size();
         if (mobCount >= maxCount) {
-            SuperflatProgression.LOGGER.debug("[CustomSpawner] Too many already exist in chunk: {}/{}", mobCount, maxCount);
+            SuperflatProgression.LOGGER.debug("[CustomSpawner] Too many already exist: {}/{}", mobCount, maxCount);
             return 0;
         }
 
         int spawned = 0;
-        int attempts = random.nextBetween(minAttempts, maxAttempts);
+        int baseAttempts = getBaseAttemptsByLocalDifficulty(world, basePos);
+        int attempts = baseAttempts + random.nextBetween(minAttempts, maxAttempts);
 
         for (int i = 0; i < attempts; i++) {
             BlockPos.Mutable spawnPos = findSpawnPos(world, basePos, random);
@@ -188,6 +190,10 @@ public class CustomSpawner implements Spawner {
         }
 
         return spawned;
+	}
+	
+	private static int getBaseAttemptsByLocalDifficulty(ServerWorld world, BlockPos.Mutable pos) {
+		return (int)Math.ceil(world.getLocalDifficulty(pos).getLocalDifficulty());
 	}
 	
 	private static void offsetRandomly(BlockPos.Mutable pos, Random random) {
