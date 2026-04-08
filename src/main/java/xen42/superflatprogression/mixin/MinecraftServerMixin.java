@@ -44,7 +44,7 @@ import xen42.superflatprogression.worldgen.FlatNetherChunkGenerator;
 public class MinecraftServerMixin {
     // This is what makes the nether also superflat
 	@Inject(at = @At("RETURN"), method = "createWorlds")
-    private void createWorlds(WorldGenerationProgressListener listener, CallbackInfo info) {
+    private void superflatprogression_createWorlds(WorldGenerationProgressListener listener, CallbackInfo info) {
         try {
             MinecraftServer server = (MinecraftServer) (Object) this;
 
