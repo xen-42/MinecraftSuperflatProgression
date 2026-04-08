@@ -168,11 +168,16 @@ public class CustomSpawner implements Spawner {
             return 0;
         }
 
+        int remaining = maxCount - mobCount;
         int spawned = 0;
         int baseAttempts = getBaseAttemptsByLocalDifficulty(world, basePos);
-        int attempts = baseAttempts + random.nextBetween(minAttempts, maxAttempts);
+        int attempts = Math.min(baseAttempts + random.nextBetween(minAttempts, maxAttempts), remaining);
 
         for (int i = 0; i < attempts; i++) {
+            if (spawned >= remaining) {
+                break;
+            }
+
             BlockPos.Mutable spawnPos = findSpawnPos(world, basePos, random);
             if (spawnPos == null) {
                 SuperflatProgression.LOGGER.debug("[CustomSpawner] Valid spawn point not found at {}", basePos.toShortString());
