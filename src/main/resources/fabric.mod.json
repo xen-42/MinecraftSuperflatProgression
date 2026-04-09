@@ -5,7 +5,7 @@
 	"name": "Superflat Progression",
 	"description": "Makes blocks/items/dimensions available in superflat structureless by adding new mobs, crafting, and behaviours",
 	"authors": [
-		"xen-42"
+		"xen-42", "MegaPiggy"
 	],
 	"contact": {
 		"homepage": "https://github.com/xen-42/MinecraftSuperflatProgression/releases",
@@ -41,12 +41,15 @@
 	],
 	"accessWidener": "superflat-progression.accesswidener",
 	"depends": {
-		"fabricloader": ">=0.17.3",
-		"minecraft": "~1.20.1",
-		"java": ">=17",
-		"fabric-api": "*"
+		"fabricloader": ">=${loader_version}",
+		"minecraft": "~${minecraft_version}",
+		"java": ">=${java_version}",
+		"fabric-api": ">=${fabric_api_version}"
 	},
 	"suggests": {
-		"roughlyenoughitems": ">=12.1.785"
+		"roughlyenoughitems": ">=${rei_version}"
+	},
+	"breaks": {
+		"jeb": "*"
 	}
 }
