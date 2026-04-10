@@ -104,7 +104,11 @@ public class SuperflatProgressionItems {
 	public static final Item SCROLL_GHASTLING = registerScroll("scroll_ghastling", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, Registries.ENTITY_TYPE.get(Identifier.of(SuperflatProgression.PEACEFUL_PROGRESSION, "ghastling"))), SuperflatProgression.PEACEFUL_PROGRESSION);
 	public static final Item SCROLL_END_CLAM = registerScroll("scroll_end_clam", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, Registries.ENTITY_TYPE.get(Identifier.of(SuperflatProgression.PEACEFUL_PROGRESSION, "end_clam"))), SuperflatProgression.PEACEFUL_PROGRESSION);
 	
-	//public static final Item SCROLL_BEAVER = registerScroll("scroll_beaver", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, Registries.ENTITY_TYPE.get(Identifier.of(SuperflatProgression.CANADIAN_CONTENT, "beaver"))), SuperflatProgression.CANADIAN_CONTENT);
+	public static final Item SCROLL_BEAVER = registerScroll("scroll_beaver", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, Registries.ENTITY_TYPE.get(Identifier.of(SuperflatProgression.CANADIAN_CONTENT, "beaver"))), SuperflatProgression.CANADIAN_CONTENT);
+	public static final Item SCROLL_MOOSE = registerScroll("scroll_moose", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, Registries.ENTITY_TYPE.get(Identifier.of(SuperflatProgression.CANADIAN_CONTENT, "moose"))), SuperflatProgression.CANADIAN_CONTENT);
+	public static final Item SCROLL_DUCK = registerScroll("scroll_duck", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, Registries.ENTITY_TYPE.get(Identifier.of(SuperflatProgression.CANADIAN_CONTENT, "duck"))), SuperflatProgression.CANADIAN_CONTENT);
+	public static final Item SCROLL_GOOSE = registerScroll("scroll_goose", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, Registries.ENTITY_TYPE.get(Identifier.of(SuperflatProgression.CANADIAN_CONTENT, "goose"))), SuperflatProgression.CANADIAN_CONTENT);
+	public static final Item SCROLL_GRIZZLY = registerScroll("scroll_grizzly", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, Registries.ENTITY_TYPE.get(Identifier.of(SuperflatProgression.CANADIAN_CONTENT, "grizzly"))), SuperflatProgression.CANADIAN_CONTENT);
 
 	private static final Item registerScroll(String name, Consumer<ServerPlayerEntity> onUse) {
 		return registerScroll(name, onUse, null);

@@ -1,0 +1,20 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "canadamod"
+      ]
+    }
+  ],
+  "type": "superflat-progression:scroll_crafting",
+  "cost": 5,
+  "input": {
+    "item": {
+      "item": "minecraft:bread"
+    }
+  },
+  "result": {
+    "item": "superflat-progression:scroll_duck"
+  }
+}

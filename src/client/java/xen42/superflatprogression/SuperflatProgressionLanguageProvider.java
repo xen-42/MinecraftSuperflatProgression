@@ -166,6 +166,12 @@ public abstract class SuperflatProgressionLanguageProvider extends FabricLanguag
 			translationBuilder.add(SuperflatProgressionItems.SCROLL_GHASTLING, "Scroll of Summon Ghastling");
 			translationBuilder.add(SuperflatProgressionItems.SCROLL_END_CLAM, "Scroll of Summon Enderclam");
 
+			translationBuilder.add(SuperflatProgressionItems.SCROLL_BEAVER, "Scroll of Summon Beaver");
+			translationBuilder.add(SuperflatProgressionItems.SCROLL_MOOSE, "Scroll of Summon Moose");
+			translationBuilder.add(SuperflatProgressionItems.SCROLL_DUCK, "Scroll of Summon Duck");
+			translationBuilder.add(SuperflatProgressionItems.SCROLL_GOOSE, "Scroll of Summon Goose");
+			translationBuilder.add(SuperflatProgressionItems.SCROLL_GRIZZLY, "Scroll of Summon Grizzly Bear");
+
 			translationBuilder.add(SuperflatProgressionItems.BONE_AXE, "Bone Axe");
 			translationBuilder.add(SuperflatProgressionItems.BONE_HOE, "Bone Hoe");
 			translationBuilder.add(SuperflatProgressionItems.BONE_PICKAXE, "Bone Pickaxe");

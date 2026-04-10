@@ -36,6 +36,11 @@
     "superflat-progression:scroll_drowned",
     "superflat-progression:scroll_stray",
     "superflat-progression:scroll_ghastling",
-    "superflat-progression:scroll_end_clam"
+    "superflat-progression:scroll_end_clam",
+    "superflat-progression:scroll_beaver",
+    "superflat-progression:scroll_moose",
+    "superflat-progression:scroll_duck",
+    "superflat-progression:scroll_goose",
+    "superflat-progression:scroll_grizzly"
   ]
 }

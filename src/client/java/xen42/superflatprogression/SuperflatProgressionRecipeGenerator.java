@@ -460,6 +460,21 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
 
                 createScroll(SuperflatProgressionItems.SCROLL_END_CLAM, SuperflatProgressionItems.END_DUST, 5).offerTo(
                     withConditions(exporter, DefaultResourceConditions.allModsLoaded(SuperflatProgression.PEACEFUL_PROGRESSION)));
+
+                createScroll(SuperflatProgressionItems.SCROLL_BEAVER, Items.STICK, 5).offerTo(
+                    withConditions(exporter, DefaultResourceConditions.allModsLoaded(SuperflatProgression.CANADIAN_CONTENT)));
+
+                createScroll(SuperflatProgressionItems.SCROLL_MOOSE, ItemTags.LEAVES, 5).offerTo(
+                    withConditions(exporter, DefaultResourceConditions.allModsLoaded(SuperflatProgression.CANADIAN_CONTENT)));
+
+                createScroll(SuperflatProgressionItems.SCROLL_DUCK, Items.BREAD, 5).offerTo(
+                    withConditions(exporter, DefaultResourceConditions.allModsLoaded(SuperflatProgression.CANADIAN_CONTENT)));
+
+                createScroll(SuperflatProgressionItems.SCROLL_GOOSE, Items.MELON_SEEDS, 5).offerTo(
+                    withConditions(exporter, DefaultResourceConditions.allModsLoaded(SuperflatProgression.CANADIAN_CONTENT)));
+
+                createScroll(SuperflatProgressionItems.SCROLL_GRIZZLY, Items.HONEY_BOTTLE, 5).offerTo(
+                    withConditions(exporter, DefaultResourceConditions.allModsLoaded(SuperflatProgression.CANADIAN_CONTENT)));
             }
 
             public ScrollCraftingRecipeJsonBuilder createScroll(ItemConvertible output, Item input, int cost) {
