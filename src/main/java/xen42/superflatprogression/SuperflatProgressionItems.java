@@ -76,6 +76,7 @@ public class SuperflatProgressionItems {
     public static final Item SCROLL_CAT = registerScroll("scroll_cat", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, EntityType.CAT));
     public static final Item SCROLL_WOLF = registerScroll("scroll_wolf", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, EntityType.WOLF));
     public static final Item SCROLL_HORSE = registerScroll("scroll_horse", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, EntityType.HORSE));
+    public static final Item SCROLL_RABBIT = registerScroll("scroll_rabbit", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, EntityType.RABBIT));
 
     public static final Item SCROLL_ZOMBIE = registerScroll("scroll_zombie", (ServerPlayerEntity user) -> 
 		MobSpawnerHelper.spawnMob(user, user.getWorld().random.nextFloat() < 0.1 ? EntityType.ZOMBIE_VILLAGER : EntityType.ZOMBIE));
