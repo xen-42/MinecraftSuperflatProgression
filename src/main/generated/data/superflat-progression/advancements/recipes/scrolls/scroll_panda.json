@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_cod": {
+    "has_bamboo": {
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:cod"
+              "minecraft:bamboo"
             ]
           }
         ]
@@ -37,7 +37,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "superflat-progression:scroll_cat"
+        "recipe": "superflat-progression:scroll_panda"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -47,12 +47,12 @@
       "has_the_recipe",
       "has_essence",
       "has_parchment",
-      "has_cod"
+      "has_bamboo"
     ]
   ],
   "rewards": {
     "recipes": [
-      "superflat-progression:scroll_cat"
+      "superflat-progression:scroll_panda"
     ]
   },
   "sends_telemetry_event": false

@@ -1,13 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_cod": {
+    "has_TagKey[minecraft:item / minecraft:wool_carpets]": {
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:cod"
-            ]
+            "tag": "minecraft:wool_carpets"
           }
         ]
       },
@@ -37,7 +35,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "superflat-progression:scroll_cat"
+        "recipe": "superflat-progression:scroll_llama"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -47,12 +45,12 @@
       "has_the_recipe",
       "has_essence",
       "has_parchment",
-      "has_cod"
+      "has_TagKey[minecraft:item / minecraft:wool_carpets]"
     ]
   ],
   "rewards": {
     "recipes": [
-      "superflat-progression:scroll_cat"
+      "superflat-progression:scroll_llama"
     ]
   },
   "sends_telemetry_event": false

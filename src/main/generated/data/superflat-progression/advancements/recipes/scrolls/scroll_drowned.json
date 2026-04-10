@@ -1,24 +1,24 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_cod": {
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "minecraft:cod"
-            ]
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
     "has_essence": {
       "conditions": {
         "items": [
           {
             "items": [
               "superflat-progression:essence"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_kelp": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:kelp"
             ]
           }
         ]
@@ -37,7 +37,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "superflat-progression:scroll_cat"
+        "recipe": "superflat-progression:scroll_drowned"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -47,12 +47,12 @@
       "has_the_recipe",
       "has_essence",
       "has_parchment",
-      "has_cod"
+      "has_kelp"
     ]
   ],
   "rewards": {
     "recipes": [
-      "superflat-progression:scroll_cat"
+      "superflat-progression:scroll_drowned"
     ]
   },
   "sends_telemetry_event": false

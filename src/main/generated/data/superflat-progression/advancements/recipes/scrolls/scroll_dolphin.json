@@ -1,18 +1,6 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_cod": {
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "minecraft:cod"
-            ]
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
     "has_essence": {
       "conditions": {
         "items": [
@@ -37,9 +25,21 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "superflat-progression:scroll_cat"
+        "recipe": "superflat-progression:scroll_dolphin"
       },
       "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_tropical_fish": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:tropical_fish"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
     }
   },
   "requirements": [
@@ -47,12 +47,12 @@
       "has_the_recipe",
       "has_essence",
       "has_parchment",
-      "has_cod"
+      "has_tropical_fish"
     ]
   ],
   "rewards": {
     "recipes": [
-      "superflat-progression:scroll_cat"
+      "superflat-progression:scroll_dolphin"
     ]
   },
   "sends_telemetry_event": false

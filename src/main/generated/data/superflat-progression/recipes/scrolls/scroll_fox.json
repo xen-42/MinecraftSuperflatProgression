@@ -3,10 +3,10 @@
   "cost": 5,
   "input": {
     "item": {
-      "item": "minecraft:cod"
+      "item": "minecraft:sweet_berries"
     }
   },
   "result": {
-    "item": "superflat-progression:scroll_cat"
+    "item": "superflat-progression:scroll_fox"
   }
 }

@@ -356,10 +356,21 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
                 createScroll(SuperflatProgressionItems.SCROLL_COW, Items.WHEAT, 5).offerTo(exporter);
                 createScroll(SuperflatProgressionItems.SCROLL_CHICKEN, Items.WHEAT_SEEDS, 5).offerTo(exporter);
                 createScroll(SuperflatProgressionItems.SCROLL_SHEEP, ItemTags.WOOL, 5).offerTo(exporter);
-                createScroll(SuperflatProgressionItems.SCROLL_CAT, ItemTags.FISHES, 5).offerTo(exporter);
+                createScroll(SuperflatProgressionItems.SCROLL_CAT, Items.COD, 5).offerTo(exporter);
                 createScroll(SuperflatProgressionItems.SCROLL_WOLF, Items.BONE, 5).offerTo(exporter);
                 createScroll(SuperflatProgressionItems.SCROLL_HORSE, Items.SADDLE, 5).offerTo(exporter);
                 createScroll(SuperflatProgressionItems.SCROLL_RABBIT, Items.CARROT, 5).offerTo(exporter);
+                createScroll(SuperflatProgressionItems.SCROLL_TURTLE, Items.SEAGRASS, 5).offerTo(exporter);
+                createScroll(SuperflatProgressionItems.SCROLL_PANDA, Items.BAMBOO, 5).offerTo(exporter);
+                createScroll(SuperflatProgressionItems.SCROLL_FOX, Items.SWEET_BERRIES, 5).offerTo(exporter);
+                createScroll(SuperflatProgressionItems.SCROLL_CAMEL, Items.CACTUS, 5).offerTo(exporter);
+                createScroll(SuperflatProgressionItems.SCROLL_DONKEY, Items.CHEST, 5).offerTo(exporter);
+                createScroll(SuperflatProgressionItems.SCROLL_GOAT, Items.POWDER_SNOW_BUCKET, 5).offerTo(exporter);
+                createScroll(SuperflatProgressionItems.SCROLL_LLAMA, ItemTags.WOOL_CARPETS, 5).offerTo(exporter);
+                createScroll(SuperflatProgressionItems.SCROLL_PARROT, Items.BEETROOT_SEEDS, 5).offerTo(exporter);
+                createScroll(SuperflatProgressionItems.SCROLL_MOOSHROOM, Items.RED_MUSHROOM, 5).offerTo(exporter);
+                createScroll(SuperflatProgressionItems.SCROLL_DOLPHIN, Items.TROPICAL_FISH, 5).offerTo(exporter);
+                createScroll(SuperflatProgressionItems.SCROLL_POLAR_BEAR, Items.SALMON, 5).offerTo(exporter);
 
                 createScroll(SuperflatProgressionItems.SCROLL_ZOMBIE, Items.ROTTEN_FLESH, 5).offerTo(exporter);
                 createScroll(SuperflatProgressionItems.SCROLL_SKELETON, Items.ARROW, 5).offerTo(exporter);
@@ -369,6 +380,9 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
                 createScroll(SuperflatProgressionItems.SCROLL_MAGMA_CUBE, Items.MAGMA_CREAM, 5).offerTo(exporter);
                 createScroll(SuperflatProgressionItems.SCROLL_BLAZE, Items.BLAZE_ROD, 5).offerTo(exporter);
                 createScroll(SuperflatProgressionItems.SCROLL_SPIDER, Items.SPIDER_EYE, 5).offerTo(exporter);
+                createScroll(SuperflatProgressionItems.SCROLL_HUSK, Items.SAND, 5).offerTo(exporter);
+                createScroll(SuperflatProgressionItems.SCROLL_DROWNED, Items.KELP, 5).offerTo(exporter);
+                createScroll(SuperflatProgressionItems.SCROLL_STRAY, Items.SNOW_BLOCK, 5).offerTo(exporter);
 
                 createGrinder(Blocks.STONE.asItem(), Blocks.COBBLESTONE.asItem(), false).offerTo(exporter);
                 createGrinder(Blocks.COBBLESTONE.asItem(), Blocks.GRAVEL.asItem(), false).offerTo(exporter);

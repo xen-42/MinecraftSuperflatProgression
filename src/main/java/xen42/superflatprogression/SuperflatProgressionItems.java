@@ -77,6 +77,17 @@ public class SuperflatProgressionItems {
     public static final Item SCROLL_WOLF = registerScroll("scroll_wolf", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, EntityType.WOLF));
     public static final Item SCROLL_HORSE = registerScroll("scroll_horse", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, EntityType.HORSE));
     public static final Item SCROLL_RABBIT = registerScroll("scroll_rabbit", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, EntityType.RABBIT));
+    public static final Item SCROLL_TURTLE = registerScroll("scroll_turtle", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, EntityType.TURTLE));
+    public static final Item SCROLL_PANDA = registerScroll("scroll_panda", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, EntityType.PANDA));
+    public static final Item SCROLL_FOX = registerScroll("scroll_fox", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, EntityType.FOX));
+    public static final Item SCROLL_CAMEL = registerScroll("scroll_camel", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, EntityType.CAMEL));
+    public static final Item SCROLL_DONKEY = registerScroll("scroll_donkey", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, EntityType.DONKEY));
+    public static final Item SCROLL_GOAT = registerScroll("scroll_goat", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, EntityType.GOAT));
+    public static final Item SCROLL_LLAMA = registerScroll("scroll_llama", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, EntityType.LLAMA));
+    public static final Item SCROLL_PARROT = registerScroll("scroll_parrot", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, EntityType.PARROT));
+    public static final Item SCROLL_MOOSHROOM = registerScroll("scroll_mooshroom", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, EntityType.MOOSHROOM));
+    public static final Item SCROLL_DOLPHIN = registerScroll("scroll_dolphin", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, EntityType.DOLPHIN));
+    public static final Item SCROLL_POLAR_BEAR = registerScroll("scroll_polar_bear", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, EntityType.POLAR_BEAR));
 
     public static final Item SCROLL_ZOMBIE = registerScroll("scroll_zombie", (ServerPlayerEntity user) -> 
 		MobSpawnerHelper.spawnMob(user, user.getWorld().random.nextFloat() < 0.1 ? EntityType.ZOMBIE_VILLAGER : EntityType.ZOMBIE));
@@ -87,6 +98,9 @@ public class SuperflatProgressionItems {
     public static final Item SCROLL_MAGMA_CUBE = registerScroll("scroll_magma_cube", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, EntityType.MAGMA_CUBE));
     public static final Item SCROLL_BLAZE = registerScroll("scroll_blaze", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, EntityType.BLAZE));
     public static final Item SCROLL_SPIDER = registerScroll("scroll_spider", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, EntityType.SPIDER));
+    public static final Item SCROLL_HUSK = registerScroll("scroll_husk", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, EntityType.HUSK));
+    public static final Item SCROLL_DROWNED = registerScroll("scroll_drowned", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, EntityType.DROWNED));
+    public static final Item SCROLL_STRAY = registerScroll("scroll_stray", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, EntityType.STRAY));
     
 	public static final Item SCROLL_GHASTLING = registerScroll("scroll_ghastling", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, Registries.ENTITY_TYPE.get(Identifier.of("peaceful-items", "ghastling"))), "peaceful-items");
 	public static final Item SCROLL_END_CLAM = registerScroll("scroll_end_clam", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, Registries.ENTITY_TYPE.get(Identifier.of("peaceful-items", "end_clam"))), "peaceful-items");

@@ -139,6 +139,17 @@ public abstract class SuperflatProgressionLanguageProvider extends FabricLanguag
 			translationBuilder.add(SuperflatProgressionItems.SCROLL_WOLF, "Scroll of Summon Wolf");
 			translationBuilder.add(SuperflatProgressionItems.SCROLL_HORSE, "Scroll of Summon Horse");
 			translationBuilder.add(SuperflatProgressionItems.SCROLL_RABBIT, "Scroll of Summon Rabbit");
+			translationBuilder.add(SuperflatProgressionItems.SCROLL_TURTLE, "Scroll of Summon Turtle");
+			translationBuilder.add(SuperflatProgressionItems.SCROLL_PANDA, "Scroll of Summon Panda");
+			translationBuilder.add(SuperflatProgressionItems.SCROLL_FOX, "Scroll of Summon Fox");
+			translationBuilder.add(SuperflatProgressionItems.SCROLL_CAMEL, "Scroll of Summon Camel");
+			translationBuilder.add(SuperflatProgressionItems.SCROLL_DONKEY, "Scroll of Summon Donkey");
+			translationBuilder.add(SuperflatProgressionItems.SCROLL_GOAT, "Scroll of Summon Goat");
+			translationBuilder.add(SuperflatProgressionItems.SCROLL_LLAMA, "Scroll of Summon Llama");
+			translationBuilder.add(SuperflatProgressionItems.SCROLL_PARROT, "Scroll of Summon Parrot");
+			translationBuilder.add(SuperflatProgressionItems.SCROLL_MOOSHROOM, "Scroll of Summon Mooshroom");
+			translationBuilder.add(SuperflatProgressionItems.SCROLL_DOLPHIN, "Scroll of Summon Dolphin");
+			translationBuilder.add(SuperflatProgressionItems.SCROLL_POLAR_BEAR, "Scroll of Summon Polar Bear");
 
 			translationBuilder.add(SuperflatProgressionItems.SCROLL_ZOMBIE, "Scroll of Summon Zombie");
 			translationBuilder.add(SuperflatProgressionItems.SCROLL_SKELETON, "Scroll of Summon Skeleton");
@@ -148,6 +159,9 @@ public abstract class SuperflatProgressionLanguageProvider extends FabricLanguag
 			translationBuilder.add(SuperflatProgressionItems.SCROLL_MAGMA_CUBE, "Scroll of Summon Magma Cube");
 			translationBuilder.add(SuperflatProgressionItems.SCROLL_BLAZE, "Scroll of Summon Blaze");
 			translationBuilder.add(SuperflatProgressionItems.SCROLL_SPIDER, "Scroll of Summon Spider");
+			translationBuilder.add(SuperflatProgressionItems.SCROLL_HUSK, "Scroll of Summon Husk");
+			translationBuilder.add(SuperflatProgressionItems.SCROLL_DROWNED, "Scroll of Summon Drowned");
+			translationBuilder.add(SuperflatProgressionItems.SCROLL_STRAY, "Scroll of Summon Stray");
 
 			translationBuilder.add(SuperflatProgressionItems.SCROLL_GHASTLING, "Scroll of Summon Ghastling");
 			translationBuilder.add(SuperflatProgressionItems.SCROLL_END_CLAM, "Scroll of Summon Enderclam");

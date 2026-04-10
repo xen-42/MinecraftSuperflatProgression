@@ -1,18 +1,6 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_cod": {
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "minecraft:cod"
-            ]
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
     "has_essence": {
       "conditions": {
         "items": [
@@ -35,9 +23,21 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
+    "has_salmon": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:salmon"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "superflat-progression:scroll_cat"
+        "recipe": "superflat-progression:scroll_polar_bear"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -47,12 +47,12 @@
       "has_the_recipe",
       "has_essence",
       "has_parchment",
-      "has_cod"
+      "has_salmon"
     ]
   ],
   "rewards": {
     "recipes": [
-      "superflat-progression:scroll_cat"
+      "superflat-progression:scroll_polar_bear"
     ]
   },
   "sends_telemetry_event": false
