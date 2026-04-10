@@ -90,9 +90,8 @@ public class SuperflatProgressionREIClientPlugin implements REIClientPlugin {
 	@Override
 	public void registerTransferHandlers(TransferHandlerRegistry registry) {
 		SuperflatProgression.LOGGER.info("Registering transfer handlers");
-		
-		// Todo: fix these
-		//registry.register(new PulverizerTransferHandler());
+
+		registry.register(new PulverizerTransferHandler());
 		registry.register(new ScriptoriumTransferHandler());
 	}
 

@@ -58,6 +58,8 @@ public class GrinderScreenHandler extends AbstractRecipeScreenHandler<GrinderRec
     }
 
     private Slot _outputSlot;
+    private Slot _inputSlot;
+    private Slot _bucketSlot;
     
     private boolean filling;
 
@@ -74,8 +76,8 @@ public class GrinderScreenHandler extends AbstractRecipeScreenHandler<GrinderRec
 
         _outputSlot = this.addSlot(new OutputSlot(this, this.player, this.inventory, this.resultInventory, 0, 111, 34));
         
-        this.addSlot(new CustomSlot(this, this.inventory, INPUT_SLOT, 53, 34));
-        this.addSlot(new ItemSpecificSlot(this, this.inventory, BUCKET_SLOT, Ingredient.ofItems(Items.BUCKET), 27, 34));
+        _inputSlot = this.addSlot(new CustomSlot(this, this.inventory, INPUT_SLOT, 53, 34));
+        _bucketSlot = this.addSlot(new ItemSpecificSlot(this, this.inventory, BUCKET_SLOT, Ingredient.ofItems(Items.BUCKET), 27, 34));
         
         this.addPlayerSlots(playerInventory, 8, 84);
     }
@@ -236,8 +238,12 @@ public class GrinderScreenHandler extends AbstractRecipeScreenHandler<GrinderRec
         return this._outputSlot;
     }
 
+    public Slot getBucketSlot() {
+        return this._bucketSlot;
+    }
+
     public List<Slot> getInputSlots() {
-        return this.slots.subList(BUCKET_SLOT, INPUT_SLOT);
+        return List.of(_inputSlot, _bucketSlot);
     }
 
     public PlayerEntity getPlayer() {

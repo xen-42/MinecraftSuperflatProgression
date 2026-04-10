@@ -24,6 +24,18 @@ public class PulverizerTransferHandler implements SimpleTransferHandler {
 	}
 
 	@Override
+	public ApplicabilityResult checkApplicable(Context context) {
+		if (context.getMenu() instanceof GrinderScreenHandler
+				&& context.getDisplay().getCategoryIdentifier() == SuperflatProgressionREIServerPlugin.PULVERIZER_CATEGORY
+				&& context.getContainerScreen() != null) {
+			return ApplicabilityResult.createApplicable();
+		}
+		else {
+			return ApplicabilityResult.createNotApplicable();
+		}
+	}
+
+	@Override
 	public Iterable<SlotAccessor> getInputSlots(Context context) {
 		var menu = getMenu(context);
 		List<Slot> slots = menu.getInputSlots();

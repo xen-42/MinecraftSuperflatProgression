@@ -9,6 +9,7 @@ import me.shedaniel.rei.api.common.display.basic.BasicDisplay;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.registry.RecipeManagerContext;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
+import net.minecraft.item.Items;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
@@ -45,9 +46,18 @@ public class PulverizerREIDisplay extends BasicDisplay implements SimpleGridMenu
         this.needsBucket = needsBucket;
         this.outputAmount = outputAmount;
     }
+    
+    public static List<EntryIngredient> getInputsFromRecipe(GrinderRecipe recipe) {
+    	if (recipe.needsBucket) {
+    		return List.of(EntryIngredients.ofIngredient(recipe.input), EntryIngredients.of(Items.BUCKET));
+    	}
+    	else {
+    		return List.of(EntryIngredients.ofIngredient(recipe.input));
+    	}
+    }
 
     public PulverizerREIDisplay(GrinderRecipe recipe) {
-		this(List.of(EntryIngredients.ofIngredient(recipe.input)), List.of(EntryIngredients.of(recipe.result)), recipe.needsBucket, recipe.count);
+		this(getInputsFromRecipe(recipe), List.of(EntryIngredients.of(recipe.result)), recipe.needsBucket, recipe.count);
 	}
 
     @Override
