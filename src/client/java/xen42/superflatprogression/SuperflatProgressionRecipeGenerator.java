@@ -117,6 +117,14 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
                             , exporter, getItemPath(output) + suffix + "_" + getItemPath(itemConvertible));
                     }
             }
+
+            public static String hasTag(TagKey<Item> tag) {
+                return "has_" + getTagPath(tag);
+            }
+
+            public static String getTagPath(TagKey<Item> tag) {
+                return tag.id().getPath();
+            }
             
             @Override
             public void generate() {
@@ -216,9 +224,9 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
                         .input('Y', ItemTags.WOODEN_SLABS)
                         .input('Z', ItemTags.PLANKS)
                         // Advancement that gives the recipe
-                        .criterion(hasItem(SuperflatProgressionItems.PARCHMENT), conditionsFromTag(SuperflatProgressionTags.ItemTags.PARCHMENTS))
-                        .criterion(hasItem(Blocks.OAK_SLAB), conditionsFromTag(ItemTags.WOODEN_SLABS))
-                        .criterion(hasItem(Blocks.OAK_PLANKS), conditionsFromTag(ItemTags.PLANKS))
+                        .criterion(hasTag(SuperflatProgressionTags.ItemTags.PARCHMENTS), conditionsFromTag(SuperflatProgressionTags.ItemTags.PARCHMENTS))
+                        .criterion(hasTag(ItemTags.WOODEN_SLABS), conditionsFromTag(ItemTags.WOODEN_SLABS))
+                        .criterion(hasTag(ItemTags.PLANKS), conditionsFromTag(ItemTags.PLANKS))
                         , exporter);
                 
                 offerTo(createShaped(RecipeCategory.MISC, SuperflatProgressionBlocks.GRINDER)
@@ -484,15 +492,15 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
             public ScrollCraftingRecipeJsonBuilder createScroll(ItemConvertible output, Item input, int cost) {
                 return new ScrollCraftingRecipeJsonBuilder(registryLookup.getWrapperOrThrow(RegistryKeys.ITEM), output, Ingredient.ofItems(input), cost)
                     .criterion(hasItem(SuperflatProgressionItems.ESSENCE), conditionsFromItem(SuperflatProgressionItems.ESSENCE))
-                    .criterion(hasItem(SuperflatProgressionItems.PARCHMENT), conditionsFromTag(SuperflatProgressionTags.ItemTags.PARCHMENTS))
+                    .criterion(hasTag(SuperflatProgressionTags.ItemTags.PARCHMENTS), conditionsFromTag(SuperflatProgressionTags.ItemTags.PARCHMENTS))
                     .criterion(hasItem(input), conditionsFromItem(input));
             }
 
             public ScrollCraftingRecipeJsonBuilder createScroll(ItemConvertible output, TagKey<Item> input, int cost) {
                 return new ScrollCraftingRecipeJsonBuilder(registryLookup.getWrapperOrThrow(RegistryKeys.ITEM), output, Ingredient.fromTag(input), cost)
                     .criterion(hasItem(SuperflatProgressionItems.ESSENCE), conditionsFromItem(SuperflatProgressionItems.ESSENCE))
-                    .criterion(hasItem(SuperflatProgressionItems.PARCHMENT), conditionsFromTag(SuperflatProgressionTags.ItemTags.PARCHMENTS))
-                    .criterion("has_" + input.toString(), conditionsFromTag(input));
+                    .criterion(hasTag(SuperflatProgressionTags.ItemTags.PARCHMENTS), conditionsFromTag(SuperflatProgressionTags.ItemTags.PARCHMENTS))
+                    .criterion(hasTag(input), conditionsFromTag(input));
             }
 
             public GrinderRecipeJsonBuilder createGrinder(Item input, ItemConvertible output, boolean needsBucket) {
@@ -504,7 +512,7 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
             public GrinderRecipeJsonBuilder createGrinder(TagKey<Item> input, ItemConvertible output, boolean needsBucket) {
                 return new GrinderRecipeJsonBuilder(registryLookup.getWrapperOrThrow(RegistryKeys.ITEM), 
                     input, output, needsBucket)
-                    .criterion("has_" + input.toString(), conditionsFromTag(input));
+                    .criterion(hasTag(input), conditionsFromTag(input));
             }
 
             public void offerTools(Item axe, Item hoe, Item shovel, Item pickaxe, Item sword, Item material) {

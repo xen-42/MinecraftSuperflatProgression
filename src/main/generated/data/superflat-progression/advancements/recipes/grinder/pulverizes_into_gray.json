@@ -9,7 +9,7 @@
   ],
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_TagKey[minecraft:item / superflat-progression:pulverizes_into_gray]": {
+    "has_pulverizes_into_gray": {
       "conditions": {
         "items": [
           {
@@ -29,7 +29,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_TagKey[minecraft:item / superflat-progression:pulverizes_into_gray]"
+      "has_pulverizes_into_gray"
     ]
   ],
   "rewards": {

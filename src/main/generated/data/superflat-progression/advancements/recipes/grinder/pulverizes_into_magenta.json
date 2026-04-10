@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_TagKey[minecraft:item / superflat-progression:pulverizes_into_magenta]": {
+    "has_pulverizes_into_magenta": {
       "conditions": {
         "items": [
           {
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_TagKey[minecraft:item / superflat-progression:pulverizes_into_magenta]"
+      "has_pulverizes_into_magenta"
     ]
   ],
   "rewards": {

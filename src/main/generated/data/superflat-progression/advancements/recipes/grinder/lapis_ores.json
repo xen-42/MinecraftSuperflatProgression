@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_TagKey[minecraft:item / minecraft:lapis_ores]": {
+    "has_lapis_ores": {
       "conditions": {
         "items": [
           {
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_TagKey[minecraft:item / minecraft:lapis_ores]"
+      "has_lapis_ores"
     ]
   ],
   "rewards": {

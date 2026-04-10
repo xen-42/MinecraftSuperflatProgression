@@ -25,7 +25,7 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "has_parchment": {
+    "has_parchments": {
       "conditions": {
         "items": [
           {
@@ -46,7 +46,7 @@
     [
       "has_the_recipe",
       "has_essence",
-      "has_parchment",
+      "has_parchments",
       "has_blaze_rod"
     ]
   ],
