@@ -392,6 +392,8 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
 
                 createGrinder(Items.ENDER_PEARL, SuperflatProgressionItems.END_DUST, false).setCount(3).offerTo(exporter);
 
+                createGrinder(SuperflatProgressionTags.ItemTags.IRON_GEAR, Items.IRON_NUGGET, false).offerTo(exporter);
+                createGrinder(SuperflatProgressionTags.ItemTags.GOLDEN_GEAR, Items.GOLD_NUGGET, false).offerTo(exporter);
                 createGrinder(SuperflatProgressionTags.ItemTags.DIAMOND_GEAR, SuperflatProgressionItems.DIAMOND_SHARD, false).offerTo(exporter);
 
                 // Extra recipes to flesh it out

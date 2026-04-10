@@ -1,0 +1,13 @@
+{
+  "type": "superflat-progression:grinder",
+  "count": 1,
+  "input": {
+    "item": {
+      "tag": "superflat-progression:golden_gear"
+    }
+  },
+  "needsBucket": false,
+  "result": {
+    "item": "minecraft:gold_nugget"
+  }
+}

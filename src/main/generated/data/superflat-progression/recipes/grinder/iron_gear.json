@@ -1,0 +1,13 @@
+{
+  "type": "superflat-progression:grinder",
+  "count": 1,
+  "input": {
+    "item": {
+      "tag": "superflat-progression:iron_gear"
+    }
+  },
+  "needsBucket": false,
+  "result": {
+    "item": "minecraft:iron_nugget"
+  }
+}

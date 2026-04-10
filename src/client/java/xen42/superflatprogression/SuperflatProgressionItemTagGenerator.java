@@ -26,6 +26,34 @@ public class SuperflatProgressionItemTagGenerator extends ItemTagProvider {
 			.add(SuperflatProgressionItems.PARCHMENT)
 			.add(Items.PAPER);
 		
+		this.getOrCreateTagBuilder(SuperflatProgressionTags.ItemTags.IRON_GEAR)
+			.add(Items.IRON_AXE)
+			.add(Items.IRON_HOE)
+			.add(Items.IRON_PICKAXE)
+			.add(Items.IRON_SHOVEL)
+			.add(Items.IRON_SWORD)
+			.add(Items.IRON_BOOTS)
+			.add(Items.IRON_CHESTPLATE)
+			.add(Items.IRON_HELMET)
+			.add(Items.IRON_LEGGINGS)
+			.add(Items.IRON_HORSE_ARMOR)
+			.add(Items.CHAINMAIL_BOOTS)
+			.add(Items.CHAINMAIL_CHESTPLATE)
+			.add(Items.CHAINMAIL_HELMET)
+			.add(Items.CHAINMAIL_LEGGINGS);
+		
+		this.getOrCreateTagBuilder(SuperflatProgressionTags.ItemTags.GOLDEN_GEAR)
+			.add(Items.GOLDEN_AXE)
+			.add(Items.GOLDEN_HOE)
+			.add(Items.GOLDEN_PICKAXE)
+			.add(Items.GOLDEN_SHOVEL)
+			.add(Items.GOLDEN_SWORD)
+			.add(Items.GOLDEN_BOOTS)
+			.add(Items.GOLDEN_CHESTPLATE)
+			.add(Items.GOLDEN_HELMET)
+			.add(Items.GOLDEN_LEGGINGS)
+			.add(Items.GOLDEN_HORSE_ARMOR);
+		
 		this.getOrCreateTagBuilder(SuperflatProgressionTags.ItemTags.DIAMOND_GEAR)
 			.add(Items.DIAMOND_AXE)
 			.add(Items.DIAMOND_HOE)

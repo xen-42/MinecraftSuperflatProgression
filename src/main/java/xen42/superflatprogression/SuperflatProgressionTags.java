@@ -18,6 +18,8 @@ public class SuperflatProgressionTags {
 
     public class ItemTags {
         public static final TagKey<Item> PARCHMENTS = ofItem("parchments");
+		public static final TagKey<Item> IRON_GEAR = ofItem("iron_gear");
+		public static final TagKey<Item> GOLDEN_GEAR = ofItem("golden_gear");
 		public static final TagKey<Item> DIAMOND_GEAR = ofItem("diamond_gear");
 		public static final TagKey<Item> BONE_GEAR = ofItem("bone_gear");
 		public static final TagKey<Item> ICES = ofItem("ices");
