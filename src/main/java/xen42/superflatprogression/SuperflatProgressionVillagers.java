@@ -9,37 +9,22 @@ import net.minecraft.item.Items;
 import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
 import net.minecraft.village.TradeOffer;
+import net.minecraft.village.TradeOffers;
 
 public class SuperflatProgressionVillagers {
     public static void initialize() {
 		TradeOfferHelper.registerWanderingTraderOffers(1, factories -> {
-			factories.add((entity, random) -> new TradeOffer(
-				new ItemStack(Items.EMERALD, 10),
-				new ItemStack(Items.SNIFFER_EGG, 1), 12, 20, 0.05f));
-			factories.add((entity, random) -> new TradeOffer(
-				new ItemStack(Items.EMERALD, 3),
-				new ItemStack(Items.TADPOLE_BUCKET, 1), 12, 20, 0.05f));
-			factories.add((entity, random) -> new TradeOffer(
-				new ItemStack(Items.EMERALD, 3),
-				new ItemStack(Items.AXOLOTL_BUCKET, 1), 12, 20, 0.05f));
-            factories.add((entity, random) -> new TradeOffer(
-				new ItemStack(Items.EMERALD, 3),
-				new ItemStack(Items.SEA_LANTERN, 1), 12, 20, 0.05f));
-            factories.add((entity, random) -> new TradeOffer(
-				new ItemStack(Items.EMERALD, 3),
-				new ItemStack(Items.PRISMARINE_BRICKS, 1), 12, 20, 0.05f));
-			factories.add((entity, random) -> new TradeOffer(
-				new ItemStack(Items.EMERALD, 3),
-				new ItemStack(Items.AMETHYST_SHARD, 1), 12, 20, 0.05f));
-			factories.add((entity, random) -> new TradeOffer(
-				new ItemStack(Items.EMERALD, 3),
-				new ItemStack(Items.COBWEB, 1), 12, 20, 0.05f));
+			factories.add(new TradeOffers.SellItemFactory(Items.SNIFFER_EGG, 10, 1, 12, 1));
+			factories.add(new TradeOffers.SellItemFactory(Items.TADPOLE_BUCKET, 3, 1, 12, 1));
+			factories.add(new TradeOffers.SellItemFactory(Items.AXOLOTL_BUCKET, 3, 1, 12, 1));
+			factories.add(new TradeOffers.SellItemFactory(Items.SEA_LANTERN, 3, 1, 12, 1));
+			factories.add(new TradeOffers.SellItemFactory(Items.PRISMARINE_BRICKS, 3, 1, 12, 1));
+			factories.add(new TradeOffers.SellItemFactory(Items.AMETHYST_SHARD, 3, 1, 12, 1));
+			factories.add(new TradeOffers.SellItemFactory(Items.COBWEB, 3, 1, 12, 1));
 				
 			if (FabricLoader.getInstance().isModLoaded("peaceful-items")) {
-				factories.add((entity, random) -> new TradeOffer(
-					new ItemStack(Items.EMERALD, 20),
-					new ItemStack(Registries.ITEM.get(Identifier.of("peaceful-items", "effigy_altar")), 1),
-						1, 20, 0.05f));
+				var effigyAltar = Registries.ITEM.get(Identifier.of("peaceful-items", "effigy_altar"));
+				factories.add(new TradeOffers.SellItemFactory(effigyAltar, 20, 1, 1, 1));
 			}
 		});
     }
