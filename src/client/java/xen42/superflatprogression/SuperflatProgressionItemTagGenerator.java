@@ -3,6 +3,7 @@ package xen42.superflatprogression;
 import java.util.concurrent.CompletableFuture;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider.ItemTagProvider;
+import net.fabricmc.fabric.api.tag.convention.v1.ConventionalItemTags;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryWrapper.WrapperLookup;
@@ -22,6 +23,26 @@ public class SuperflatProgressionItemTagGenerator extends ItemTagProvider {
 	
 	@Override
 	protected void configure(WrapperLookup wrapperLookup) {
+		
+        this.getOrCreateTagBuilder(SuperflatProgressionTags.ItemTags.DUSTS_ENDER_PEARL)
+        	.add(SuperflatProgressionItems.END_DUST);
+
+        this.getOrCreateTagBuilder(ConventionalItemTags.DUSTS)
+        	.add(SuperflatProgressionItems.ESSENCE)
+        	.addTag(SuperflatProgressionTags.ItemTags.DUSTS_ENDER_PEARL);
+
+        this.getOrCreateTagBuilder(SuperflatProgressionTags.ItemTags.FERTILIZERS)
+        	.add(SuperflatProgressionItems.ENRICHED_BONEMEAL);
+
+        this.getOrCreateTagBuilder(SuperflatProgressionTags.ItemTags.SHARDS_DIAMOMD)
+        	.add(SuperflatProgressionItems.DIAMOND_SHARD);
+
+        this.getOrCreateTagBuilder(SuperflatProgressionTags.ItemTags.SHARDS)
+        	.addTag(SuperflatProgressionTags.ItemTags.SHARDS_DIAMOMD);
+
+        this.copy(SuperflatProgressionTags.BlockTags.STORAGE_BLOCKS_CHARCOAL, SuperflatProgressionTags.ItemTags.STORAGE_BLOCKS_CHARCOAL);
+        this.copy(SuperflatProgressionTags.BlockTags.STORAGE_BLOCKS, SuperflatProgressionTags.ItemTags.STORAGE_BLOCKS);
+
 		this.getOrCreateTagBuilder(SuperflatProgressionTags.ItemTags.PARCHMENTS)
 			.add(SuperflatProgressionItems.PARCHMENT)
 			.add(Items.PAPER);

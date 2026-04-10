@@ -17,6 +17,13 @@ public class SuperflatProgressionTags {
     }
 
     public class ItemTags {
+        public static final TagKey<Item> SHARDS = ofItemConventional("shards");
+        public static final TagKey<Item> SHARDS_DIAMOMD = ofItemConventional("shards/diamond");
+        public static final TagKey<Item> STORAGE_BLOCKS = ofItemConventional("storage_blocks");
+        public static final TagKey<Item> STORAGE_BLOCKS_CHARCOAL = ofItemConventional("storage_blocks/charcoal");
+        public static final TagKey<Item> DUSTS_ENDER_PEARL = ofItemConventional("dusts/ender_pearl");
+		public static final TagKey<Item> FERTILIZERS = ofItemConventional("fertilizers");
+
         public static final TagKey<Item> PARCHMENTS = ofItem("parchments");
 		public static final TagKey<Item> IRON_GEAR = ofItem("iron_gear");
 		public static final TagKey<Item> GOLDEN_GEAR = ofItem("golden_gear");
@@ -59,6 +66,9 @@ public class SuperflatProgressionTags {
     }
 
 	public class BlockTags {
+        public static final TagKey<Block> STORAGE_BLOCKS = ofBlockConventional("storage_blocks");
+        public static final TagKey<Block> STORAGE_BLOCKS_CHARCOAL = ofBlockConventional("storage_blocks/charcoal");
+
 		public static final TagKey<Block> ENRICHED_BONE_MEAL_ON_CRIMSON_NYLIUM = ofBlock("enriched_bone_meal_on_crimson_nylium");
 		public static final TagKey<Block> ENRICHED_BONE_MEAL_ON_WARPED_NYLIUM = ofBlock("enriched_bone_meal_on_warped_nylium");
 		public static final TagKey<Block> ENRICHED_BONE_MEAL_ON_END_STONE = ofBlock("enriched_bone_meal_on_end_stone");
@@ -71,12 +81,20 @@ public class SuperflatProgressionTags {
 		public static final TagKey<Block> MUSHROOM_BLOCK_PLACEABLE = ofBlock("mushroom_block_placeable");
 	}
 
-    public static TagKey<Block> ofBlock(String name) {
+	public static TagKey<Block> ofBlock(String name) {
 		return TagKey.of(RegistryKeys.BLOCK, Identifier.of(SuperflatProgression.MOD_ID, name));
+	}
+
+	public static TagKey<Block> ofBlockConventional(String name) {
+		return TagKey.of(RegistryKeys.BLOCK, Identifier.of("c", name));
 	}
 
 	public static TagKey<Item> ofItem(String name) {
 		return TagKey.of(RegistryKeys.ITEM, Identifier.of(SuperflatProgression.MOD_ID, name));
+	}
+
+	public static TagKey<Item> ofItemConventional(String name) {
+		return TagKey.of(RegistryKeys.ITEM, Identifier.of("c", name));
 	}
 	
 	public static TagKey<EntityType<?>> ofEntity(String name) {

@@ -20,6 +20,17 @@ public class SuperflatProgressionBlockTagGenerator extends BlockTagProvider {
     
     @Override
     protected void configure(WrapperLookup wrapperLookup) {
+
+        this.getOrCreateTagBuilder(SuperflatProgressionTags.BlockTags.STORAGE_BLOCKS_CHARCOAL)
+	    	.add(SuperflatProgressionBlocks.CHARCOAL_BLOCK);
+
+	    this.getOrCreateTagBuilder(SuperflatProgressionTags.BlockTags.STORAGE_BLOCKS)
+	    	.addTag(SuperflatProgressionTags.BlockTags.STORAGE_BLOCKS_CHARCOAL);
+
+        this.getOrCreateTagBuilder(BlockTags.SLABS)
+	    	.add(SuperflatProgressionBlocks.DIRT_SLAB)
+	    	.add(SuperflatProgressionBlocks.GRASS_SLAB);
+
         this.getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
             .add(SuperflatProgressionBlocks.CHARCOAL_BLOCK)
             .add(SuperflatProgressionBlocks.MAGIC_LANTERN)
