@@ -49,6 +49,7 @@ public class SuperflatProgressionTags {
 		public static final TagKey<Item> ENRICHED_BONE_MEAL_ON_END_STONE = ofItem("enriched_bone_meal_on_end_stone");
 		public static final TagKey<Item> ENRICHED_BONE_MEAL_ON_SAND = ofItem("enriched_bone_meal_on_sand");
 		public static final TagKey<Item> ENRICHED_BONE_MEAL_ON_GRASS = ofItem("enriched_bone_meal_on_grass");
+		public static final TagKey<Item> ENRICHED_BONE_MEAL_ON_PODZOL = ofItem("enriched_bone_meal_on_podzol");
 		public static final TagKey<Item> ENRICHED_BONE_MEAL_ON_SOUL_SAND = ofItem("enriched_bone_meal_on_soul_sand");
 		public static final TagKey<Item> ENRICHED_BONE_MEAL_UNDER_WATER = ofItem("enriched_bone_meal_under_water");
 		public static final TagKey<Item> ENRICHED_BONE_MEAL_MUSHROOM = ofItem("enriched_bone_meal_on_stone");
@@ -61,6 +62,7 @@ public class SuperflatProgressionTags {
 		public static final TagKey<Block> ENRICHED_BONE_MEAL_ON_END_STONE = ofBlock("enriched_bone_meal_on_end_stone");
 		public static final TagKey<Block> ENRICHED_BONE_MEAL_ON_SAND = ofBlock("enriched_bone_meal_on_sand");
 		public static final TagKey<Block> ENRICHED_BONE_MEAL_ON_GRASS = ofBlock("enriched_bone_meal_on_grass");
+		public static final TagKey<Block> ENRICHED_BONE_MEAL_ON_PODZOL = ofBlock("enriched_bone_meal_on_podzol");
 		public static final TagKey<Block> ENRICHED_BONE_MEAL_ON_SOUL_SAND = ofBlock("enriched_bone_meal_on_soul_sand");
 		public static final TagKey<Block> ENRICHED_BONE_MEAL_UNDER_WATER = ofBlock("enriched_bone_meal_under_water");
 		public static final TagKey<Block> ENRICHED_BONE_MEAL_MUSHROOM = ofBlock("enriched_bone_meal_on_stone");

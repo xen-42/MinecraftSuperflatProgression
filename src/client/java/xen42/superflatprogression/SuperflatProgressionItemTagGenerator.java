@@ -138,10 +138,21 @@ public class SuperflatProgressionItemTagGenerator extends ItemTagProvider {
 		copy(SuperflatProgressionTags.BlockTags.ENRICHED_BONE_MEAL_ON_END_STONE, SuperflatProgressionTags.ItemTags.ENRICHED_BONE_MEAL_ON_END_STONE);
 		copy(SuperflatProgressionTags.BlockTags.ENRICHED_BONE_MEAL_MUSHROOM, SuperflatProgressionTags.ItemTags.ENRICHED_BONE_MEAL_MUSHROOM);
 		copy(SuperflatProgressionTags.BlockTags.ENRICHED_BONE_MEAL_ON_GRASS, SuperflatProgressionTags.ItemTags.ENRICHED_BONE_MEAL_ON_GRASS);
+		//copy(SuperflatProgressionTags.BlockTags.ENRICHED_BONE_MEAL_ON_PODZOL, SuperflatProgressionTags.ItemTags.ENRICHED_BONE_MEAL_ON_PODZOL);
 		copy(SuperflatProgressionTags.BlockTags.ENRICHED_BONE_MEAL_ON_SAND, SuperflatProgressionTags.ItemTags.ENRICHED_BONE_MEAL_ON_SAND);
 		copy(SuperflatProgressionTags.BlockTags.ENRICHED_BONE_MEAL_ON_SOUL_SAND, SuperflatProgressionTags.ItemTags.ENRICHED_BONE_MEAL_ON_SOUL_SAND);
 		copy(SuperflatProgressionTags.BlockTags.ENRICHED_BONE_MEAL_UNDER_WATER, SuperflatProgressionTags.ItemTags.ENRICHED_BONE_MEAL_UNDER_WATER);
 		copy(SuperflatProgressionTags.BlockTags.MUSHROOM_BLOCK_PLACEABLE, SuperflatProgressionTags.ItemTags.MUSHROOM_BLOCK_PLACEABLE);
+
+		// Can't copy because sweet berry bush
+        this.getOrCreateTagBuilder(SuperflatProgressionTags.ItemTags.ENRICHED_BONE_MEAL_ON_PODZOL)
+            .add(Items.GRASS)
+            .add(Items.TALL_GRASS)
+            .add(Items.FERN)
+            .add(Items.LARGE_FERN)
+            .add(Items.SPRUCE_SAPLING)
+            .add(Items.BROWN_MUSHROOM)
+            .add(Items.SWEET_BERRIES);
 
 		var scrollTagBuilder = this.getOrCreateTagBuilder(SuperflatProgressionTags.ItemTags.MAGIC_SCROLLS);
 		for (var scroll : SuperflatProgressionItems.SCROLLS_DATAGEN) {
