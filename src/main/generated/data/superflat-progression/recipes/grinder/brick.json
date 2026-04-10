@@ -1,0 +1,13 @@
+{
+  "type": "superflat-progression:grinder",
+  "count": 1,
+  "input": {
+    "item": {
+      "item": "minecraft:brick"
+    }
+  },
+  "needsBucket": false,
+  "result": {
+    "item": "minecraft:clay_ball"
+  }
+}

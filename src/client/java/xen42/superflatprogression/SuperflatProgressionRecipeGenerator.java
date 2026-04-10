@@ -389,6 +389,8 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
                 createGrinder(Blocks.GRAVEL.asItem(), Blocks.SAND.asItem(), false).offerTo(exporter);
                 createGrinder(Blocks.MAGMA_BLOCK.asItem(), Items.LAVA_BUCKET, true).offerTo(exporter);
                 createGrinder(Blocks.SOUL_SOIL.asItem(), Items.SOUL_SAND, false).offerTo(exporter);
+                createGrinder(Blocks.CLAY.asItem(), Items.CLAY_BALL, false).setCount(4).offerTo(exporter);
+                createGrinder(Items.BRICK, Items.CLAY_BALL, false).offerTo(exporter);
 
                 createGrinder(Items.ENDER_PEARL, SuperflatProgressionItems.END_DUST, false).setCount(3).offerTo(exporter);
 
