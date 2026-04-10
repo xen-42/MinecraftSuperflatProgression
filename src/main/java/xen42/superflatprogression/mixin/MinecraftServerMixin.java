@@ -64,10 +64,21 @@ public class MinecraftServerMixin {
                 server.getRegistryManager().get(RegistryKeys.BIOME).getEntry(BiomeKeys.NETHER_WASTES).get(),
                 List.of()
             );
+            // Floor
             netherConfig.getLayerBlocks().add(Blocks.BEDROCK.getDefaultState());
-            for (int i = 0; i < 3; i ++) {
+            for (int i = 0; i < 3; i++) {
                 netherConfig.getLayerBlocks().add(Blocks.NETHERRACK.getDefaultState());
             }
+            // Center
+            for (int i = 0; i < 120; i++) {
+                netherConfig.getLayerBlocks().add(Blocks.AIR.getDefaultState());
+            }
+            // Roof
+            for (int i = 0; i < 3; i++) {
+                netherConfig.getLayerBlocks().add(Blocks.NETHERRACK.getDefaultState());
+            }
+            netherConfig.getLayerBlocks().add(Blocks.BEDROCK.getDefaultState());
+            // Make
             MakeWorldSuperflat(server, listener, nether, netherConfig);
 
             // If no structures make blazes and wither skeletons just spawn

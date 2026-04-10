@@ -32,6 +32,13 @@ public class FlatNetherChunkGenerator extends FlatChunkGenerator {
             var y = region.getRandom().nextInt(2) + 1;
             chunk.setBlockState(new BlockPos(x, y, z), Blocks.ANCIENT_DEBRIS.getDefaultState(), false);
         }
+		// Ceiling debris
+		else {
+		    var x = region.getRandom().nextInt(16);
+		    var z = region.getRandom().nextInt(16);
+		    var y = region.getRandom().nextInt(2) + 125;
+		    chunk.setBlockState(new BlockPos(x, y, z), Blocks.ANCIENT_DEBRIS.getDefaultState(), false);
+		}
 
         // Random fires
         for (int i = 0; i < region.getRandom().nextBetween(1, 3); i++) {
