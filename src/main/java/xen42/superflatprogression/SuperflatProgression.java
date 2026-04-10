@@ -6,6 +6,7 @@ import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.entity.SpawnRestriction;
@@ -135,5 +136,16 @@ public class SuperflatProgression implements ModInitializer {
 		});
 
 		ModEventCompatibility.onInitialize();
+	}
+
+	public static final String PEACEFUL_PROGRESSION = "peaceful-items";
+	public static final String CANADIAN_CONTENT = "canadamod";
+	
+	public static boolean isModLoaded(String id) {
+		return FabricLoader.getInstance().isModLoaded(id);
+	}
+
+	public static boolean isDatagenRunning() {
+		return System.getProperty("fabric-api.datagen") != null;
 	}
 }

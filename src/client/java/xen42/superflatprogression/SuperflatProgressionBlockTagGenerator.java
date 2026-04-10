@@ -56,7 +56,7 @@ public class SuperflatProgressionBlockTagGenerator extends BlockTagProvider {
             .add(Blocks.ROSE_BUSH)
             .add(Blocks.LILAC)
             .add(Blocks.PEONY)
-            .addOptional(Identifier.of("peaceful-items", "flax_crop"));
+            .addOptional(Identifier.of(SuperflatProgression.PEACEFUL_PROGRESSION, "flax_crop"));
 
         this.getOrCreateTagBuilder(SuperflatProgressionTags.BlockTags.ENRICHED_BONE_MEAL_ON_PODZOL)
             .add(Blocks.GRASS)

@@ -66,7 +66,6 @@ public class SuperflatProgressionItems {
 		});
 
 	public static ArrayList<Item> SCROLLS;
-	public static ArrayList<Item> SCROLLS_DATAGEN;
 
     public static final Item SCROLL_TRADE = registerScroll("scroll_trade", MobSpawnerHelper::spawnWanderingTrader);
     public static final Item SCROLL_PIG = registerScroll("scroll_pig", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, EntityType.PIG));
@@ -102,10 +101,10 @@ public class SuperflatProgressionItems {
     public static final Item SCROLL_DROWNED = registerScroll("scroll_drowned", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, EntityType.DROWNED));
     public static final Item SCROLL_STRAY = registerScroll("scroll_stray", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, EntityType.STRAY));
     
-	public static final Item SCROLL_GHASTLING = registerScroll("scroll_ghastling", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, Registries.ENTITY_TYPE.get(Identifier.of("peaceful-items", "ghastling"))), "peaceful-items");
-	public static final Item SCROLL_END_CLAM = registerScroll("scroll_end_clam", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, Registries.ENTITY_TYPE.get(Identifier.of("peaceful-items", "end_clam"))), "peaceful-items");
+	public static final Item SCROLL_GHASTLING = registerScroll("scroll_ghastling", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, Registries.ENTITY_TYPE.get(Identifier.of(SuperflatProgression.PEACEFUL_PROGRESSION, "ghastling"))), SuperflatProgression.PEACEFUL_PROGRESSION);
+	public static final Item SCROLL_END_CLAM = registerScroll("scroll_end_clam", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, Registries.ENTITY_TYPE.get(Identifier.of(SuperflatProgression.PEACEFUL_PROGRESSION, "end_clam"))), SuperflatProgression.PEACEFUL_PROGRESSION);
 	
-	//public static final Item SCROLL_BEAVER = registerScroll("scroll_beaver", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, Registries.ENTITY_TYPE.get(Identifier.of("canadamod", "beaver"))), "canadamod");
+	//public static final Item SCROLL_BEAVER = registerScroll("scroll_beaver", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, Registries.ENTITY_TYPE.get(Identifier.of(SuperflatProgression.CANADIAN_CONTENT, "beaver"))), SuperflatProgression.CANADIAN_CONTENT);
 
 	private static final Item registerScroll(String name, Consumer<ServerPlayerEntity> onUse) {
 		return registerScroll(name, onUse, null);
@@ -115,20 +114,14 @@ public class SuperflatProgressionItems {
 		var scroll = register(name, (settings) -> new ScrollItem(settings, onUse),
 			new Item.Settings().maxCount(1).rarity(Rarity.UNCOMMON), optionalModID);
 
-		if (SCROLLS_DATAGEN == null) {
-			SCROLLS_DATAGEN = new ArrayList<Item>();
+		if (scroll == null) {
+			return null;
 		}
-		SCROLLS_DATAGEN.add(scroll);
 
-		if (optionalModID == null || FabricLoader.getInstance().isModLoaded(optionalModID)) {
-			if (SCROLLS == null) {
-				SCROLLS = new ArrayList<Item>();
-			}
-			SCROLLS.add(scroll);
+		if (SCROLLS == null) {
+			SCROLLS = new ArrayList<Item>();
 		}
-		else {
-			SuperflatProgression.LOGGER.info("Supported mod " + optionalModID + " is not installed.");
-		}
+		SCROLLS.add(scroll);
 
 		return scroll;
 	}
@@ -207,31 +200,21 @@ public class SuperflatProgressionItems {
 	}
 
 	public static Item register(String name, Function<Item.Settings, Item> itemFactory, Item.Settings settings, String optionalModID) {
-		Item item;
-		if (optionalModID == null || FabricLoader.getInstance().isModLoaded(optionalModID)) {
+		if (optionalModID == null || SuperflatProgression.isModLoaded(optionalModID) || SuperflatProgression.isDatagenRunning()) {
 			// Create the item instance.
-			item = itemFactory.apply(settings);
+			Item item = itemFactory.apply(settings);
+
+			// Create the item key.
+			RegistryKey<Item> itemKey = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(SuperflatProgression.MOD_ID, name));
+
+			// Register the item.
+			Registry.register(Registries.ITEM, itemKey, item);
+
+			return item;
 		}
 		else {
-			// Dummy item for registering translations and recipes
-			item = new Item(new Item.Settings().maxCount(0)) {
-				@Override
-				public String getTranslationKey() {
-					return "item." + SuperflatProgression.MOD_ID + "." + name;
-				}
-
-				@Override public String toString() {
-					return SuperflatProgression.MOD_ID + ":" + name;
-				}
-			};
+			SuperflatProgression.LOGGER.info("Supported mod " + optionalModID + " is not installed.");
+			return null;
 		}
-
-		// Create the item key.
-		RegistryKey<Item> itemKey = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(SuperflatProgression.MOD_ID, name));
-
-		// Register the item.
-		Registry.register(Registries.ITEM, itemKey, item);
-
-		return item;
 	}
 }

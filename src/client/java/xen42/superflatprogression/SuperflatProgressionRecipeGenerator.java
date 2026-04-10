@@ -450,16 +450,16 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
                 
                 // Mod support
                 new GrinderRecipeJsonBuilder(registryLookup.getWrapperOrThrow(RegistryKeys.ITEM), 
-                    Items.WHEAT, Registries.ITEM.get(Identifier.of("canadamod", "flour")), false)
+                    Items.WHEAT, Registries.ITEM.get(Identifier.of(SuperflatProgression.CANADIAN_CONTENT, "flour")), false)
                     .criterion(hasItem(Items.WHEAT), conditionsFromItem(Items.WHEAT)).setCount(4).offerTo(
-                        withConditions(exporter, DefaultResourceConditions.allModsLoaded("canadamod"))
+                        withConditions(exporter, DefaultResourceConditions.allModsLoaded(SuperflatProgression.CANADIAN_CONTENT))
                 );
 
                 createScroll(SuperflatProgressionItems.SCROLL_GHASTLING, SuperflatProgressionTags.ItemTags.GHASTLING_SCROLL_INPUT, 5).offerTo(
-                    withConditions(exporter, DefaultResourceConditions.allModsLoaded("peaceful-items")));
+                    withConditions(exporter, DefaultResourceConditions.allModsLoaded(SuperflatProgression.PEACEFUL_PROGRESSION)));
 
                 createScroll(SuperflatProgressionItems.SCROLL_END_CLAM, SuperflatProgressionItems.END_DUST, 5).offerTo(
-                    withConditions(exporter, DefaultResourceConditions.allModsLoaded("peaceful-items")));
+                    withConditions(exporter, DefaultResourceConditions.allModsLoaded(SuperflatProgression.PEACEFUL_PROGRESSION)));
             }
 
             public ScrollCraftingRecipeJsonBuilder createScroll(ItemConvertible output, Item input, int cost) {

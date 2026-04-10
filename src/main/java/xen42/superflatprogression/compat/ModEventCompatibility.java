@@ -10,7 +10,7 @@ import xen42.superflatprogression.SuperflatProgressionItems;
 
 public class ModEventCompatibility {
     public static void onInitialize() {
-        if (FabricLoader.getInstance().isModLoaded("peaceful-items")) {
+        if (SuperflatProgression.isModLoaded(SuperflatProgression.PEACEFUL_PROGRESSION)) {
             try {
                 // When using a Dragon effigy, give the player an Ender Star as well
                 var peacefulModEvents = Class.forName("xen42.peacefulitems.PeacefulModEvents");

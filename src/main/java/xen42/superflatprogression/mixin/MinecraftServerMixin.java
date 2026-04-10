@@ -91,11 +91,11 @@ public class MinecraftServerMixin {
                 spawners.add(new CustomSpawner(EntityType.PIGLIN_BRUTE).markIsHostile().setMaxCount(1).markRequiresDark()); 
             }
 
-            if (FabricLoader.getInstance().isModLoaded("peaceful-items")) {
+            if (SuperflatProgression.isModLoaded(SuperflatProgression.PEACEFUL_PROGRESSION)) {
                 if (!structuresEnabled) {
-                    spawners.add(new CustomSpawner(Registries.ENTITY_TYPE.get(Identifier.of("peaceful-items", "ghastling"))));
+                    spawners.add(new CustomSpawner(Registries.ENTITY_TYPE.get(Identifier.of(SuperflatProgression.PEACEFUL_PROGRESSION, "ghastling"))));
                 }
-                spawners.add(new CustomSpawner(Registries.ENTITY_TYPE.get(Identifier.of("peaceful-items", "end_clam"))));
+                spawners.add(new CustomSpawner(Registries.ENTITY_TYPE.get(Identifier.of(SuperflatProgression.PEACEFUL_PROGRESSION, "end_clam"))));
             }
 
             nether.spawners = spawners;

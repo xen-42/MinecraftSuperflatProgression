@@ -61,7 +61,7 @@ public class SuperflatProgressionItemTagGenerator extends ItemTagProvider {
 			.add(Items.LILY_OF_THE_VALLEY);
 		
 		this.getOrCreateTagBuilder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_GRAY)
-			.addOptional(Identifier.of("peaceful-items", "breeze_coral"));
+			.addOptional(Identifier.of(SuperflatProgression.PEACEFUL_PROGRESSION, "breeze_coral"));
 
 		this.getOrCreateTagBuilder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_LIGHT_GRAY)
 			.add(Items.AZURE_BLUET)
@@ -84,12 +84,12 @@ public class SuperflatProgressionItemTagGenerator extends ItemTagProvider {
 		this.getOrCreateTagBuilder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_ORANGE)
 			.add(Items.ORANGE_TULIP)
 			.add(Items.TORCHFLOWER)
-			.addOptional(Identifier.of("peaceful-items", "blaze_coral"));
+			.addOptional(Identifier.of(SuperflatProgression.PEACEFUL_PROGRESSION, "blaze_coral"));
 
 		this.getOrCreateTagBuilder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_YELLOW)
 			.add(Items.DANDELION)
 			.add(Items.SUNFLOWER)
-			.addOptional(Identifier.of("peaceful-items", "sulphur"));
+			.addOptional(Identifier.of(SuperflatProgression.PEACEFUL_PROGRESSION, "sulphur"));
 
 		this.getOrCreateTagBuilder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_CYAN)
 			.add(Items.PITCHER_PLANT)
@@ -113,7 +113,7 @@ public class SuperflatProgressionItemTagGenerator extends ItemTagProvider {
 
 		this.getOrCreateTagBuilder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_PURPLE)
 			.add(SuperflatProgressionItems.ESSENCE)
-			.addOptional(Identifier.of("peaceful-items", "guano"));
+			.addOptional(Identifier.of(SuperflatProgression.PEACEFUL_PROGRESSION, "guano"));
 		
 		this.getOrCreateTagBuilder(SuperflatProgressionTags.ItemTags.PULVERIZES_INTO_BONE_MEAL)
 			.add(Items.BONE)
@@ -125,7 +125,7 @@ public class SuperflatProgressionItemTagGenerator extends ItemTagProvider {
 			.add(Items.PRISMARINE);
 
 		this.getOrCreateTagBuilder(SuperflatProgressionTags.ItemTags.GHASTLING_SCROLL_INPUT)
-			.addOptional(Identifier.of("peaceful-items", "sulphur"));
+			.addOptional(Identifier.of(SuperflatProgression.PEACEFUL_PROGRESSION, "sulphur"));
 		
 		this.getOrCreateTagBuilder(ItemTags.PICKAXES).add(SuperflatProgressionItems.BONE_PICKAXE);
 		this.getOrCreateTagBuilder(ItemTags.AXES).add(SuperflatProgressionItems.BONE_AXE);
@@ -155,7 +155,7 @@ public class SuperflatProgressionItemTagGenerator extends ItemTagProvider {
             .add(Items.SWEET_BERRIES);
 
 		var scrollTagBuilder = this.getOrCreateTagBuilder(SuperflatProgressionTags.ItemTags.MAGIC_SCROLLS);
-		for (var scroll : SuperflatProgressionItems.SCROLLS_DATAGEN) {
+		for (var scroll : SuperflatProgressionItems.SCROLLS) {
 			scrollTagBuilder.add(scroll);
 		}
     }

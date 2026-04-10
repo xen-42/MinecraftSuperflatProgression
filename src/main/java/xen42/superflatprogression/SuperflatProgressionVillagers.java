@@ -23,8 +23,8 @@ public class SuperflatProgressionVillagers {
 			factories.add(new TradeOffers.SellItemFactory(Items.AMETHYST_SHARD, 3, 1, 12, 1));
 			factories.add(new TradeOffers.SellItemFactory(Items.COBWEB, 3, 1, 12, 1));
 
-			if (FabricLoader.getInstance().isModLoaded("peaceful-items")) {
-				var effigyAltar = Registries.ITEM.get(Identifier.of("peaceful-items", "effigy_altar"));
+			if (SuperflatProgression.isModLoaded(SuperflatProgression.PEACEFUL_PROGRESSION)) {
+				var effigyAltar = Registries.ITEM.get(Identifier.of(SuperflatProgression.PEACEFUL_PROGRESSION, "effigy_altar"));
 				factories.add(new TradeOffers.SellItemFactory(effigyAltar, 20, 1, 1, 1));
 			}
 		});
