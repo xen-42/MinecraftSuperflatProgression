@@ -1,0 +1,13 @@
+{
+  "type": "superflat-progression:grinder",
+  "count": 1,
+  "input": {
+    "item": {
+      "item": "minecraft:deepslate"
+    }
+  },
+  "needsBucket": false,
+  "result": {
+    "item": "minecraft:cobbled_deepslate"
+  }
+}
