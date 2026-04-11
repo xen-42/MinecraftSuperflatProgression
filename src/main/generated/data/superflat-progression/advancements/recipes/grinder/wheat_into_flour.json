@@ -11,7 +11,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "superflat-progression:wheat_into_air"
+        "recipe": "superflat-progression:wheat_into_flour"
       },
       "trigger": "minecraft:recipe_unlocked"
     },
@@ -36,7 +36,7 @@
   ],
   "rewards": {
     "recipes": [
-      "superflat-progression:wheat_into_air"
+      "superflat-progression:wheat_into_flour"
     ]
   },
   "sends_telemetry_event": false

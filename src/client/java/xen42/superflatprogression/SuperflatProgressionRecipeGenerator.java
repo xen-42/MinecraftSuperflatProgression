@@ -29,6 +29,7 @@ import net.minecraft.registry.RegistryWrapper.WrapperLookup;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
+import xen42.superflatprogression.compat.ModCompatDatagen;
 import xen42.superflatprogression.recipe.GrinderRecipeJsonBuilder;
 import xen42.superflatprogression.recipe.ScrollCraftingRecipeJsonBuilder;
 
@@ -497,7 +498,7 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
                 
                 // Mod support
                 new GrinderRecipeJsonBuilder(registryLookup.getWrapperOrThrow(RegistryKeys.ITEM), 
-                    Items.WHEAT, Registries.ITEM.get(Identifier.of(SuperflatProgression.CANADIAN_CONTENT, "flour")), false)
+                    Items.WHEAT, ModCompatDatagen.CANADIAN_CONTENT_FLOUR, false)
                     .criterion(hasItem(Items.WHEAT), conditionsFromItem(Items.WHEAT)).setCount(4).offerTo(
                         withConditions(exporter, DefaultResourceConditions.allModsLoaded(SuperflatProgression.CANADIAN_CONTENT))
                 );
