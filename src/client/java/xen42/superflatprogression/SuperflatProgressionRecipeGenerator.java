@@ -392,13 +392,13 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
                 createScroll(SuperflatProgressionItems.SCROLL_DROWNED, Items.KELP, 5).offerTo(exporter);
                 createScroll(SuperflatProgressionItems.SCROLL_STRAY, Items.SNOW_BLOCK, 5).offerTo(exporter);
 
-                createGrinder(Blocks.STONE.asItem(), Blocks.COBBLESTONE.asItem(), false).offerTo(exporter);
-                createGrinder(Blocks.COBBLESTONE.asItem(), Blocks.GRAVEL.asItem(), false).offerTo(exporter);
-                createGrinder(Blocks.GRAVEL.asItem(), Blocks.SAND.asItem(), false).offerTo(exporter);
-                createGrinder(Blocks.DEEPSLATE.asItem(), Blocks.COBBLED_DEEPSLATE.asItem(), false).offerTo(exporter);
-                createGrinder(Blocks.MAGMA_BLOCK.asItem(), Items.LAVA_BUCKET, true).offerTo(exporter);
-                createGrinder(Blocks.SOUL_SOIL.asItem(), Items.SOUL_SAND, false).offerTo(exporter);
-                createGrinder(Blocks.CLAY.asItem(), Items.CLAY_BALL, false).setCount(4).offerTo(exporter);
+                createGrinder(Blocks.STONE, Blocks.COBBLESTONE, false).offerTo(exporter);
+                createGrinder(Blocks.COBBLESTONE, Blocks.GRAVEL, false).offerTo(exporter);
+                createGrinder(Blocks.GRAVEL, Blocks.SAND, false).offerTo(exporter);
+                createGrinder(Blocks.DEEPSLATE, Blocks.COBBLED_DEEPSLATE, false).offerTo(exporter);
+                createGrinder(Blocks.MAGMA_BLOCK, Items.LAVA_BUCKET, true).offerTo(exporter);
+                createGrinder(Blocks.SOUL_SOIL, Items.SOUL_SAND, false).offerTo(exporter);
+                createGrinder(Blocks.CLAY, Items.CLAY_BALL, false).setCount(4).offerTo(exporter);
                 createGrinder(Items.BRICK, Items.CLAY_BALL, false).offerTo(exporter);
 
                 createGrinder(Items.ENDER_PEARL, SuperflatProgressionItems.END_DUST, false).setCount(3).offerTo(exporter);
@@ -505,6 +505,12 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
             }
 
             public GrinderRecipeJsonBuilder createGrinder(Item input, ItemConvertible output, boolean needsBucket) {
+                return new GrinderRecipeJsonBuilder(registryLookup.getWrapperOrThrow(RegistryKeys.ITEM), 
+                    input, output, needsBucket)
+                    .criterion(hasItem(input), conditionsFromItem(input));
+            }
+
+            public GrinderRecipeJsonBuilder createGrinder(ItemConvertible input, ItemConvertible output, boolean needsBucket) {
                 return new GrinderRecipeJsonBuilder(registryLookup.getWrapperOrThrow(RegistryKeys.ITEM), 
                     input, output, needsBucket)
                     .criterion(hasItem(input), conditionsFromItem(input));

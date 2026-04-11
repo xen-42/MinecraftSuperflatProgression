@@ -52,6 +52,10 @@ public class GrinderRecipeJsonBuilder extends RecipeJsonBuilder implements Craft
 		this.needsBucket = needsBucket;
 	}
 
+	public GrinderRecipeJsonBuilder(RegistryEntryLookup<Item> registryLookup, ItemConvertible input, ItemConvertible output, boolean needsBucket) {
+		this(registryLookup, input.asItem(), output, needsBucket);
+	}
+
 	public GrinderRecipeJsonBuilder(RegistryEntryLookup<Item> registryLookup, TagKey<Item> input, ItemConvertible output, boolean needsBucket) {
 		this.registryLookup = registryLookup;
 		this.output = output.asItem();
