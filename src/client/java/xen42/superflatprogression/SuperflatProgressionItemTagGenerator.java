@@ -26,9 +26,12 @@ public class SuperflatProgressionItemTagGenerator extends ItemTagProvider {
 		
         this.getOrCreateTagBuilder(SuperflatProgressionTags.ItemTags.DUSTS_ENDER_PEARL)
         	.add(SuperflatProgressionItems.END_DUST);
+		
+        this.getOrCreateTagBuilder(SuperflatProgressionTags.ItemTags.DUSTS_PIXIE)
+        	.add(SuperflatProgressionItems.ESSENCE);
 
         this.getOrCreateTagBuilder(ConventionalItemTags.DUSTS)
-        	.add(SuperflatProgressionItems.ESSENCE)
+        	.addTag(SuperflatProgressionTags.ItemTags.DUSTS_PIXIE)
         	.addTag(SuperflatProgressionTags.ItemTags.DUSTS_ENDER_PEARL);
 
         this.getOrCreateTagBuilder(SuperflatProgressionTags.ItemTags.FERTILIZERS)

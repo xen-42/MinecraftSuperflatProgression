@@ -22,6 +22,7 @@ public class SuperflatProgressionTags {
         public static final TagKey<Item> STORAGE_BLOCKS = ofItemConventional("storage_blocks");
         public static final TagKey<Item> STORAGE_BLOCKS_CHARCOAL = ofItemConventional("storage_blocks/charcoal");
         public static final TagKey<Item> DUSTS_ENDER_PEARL = ofItemConventional("dusts/ender_pearl");
+        public static final TagKey<Item> DUSTS_PIXIE = ofItemConventional("dusts/pixie");
 		public static final TagKey<Item> FERTILIZERS = ofItemConventional("fertilizers");
 
         public static final TagKey<Item> PARCHMENTS = ofItem("parchments");
