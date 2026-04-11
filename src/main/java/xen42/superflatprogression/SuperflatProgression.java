@@ -2,6 +2,7 @@ package xen42.superflatprogression;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
+import net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
@@ -35,12 +36,15 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.Heightmap;
+import net.minecraft.world.dimension.DimensionOptions;
 import xen42.superflatprogression.compat.ModEventCompatibility;
 import xen42.superflatprogression.entities.PixieEntity;
 import xen42.superflatprogression.recipe.GrinderRecipe;
 import xen42.superflatprogression.recipe.ScrollCraftingRecipe;
 import xen42.superflatprogression.screen.GrinderScreenHandler;
 import xen42.superflatprogression.screen.ScrollCraftingScreenHandler;
+
+import java.util.function.Predicate;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -136,6 +140,20 @@ public class SuperflatProgression implements ModInitializer {
 		});
 
 		ModEventCompatibility.onInitialize();
+		
+		var plains = BiomeSelectors.vanilla().and(context -> {
+			var overworld = context.canGenerateIn(DimensionOptions.OVERWORLD);
+			var isPlains = context.getBiomeKey().getValue().getPath().equals("plains");
+			return overworld && isPlains;
+		});
+		addSpawn(plains, EntityType.SQUID, 2, 1, 4);
+		addSpawn(plains, EntityType.COD, 5, 3, 6);
+		addSpawn(plains, EntityType.SALMON, 5, 1, 5);
+		addSpawn(plains, EntityType.DROWNED, 1, 1, 1);
+	}
+	
+	public static void addSpawn(Predicate<BiomeSelectionContext> biomeSelector, EntityType<?> entity, int weight, int minGroupCount, int maxGroupCount) {
+		BiomeModifications.addSpawn(biomeSelector, entity.getSpawnGroup(), entity, weight, minGroupCount, maxGroupCount);
 	}
 
 	public static final String PEACEFUL_PROGRESSION = "peaceful-items";
