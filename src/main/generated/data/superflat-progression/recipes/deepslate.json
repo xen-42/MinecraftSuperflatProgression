@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "X": {
+      "item": "minecraft:stone"
+    },
+    "Y": {
+      "item": "minecraft:blackstone"
+    }
+  },
+  "pattern": [
+    "XY",
+    "YX"
+  ],
+  "result": {
+    "item": "minecraft:deepslate"
+  },
+  "show_notification": true
+}

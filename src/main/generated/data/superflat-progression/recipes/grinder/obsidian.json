@@ -1,0 +1,13 @@
+{
+  "type": "superflat-progression:grinder",
+  "count": 1,
+  "input": {
+    "item": {
+      "item": "minecraft:obsidian"
+    }
+  },
+  "needsBucket": false,
+  "result": {
+    "item": "minecraft:crying_obsidian"
+  }
+}

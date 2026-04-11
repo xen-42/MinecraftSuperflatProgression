@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "X": {
+      "tag": "minecraft:coals"
+    },
+    "Y": {
+      "item": "minecraft:basalt"
+    }
+  },
+  "pattern": [
+    "XY",
+    "YX"
+  ],
+  "result": {
+    "item": "minecraft:blackstone"
+  },
+  "show_notification": true
+}

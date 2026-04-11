@@ -194,6 +194,39 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
                         .criterion(hasItem(SuperflatProgressionItems.END_DUST), conditionsFromItem(SuperflatProgressionItems.END_DUST))
                         , exporter);
 
+                offerTo(createShaped(RecipeCategory.BUILDING_BLOCKS, Blocks.BLACKSTONE)
+	                    .pattern("XY")
+	                    .pattern("YX")
+	                    .input('X', ItemTags.COALS)
+	                    .input('Y', Blocks.BASALT)
+	                    .criterion(hasItem(Blocks.BASALT), conditionsFromItem(Blocks.BASALT))
+	                    , exporter);
+
+                offerTo(createShaped(RecipeCategory.BUILDING_BLOCKS, Blocks.GILDED_BLACKSTONE)
+                        .pattern("XXX")
+                        .pattern("XYX")
+                        .pattern("XXX")
+	                    .input('X', Items.GOLD_NUGGET)
+	                    .input('Y', Blocks.BLACKSTONE)
+	                    .criterion(hasItem(Blocks.BLACKSTONE), conditionsFromItem(Blocks.BLACKSTONE))
+	                    , exporter);
+
+                offerTo(createShaped(RecipeCategory.BUILDING_BLOCKS, Blocks.CALCITE)
+	                    .pattern("XY")
+	                    .pattern("YX")
+	                    .input('X', Blocks.STONE)
+	                    .input('Y', Items.BONE_MEAL)
+	                    .criterion(hasItem(Items.BONE_MEAL), conditionsFromItem(Items.BONE_MEAL))
+	                    , exporter);
+
+                offerTo(createShaped(RecipeCategory.BUILDING_BLOCKS, Blocks.DEEPSLATE)
+	                    .pattern("XY")
+	                    .pattern("YX")
+	                    .input('X', Blocks.STONE)
+	                    .input('Y', Blocks.BLACKSTONE)
+	                    .criterion(hasItem(Blocks.BLACKSTONE), conditionsFromItem(Blocks.BLACKSTONE))
+	                    , exporter);
+
                 offerTo(createShaped(RecipeCategory.DECORATIONS, SuperflatProgressionItems.MAGIC_TORCH)
                         .pattern("X")
                         .pattern("Y")
@@ -400,6 +433,7 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
                 createGrinder(Blocks.SOUL_SOIL, Items.SOUL_SAND, false).offerTo(exporter);
                 createGrinder(Blocks.CLAY, Items.CLAY_BALL, false).setCount(4).offerTo(exporter);
                 createGrinder(Items.BRICK, Items.CLAY_BALL, false).offerTo(exporter);
+                createGrinder(Blocks.OBSIDIAN, Blocks.CRYING_OBSIDIAN, false).offerTo(exporter);
 
                 createGrinder(Items.ENDER_PEARL, SuperflatProgressionItems.END_DUST, false).setCount(3).offerTo(exporter);
 
