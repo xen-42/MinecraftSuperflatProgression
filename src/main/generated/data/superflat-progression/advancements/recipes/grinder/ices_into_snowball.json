@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_ices": {
+      "conditions": {
+        "items": [
+          {
+            "tag": "superflat-progression:ices"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "superflat-progression:ices_into_snowball"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_ices"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "superflat-progression:ices_into_snowball"
+    ]
+  },
+  "sends_telemetry_event": false
+}

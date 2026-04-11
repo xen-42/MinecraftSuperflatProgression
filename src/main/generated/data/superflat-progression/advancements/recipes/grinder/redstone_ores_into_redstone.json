@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_redstone_ores": {
+      "conditions": {
+        "items": [
+          {
+            "tag": "minecraft:redstone_ores"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "superflat-progression:redstone_ores_into_redstone"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_redstone_ores"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "superflat-progression:redstone_ores_into_redstone"
+    ]
+  },
+  "sends_telemetry_event": false
+}

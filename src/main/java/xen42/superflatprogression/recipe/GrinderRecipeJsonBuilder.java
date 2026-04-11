@@ -44,32 +44,44 @@ public class GrinderRecipeJsonBuilder extends RecipeJsonBuilder implements Craft
 
 	private final RegistryEntryLookup<Item> registryLookup;
 
-	public GrinderRecipeJsonBuilder(RegistryEntryLookup<Item> registryLookup, Item input, ItemConvertible output, boolean needsBucket) {
+	public GrinderRecipeJsonBuilder(RegistryEntryLookup<Item> registryLookup, Identifier uniqueID, Ingredient input, Item output, boolean needsBucket) {
 		this.registryLookup = registryLookup;
-		this.output = output.asItem();
-        this.input = Ingredient.ofItems(input);
-		this.uniqueID = getItemId(input);
+		this.output = output;
+        this.input = input;
+		this.uniqueID = uniqueID;
 		this.needsBucket = needsBucket;
+	}
+
+	public GrinderRecipeJsonBuilder(RegistryEntryLookup<Item> registryLookup, Item input, Item output, boolean needsBucket) {
+		this(registryLookup, getUniqueId(input, output), Ingredient.ofItems(input), output, needsBucket);
 	}
 
 	public GrinderRecipeJsonBuilder(RegistryEntryLookup<Item> registryLookup, ItemConvertible input, ItemConvertible output, boolean needsBucket) {
-		this(registryLookup, input.asItem(), output, needsBucket);
+		this(registryLookup, input.asItem(), output.asItem(), needsBucket);
+	}
+
+	public GrinderRecipeJsonBuilder(RegistryEntryLookup<Item> registryLookup, TagKey<Item> input, Item output, boolean needsBucket) {
+		this(registryLookup, getUniqueId(input, output), Ingredient.fromTag(input), output, needsBucket);
 	}
 
 	public GrinderRecipeJsonBuilder(RegistryEntryLookup<Item> registryLookup, TagKey<Item> input, ItemConvertible output, boolean needsBucket) {
-		this.registryLookup = registryLookup;
-		this.output = output.asItem();
-        this.input = Ingredient.fromTag(input);
-		this.uniqueID = getTagId(input);
-		this.needsBucket = needsBucket;
+		this(registryLookup, input, output.asItem(), needsBucket);
 	}
 
-	public static Identifier getItemId(ItemConvertible item) {
-		return Identifier.of(SuperflatProgression.MOD_ID, Registries.ITEM.getId(item.asItem()).getPath());
+	public static Identifier getUniqueId(Item input, Item output) {
+		return Identifier.of(SuperflatProgression.MOD_ID, getItemPath(input) + "_into_" + getItemPath(output));
 	}
 
-	public static Identifier getTagId(TagKey<Item> itemTag) {
-		return Identifier.of(SuperflatProgression.MOD_ID, itemTag.id().getPath());
+	public static Identifier getUniqueId(TagKey<Item> input, Item output) {
+		return Identifier.of(SuperflatProgression.MOD_ID, getTagPath(input) + "_into_" + getItemPath(output));
+	}
+
+	public static String getItemPath(ItemConvertible item) {
+		return Registries.ITEM.getId(item.asItem()).getPath();
+	}
+
+	public static String getTagPath(TagKey<Item> itemTag) {
+		return itemTag.id().getPath();
 	}
 
 	public GrinderRecipeJsonBuilder setCount(int count) {
