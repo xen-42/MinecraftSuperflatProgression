@@ -145,7 +145,7 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
                         .criterion(hasItem(SuperflatProgressionItems.PARCHMENT), conditionsFromItem(SuperflatProgressionItems.PARCHMENT))
                         , exporter);
 
-                offerTo(createShaped(RecipeCategory.MISC, SuperflatProgressionBlocks.CHARCOAL_BLOCK)
+                offerTo(createShaped(RecipeCategory.BUILDING_BLOCKS, SuperflatProgressionBlocks.CHARCOAL_BLOCK)
                         .pattern("XXX")
                         .pattern("XXX")
                         .pattern("XXX")
@@ -166,7 +166,7 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
                         .criterion(hasItem(SuperflatProgressionItems.ESSENCE), conditionsFromItem(SuperflatProgressionItems.ESSENCE))
                         , exporter);
 
-                offerTo(createShapeless(RecipeCategory.MISC, SuperflatProgressionItems.FIRE_STARTER, 1)
+                offerTo(createShapeless(RecipeCategory.TOOLS, SuperflatProgressionItems.FIRE_STARTER, 1)
                         .input(Items.STICK) 
                         .input(Items.STICK) 
                         .input(Items.STRING) 
@@ -194,7 +194,7 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
                         .criterion(hasItem(SuperflatProgressionItems.END_DUST), conditionsFromItem(SuperflatProgressionItems.END_DUST))
                         , exporter);
 
-                offerTo(createShaped(RecipeCategory.MISC, SuperflatProgressionItems.MAGIC_TORCH)
+                offerTo(createShaped(RecipeCategory.DECORATIONS, SuperflatProgressionItems.MAGIC_TORCH)
                         .pattern("X")
                         .pattern("Y")
                         .pattern("Z")
@@ -205,7 +205,7 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
                         .criterion(hasItem(SuperflatProgressionItems.ESSENCE), conditionsFromItem(SuperflatProgressionItems.ESSENCE))
                         , exporter);
 
-                offerTo(createShaped(RecipeCategory.MISC, SuperflatProgressionBlocks.MAGIC_LANTERN)
+                offerTo(createShaped(RecipeCategory.DECORATIONS, SuperflatProgressionBlocks.MAGIC_LANTERN)
                         .pattern("XXX")
                         .pattern("XYX")
                         .pattern("XXX")
@@ -216,7 +216,7 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
                         .criterion(hasItem(Items.IRON_NUGGET), conditionsFromItem(Items.IRON_NUGGET))
                         , exporter);
 
-                offerTo(createShaped(RecipeCategory.MISC, SuperflatProgressionBlocks.SCROLL_CRAFTING)
+                offerTo(createShaped(RecipeCategory.DECORATIONS, SuperflatProgressionBlocks.SCROLL_CRAFTING)
                         .pattern("X")
                         .pattern("Y")
                         .pattern("Z")
@@ -229,7 +229,7 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
                         .criterion(hasTag(ItemTags.PLANKS), conditionsFromTag(ItemTags.PLANKS))
                         , exporter);
                 
-                offerTo(createShaped(RecipeCategory.MISC, SuperflatProgressionBlocks.GRINDER)
+                offerTo(createShaped(RecipeCategory.DECORATIONS, SuperflatProgressionBlocks.GRINDER)
                         .pattern(" X ")
                         .pattern("GYG")
                         .pattern("ZZZ")
@@ -258,35 +258,35 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
                     .criterion(hasItem(Items.DIAMOND), conditionsFromItem(Items.DIAMOND))
                     , exporter);
 
-                offerTo(createShaped(RecipeCategory.MISC, SuperflatProgressionBlocks.DIRT_SLAB, 6)
+                offerTo(createShaped(RecipeCategory.BUILDING_BLOCKS, SuperflatProgressionBlocks.DIRT_SLAB, 6)
                         .pattern("XXX")
                         .input('X', Blocks.DIRT)
                         // Advancement that gives the recipe
                         .criterion(hasItem(Blocks.DIRT), conditionsFromItem(Blocks.DIRT))
                         , exporter); 
 
-                offerTo(createShaped(RecipeCategory.MISC, SuperflatProgressionBlocks.DIRT_SLAB, 4)
+                offerTo(createShaped(RecipeCategory.BUILDING_BLOCKS, SuperflatProgressionBlocks.DIRT_SLAB, 4)
                         .pattern("XX")
                         .input('X', Blocks.DIRT)
                         // Advancement that gives the recipe
                         .criterion(hasItem(Blocks.DIRT), conditionsFromItem(Blocks.DIRT))
                         , exporter, "dirt_slab_mini"); 
                 
-                offerTo(createShaped(RecipeCategory.MISC, SuperflatProgressionBlocks.GRASS_SLAB, 6)
+                offerTo(createShaped(RecipeCategory.BUILDING_BLOCKS, SuperflatProgressionBlocks.GRASS_SLAB, 6)
                         .pattern("XXX")
                         .input('X', Blocks.GRASS_BLOCK)
                         // Advancement that gives the recipe
                         .criterion(hasItem(Blocks.GRASS_BLOCK), conditionsFromItem(Blocks.GRASS_BLOCK))
                         , exporter); 
 
-                offerTo(createShaped(RecipeCategory.MISC, SuperflatProgressionBlocks.GRASS_SLAB, 4)
+                offerTo(createShaped(RecipeCategory.BUILDING_BLOCKS, SuperflatProgressionBlocks.GRASS_SLAB, 4)
                         .pattern("XX")
                         .input('X', Blocks.GRASS_BLOCK)
                         // Advancement that gives the recipe
                         .criterion(hasItem(Blocks.GRASS_BLOCK), conditionsFromItem(Blocks.GRASS_BLOCK))
                         , exporter, "grass_slab_mini"); 
 
-                offerTo(createShaped(RecipeCategory.MISC, Blocks.DIRT)
+                offerTo(createShaped(RecipeCategory.BUILDING_BLOCKS, Blocks.DIRT)
                         .pattern("X")
                         .pattern("X")
                         .input('X', SuperflatProgressionBlocks.DIRT_SLAB)
@@ -294,7 +294,7 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
                         .criterion(hasItem(SuperflatProgressionBlocks.DIRT_SLAB), conditionsFromItem(SuperflatProgressionBlocks.DIRT_SLAB))
                         , exporter); 
 
-                offerTo(createShaped(RecipeCategory.MISC, Blocks.GRASS_BLOCK)
+                offerTo(createShaped(RecipeCategory.BUILDING_BLOCKS, Blocks.GRASS_BLOCK)
                         .pattern("X")
                         .pattern("X")
                         .input('X', SuperflatProgressionBlocks.GRASS_SLAB)
@@ -325,7 +325,7 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
                         .criterion(hasItem(Items.END_STONE), conditionsFromItem(Items.END_STONE))
                         , exporter); 
 
-                offerTo(createShaped(RecipeCategory.MISC, Blocks.END_STONE)
+                offerTo(createShaped(RecipeCategory.BUILDING_BLOCKS, Blocks.END_STONE)
                     .pattern("DDD")
                     .pattern("DCD")
                     .pattern("DDD")
@@ -335,7 +335,7 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
                     .criterion(hasItem(SuperflatProgressionItems.END_DUST), conditionsFromItem(SuperflatProgressionItems.END_DUST))
                     , exporter); 
 
-                offerTo(createShaped(RecipeCategory.MISC, Items.ELYTRA)
+                offerTo(createShaped(RecipeCategory.TOOLS, Items.ELYTRA)
                     .pattern("MSM")
                     .pattern("MEM")
                     .input('M', Items.PHANTOM_MEMBRANE)
@@ -557,7 +557,7 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
                     exporter
                 );
 
-                offerTo(createShaped(RecipeCategory.TOOLS, sword)
+                offerTo(createShaped(RecipeCategory.COMBAT, sword)
                     .pattern("X")
                     .pattern("X")
                     .pattern("Y")

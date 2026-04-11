@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "misc",
+  "category": "building",
   "key": {
     "X": {
       "item": "superflat-progression:grass_slab"
