@@ -7,8 +7,10 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.block.BeaconBlock;
 import net.minecraft.block.Block;
+import net.minecraft.entity.EntityType;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
 import net.minecraft.potion.Potion;
 import net.minecraft.registry.Registries;
@@ -118,6 +120,26 @@ public abstract class SuperflatProgressionLanguageProvider extends FabricLanguag
 			add("item.minecraft.splash_potion.effect." + baseName, makeSplashPotionText(name));
 			add("item.minecraft.lingering_potion.effect." + baseName, makeLingeringPotionText(name));
 			add("item.minecraft.tipped_arrow.effect." + baseName, makeTippedArrowText(name));
+		}
+
+		private String getInformationKey(String path) {
+			return "info." + SuperflatProgression.MOD_ID + "." + path;
+		}
+
+		public void addInformation(String path, String value) {
+			add(getInformationKey(path), value);
+		}
+		
+		public void addInformation(Item item, String hint) {
+			addInformation(Registries.ITEM.getId(item).getPath(), hint);
+		}
+		
+		public void addInformation(ItemConvertible item, String hint) {
+			addInformation(item.asItem(), hint);
+		}
+		
+		public void addInformation(EntityType<?> entity, String hint) {
+			addInformation(Registries.ENTITY_TYPE.getId(entity).getPath(), hint);
 		}
 	}
 	
@@ -236,12 +258,12 @@ public abstract class SuperflatProgressionLanguageProvider extends FabricLanguag
 			translationBuilder.add(SuperflatProgressionStatusEffects.WARP_EFFECT.value(), "Spatial Instability");
 			translationBuilder.add(SuperflatProgressionPotions.WARP.value(), "Spatial Instability");
 
-			translationBuilder.add(getHintKey(SuperflatProgressionBlocks.CHARCOAL_BLOCK.asItem()), "A log block surrounded on 4 or more sides by opaque blocks may turn into charcoal when burnt.");
-			translationBuilder.add(getHintKey(SuperflatProgressionBlocks.GRINDER.asItem()), "When supplied with a redstone signal it will take items from the container above it and process them into the container in front of it. Takes buckets from adjacent hoppers.");
-			translationBuilder.add(getHintKey(Items.MAGMA_CREAM), "Slimes struck by lightning become Magma Cubes. Magma blocks are used to make cobblestone.");
-			translationBuilder.add(getHintKey(Items.GOLD_INGOT), "Pigs struck by lightning become Zombie Piglins. Golden apples are used to cure zombie villagers.");
-			translationBuilder.add(getHintKey(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE), "If structure generation is disabled, Piglin Brutes have a chance to drop these.");
-			translationBuilder.add(getHintKey(SuperflatProgressionBlocks.END_PORTAL_FRAME_GENERATOR.asItem()), "Place and destroy an End Crystal on top of this block to generate an End portal frame.");
+			translationBuilder.addInformation(SuperflatProgressionBlocks.CHARCOAL_BLOCK, "A log block surrounded on 4 or more sides by opaque blocks may turn into charcoal when burnt.");
+			translationBuilder.addInformation(SuperflatProgressionBlocks.GRINDER, "When supplied with a redstone signal it will take items from the container above it and process them into the container in front of it. Takes buckets from adjacent hoppers.");
+			translationBuilder.addInformation(Items.MAGMA_CREAM, "Slimes struck by lightning become Magma Cubes. Magma blocks are used to make cobblestone.");
+			translationBuilder.addInformation(Items.GOLD_INGOT, "Pigs struck by lightning become Zombie Piglins. Golden apples are used to cure zombie villagers.");
+			translationBuilder.addInformation(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE, "If structure generation is disabled, Piglin Brutes have a chance to drop these.");
+			translationBuilder.addInformation(SuperflatProgressionBlocks.END_PORTAL_FRAME_GENERATOR, "Place and destroy an End Crystal on top of this block to generate an End portal frame.");
 
 			translationBuilder.add(SuperflatProgressionAdvancementsProvider.CHARCOAL, "Acquire Charcoal", "Burn a log surrounded on 4 sides by opaque blocks using a fire starter.");
 			translationBuilder.add(SuperflatProgressionAdvancementsProvider.PIXIE_DUST, "Hunt Pixies", "Pixie dust is used to unlock most Superflat Progression features!");
@@ -254,10 +276,6 @@ public abstract class SuperflatProgressionLanguageProvider extends FabricLanguag
 			
 			translationBuilder.add("flat_world_preset.superflat-progression.default", "Default");
         }
-	}
-
-	public static String getHintKey(Item item) {
-		return "info." + SuperflatProgression.MOD_ID + "." + item.getTranslationKey();
 	}
 	
 	public static class EnglishUpsideDown extends English {

@@ -17,6 +17,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.potion.PotionUtil;
 import net.minecraft.potion.Potions;
+import net.minecraft.registry.Registries;
 import net.minecraft.text.Text;
 import xen42.superflatprogression.SuperflatProgression;
 import xen42.superflatprogression.SuperflatProgressionBlocks;
@@ -97,7 +98,7 @@ public class SuperflatProgressionREIClientPlugin implements REIClientPlugin {
 	}
 
 	private static void addInfo(Item item) {
-		var key = "info." + SuperflatProgression.MOD_ID + "." + item.getTranslationKey();
+		var key = "info." + SuperflatProgression.MOD_ID + "." + Registries.ITEM.getId(item).getPath();
 		BuiltinClientPlugin.getInstance().registerInformation(EntryStacks.of(item), 
 			Text.of(key),
 			(text) -> List.of(Text.translatable(key)));
