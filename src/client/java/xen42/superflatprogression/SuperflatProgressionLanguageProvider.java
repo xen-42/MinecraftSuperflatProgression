@@ -222,6 +222,8 @@ public abstract class SuperflatProgressionLanguageProvider extends FabricLanguag
 			translationBuilder.add(SuperflatProgressionAdvancementsProvider.PULVERIZER, "Pulverization", "The pulverizer gives access to lava, diamonds, and more in superflat.");
 			translationBuilder.add(SuperflatProgressionAdvancementsProvider.SCRIPTORIUM, "The Scriptorium", "The scriptorium unlocks the ability to change the weather and summon useful mobs.");
 			translationBuilder.add(SuperflatProgressionAdvancementsProvider.SCROLL, "Do You Believe in Magic?", "You made a magic scroll! Use a thunder scroll and a lightning rod to acquire gold and cobblestone by converting pigs and slimes.");
+			
+			translationBuilder.add("flat_world_preset.superflat-progression.default", "Default");
         }
 	}
 
