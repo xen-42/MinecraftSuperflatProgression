@@ -35,7 +35,7 @@ public class SuperflatProgressionClient implements ClientModInitializer {
 		HandledScreens.register(SuperflatProgression.SCROLL_CRAFTING_SCREEN_HANDLER, ScrollCraftingHandledScreen::new);
 		HandledScreens.register(SuperflatProgression.GRINDER_SCREEN_HANDLER, GrinderHandledScreen::new);
 
-		EntityRendererRegistry.register(SuperflatProgression.PIXIE_ENTITY, context -> new PixieEntityRenderer(context));
+		EntityRendererRegistry.register(SuperflatProgressionEntities.PIXIE_ENTITY, context -> new PixieEntityRenderer(context));
 		EntityModelLayerRegistry.registerModelLayer(MODEL_PIXIE_LAYER, PixieEntityModel::getTexturedModelData);
 
 		ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) ->

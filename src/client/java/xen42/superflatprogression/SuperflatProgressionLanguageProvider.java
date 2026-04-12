@@ -232,7 +232,7 @@ public abstract class SuperflatProgressionLanguageProvider extends FabricLanguag
 			translationBuilder.add(SuperflatProgressionTags.ItemTags.BONE_GEAR, "Bone Tools");
 			translationBuilder.add(SuperflatProgressionTags.ItemTags.ICES, "Ices");
 
-			translationBuilder.add(SuperflatProgression.PIXIE_ENTITY, "Pixie");
+			translationBuilder.add(SuperflatProgressionEntities.PIXIE_ENTITY, "Pixie");
 
 			translationBuilder.add(SuperflatProgressionStatusEffects.MAGIC_TORCH_EFFECT, "Bountiful");
 			translationBuilder.add(SuperflatProgressionPotions.MAGIC_TORCH, "Bounty");

@@ -33,6 +33,7 @@ import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 import xen42.superflatprogression.SuperflatProgression;
+import xen42.superflatprogression.SuperflatProgressionEntities;
 import xen42.superflatprogression.SuperflatProgressionItems;
 
 public class PixieEntity extends PassiveEntity implements Flutterer {
@@ -61,7 +62,7 @@ public class PixieEntity extends PassiveEntity implements Flutterer {
 
     @Override
 	public PixieEntity createChild(ServerWorld serverWorld, PassiveEntity passiveEntity) {
-		return SuperflatProgression.PIXIE_ENTITY.create(serverWorld);
+		return SuperflatProgressionEntities.PIXIE_ENTITY.create(serverWorld);
 	}
 
     @Override

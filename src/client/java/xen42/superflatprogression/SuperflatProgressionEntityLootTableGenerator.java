@@ -39,7 +39,7 @@ public class SuperflatProgressionEntityLootTableGenerator extends SimpleFabricLo
     @Override
     public void accept(BiConsumer<Identifier, Builder> consumer) {
         consumer.accept(
-            SuperflatProgression.PIXIE_ENTITY.getLootTableId(), 
+            SuperflatProgressionEntities.PIXIE_ENTITY.getLootTableId(), 
             LootTable.builder()
             .pool(
                 LootPool.builder()

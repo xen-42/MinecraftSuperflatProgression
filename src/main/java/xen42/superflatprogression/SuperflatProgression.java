@@ -90,12 +90,6 @@ public class SuperflatProgression implements ModInitializer {
 		Identifier.of(MOD_ID, "grinder"),
 		new ScreenHandlerType<GrinderScreenHandler>(GrinderScreenHandler::new, null));
 
-	public static final RegistryKey<EntityType<?>> PIXIE_ENTITY_KEY = RegistryKey.of(RegistryKeys.ENTITY_TYPE, Identifier.of(MOD_ID,"pixie"));
-	public static final EntityType<PixieEntity> PIXIE_ENTITY = Registry.register(
-		Registries.ENTITY_TYPE, 
-		Identifier.of(MOD_ID, "pixie"), 
-		EntityType.Builder.create(PixieEntity::new, SpawnGroup.AMBIENT).setDimensions(0.5f, 0.5f).build(PIXIE_ENTITY_KEY.toString()));
-
 	public static final TrackedData<Boolean> ENDERMAN_CANNOT_DROP = DataTracker.registerData(EndermanEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
 
 	@Override
@@ -104,18 +98,14 @@ public class SuperflatProgression implements ModInitializer {
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
 
-		LOGGER.info("Hello Fabric world!");
+		LOGGER.info("Loading Superflat Progression!");
 
 		SuperflatProgressionStatusEffects.initialize();
+		SuperflatProgressionEntities.initialize();
 		SuperflatProgressionItems.initialize();
 		SuperflatProgressionBlocks.initialize();
 		SuperflatProgressionPotions.initialize();
 		SuperflatProgressionVillagers.initialize();
-
-		FabricDefaultAttributeRegistry.register(PIXIE_ENTITY, PixieEntity.createPixieAttributes());
-
-		BiomeModifications.addSpawn(BiomeSelectors.foundInOverworld(), SpawnGroup.AMBIENT, PIXIE_ENTITY, 150, 1, 2);
-		SpawnRestriction.register(PIXIE_ENTITY, Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, PixieEntity::isValidSpawn);
 
         var waterPotionNbt = new NbtCompound();
         waterPotionNbt.putString("Potion","minecraft:water");
@@ -140,20 +130,6 @@ public class SuperflatProgression implements ModInitializer {
 		});
 
 		ModEventCompatibility.onInitialize();
-		
-		var plains = BiomeSelectors.vanilla().and(context -> {
-			var overworld = context.canGenerateIn(DimensionOptions.OVERWORLD);
-			var isPlains = SuperflatProgressionUtils.getPath(context.getBiomeKey()).equals("plains");
-			return overworld && isPlains;
-		});
-		addSpawn(plains, EntityType.SQUID, 2, 1, 4);
-		addSpawn(plains, EntityType.COD, 5, 3, 6);
-		addSpawn(plains, EntityType.SALMON, 5, 1, 5);
-		addSpawn(plains, EntityType.DROWNED, 1, 1, 1);
-	}
-	
-	public static void addSpawn(Predicate<BiomeSelectionContext> biomeSelector, EntityType<?> entity, int weight, int minGroupCount, int maxGroupCount) {
-		BiomeModifications.addSpawn(biomeSelector, entity.getSpawnGroup(), entity, weight, minGroupCount, maxGroupCount);
 	}
 
 	public static final String PEACEFUL_PROGRESSION = "peaceful-items";
