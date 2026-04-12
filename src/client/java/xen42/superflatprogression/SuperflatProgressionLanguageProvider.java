@@ -10,6 +10,8 @@ import net.minecraft.block.Block;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
+import net.minecraft.potion.Potion;
+import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.RegistryWrapper.WrapperLookup;
@@ -35,6 +37,11 @@ public abstract class SuperflatProgressionLanguageProvider extends FabricLanguag
 	public String processValue(String value) {
 		return value;
 	}
+
+	public abstract String makeDrinkablePotionText(String effectName);
+	public abstract String makeSplashPotionText(String effectName);
+	public abstract String makeLingeringPotionText(String effectName);
+	public abstract String makeTippedArrowText(String effectName);
 
 	public abstract void generate(RegistryWrapper.WrapperLookup registryLookup, ModTranslationBuilder translationBuilder);
 	
@@ -104,6 +111,14 @@ public abstract class SuperflatProgressionLanguageProvider extends FabricLanguag
 		public void addFilledMap(TagKey<Structure> structure, String value) {
 			add("filled_map." + structure.id().getNamespace() + "." + structure.id().getPath(), value);
 		}
+
+		public void add(Potion potion, String name) {
+			var baseName = Registries.POTION.getId(potion).getPath();
+			add("item.minecraft.potion.effect." + baseName, makeDrinkablePotionText(name));
+			add("item.minecraft.splash_potion.effect." + baseName, makeSplashPotionText(name));
+			add("item.minecraft.lingering_potion.effect." + baseName, makeLingeringPotionText(name));
+			add("item.minecraft.tipped_arrow.effect." + baseName, makeTippedArrowText(name));
+		}
 	}
 	
 	public static class English extends SuperflatProgressionLanguageProvider {
@@ -114,6 +129,26 @@ public abstract class SuperflatProgressionLanguageProvider extends FabricLanguag
 
 		public English(FabricDataOutput output, CompletableFuture<WrapperLookup> registryLookup) {
 			this(output, "en_us", registryLookup);
+		}
+
+		@Override
+		public String makeDrinkablePotionText(String effectName) {
+			return "Potion of " + effectName;
+		}
+
+		@Override
+		public String makeSplashPotionText(String effectName) {
+			return "Splash Potion of " + effectName;
+		}
+
+		@Override
+		public String makeLingeringPotionText(String effectName) {
+			return "Lingering Potion of " + effectName;
+		}
+
+		@Override
+		public String makeTippedArrowText(String effectName) {
+			return "Arrow of " + effectName;
 		}
 
 		@Override
@@ -196,16 +231,10 @@ public abstract class SuperflatProgressionLanguageProvider extends FabricLanguag
 			translationBuilder.add(SuperflatProgression.PIXIE_ENTITY, "Pixie");
 
 			translationBuilder.add(SuperflatProgressionStatusEffects.MAGIC_TORCH_EFFECT.value(), "Bountiful");
-			translationBuilder.add("item.minecraft.potion.effect.magic_torch", "Potion of Bounty");
-			translationBuilder.add("item.minecraft.splash_potion.effect.magic_torch", "Splash Potion of Bounty");
-			translationBuilder.add("item.minecraft.lingering_potion.effect.magic_torch", "Lingering Potion of Bounty");
-			translationBuilder.add("item.minecraft.tipped_arrow.effect.magic_torch", "Arrow of Bounty");
+			translationBuilder.add(SuperflatProgressionPotions.MAGIC_TORCH.value(), "Bounty");
 
 			translationBuilder.add(SuperflatProgressionStatusEffects.WARP_EFFECT.value(), "Spatial Instability");
-			translationBuilder.add("item.minecraft.potion.effect.warp", "Potion of Spatial Instability");
-			translationBuilder.add("item.minecraft.splash_potion.effect.warp", "Splash Potion of Spatial Instability");
-			translationBuilder.add("item.minecraft.lingering_potion.effect.warp", "Lingering Potion of Spatial Instability");
-			translationBuilder.add("item.minecraft.tipped_arrow.effect.warp", "Arrow of Spatial Instability");
+			translationBuilder.add(SuperflatProgressionPotions.WARP.value(), "Spatial Instability");
 
 			translationBuilder.add(getHintKey(SuperflatProgressionBlocks.CHARCOAL_BLOCK.asItem()), "A log block surrounded on 4 or more sides by opaque blocks may turn into charcoal when burnt.");
 			translationBuilder.add(getHintKey(SuperflatProgressionBlocks.GRINDER.asItem()), "When supplied with a redstone signal it will take items from the container above it and process them into the container in front of it. Takes buckets from adjacent hoppers.");
