@@ -6,6 +6,7 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider.ItemTagProv
 import net.fabricmc.fabric.api.tag.convention.v1.ConventionalItemTags;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.Items;
+import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryWrapper.WrapperLookup;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.util.Identifier;
@@ -208,7 +209,12 @@ public class SuperflatProgressionItemTagGenerator extends ItemTagProvider {
 
 		var scrollTagBuilder = this.getOrCreateTagBuilder(SuperflatProgressionTags.ItemTags.MAGIC_SCROLLS);
 		for (var scroll : SuperflatProgressionItems.SCROLLS) {
-			scrollTagBuilder.add(scroll);
+			if (scroll.optional()) {
+				scrollTagBuilder.addOptional(Registries.ITEM.getId(scroll.item()));
+			}
+			else {
+				scrollTagBuilder.add(scroll.item());
+			}
 		}
     }
 }

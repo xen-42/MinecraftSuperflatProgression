@@ -35,12 +35,33 @@
     "superflat-progression:scroll_husk",
     "superflat-progression:scroll_drowned",
     "superflat-progression:scroll_stray",
-    "superflat-progression:scroll_ghastling",
-    "superflat-progression:scroll_end_clam",
-    "superflat-progression:scroll_beaver",
-    "superflat-progression:scroll_moose",
-    "superflat-progression:scroll_duck",
-    "superflat-progression:scroll_goose",
-    "superflat-progression:scroll_grizzly"
+    {
+      "id": "superflat-progression:scroll_ghastling",
+      "required": false
+    },
+    {
+      "id": "superflat-progression:scroll_end_clam",
+      "required": false
+    },
+    {
+      "id": "superflat-progression:scroll_beaver",
+      "required": false
+    },
+    {
+      "id": "superflat-progression:scroll_moose",
+      "required": false
+    },
+    {
+      "id": "superflat-progression:scroll_duck",
+      "required": false
+    },
+    {
+      "id": "superflat-progression:scroll_goose",
+      "required": false
+    },
+    {
+      "id": "superflat-progression:scroll_grizzly",
+      "required": false
+    }
   ]
 }

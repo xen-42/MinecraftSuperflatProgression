@@ -47,6 +47,9 @@ public class SuperflatProgressionItems {
 	public static final Item PIXIE_SPAWN_EGG = register("pixie_spawn_egg", (settings) -> 
         new DispensibleSpawnEggItem(SuperflatProgression.PIXIE_ENTITY, 0x6F4B6F, 0x2B1E2B, settings), new Item.Settings());
 
+	public record ScrollEntry(Item item, boolean optional) {}
+	public static final ArrayList<ScrollEntry> SCROLLS = new ArrayList<ScrollEntry>();
+
     public static final Item SCROLL_RAIN = registerScroll("scroll_rain",  (ServerPlayerEntity user) -> {
 			var world = (ServerWorld)(user.getWorld());
 			var duration = ServerWorld.RAIN_WEATHER_DURATION_PROVIDER.get(world.getRandom());
@@ -64,8 +67,6 @@ public class SuperflatProgressionItems {
 			var duration = ServerWorld.CLEAR_WEATHER_DURATION_PROVIDER.get(world.getRandom());
 			world.setWeather(duration, 0, false, false);
 		});
-
-	public static ArrayList<Item> SCROLLS;
 
     public static final Item SCROLL_TRADE = registerScroll("scroll_trade", MobSpawnerHelper::spawnWanderingTrader);
     public static final Item SCROLL_PIG = registerScroll("scroll_pig", (ServerPlayerEntity user) -> MobSpawnerHelper.spawnMob(user, EntityType.PIG));
@@ -118,14 +119,12 @@ public class SuperflatProgressionItems {
 		var scroll = register(name, (settings) -> new ScrollItem(settings, onUse),
 			new Item.Settings().maxCount(1).rarity(Rarity.UNCOMMON), optionalModID);
 
+		// Skip compatibility scroll if mod not loaded
 		if (scroll == null) {
 			return null;
 		}
 
-		if (SCROLLS == null) {
-			SCROLLS = new ArrayList<Item>();
-		}
-		SCROLLS.add(scroll);
+		SCROLLS.add(new ScrollEntry(scroll, optionalModID != null));
 
 		return scroll;
 	}
@@ -163,9 +162,8 @@ public class SuperflatProgressionItems {
             itemGroup.add(ENRICHED_BONEMEAL);
             itemGroup.add(FIRE_STARTER);
 
-			// Only add scrolls that are relevant (not from optional mod compat)
 			for (var scroll : SCROLLS) {
-            	itemGroup.add(scroll);
+            	itemGroup.add(scroll.item());
 			}
 			
             itemGroup.add(BONE_SHOVEL);

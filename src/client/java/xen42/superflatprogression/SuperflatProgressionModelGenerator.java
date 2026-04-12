@@ -82,6 +82,10 @@ public class SuperflatProgressionModelGenerator extends FabricModelProvider {
 		Identifier doubleSlab = Models.CUBE_BOTTOM_TOP.upload(slab, "_double", textureMap, blockStateModelGenerator.modelCollector);
 		blockStateModelGenerator.blockStateCollector.accept(blockStateModelGenerator.createSlabBlockState(slab, bottomSlab, topSlab, doubleSlab));
 	}
+	
+	private void makeScroll(Item scroll, TextureMap textureMap, ItemModelGenerator itemModelGenerator) {
+		Models.GENERATED.upload(ModelIds.getItemModelId(scroll), textureMap, itemModelGenerator.writer);
+	}
 
     @Override
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
@@ -104,7 +108,7 @@ public class SuperflatProgressionModelGenerator extends FabricModelProvider {
 		TextureMap textureMap = new TextureMap().put(TextureKey.LAYER0, scrollTexture);
 
 		for (var scroll : SuperflatProgressionItems.SCROLLS) {
-			Models.GENERATED.upload(ModelIds.getItemModelId(scroll), textureMap, itemModelGenerator.writer);
+			makeScroll(scroll.item(), textureMap, itemModelGenerator);
 		}
     }
 
