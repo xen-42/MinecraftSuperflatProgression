@@ -30,7 +30,7 @@ public class LivingEntityMixin {
 	private void dropLoot(DamageSource damageSource, boolean causedByPlayer, CallbackInfo info) {
         var attacker = damageSource.getAttacker();
         var entity = (LivingEntity)((Object)this);
-        if (attacker instanceof LivingEntity && ((LivingEntity)attacker).hasStatusEffect(SuperflatProgressionStatusEffects.MAGIC_TORCH_EFFECT.value())) {
+        if (attacker instanceof LivingEntity && ((LivingEntity)attacker).hasStatusEffect(SuperflatProgressionStatusEffects.MAGIC_TORCH_EFFECT)) {
             // Largely the same as base game method with a change at the end
             Identifier identifier = entity.getLootTable();
             LootTable lootTable = entity.getWorld().getServer().getLootManager().getLootTable(identifier);

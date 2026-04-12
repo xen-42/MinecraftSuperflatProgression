@@ -234,11 +234,11 @@ public abstract class SuperflatProgressionLanguageProvider extends FabricLanguag
 
 			translationBuilder.add(SuperflatProgression.PIXIE_ENTITY, "Pixie");
 
-			translationBuilder.add(SuperflatProgressionStatusEffects.MAGIC_TORCH_EFFECT.value(), "Bountiful");
-			translationBuilder.add(SuperflatProgressionPotions.MAGIC_TORCH.value(), "Bounty");
+			translationBuilder.add(SuperflatProgressionStatusEffects.MAGIC_TORCH_EFFECT, "Bountiful");
+			translationBuilder.add(SuperflatProgressionPotions.MAGIC_TORCH, "Bounty");
 
-			translationBuilder.add(SuperflatProgressionStatusEffects.WARP_EFFECT.value(), "Spatial Instability");
-			translationBuilder.add(SuperflatProgressionPotions.WARP.value(), "Spatial Instability");
+			translationBuilder.add(SuperflatProgressionStatusEffects.WARP_EFFECT, "Spatial Instability");
+			translationBuilder.add(SuperflatProgressionPotions.WARP, "Spatial Instability");
 
 			translationBuilder.addInformation(SuperflatProgressionBlocks.CHARCOAL_BLOCK, "A log block surrounded on 4 or more sides by opaque blocks may turn into charcoal when burnt.");
 			translationBuilder.addInformation(SuperflatProgressionBlocks.GRINDER, "When supplied with a redstone signal it will take items from the container above it and process them into the container in front of it. Takes buckets from adjacent hoppers.");
