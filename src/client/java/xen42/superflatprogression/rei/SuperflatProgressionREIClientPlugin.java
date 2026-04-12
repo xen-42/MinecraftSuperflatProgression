@@ -23,6 +23,7 @@ import xen42.superflatprogression.SuperflatProgression;
 import xen42.superflatprogression.SuperflatProgressionBlocks;
 import xen42.superflatprogression.SuperflatProgressionItems;
 import xen42.superflatprogression.SuperflatProgressionTags;
+import xen42.superflatprogression.SuperflatProgressionUtils;
 import xen42.superflatprogression.recipe.GrinderRecipe;
 import xen42.superflatprogression.recipe.ScrollCraftingRecipe;
 import xen42.superflatprogression.screen.GrinderHandledScreen;
@@ -98,7 +99,7 @@ public class SuperflatProgressionREIClientPlugin implements REIClientPlugin {
 	}
 
 	private static void addInfo(Item item) {
-		var key = "info." + SuperflatProgression.MOD_ID + "." + Registries.ITEM.getId(item).getPath();
+		var key = "info." + SuperflatProgression.MOD_ID + "." + SuperflatProgressionUtils.getPath(item);
 		BuiltinClientPlugin.getInstance().registerInformation(EntryStacks.of(item), 
 			Text.of(key),
 			(text) -> List.of(Text.translatable(key)));

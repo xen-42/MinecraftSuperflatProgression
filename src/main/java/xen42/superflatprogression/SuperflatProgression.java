@@ -143,7 +143,7 @@ public class SuperflatProgression implements ModInitializer {
 		
 		var plains = BiomeSelectors.vanilla().and(context -> {
 			var overworld = context.canGenerateIn(DimensionOptions.OVERWORLD);
-			var isPlains = context.getBiomeKey().getValue().getPath().equals("plains");
+			var isPlains = SuperflatProgressionUtils.getPath(context.getBiomeKey()).equals("plains");
 			return overworld && isPlains;
 		});
 		addSpawn(plains, EntityType.SQUID, 2, 1, 4);

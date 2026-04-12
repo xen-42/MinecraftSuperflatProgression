@@ -60,24 +60,7 @@ public abstract class SuperflatProgressionLanguageProvider extends FabricLanguag
 		}
 		
 		public void add(TagKey<?> key, String value) {
-			StringBuilder stringBuilder = new StringBuilder();
-			stringBuilder.append("tag.");
-
-			Identifier registryIdentifier = key.registry().getValue();
-			Identifier tagIdentifier = key.id();
-
-			if (!registryIdentifier.getNamespace().equals(Identifier.DEFAULT_NAMESPACE)) {
-				stringBuilder.append(registryIdentifier.getNamespace())
-						.append(".");
-			}
-
-			stringBuilder.append(registryIdentifier.getPath().replace("/", "."))
-					.append(".")
-					.append(tagIdentifier.getNamespace())
-					.append(".")
-					.append(tagIdentifier.getPath().replace("/", ".").replace(":", "."));
-
-			add(stringBuilder.toString(), value);
+			add(SuperflatProgressionUtils.getTranslationKey(key), value);
 		}
 		
 		public void addTags(String value, TagKey<?>... keys) {
@@ -96,26 +79,25 @@ public abstract class SuperflatProgressionLanguageProvider extends FabricLanguag
 		}
 
 		public void add(Advancement advancement, String title, String description) {
-			add(SuperflatProgressionAdvancementsProvider.getTitleKey(advancement.getId().getPath()), title);
-			add(SuperflatProgressionAdvancementsProvider.getDescriptionKey(advancement.getId().getPath()), description);
+			var path = SuperflatProgressionUtils.getPath(advancement);
+			add(SuperflatProgressionAdvancementsProvider.getTitleKey(path), title);
+			add(SuperflatProgressionAdvancementsProvider.getDescriptionKey(path), description);
 		}
 
-		@SuppressWarnings("deprecation")
 		public void add(Fluid fluid, String value) {
-			RegistryKey<Fluid> key = fluid.getRegistryEntry().registryKey();
-			add("block." + key.getValue().getNamespace() + "." + key.getValue().getPath(), value);
+			add(SuperflatProgressionUtils.getTranslationKey(fluid), value);
 		}
 
 		public void addVillagerProfession(RegistryKey<VillagerProfession> key, String value) {
-			add("entity.minecraft.villager." + key.getValue().getPath(), value);
+			add(SuperflatProgressionUtils.getTranslationKey(key), value);
 		}
 
 		public void addFilledMap(TagKey<Structure> structure, String value) {
-			add("filled_map." + structure.id().getNamespace() + "." + structure.id().getPath(), value);
+			add("filled_map." + SuperflatProgressionUtils.getFullId(structure), value);
 		}
 
 		public void add(Potion potion, String name) {
-			var baseName = Registries.POTION.getId(potion).getPath();
+			var baseName = SuperflatProgressionUtils.getPath(potion);
 			add("item.minecraft.potion.effect." + baseName, makeDrinkablePotionText(name));
 			add("item.minecraft.splash_potion.effect." + baseName, makeSplashPotionText(name));
 			add("item.minecraft.lingering_potion.effect." + baseName, makeLingeringPotionText(name));
@@ -131,7 +113,7 @@ public abstract class SuperflatProgressionLanguageProvider extends FabricLanguag
 		}
 		
 		public void addInformation(Item item, String hint) {
-			addInformation(Registries.ITEM.getId(item).getPath(), hint);
+			addInformation(SuperflatProgressionUtils.getPath(item), hint);
 		}
 		
 		public void addInformation(ItemConvertible item, String hint) {
@@ -139,7 +121,7 @@ public abstract class SuperflatProgressionLanguageProvider extends FabricLanguag
 		}
 		
 		public void addInformation(EntityType<?> entity, String hint) {
-			addInformation(Registries.ENTITY_TYPE.getId(entity).getPath(), hint);
+			addInformation(SuperflatProgressionUtils.getPath(entity), hint);
 		}
 	}
 	

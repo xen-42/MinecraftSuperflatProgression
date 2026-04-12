@@ -28,6 +28,7 @@ import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
 import xen42.superflatprogression.SuperflatProgression;
+import xen42.superflatprogression.SuperflatProgressionUtils;
 
 public class GrinderRecipeJsonBuilder extends RecipeJsonBuilder implements CraftingRecipeJsonBuilder {
 	public static final String SPACE = " ";
@@ -69,19 +70,11 @@ public class GrinderRecipeJsonBuilder extends RecipeJsonBuilder implements Craft
 	}
 
 	public static Identifier getUniqueId(Item input, Item output) {
-		return Identifier.of(SuperflatProgression.MOD_ID, getItemPath(input) + "_into_" + getItemPath(output));
+		return Identifier.of(SuperflatProgression.MOD_ID, SuperflatProgressionUtils.getPath(input) + "_into_" + SuperflatProgressionUtils.getPath(output));
 	}
 
 	public static Identifier getUniqueId(TagKey<Item> input, Item output) {
-		return Identifier.of(SuperflatProgression.MOD_ID, getTagPath(input) + "_into_" + getItemPath(output));
-	}
-
-	public static String getItemPath(ItemConvertible item) {
-		return Registries.ITEM.getId(item.asItem()).getPath();
-	}
-
-	public static String getTagPath(TagKey<Item> itemTag) {
-		return itemTag.id().getPath();
+		return Identifier.of(SuperflatProgression.MOD_ID, SuperflatProgressionUtils.getPath(input) + "_into_" + SuperflatProgressionUtils.getPath(output));
 	}
 
 	public GrinderRecipeJsonBuilder setCount(int count) {

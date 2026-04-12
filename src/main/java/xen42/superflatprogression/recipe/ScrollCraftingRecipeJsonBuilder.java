@@ -27,6 +27,7 @@ import net.minecraft.registry.RegistryEntryLookup;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.util.Identifier;
 import xen42.superflatprogression.SuperflatProgression;
+import xen42.superflatprogression.SuperflatProgressionUtils;
 
 public class ScrollCraftingRecipeJsonBuilder extends RecipeJsonBuilder implements CraftingRecipeJsonBuilder {
 	public static final String SPACE = " ";
@@ -108,7 +109,7 @@ public class ScrollCraftingRecipeJsonBuilder extends RecipeJsonBuilder implement
 	}
 
 	public static Identifier getItemId(ItemConvertible item) {
-		return Identifier.of(SuperflatProgression.MOD_ID, Registries.ITEM.getId(item.asItem()).getPath());
+		return Identifier.of(SuperflatProgression.MOD_ID, SuperflatProgressionUtils.getPath(item));
 	}
 
 	private static class JsonProvider implements RecipeJsonProvider {

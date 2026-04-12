@@ -52,7 +52,7 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
     }
 
     public static Identifier getItemId(ItemConvertible item) {
-		return Identifier.of(SuperflatProgression.MOD_ID, Registries.ITEM.getId(item.asItem()).getPath());
+		return Identifier.of(SuperflatProgression.MOD_ID, SuperflatProgressionUtils.getPath(item));
 	}
     
     public static void offerTo(CraftingRecipeJsonBuilder builder, Consumer<RecipeJsonProvider> exporter) {
@@ -124,7 +124,7 @@ public class SuperflatProgressionRecipeGenerator extends FabricRecipeProvider {
             }
 
             public static String getTagPath(TagKey<Item> tag) {
-                return tag.id().getPath();
+                return SuperflatProgressionUtils.getPath(tag);
             }
             
             @Override
