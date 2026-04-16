@@ -45,7 +45,7 @@ public class SuperflatProgressionItems {
 	public static final Item MAGIC_TORCH = register("magic_torch", (settings) -> new VerticallyAttachableBlockItem(SuperflatProgressionBlocks.MAGIC_TORCH,
 		SuperflatProgressionBlocks.WALL_MAGIC_TORCH, settings, Direction.DOWN), new Item.Settings());
 	public static final Item PIXIE_SPAWN_EGG = register("pixie_spawn_egg", (settings) -> 
-        new DispensibleSpawnEggItem(SuperflatProgressionEntities.PIXIE_ENTITY, 0x6F4B6F, 0x2B1E2B, settings), new Item.Settings());
+        new DispensibleSpawnEggItem(SuperflatProgressionEntities.PIXIE_ENTITY, 0x6B346F, 0xFFCBFF, settings), new Item.Settings());
 
 	public record ScrollEntry(Item item, boolean optional) {}
 	public static final ArrayList<ScrollEntry> SCROLLS = new ArrayList<ScrollEntry>();
