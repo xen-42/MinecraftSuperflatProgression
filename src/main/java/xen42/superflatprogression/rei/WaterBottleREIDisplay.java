@@ -6,8 +6,10 @@ import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.display.SimpleGridMenuDisplay;
 import me.shedaniel.rei.api.common.display.basic.BasicDisplay;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
+import me.shedaniel.rei.api.common.util.EntryIngredients;
 import me.shedaniel.rei.api.common.util.EntryStacks;
 import net.minecraft.block.Block;
+import net.minecraft.registry.tag.TagKey;
 
 public class WaterBottleREIDisplay extends BasicDisplay implements SimpleGridMenuDisplay {
 
@@ -29,6 +31,10 @@ public class WaterBottleREIDisplay extends BasicDisplay implements SimpleGridMen
 
     public WaterBottleREIDisplay(Block input, Block output) {
         super(List.of(EntryIngredient.of(EntryStacks.of(input))), List.of(EntryIngredient.of(EntryStacks.of(output))));
+    }
+
+    public WaterBottleREIDisplay(TagKey<Block> input, Block output) {
+        super(List.of(EntryIngredients.ofItemTag(input)), List.of(EntryIngredient.of(EntryStacks.of(output))));
     }
 
     @Override

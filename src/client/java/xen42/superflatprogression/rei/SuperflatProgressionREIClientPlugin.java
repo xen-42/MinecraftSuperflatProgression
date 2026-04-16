@@ -18,6 +18,7 @@ import net.minecraft.item.Items;
 import net.minecraft.potion.PotionUtil;
 import net.minecraft.potion.Potions;
 import net.minecraft.registry.Registries;
+import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.text.Text;
 import xen42.superflatprogression.SuperflatProgression;
 import xen42.superflatprogression.SuperflatProgressionBlocks;
@@ -58,7 +59,7 @@ public class SuperflatProgressionREIClientPlugin implements REIClientPlugin {
 		registry.registerRecipeFiller(ScrollCraftingRecipe.class, SuperflatProgression.SCROLL_CRAFTING_RECIPE_TYPE, ScriptoriumREIDisplay::new);
 		registry.registerRecipeFiller(GrinderRecipe.class, SuperflatProgression.GRINDER_RECIPE_TYPE, PulverizerREIDisplay::new);
 
-		registry.add(new WaterBottleREIDisplay(Blocks.DIRT, Blocks.MUD));
+		registry.add(new WaterBottleREIDisplay(BlockTags.CONVERTABLE_TO_MUD, Blocks.MUD));
 		registry.add(new WaterBottleREIDisplay(Blocks.MAGMA_BLOCK, Blocks.COBBLESTONE));
 
 		registry.add(new EnrichedBoneMealREIDisplay(SuperflatProgressionTags.ItemTags.MUSHROOM_BLOCK_PLACEABLE, SuperflatProgressionTags.ItemTags.ENRICHED_BONE_MEAL_MUSHROOM));
